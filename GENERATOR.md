@@ -139,7 +139,9 @@ Each result:
   "bruins":   [ ... ], "patriots": [ ... ], "redsox": [ ... ]
 }
 ```
-- 2–4 items per team from the last ~36–48 hours: injuries and injury updates, transactions (trades, signings, waivers, call-ups), lineup/depth changes, front-office and coaching moves, notable quotes, upcoming-game storylines.
+- **6–10 items per team**, depending on how much is going on (fewer only when there genuinely isn't more real news; offseason teams can have fewer). The app shows the first 3 and hides the rest behind "See more", so **put the 3 most important first**, then the rest newest first.
+- What counts: injuries and injury updates, transactions (trades, signings, waivers, call-ups), lineup/depth changes, front-office and coaching moves, notable quotes, upcoming-game storylines, milestones and streaks, notable performances that aren't the game result itself, team features from reputable outlets.
+- Freshness: items stay as long as they're still current news (about the last week). Carry still-relevant items over from yesterday's issue and add new ones; drop anything stale or superseded (e.g. an injury update replaced by a newer one).
 - **Not** plain game results (the Games tab covers those), though a notable post-game injury or quote is fine.
 - No rumors or speculation pieces ("could target…", mock trades). Only actual reporting.
 - Offseason teams (e.g. the Red Sox in winter) still get news: front office, coaching staff, free agency, trades, injuries. If there's genuinely nothing new, use the most recent real item with its actual `dateLabel`.

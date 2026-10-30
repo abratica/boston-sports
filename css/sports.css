@@ -640,3 +640,5 @@ body.view-sports .yt-open { white-space: nowrap; color: var(--muted); font-size:
 html[data-theme="dark"] .install-card { background: #1B1B1B; color: #F2EFE8; }
 html[data-theme="dark"] .install-share { border-color: #F2EFE8; }
 html[data-theme="dark"] .install-note { color: #A9A49A; }
+
+body.view-sports .tn-more { display: block; width: 100%; margin: 4px 0 6px; padding: 10px 0; border: 0; border-top: 1px solid var(--rule); background: transparent; color: var(--accent-text); font: 800 14px var(--serif); text-align: left; cursor: pointer; }

@@ -252,11 +252,13 @@
       const today = (data.today || []).find((g) => g.teamKey === k);
       const off = (data.off || []).find((o) => o.teamKey === k);
       const next = today ? `Today · ${today.time} ${today.matchup}` : off ? String(off.text || "").replace(/^Next:\s*/, "Next · ") : "";
-      const items = (news[k] || []).map((n) => `<details class="tn-item">
+      // First 3 stories show; the rest sit behind "See more".
+      const items = (news[k] || []).map((n, i) => `<details class="tn-item${i >= 3 ? " tn-extra" : ""}"${i >= 3 ? " hidden" : ""}>
           <summary><span class="tn-h">${esc(n.headline)}</span>${chevron(14)}</summary>
           <div class="tn-body"><p>${esc(n.summary)}</p>
             <p class="rp-src">${esc(n.dateLabel || "")}${n.url ? ` · <a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.source || "Source")}</a>` : ""}</p></div>
-        </details>`).join("");
+        </details>`).join("") + ((news[k] || []).length > 3
+        ? `<button type="button" class="tn-more" data-more="${(news[k] || []).length - 3}">See ${(news[k] || []).length - 3} more</button>` : "");
       return `<section class="team" style="${teamVar(k)}">
         <header class="team-head">
           <div class="team-id"><span class="chip"></span><h2>${esc(TEAM_NAME[k])}</h2></div>
@@ -446,6 +448,16 @@
     document.addEventListener("visibilitychange", onVisible);
   }
   window.addEventListener("hashchange", stopLive);
+
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest(".tn-more");
+    if (!b) return;
+    const team = b.closest(".team");
+    const open = b.dataset.open === "1";
+    team.querySelectorAll(".tn-extra").forEach((d) => { d.hidden = open; if (open) d.open = false; });
+    b.dataset.open = open ? "" : "1";
+    b.textContent = open ? `See ${b.dataset.more} more` : "Show less";
+  });
 
   window.Layouts = window.Layouts || {};
   /* ── Past games (PS Sports) ───────────── */

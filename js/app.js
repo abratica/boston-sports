@@ -4,21 +4,21 @@
   const layout = window.Layouts.sports;
   const NAME = "PS Sports";
 
-  /* Light / dark / auto. Keys are prefixed so they never mix with other apps on this site. */
+  /* Light / dark. The first time, it follows the phone's setting; after a tap it remembers your pick.
+     Keys are prefixed so they never mix with other apps on this site. */
   const THEME_KEY = "bs-theme";
-  const THEME_LABEL = { auto: "Auto (follows your phone)", light: "Light mode", dark: "Dark mode" };
+  const THEME_LABEL = { light: "Light mode", dark: "Dark mode" };
   const darkMQ = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
   function themePref() {
-    try { const v = localStorage.getItem(THEME_KEY); return v === "light" || v === "dark" ? v : "auto"; }
-    catch { return "auto"; }
+    try { const v = localStorage.getItem(THEME_KEY); if (v === "light" || v === "dark") return v; } catch { /* fall through */ }
+    return darkMQ && darkMQ.matches ? "dark" : "light";
   }
   function applyTheme() {
     const pref = themePref();
-    const dark = pref === "dark" || (pref === "auto" && darkMQ && darkMQ.matches);
     document.documentElement.dataset.pref = pref;
-    document.documentElement.dataset.theme = dark ? "dark" : "light";
+    document.documentElement.dataset.theme = pref;
     const btn = document.querySelector(".theme-btn");
-    if (btn) btn.setAttribute("aria-label", `Theme: ${THEME_LABEL[pref]}. Tap to change.`);
+    if (btn) btn.setAttribute("aria-label", `${THEME_LABEL[pref]}. Tap for ${pref === "dark" ? "light" : "dark"} mode.`);
   }
   window.themeButton = () => `<button class="theme-btn" type="button" aria-label="Change light or dark mode">
     <svg class="i-auto" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg>
@@ -36,8 +36,7 @@
   }
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".theme-btn")) return;
-    const order = ["auto", "light", "dark"];
-    const next = order[(order.indexOf(themePref()) + 1) % order.length];
+    const next = themePref() === "dark" ? "light" : "dark";
     try { localStorage.setItem(THEME_KEY, next); } catch { /* still applies now */ }
     applyTheme();
     toast(THEME_LABEL[next]);
