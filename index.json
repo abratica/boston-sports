@@ -1,0 +1,28 @@
+{
+  "issues": [
+    {
+      "date": "2026-10-29",
+      "headline": "Bruins visit a Blues team shut out two straight games",
+      "ticker": [
+        "Bruins at Blues 8:00"
+      ]
+    },
+    {
+      "date": "2026-10-28",
+      "headline": "Tatum's OT buzzer-beater sinks Brooklyn",
+      "ticker": [
+        "Celtics 125, Nets 124 (OT)",
+        "Bruins 1, Hurricanes 2"
+      ]
+    },
+    {
+      "date": "2026-10-27",
+      "headline": "Pritchard's seven threes bury Chicago",
+      "ticker": [
+        "Celtics 134, Bulls 99",
+        "Celtics vs Nets 7:30",
+        "Bruins at Hurricanes 8:00"
+      ]
+    }
+  ]
+}
