@@ -2,7 +2,7 @@
 (() => {
   const app = document.getElementById("app");
   const layout = window.Layouts.sports;
-  const NAME = "Boston Sports";
+  const NAME = "PS Sports";
 
   /* Light / dark / auto. Keys are prefixed so they never mix with other apps on this site. */
   const THEME_KEY = "bs-theme";
