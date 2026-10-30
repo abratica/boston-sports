@@ -63,6 +63,7 @@ Every Boston game scheduled today (ET), sorted by start time.
 - `time`: ET, like `"7:30 PM"`.
 - `tv`: where to watch, from an official or schedule source you read for this game (team/league schedule, NBC Sports Boston or NESN listings, the league's national TV schedule, or a broadcast-listing schedule like FanDuel Research's team schedule page). List the Boston-area option(s) joined with ` · `: e.g. `"NBC Sports Boston · Peacock"` (Celtics local; Peacock streams NBCSB), `"NESN"` (Bruins/Red Sox local), `"ESPN"`, `"TNT"`, `"Prime Video"`, `"CBS"`. If a national broadcast is exclusive, show only the national one. Omit the field if you can't confirm it. Never guess.
 - `venue`: home venue name for home games; for road games, the arena/stadium name only if a source confirms it, otherwise the city.
+- `radio` (usually omit): the app shows a "Listen live" link under each Patriots, Celtics and Bruins game from 10 minutes before the start until it ends, opening 98.5 The Sports Hub's free player (https://985thesportshub.com/listen). Only when two Boston games overlap and the Sports Hub moves one to a sister station (usually 100.7 WZLX), set it on the moved game: `"radio": { "name": "100.7 WZLX", "url": "<that station's official listen-live page>" }`, from the station's announcement or schedule you read. Red Sox games get no link unless you set `radio` (e.g. WEEI's official listen page). URLs must be https.
 
 ## off (Upcoming games)
 

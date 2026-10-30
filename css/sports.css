@@ -424,6 +424,15 @@ body.view-sports .board-tv {
   grid-column: 1 / -1; display: flex; align-items: center; gap: 6px; margin-top: 4px;
   font-family: var(--serif); font-weight: 600; font-size: 13px; color: rgba(247, 244, 238, 0.7);
 }
+/* Listen live link under a game on the scoreboard */
+body.view-sports .board-listen { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; padding: 9px 12px; border-radius: 10px;
+  background: rgba(247, 244, 238, 0.08); color: var(--chalk, #F7F4EE); text-decoration: none; font-family: var(--serif); font-size: 13.5px; }
+body.view-sports .board-listen[hidden] { display: none; }
+body.view-sports .board-listen svg { color: #FF5A50; flex: none; }
+body.view-sports .board-listen .bl-go { font-weight: 800; }
+body.view-sports .board-listen .bl-st { color: rgba(247, 244, 238, 0.65); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+body.view-sports .board-listen .bl-arrow { font-size: 18px; line-height: 1; color: rgba(247, 244, 238, 0.6); }
+body.view-sports .board-listen:active { background: rgba(247, 244, 238, 0.14); }
 body.view-sports .section-title { font-size: 20px; font-weight: 700; margin: 30px 4px 10px; }
 body.view-sports .game { border: 1px solid var(--rule); border-left: 5px solid var(--team, var(--rule)); }
 body.view-sports .headline { font-family: var(--serif); font-weight: 800; font-size: 16.5px; }

@@ -28,6 +28,37 @@
   const SPORT_PATH = { nba: "basketball/nba", nhl: "hockey/nhl", nfl: "football/nfl", mlb: "baseball/mlb" };
   const ESPN_ABBR = { patriots: "NE", celtics: "BOS", bruins: "BOS", redsox: "BOS" };
 
+  /* ── Listen live: a link under each game on the scoreboard, shown from 10 minutes before the start
+     until the game ends. It opens the station's own free player. An issue can override the station per
+     game with "radio": { "name", "url" } (e.g. when two Boston games overlap and one moves to WZLX). */
+  const SPORTS_HUB = { name: "98.5 The Sports Hub", url: "https://985thesportshub.com/listen" };
+  const RADIO = { patriots: SPORTS_HUB, celtics: SPORTS_HUB, bruins: SPORTS_HUB };
+  const RADIO_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 8l10-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="15.5" cy="14" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6.5 12.5h4M6.5 15.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+  const clockMin = (t) => {   // "7:30 PM" -> minutes after midnight, or "" if it isn't a clock time
+    const m = String(t || "").match(/(\d{1,2})(?::(\d{2}))?\s*([AP])M/i);
+    if (!m) return "";
+    return ((+m[1] % 12) + (m[3].toUpperCase() === "P" ? 12 : 0)) * 60 + (+(m[2] || 0));
+  };
+  const safeUrl = (u) => /^https:\/\//.test(String(u || "")) ? u : "";
+  function listenLink(g) {
+    const r = g.radio && safeUrl(g.radio.url) ? g.radio : RADIO[g.teamKey];
+    if (!r) return "";
+    return `<a class="board-listen" href="${esc(r.url)}" target="_blank" rel="noopener" data-start="${clockMin(g.time)}" hidden>
+        ${RADIO_ICON}<span class="bl-go">Listen live</span><span class="bl-st">${esc(r.name)}</span><span class="bl-arrow" aria-hidden="true">›</span></a>`;
+  }
+  function updateListen(root, date) {
+    const parts = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+      .formatToParts(new Date()).map((x) => [x.type, x.value]));
+    const today = `${parts.year}-${parts.month}-${parts.day}`, now = +parts.hour * 60 + +parts.minute;
+    root.querySelectorAll(".board-listen").forEach((a) => {
+      const row = a.previousElementSibling;
+      const live = !!(row && row.classList.contains("is-live")), final = !!(row && row.classList.contains("is-final"));
+      const s = a.dataset.start === "" ? null : +a.dataset.start;
+      const inWindow = date === today && s !== null && now >= s - 10 && now <= s + 240;
+      a.hidden = final || !(live || inWindow);
+    });
+  }
+
   function board(today, date, off) {
     const ymd = String(date || "").replace(/-/g, "");
     const rows = (today || []).map((g) => {
@@ -42,7 +73,7 @@
         <div class="board-detail">${esc(g.matchup)}${g.oppRecord ? ` (${esc(g.oppRecord)})` : ""}</div>
         <div class="board-venue">${esc(g.venue || "")}</div>
         ${g.tv ? `<div class="board-tv"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${esc(g.tv)}</div>` : ""}
-      </${tag}>`;
+      </${tag}>${listenLink(g)}`;
     }).join("");
     const next = (off || []).map((o) => `<div class="board-next">
         <span class="chip" style="${teamVar(o.teamKey)}"></span><b>${esc(o.team)}</b>
@@ -599,6 +630,8 @@
   function stopLive() {
     if (timer) clearInterval(timer);
     timer = null;
+    if (listenTimer) clearInterval(listenTimer);
+    listenTimer = null;
     document.removeEventListener("visibilitychange", onVisible);
   }
   let tick = null;
@@ -637,8 +670,12 @@
     }
   }
 
+  let listenTimer = null;
   function mount(root, data) {
     stopLive();
+    const upd = () => updateListen(root, data.date);
+    upd();
+    listenTimer = setInterval(upd, 60000);
     const rows = [...root.querySelectorAll(".board-row[data-league]")];
     const todayET = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
     if (!rows.length || data.date !== todayET) return;
@@ -659,6 +696,7 @@
           });
         } catch { allDone = false; }
       }
+      upd();
       if (allDone) stopLive();
     };
     tick();
