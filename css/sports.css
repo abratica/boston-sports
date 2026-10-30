@@ -620,3 +620,23 @@ body.view-sports .pg-empty { color: var(--muted); }
 
 body.view-sports .yt-ext { position: absolute; left: 10px; bottom: 10px; background: rgba(0,0,0,.72); color: #fff; font-family: var(--serif); font-weight: 700; font-size: 12px; padding: 4px 8px; border-radius: 6px; }
 body.view-sports .yt-open { white-space: nowrap; color: var(--muted); font-size: 12.5px; text-decoration: underline; text-underline-offset: 2px; }
+
+/* Install bar + iPhone guide (PS Sports) */
+.install-bar { position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 50; display: flex; align-items: center; gap: 12px;
+  background: #141414; color: #F2EFE8; border: 1px solid #2C2B29; border-radius: 16px; padding: 10px 10px 10px 12px; box-shadow: 0 10px 30px rgba(0,0,0,.35); font-family: "Manrope", sans-serif; max-width: 620px; margin: 0 auto; }
+.install-bar img { border-radius: 10px; flex: 0 0 40px; }
+.install-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.install-text b { font-weight: 800; font-size: 14.5px; }
+.install-text span { color: #A9A49A; font-size: 12.5px; }
+.install-go { background: #E0302A; color: #fff; border: 0; border-radius: 999px; padding: 9px 16px; font: 800 14px "Manrope", sans-serif; cursor: pointer; }
+.install-x { background: transparent; color: #A9A49A; border: 0; font-size: 22px; line-height: 1; padding: 4px 6px; cursor: pointer; }
+.install-sheet { position: fixed; inset: 0; z-index: 60; background: rgba(0,0,0,.55); display: flex; align-items: flex-end; justify-content: center; }
+.install-card { background: #FFFFFF; color: #151515; width: 100%; max-width: 520px; border-radius: 20px 20px 0 0; padding: 22px 20px calc(22px + env(safe-area-inset-bottom)); font-family: "Manrope", sans-serif; }
+.install-card h2 { font: 400 20px "Archivo Black", sans-serif; margin: 0 0 12px; }
+.install-card ol { margin: 0; padding-left: 20px; display: grid; gap: 10px; font-size: 15.5px; line-height: 1.4; }
+.install-share { display: inline-block; border: 1.5px solid #151515; border-radius: 5px; padding: 0 4px; font-size: 12px; }
+.install-note { color: #6E6A62; font-size: 13px; margin: 14px 0 0; }
+.install-done { margin-top: 16px; width: 100%; background: #E0302A; color: #fff; border: 0; border-radius: 12px; padding: 13px; font: 800 15px "Manrope", sans-serif; cursor: pointer; }
+html[data-theme="dark"] .install-card { background: #1B1B1B; color: #F2EFE8; }
+html[data-theme="dark"] .install-share { border-color: #F2EFE8; }
+html[data-theme="dark"] .install-note { color: #A9A49A; }

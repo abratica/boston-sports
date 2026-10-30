@@ -89,6 +89,62 @@
     }
   }
 
+  /* ── Install button ─────────────────────
+     Android/Chrome: Chrome fires "beforeinstallprompt" once the app is ready to install;
+     we show a bar whose button opens Chrome's real install prompt.
+     iPhone/iPad: no install prompt exists, so the bar opens a short Add to Home Screen guide. */
+  const DISMISS_KEY = "bs-install-dismissed";
+  const standalone = () => (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
+  const dismissedRecently = () => { try { return Date.now() - Number(localStorage.getItem(DISMISS_KEY) || 0) < 7 * 864e5; } catch { return false; } };
+  const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let deferred = null;
+
+  function installBar(label, onGo) {
+    if (standalone() || dismissedRecently() || document.querySelector(".install-bar")) return;
+    const bar = document.createElement("div");
+    bar.className = "install-bar";
+    bar.innerHTML = `<img src="icons/icon-192.png" alt="" width="40" height="40">
+      <span class="install-text"><b>Get the PS Sports app</b><span>Daily Boston sports on your home screen</span></span>
+      <button type="button" class="install-go">${label}</button>
+      <button type="button" class="install-x" aria-label="Not now">×</button>`;
+    bar.querySelector(".install-go").addEventListener("click", onGo);
+    bar.querySelector(".install-x").addEventListener("click", () => {
+      try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch { /* fine */ }
+      bar.remove();
+    });
+    document.body.appendChild(bar);
+  }
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferred = e;
+    installBar("Install", async () => {
+      if (!deferred) return;
+      deferred.prompt();
+      try { await deferred.userChoice; } catch { /* fine */ }
+      deferred = null;
+      document.querySelector(".install-bar")?.remove();
+    });
+  });
+  window.addEventListener("appinstalled", () => { document.querySelector(".install-bar")?.remove(); });
+  if (isIOS && !standalone()) {
+    setTimeout(() => installBar("How", () => {
+      const sheet = document.createElement("div");
+      sheet.className = "install-sheet";
+      sheet.innerHTML = `<div class="install-card" role="dialog" aria-label="Add PS Sports to your Home Screen">
+        <h2>Add PS Sports to your Home Screen</h2>
+        <ol>
+          <li>Tap the <b>Share</b> button <span class="install-share" aria-hidden="true">⬆︎</span> at the bottom of Safari</li>
+          <li>Scroll down and tap <b>Add to Home Screen</b></li>
+          <li>Tap <b>Add</b>. PS Sports shows up with your other apps</li>
+        </ol>
+        <p class="install-note">Using Chrome on iPhone? Open this page in Safari first.</p>
+        <button type="button" class="install-done">Got it</button>
+      </div>`;
+      sheet.addEventListener("click", (ev) => { if (ev.target === sheet || ev.target.closest(".install-done")) sheet.remove(); });
+      document.body.appendChild(sheet);
+    }), 1500);
+  }
+
   window.addEventListener("hashchange", route);
   route();
 
