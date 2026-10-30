@@ -43,7 +43,14 @@
   function listenLink(g) {
     const r = g.radio && safeUrl(g.radio.url) ? g.radio : RADIO[g.teamKey];
     if (!r) return "";
-    return `<a class="board-listen" href="${esc(r.url)}" target="_blank" rel="noopener" data-start="${clockMin(g.time)}" hidden>
+    // On Android, open the player in the full Chrome app (its own tab) instead of the in-app browser sheet,
+    // so the audio keeps playing while you switch back to the scoreboard.
+    let href = r.url;
+    if (/Android/i.test(navigator.userAgent)) {
+      const u = new URL(r.url);
+      href = `intent://${u.host}${u.pathname}${u.search}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(r.url)};end`;
+    }
+    return `<a class="board-listen" href="${esc(href)}" target="_blank" rel="noopener" data-start="${clockMin(g.time)}" hidden>
         ${RADIO_ICON}<span class="bl-go">Listen live</span><span class="bl-st">${esc(r.name)}</span><span class="bl-arrow" aria-hidden="true">›</span></a>`;
   }
   function updateListen(root, date) {
