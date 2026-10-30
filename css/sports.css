@@ -425,7 +425,7 @@ body.view-sports .board-tv {
   font-family: var(--serif); font-weight: 600; font-size: 13px; color: rgba(247, 244, 238, 0.7);
 }
 body.view-sports .section-title { font-size: 20px; font-weight: 700; margin: 30px 4px 10px; }
-body.view-sports .game { border: 1px solid var(--rule); border-left-width: 5px; }
+body.view-sports .game { border: 1px solid var(--rule); border-left: 5px solid var(--team, var(--rule)); }
 body.view-sports .headline { font-family: var(--serif); font-weight: 800; font-size: 16.5px; }
 body.view-sports .scoreline .num { background: #141414; box-shadow: none; }
 body.view-sports .game-body p, body.view-sports .p-note { font-size: 14.5px; }
