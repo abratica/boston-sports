@@ -148,6 +148,21 @@ Each result:
 - Sources: team sites, NBC Sports Boston, Boston Globe, Boston Herald, MassLive, NESN, ESPN, AP, The Athletic. Every item links to the article you read.
 - `dateLabel` is the article date like `"Oct 27"`.
 
+## schedule.json (Schedule button on the News tab)
+
+`schedule.json` at the repo root holds each in-season team's full regular-season schedule; the app merges it with `games/index.json` to show results (and link to recaps), the "Next up" divider, upcoming games and a calendar. Shape:
+```json
+{ "updated": "YYYY-MM-DD",
+  "teams": { "celtics": { "season": "2026–27",
+    "games": [ { "date": "2026-10-30", "time": "7:30 PM", "home": true, "opp": "Bulls", "oppAbbr": "CHI", "tv": "NBC Sports Boston · Peacock", "note": "NBA Cup" } ] } } }
+```
+- `date` is the Eastern-time game date; `time` Eastern ("7:30 PM") or `null` if TBD; `home` true/false; `opp` nickname; `oppAbbr` ESPN's abbreviation; `tv` only when an official/schedule source lists it (never guess); `note` optional ("NBA Cup", "Christmas Day", "in London", "Flex scheduling").
+- **Every morning:** for each in-season team, check the next ~3 weeks against the sports data tool's `scores` and the ESPN team schedule page (espn.com/<league>/team/schedule/_/name/<bos|ne>): fix any changed dates/times (NFL flex, postponements), and add `tv` as soon as it's announced (copy it from today's `today` entry when the game is today). Set `updated` to today.
+- **Mondays:** re-check the whole remaining season the same way.
+- Never delete games that were already played; if a game is postponed, move it to its new date (and say so in `note`) or set `time` to `null` with `note: "Postponed"`.
+- When a team's season starts (e.g. the Red Sox in spring), add its full schedule. Teams in the offseason have no entry (the Schedule button only shows for in-season teams).
+- Commit `schedule.json` with the issue when it changes.
+
 ## standingsAll (Standings button: Division / Conference)
 
 Full standings for every **in-season** league with a Boston team. Build it with the script so the format and math are consistent:

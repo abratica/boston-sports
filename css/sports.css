@@ -642,3 +642,44 @@ html[data-theme="dark"] .install-share { border-color: #F2EFE8; }
 html[data-theme="dark"] .install-note { color: #A9A49A; }
 
 body.view-sports .tn-more { display: block; width: 100%; margin: 4px 0 6px; padding: 10px 0; border: 0; border-top: 1px solid var(--rule); background: transparent; color: var(--accent-text); font: 800 14px var(--serif); text-align: left; cursor: pointer; }
+
+/* Schedule sheet (PS Sports) */
+body.view-sports .team-btns { grid-row: span 2; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.sc-sheet .sc-month { margin: 18px 0 8px; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.sc-sheet .sc-list { list-style: none; margin: 0; padding: 0; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; }
+.sc-sheet .sc-row { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid var(--rule); color: inherit; text-decoration: none; }
+.sc-sheet .sc-list li:first-child .sc-row { border-top: 0; }
+.sc-sheet .sc-date { font-family: var(--display); font-weight: 700; font-size: 15px; line-height: 1.1; }
+.sc-sheet .sc-date small { display: block; font-weight: 500; font-size: 13px; color: var(--muted); letter-spacing: .04em; }
+.sc-sheet .sc-opp { font-family: var(--display); font-weight: 700; font-size: 19px; }
+.sc-sheet .sc-opp .ha { font-weight: 500; color: var(--muted); font-size: 16px; margin-right: 4px; }
+.sc-sheet .sc-sub { display: block; font-family: var(--serif); font-size: 13px; color: var(--muted); margin-top: 2px; font-weight: 500; }
+.sc-sheet .sc-right { font-family: var(--display); font-weight: 700; font-size: 17px; white-space: nowrap; display: flex; align-items: center; gap: 8px; }
+.sc-sheet .sc-right .go { color: var(--muted); font-size: 20px; }
+.sc-sheet .sc-time { font-weight: 600; font-size: 16px; }
+.sc-sheet .sc-next { display: flex; align-items: center; gap: 10px; margin: 20px 0 0; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-text); }
+.sc-sheet .sc-next::after { content: ""; flex: 1; height: 2px; background: var(--accent); border-radius: 2px; }
+.sc-sheet .sc-row.is-next { background: var(--hl); }
+.sc-sheet .sc-tag { font-family: var(--serif); font-size: 11.5px; font-weight: 800; color: #fff; background: var(--accent); border-radius: 6px; padding: 2px 7px; }
+.sc-sheet .cal-head { display: flex; align-items: center; justify-content: space-between; margin: 16px 0 10px; }
+.sc-sheet .cal-head h3 { margin: 0; font-family: var(--display); font-weight: 700; font-size: 22px; }
+.sc-sheet .cal-nav { display: flex; gap: 8px; }
+.sc-sheet .cal-nav button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--rule); background: var(--card); color: var(--ink); font-size: 18px; cursor: pointer; }
+.sc-sheet .cal-nav button:disabled { opacity: .35; cursor: default; }
+.sc-sheet .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.sc-sheet .cal-dow { text-align: center; font-family: var(--display); font-weight: 600; font-size: 13px; color: var(--muted); }
+.sc-sheet .cal-day { min-width: 0; min-height: 60px; overflow: hidden; border-radius: 10px; background: var(--card); border: 1px solid var(--rule); padding: 4px; display: flex; flex-direction: column; justify-content: space-between; align-items: stretch; font-family: var(--display); color: var(--ink); text-align: left; cursor: pointer; }
+.sc-sheet .cal-day:disabled { cursor: default; }
+.sc-sheet .cal-day.empty { background: transparent; border-color: transparent; }
+.sc-sheet .cal-day .n { font-weight: 600; font-size: 13px; color: var(--muted); }
+.sc-sheet .cal-day.today .n { color: #fff; background: var(--accent); border-radius: 999px; width: 20px; height: 20px; display: grid; place-items: center; font-size: 12px; }
+.sc-sheet .cal-g { border-radius: 6px; text-align: center; font-weight: 700; font-size: 12.5px; padding: 2px 0; line-height: 1.15; white-space: nowrap; overflow: hidden; }
+.sc-sheet .cal-g small { display: block; font-weight: 600; font-size: 10px; opacity: .9; }
+.sc-sheet .cal-g.W { background: var(--win); color: #fff; }
+.sc-sheet .cal-g.L, .sc-sheet .cal-g.OTL { background: var(--loss); color: #fff; }
+.sc-sheet .cal-g.up { background: color-mix(in srgb, var(--team) 14%, transparent); color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--team); }
+.sc-sheet .cal-day.sel { outline: 2.5px solid var(--ink); outline-offset: -1px; }
+.sc-sheet .cal-key { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 12px 2px 0; font-family: var(--serif); font-size: 12.5px; color: var(--muted); font-weight: 600; }
+.sc-sheet .cal-key i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; }
+.sc-sheet .k-w { background: var(--win); } .sc-sheet .k-l { background: var(--loss); } .sc-sheet .k-u { box-shadow: inset 0 0 0 1.5px var(--team); }
+.sc-sheet .cal-detail { margin-top: 14px; }

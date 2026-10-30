@@ -262,7 +262,8 @@
       return `<section class="team" style="${teamVar(k)}">
         <header class="team-head">
           <div class="team-id"><span class="chip"></span><h2>${esc(TEAM_NAME[k])}</h2></div>
-          ${has ? `<button type="button" class="st-btn" data-team="${k}">Standings</button>` : ""}
+          ${has ? `<div class="team-btns"><button type="button" class="st-btn" data-team="${k}">Standings</button>
+            <button type="button" class="st-btn" data-team="${k}" data-sched="1">Schedule</button></div>` : ""}
           <span class="team-meta">${esc(placeLine(k))}</span>
         </header>
         ${next ? `<p class="team-next">${esc(next)}</p>` : ""}
@@ -287,6 +288,142 @@
       return head + c.divisions.map((d) => `<h4 class="st-div">${esc(d.name)}</h4>${stTable(S, d.rows, false)}`).join("");
     }).join("");
   }
+  /* ── Schedule sheet (List / Calendar) ─────────────
+     Season schedule from schedule.json, merged with saved recaps (games/index.json) for results. */
+  let SCHED = null, RESULTS = null;
+  const todayET = () => new Date().toLocaleDateString("en-CA", { timeZone: "America/New_York" });
+  const dt = (iso) => new Date(iso + "T12:00:00");
+  const md = (iso) => dt(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+  const dow = (iso) => dt(iso).toLocaleDateString("en-US", { weekday: "short" }).toUpperCase();
+  const monthName = (iso) => dt(iso).toLocaleDateString("en-US", { month: "long" });
+  async function loadSchedule() {
+    const get = async (u) => { try { const r = await fetch(u, { cache: "no-store" }); return r.ok ? r.json() : null; } catch { return null; } };
+    if (!SCHED) SCHED = await get("schedule.json");
+    if (!RESULTS) RESULTS = ((await get("games/index.json")) || {}).games || [];
+  }
+  function seasonGames(k) {
+    const list = ((SCHED && SCHED.teams && SCHED.teams[k]) || {}).games || [];
+    return list.map((g) => ({ ...g, res: RESULTS.find((r) => r.team === k && r.date === g.date) || null }));
+  }
+  function scRow(k, g, today) {
+    const ha = g.home === false ? "at" : "vs";
+    const date = `<span class="sc-date">${esc(md(g.date))}<small>${esc(dow(g.date))}</small></span>`;
+    const opp = `<span class="sc-opp"><span class="ha">${ha}</span>${esc(g.opp)}</span>`;
+    const sub = [g.tv ? `📺 ${g.tv}` : "", g.note || ""].filter(Boolean).join(" · ");
+    if (g.res) {
+      const r = g.res;
+      return `<li><a class="sc-row" href="#/games/${k}/${esc(r.id)}"><span>${date}</span><span>${opp}${g.note ? `<span class="sc-sub">${esc(g.note)}</span>` : ""}</span>
+        <span class="sc-right"><span class="result ${esc(r.result)}">${esc(r.result)}</span> ${esc(`${r.bos}–${r.oppScore}${r.ot ? " OT" : ""}`)}<span class="go" aria-hidden="true">›</span></span></a></li>`;
+    }
+    const past = g.date < today;
+    const tag = g.date === today ? "TODAY" : "";
+    return `<li><div class="sc-row${g.date === today ? " is-next" : ""}"><span>${date}</span><span>${opp}${sub ? `<span class="sc-sub">${esc(sub)}</span>` : ""}</span>
+      <span class="sc-right">${tag ? `<span class="sc-tag">${tag}</span>` : ""}<span class="sc-time">${past ? "Final" : esc(g.time || "TBD")}</span></span></div></li>`;
+  }
+  function scList(k, games, today) {
+    let out = "", curMonth = null, nextShown = false;
+    const done = (g) => g.res || g.date < today;
+    for (const g of games) {
+      const isNext = !nextShown && !done(g);
+      if (isNext) { if (curMonth) out += "</ul>"; out += `<div class="sc-next" id="sc-next">Next up</div>`; curMonth = null; nextShown = true; }
+      const m = monthName(g.date);
+      if (m !== curMonth) { if (curMonth) out += "</ul>"; out += `<h3 class="sc-month">${esc(m)}</h3><ul class="sc-list">`; curMonth = m; }
+      out += scRow(k, g, today);
+    }
+    if (curMonth) out += "</ul>";
+    return out || `<p class="tn-empty">Schedule coming soon.</p>`;
+  }
+  function scCalendar(k, games, today, ym, sel) {
+    const [y, m] = ym.split("-").map(Number);
+    const first = new Date(y, m - 1, 1), days = new Date(y, m, 0).getDate();
+    const byDate = Object.fromEntries(games.map((g) => [g.date, g]));
+    const months = [...new Set(games.map((g) => g.date.slice(0, 7)))];
+    const i = months.indexOf(ym);
+    let cells = ["S", "M", "T", "W", "T", "F", "S"].map((x) => `<div class="cal-dow">${x}</div>`).join("");
+    for (let j = 0; j < first.getDay(); j++) cells += `<div class="cal-day empty"></div>`;
+    for (let n = 1; n <= days; n++) {
+      const iso = `${ym}-${String(n).padStart(2, "0")}`;
+      const g = byDate[iso];
+      let chip = "";
+      if (g) {
+        const ab = `${g.home === false ? "@" : ""}${esc(g.oppAbbr || g.opp.slice(0, 3).toUpperCase())}`;
+        chip = g.res ? `<span class="cal-g ${esc(g.res.result)}">${ab}<small>${esc(g.res.result)} ${esc(`${g.res.bos}–${g.res.oppScore}`)}</small></span>`
+          : `<span class="cal-g up">${ab}<small>${esc((g.time || (g.date < today ? "Final" : "TBD")).replace(":00", "").replace(" PM", "p").replace(" AM", "a"))}</small></span>`;
+      }
+      cells += `<button type="button" class="cal-day${iso === today ? " today" : ""}${iso === sel ? " sel" : ""}"${g ? ` data-day="${iso}"` : " disabled"}><span class="n">${n}</span>${chip}</button>`;
+    }
+    const title = first.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+    return `<div class="cal-head"><h3>${esc(title)}</h3><div class="cal-nav">
+        <button type="button" data-cal="${months[i - 1] || ""}" aria-label="Previous month"${i > 0 ? "" : " disabled"}>‹</button>
+        <button type="button" data-cal="${months[i + 1] || ""}" aria-label="Next month"${i >= 0 && i < months.length - 1 ? "" : " disabled"}>›</button></div></div>
+      <div class="cal-grid">${cells}</div>
+      <div class="cal-key"><span><i class="k-w"></i>Win</span><span><i class="k-l"></i>Loss</span><span><i class="k-u"></i>Upcoming</span><span>@ = away</span></div>
+      ${sel && byDate[sel] ? `<ul class="sc-list cal-detail">${scRow(k, byDate[sel], today)}</ul>` : ""}`;
+  }
+  async function openSchedule(k) {
+    await loadSchedule();
+    const games = seasonGames(k);
+    const today = todayET();
+    const nextG = games.find((g) => !g.res && g.date >= today);
+    const rec = (RESULTS.find((r) => r.team === k) || {}).record || "";
+    let mode = "list"; try { mode = sessionStorage.getItem("bs-sched") || "list"; } catch { /* list */ }
+    let ym = (nextG ? nextG.date : today).slice(0, 7), sel = nextG ? nextG.date : null;
+    if (games.length && !games.some((g) => g.date.slice(0, 7) === ym)) ym = games[games.length - 1].date.slice(0, 7);
+    const el = document.createElement("div");
+    el.className = "st-sheet sc-sheet";
+    el.setAttribute("role", "dialog");
+    el.setAttribute("aria-label", `${TEAM_NAME[k]} schedule`);
+    el.style.cssText = teamVar(k);
+    el.innerHTML = `<div class="st-panel">
+      <header class="st-head"><h2>Schedule</h2><span class="st-lg">${esc(TEAM_NAME[k].toUpperCase())}${rec ? ` · ${esc(rec)}` : ""}</span>
+        <button type="button" class="st-close" aria-label="Close">✕</button></header>
+      <div class="st-seg" role="tablist">
+        <button type="button" data-mode="list" aria-selected="${mode === "list"}">List</button>
+        <button type="button" data-mode="cal" aria-selected="${mode === "cal"}">Calendar</button>
+      </div>
+      <div class="st-body"></div>
+    </div>`;
+    const body = el.querySelector(".st-body");
+    const render = () => {
+      body.innerHTML = mode === "list" ? scList(k, games, today) : scCalendar(k, games, today, ym, sel);
+      if (mode === "list") { const n = body.querySelector("#sc-next"); body.scrollTop = n ? Math.max(0, n.offsetTop - 220) : 0; }
+      else body.scrollTop = 0;
+    };
+    document.body.appendChild(el);
+    document.body.style.overflow = "hidden";
+    render();
+    history.pushState({ stSheet: true }, "");
+    let closed = false;
+    const remove = () => {
+      if (closed) return;
+      closed = true;
+      el.remove();
+      document.body.style.overflow = "";
+      window.removeEventListener("popstate", onPop);
+      window.removeEventListener("hashchange", remove);
+    };
+    const onPop = () => remove();
+    window.addEventListener("popstate", onPop);
+    window.addEventListener("hashchange", remove);   // tapping a result opens its recap
+    const close = () => { if (history.state && history.state.stSheet) history.back(); else remove(); };
+    el.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    el.addEventListener("click", (e) => {
+      if (e.target === el || e.target.closest(".st-close")) return close();
+      const seg = e.target.closest(".st-seg button");
+      if (seg) {
+        mode = seg.dataset.mode;
+        try { sessionStorage.setItem("bs-sched", mode); } catch { /* fine */ }
+        el.querySelectorAll(".st-seg button").forEach((x) => x.setAttribute("aria-selected", String(x === seg)));
+        return render();
+      }
+      const nav = e.target.closest("[data-cal]");
+      if (nav && nav.dataset.cal) { ym = nav.dataset.cal; sel = null; return render(); }
+      const day = e.target.closest(".cal-day[data-day]");
+      if (day) { sel = day.dataset.day; const top = body.scrollTop; render(); body.scrollTop = top; }
+    });
+    el.querySelector(".st-close").focus();
+  }
+
   function openSheet(k) {
     const S = ALL && ALL[TEAM_LEAGUE[k]];
     if (!S) return;
@@ -332,7 +469,8 @@
   }
   document.addEventListener("click", (e) => {
     const b = e.target.closest(".st-btn");
-    if (b) openSheet(b.dataset.team);
+    if (!b) return;
+    if (b.dataset.sched) openSchedule(b.dataset.team); else openSheet(b.dataset.team);
   });
   document.addEventListener("click", (e) => {
     const t = e.target.closest(".tabs button");
