@@ -305,7 +305,7 @@
     const list = ((SCHED && SCHED.teams && SCHED.teams[k]) || {}).games || [];
     return list.map((g) => ({ ...g, res: RESULTS.find((r) => r.team === k && r.date === g.date) || null }));
   }
-  function scRow(k, g, today) {
+  function scRow(k, g, today, isNext) {
     const ha = g.home === false ? "at" : "vs";
     const date = `<span class="sc-date">${esc(md(g.date))}<small>${esc(dow(g.date))}</small></span>`;
     const opp = `<span class="sc-opp"><span class="ha">${ha}</span>${esc(g.opp)}</span>`;
@@ -317,7 +317,7 @@
     }
     const past = g.date < today;
     const tag = g.date === today ? "TODAY" : "";
-    return `<li><div class="sc-row${g.date === today ? " is-next" : ""}"><span>${date}</span><span>${opp}${sub ? `<span class="sc-sub">${esc(sub)}</span>` : ""}</span>
+    return `<li><div class="sc-row${isNext || g.date === today ? " is-next" : ""}"><span>${date}</span><span>${opp}${sub ? `<span class="sc-sub">${esc(sub)}</span>` : ""}</span>
       <span class="sc-right">${tag ? `<span class="sc-tag">${tag}</span>` : ""}<span class="sc-time">${past ? "Final" : esc(g.time || "TBD")}</span></span></div></li>`;
   }
   function scList(k, games, today) {
@@ -325,7 +325,12 @@
     const done = (g) => g.res || g.date < today;
     for (const g of games) {
       const isNext = !nextShown && !done(g);
-      if (isNext) { if (curMonth) out += "</ul>"; out += `<div class="sc-next" id="sc-next">Next up</div>`; curMonth = null; nextShown = true; }
+      if (isNext) {
+        // The next game sits in its own highlighted box, then the list carries on under its month.
+        if (curMonth) out += "</ul>";
+        out += `<div class="sc-next" id="sc-next">Next up</div><ul class="sc-list sc-list-next">${scRow(k, g, today, true)}</ul>`;
+        curMonth = null; nextShown = true; continue;
+      }
       const m = monthName(g.date);
       if (m !== curMonth) { if (curMonth) out += "</ul>"; out += `<h3 class="sc-month">${esc(m)}</h3><ul class="sc-list">`; curMonth = m; }
       out += scRow(k, g, today);
