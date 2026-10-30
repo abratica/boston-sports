@@ -95,6 +95,7 @@ Each result:
     4. A daily-links / highlights roundup page that embeds the YouTube video.
     Search results include fan channels; that's fine, because oEmbed verification below decides. Only after all four come up empty, use a stand-in or omit `videos`.
   - **Verify** by fetching `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<id>&format=json`: `author_name` must be an allowed channel and `title` must match this game and date. If oEmbed fails, don't use it.
+  - NFL highlights (NFL and Patriots channels) can't play inside other apps, so the app shows NFL videos as a thumbnail that opens YouTube. Pick them the same way. For any other video you know can't be embedded, add `"embed": false`.
   - Write `title` in plain sentence case; `channel` is the channel's display name. If nothing qualifies yet, omit `videos` (the catch-up run tries again). Never guess an id.
 - `report` (the game story, always shown when the card is opened):
   ```json

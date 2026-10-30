@@ -617,3 +617,6 @@ body.view-sports .pg-score { font-family: var(--display); font-weight: 700; font
 body.view-sports .pg-sub { color: var(--muted); font-size: 14px; line-height: 1.35; }
 body.view-sports .pg-go { color: var(--muted); font-size: 22px; }
 body.view-sports .pg-empty { color: var(--muted); }
+
+body.view-sports .yt-ext { position: absolute; left: 10px; bottom: 10px; background: rgba(0,0,0,.72); color: #fff; font-family: var(--serif); font-weight: 700; font-size: 12px; padding: 4px 8px; border-radius: 6px; }
+body.view-sports .yt-open { white-space: nowrap; color: var(--muted); font-size: 12.5px; text-decoration: underline; text-underline-offset: 2px; }

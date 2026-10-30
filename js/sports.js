@@ -57,20 +57,28 @@
   /* ── Highlight videos (official YouTube uploads) ──
      Shows a thumbnail; the YouTube player only loads when tapped. */
   const ytId = (id) => String(id || "").replace(/[^A-Za-z0-9_-]/g, "");
-  function player(v) {
+  // Some leagues (the NFL) block their videos from playing inside other apps, so those open in YouTube instead.
+  const watchUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
+  function player(v, external) {
     const id = ytId(v.id);
+    if (external) return `<a class="yt" href="${watchUrl(id)}" target="_blank" rel="noopener" aria-label="Watch on YouTube: ${esc(v.title)}">
+      <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy">
+      <span class="yt-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+      <span class="yt-ext">Opens in YouTube</span>
+    </a>`;
     return `<button class="yt" type="button" data-yt="${id}" aria-label="Play: ${esc(v.title)}">
       <img src="https://i.ytimg.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy">
       <span class="yt-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
     </button>`;
   }
-  function videos(list) {
+  function videos(list, sport) {
     const vids = (list || []).filter((v) => ytId(v.id));
     if (!vids.length) return "";
     const [main, ...more] = vids;
+    const external = main.embed === false || String(sport || "").toUpperCase() === "NFL";
     return `<div class="vids">
-      <div class="yt-slot">${player(main)}</div>
-      <p class="yt-cap"><span class="yt-title">${esc(main.title)}</span> <span class="yt-ch">${esc(main.channel || "")}</span></p>
+      <div class="yt-slot">${player(main, external)}</div>
+      <p class="yt-cap"><span class="yt-title">${esc(main.title)}</span> <span class="yt-ch">${esc(main.channel || "")}</span>${external ? "" : ` <a class="yt-open" href="${watchUrl(ytId(main.id))}" target="_blank" rel="noopener">Open in YouTube ↗</a>`}</p>
       ${more.length ? `<ul class="yt-more">${more.map((v) => `<li><button type="button" class="yt-swap" data-yt="${ytId(v.id)}" data-title="${esc(v.title)}" data-ch="${esc(v.channel || "")}">
           <img src="https://i.ytimg.com/vi/${ytId(v.id)}/mqdefault.jpg" alt="" loading="lazy">
           <span><span class="yt-title">${esc(v.title)}</span><span class="yt-ch">${esc(v.channel || "")}</span></span>
@@ -183,7 +191,7 @@
         ${g.takeaway ? `<p class="sum-take">${esc(g.takeaway)}</p>` : ""}
       </summary>
       <div class="game-body">
-        ${videos(g.videos)}
+        ${videos(g.videos, g.sport)}
         ${story(g)}
         ${P.length ? `<h4 class="sub">Top player stats</h4><ul class="performers">${P.map(pli).join("")}</ul>` : ""}
         ${g.oppLine ? `<p class="opp-line"><b>${esc(g.opp.name || g.opp.abbr)}:</b> ${esc(g.oppLine)}</p>` : ""}
