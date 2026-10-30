@@ -4,6 +4,7 @@ Usage (from the repo root):  python3 -I tools/save_games.py
 
 Reads every issues/*.json, and for each game in "results" writes games/<id>.json
 (the full game card plus its date), then rebuilds games/index.json, newest first.
+Recaps already in games/ that don't come from an issue (earlier games added by hand) are kept.
 Safe to run any number of times: it always rebuilds from the issues, so a catch-up
 run's new video or box score flows into the saved recap too.
 """
@@ -24,6 +25,13 @@ def game_date(issue_date):
 def main():
     os.makedirs(os.path.join(ROOT, "games"), exist_ok=True)
     games = {}
+    # Keep recaps that aren't in any issue (e.g. games from before the newsletter started).
+    for path in glob.glob(os.path.join(ROOT, "games", "*.json")):
+        if os.path.basename(path) == "index.json":
+            continue
+        with open(path) as f:
+            g = json.load(f)
+        games[g["id"]] = g
     for path in sorted(glob.glob(os.path.join(ROOT, "issues", "*.json"))):
         with open(path) as f:
             issue = json.load(f)
