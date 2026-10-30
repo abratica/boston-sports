@@ -421,22 +421,52 @@
       const day = e.target.closest(".cal-day[data-day]");
       if (day) { sel = day.dataset.day; const top = body.scrollTop; render(); body.scrollTop = top; }
     });
-    // Swipe left/right on the calendar to change months (the arrows still work).
-    let sx = 0, sy = 0, swiping = false;
+    // Swipe the calendar to change months: the grid follows your finger, then the new month slides in.
+    // The arrows still work.
+    let sx = 0, sy = 0, st = 0, dx = 0, axis = null, grid = null;
+    const EASE = "cubic-bezier(.2,.8,.2,1)";
+    const navBtn = (dir) => body.querySelector(`.cal-nav button[aria-label="${dir < 0 ? "Next" : "Previous"} month"]`);
+    const canGo = (dir) => { const b = navBtn(dir); return !!(b && !b.disabled && b.dataset.cal); };
     body.addEventListener("touchstart", (e) => {
-      if (mode !== "cal" || !e.target.closest(".cal-grid, .cal-head")) return;
-      swiping = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+      if (mode !== "cal" || !e.target.closest(".cal-grid")) { grid = null; return; }
+      grid = body.querySelector(".cal-grid");
+      sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = performance.now(); dx = 0; axis = null;
+      grid.style.transition = "none";
     }, { passive: true });
-    body.addEventListener("touchend", (e) => {
-      if (!swiping) return;
-      swiping = false;
-      const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
-      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
-      const btn = body.querySelector(`.cal-nav button[aria-label="${dx < 0 ? "Next" : "Previous"} month"]`);
-      if (!btn || btn.disabled || !btn.dataset.cal) return;
-      ym = btn.dataset.cal; sel = null; render();
-      const grid = body.querySelector(".cal-grid");
-      if (grid) grid.classList.add(dx < 0 ? "slide-l" : "slide-r");
+    body.addEventListener("touchmove", (e) => {
+      if (!grid) return;
+      const mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
+      if (!axis && Math.abs(mx) + Math.abs(my) > 8) axis = Math.abs(mx) > Math.abs(my) ? "x" : "y";
+      if (axis !== "x") return;
+      dx = canGo(mx) ? mx : mx * 0.25;   // rubber-band when there's no month that way
+      grid.style.transform = `translateX(${dx}px)`;
+      grid.style.opacity = String(1 - Math.min(Math.abs(dx) / 500, 0.4));
+    }, { passive: true });
+    body.addEventListener("touchend", () => {
+      if (!grid) return;
+      const g = grid; grid = null;
+      const v = Math.abs(dx) / Math.max(performance.now() - st, 1);   // px per ms
+      const go = axis === "x" && canGo(dx) && (Math.abs(dx) > 60 || (v > 0.45 && Math.abs(dx) > 20));
+      if (!go) {   // snap back
+        g.style.transition = `transform 220ms ${EASE}, opacity 220ms ${EASE}`;
+        g.style.transform = ""; g.style.opacity = "";
+        return;
+      }
+      const dir = dx < 0 ? -1 : 1;
+      const w = g.getBoundingClientRect().width;
+      g.style.transition = `transform 160ms ease-out, opacity 160ms ease-out`;
+      g.style.transform = `translateX(${dir * w}px)`; g.style.opacity = "0";
+      setTimeout(() => {
+        ym = navBtn(dir).dataset.cal; sel = null; render();
+        const ng = body.querySelector(".cal-grid");
+        if (!ng) return;
+        ng.style.transition = "none";
+        ng.style.transform = `translateX(${-dir * w * 0.35}px)`; ng.style.opacity = "0";
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          ng.style.transition = `transform 260ms ${EASE}, opacity 260ms ${EASE}`;
+          ng.style.transform = ""; ng.style.opacity = "";
+        }));
+      }, 150);
     }, { passive: true });
     el.querySelector(".st-close").focus();
   }

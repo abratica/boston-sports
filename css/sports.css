@@ -685,8 +685,5 @@ body.view-sports .team-btns { grid-row: span 2; display: flex; flex-direction: c
 .sc-sheet .cal-detail { margin-top: 14px; }
 
 .sc-sheet .cal-grid { touch-action: pan-y; }
-.sc-sheet .cal-grid.slide-l { animation: calL 220ms ease; }
-.sc-sheet .cal-grid.slide-r { animation: calR 220ms ease; }
-@keyframes calL { from { transform: translateX(28px); opacity: .3; } to { transform: none; opacity: 1; } }
-@keyframes calR { from { transform: translateX(-28px); opacity: .3; } to { transform: none; opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .sc-sheet .cal-grid.slide-l, .sc-sheet .cal-grid.slide-r { animation: none; } }
+.sc-sheet .st-body { overflow-x: hidden; }
+.sc-sheet .cal-grid { will-change: transform; }
