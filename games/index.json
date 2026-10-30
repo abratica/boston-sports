@@ -1,6 +1,20 @@
 {
   "games": [
     {
+      "id": "2026-10-29-bruins-stl",
+      "team": "bruins",
+      "date": "2026-10-29",
+      "home": false,
+      "opp": "Blues",
+      "oppAbbr": "STL",
+      "bos": 1,
+      "oppScore": 4,
+      "result": "L",
+      "record": "9–4–1",
+      "headline": "Blues end scoring drought, sink Bruins 4–1",
+      "ot": false
+    },
+    {
       "id": "2026-10-27-celtics-bkn",
       "team": "celtics",
       "date": "2026-10-27",

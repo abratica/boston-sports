@@ -1,0 +1,94 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Blues end scoring drought, sink Bruins 4–1",
+  "home": false,
+  "boston": {
+    "abbr": "BOS",
+    "score": 1
+  },
+  "opp": {
+    "abbr": "STL",
+    "name": "Blues",
+    "score": 4
+  },
+  "result": "L",
+  "record": "9–4–1",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3"
+    ],
+    "boston": [
+      1,
+      0,
+      0
+    ],
+    "opp": [
+      1,
+      2,
+      1
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "BOS 1, STL 1",
+        "text": "Casey Mittelstadt picked off a Joel Hofer clearing attempt behind the Blues' net, and James Hagens tipped his feed past Hofer at 5:28 for a 1–0 lead. At 15:43, four seconds into a St. Louis power play, Jimmy Snuggerud one-timed Philip Broberg's pass inside the near post to tie it 1–1, ending the Blues' 138:38 scoreless stretch. St. Louis outshot Boston 10–8 in the period."
+      },
+      {
+        "label": "2nd period",
+        "score": "STL 3, BOS 1",
+        "text": "Broberg wristed a shot from the slot over Jeremy Swayman's glove at 5:17 after Connor McMichael found him from behind the net, making it 2–1. At 12:08, Robert Thomas, left unmarked in the slot, took a pass from Justin Barron and beat Swayman high for 3–1."
+      },
+      {
+        "label": "3rd period",
+        "score": "Final: STL 4, BOS 1",
+        "text": "Marco Sturm shuffled his lines, moving David Pastrnak around, and Boston outshot St. Louis 14–2, but Hofer stopped all 14. Jake Neighbours put away the rebound of a Broberg shot on the power play at 12:42 for the 4–1 final; the Blues went 2-for-3 on the power play, Boston 0-for-2."
+      }
+    ],
+    "sources": [
+      {
+        "name": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/10/29/sports/bruins-blues-game-score/"
+      },
+      {
+        "name": "AP (WHDH)",
+        "url": "https://whdh.com/sports/thomas-broberg-lead-blues-to-4-1-win-over-bruins/"
+      },
+      {
+        "name": "BostonBruins.com",
+        "url": "https://www.nhl.com/bruins/news/bruins-drop-game-4-1-to-the-blues-wake-up-call-for-us"
+      },
+      {
+        "name": "Boston Hockey Now",
+        "url": "https://bostonhockeynow.com/2026-10-30-bruins-postgame-costly-mistakes-marco-sturm-unacceptable-night-blues/"
+      },
+      {
+        "name": "ESPN",
+        "url": "https://www.espn.com/nhl/game/_/gameId/401892604/bruins-blues"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "James Hagens",
+      "line": "1 G",
+      "note": "His fifth goal and 10th point, second among NHL rookies behind Gavin McKenna's 11, was Boston's only score."
+    },
+    {
+      "name": "Casey Mittelstadt",
+      "line": "1 A",
+      "note": "Created the goal by picking off Hofer's clearing attempt; afterward he said it's not \"time to panic.\""
+    },
+    {
+      "name": "Jeremy Swayman",
+      "line": "14 SV · 18 SA",
+      "note": "Allowed four goals on 18 shots, two of them on Blues power plays."
+    }
+  ],
+  "oppLine": "Robert Thomas and Philip Broberg each had a goal and two assists, and Joel Hofer stopped 31 of 32 shots.",
+  "takeaway": "Two straight regulation losses left Boston without a point on the trip and its Atlantic lead at one point, with 12 of the next 14 games at home.",
+  "id": "2026-10-29-bruins-stl",
+  "date": "2026-10-29"
+}
