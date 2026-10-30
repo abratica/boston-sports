@@ -1,0 +1,672 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Peterka's overtime breakaway beats the Jets",
+  "home": false,
+  "boston": {
+    "abbr": "BOS",
+    "score": 4
+  },
+  "opp": {
+    "abbr": "WPG",
+    "name": "Jets",
+    "score": 3
+  },
+  "result": "W",
+  "record": "2–0–0",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "OT"
+    ],
+    "boston": [
+      2,
+      0,
+      1,
+      1
+    ],
+    "opp": [
+      1,
+      2,
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "BOS 2, WPG 1",
+        "text": "Dylan DeMelo's point shot through a screen put Winnipeg up 1–0 at 4:52. Hampus Lindholm answered with a one-timer from the blue line at 9:23 for 1–1, and at 15:20 James Hagens finished a Nikita Zadorov feed after Mark Kastelic drove the net, his first NHL goal, for a 2–1 lead."
+      },
+      {
+        "label": "2nd period",
+        "score": "WPG 3, BOS 2",
+        "text": "Kyle Connor tied it 2–2 on a power play at 1:50, extending his NHL-record streak of scoring in season openers to nine games. Mario Ferraro's wrister from the left circle with eight seconds left in the period gave the Jets a 3–2 lead."
+      },
+      {
+        "label": "3rd period",
+        "score": "BOS 3, WPG 3",
+        "text": "With Jeremy Swayman pulled for an extra attacker, Elias Lindholm tipped in David Pastrnak's shot with 1:38 left in regulation to tie it 3–3."
+      },
+      {
+        "label": "Overtime",
+        "score": "Final: BOS 4, WPG 3",
+        "text": "Pastrnak sent JJ Peterka in alone, and Peterka beat Stuart Skinner five-hole at 3:21. Swayman finished with 30 saves."
+      }
+    ],
+    "sources": [
+      {
+        "name": "NHL.com",
+        "url": "https://www.nhl.com/news/boston-bruins-winnipeg-jets-game-recap-october-2-2026"
+      },
+      {
+        "name": "AP (ESPN)",
+        "url": "https://africa.espn.com/nhl/recap/_/gameId/401891831"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "JJ Peterka",
+      "line": "1 G (OT) · 5 SOG",
+      "note": "His breakaway winner kept Boston perfect."
+    },
+    {
+      "name": "David Pastrnak",
+      "line": "2 A · 4 SOG",
+      "note": "Set up both the tying goal and the overtime winner."
+    },
+    {
+      "name": "James Hagens",
+      "line": "1 G",
+      "note": "Scored his first NHL goal at 19 years, 333 days, for a 2–1 lead."
+    }
+  ],
+  "oppLine": "Kyle Connor had a power-play goal, an assist and nine shots; Adam Lowry added two assists, and Stuart Skinner made 26 saves in his Jets debut.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401891831"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "David Pastrnak",
+              "values": [
+                0,
+                2,
+                2,
+                "0",
+                4,
+                0,
+                1,
+                "22:04"
+              ]
+            },
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                0,
+                0,
+                0,
+                "21:53"
+              ]
+            },
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                2,
+                0,
+                2,
+                "21:42"
+              ]
+            },
+            {
+              "name": "Nikita Zadorov",
+              "values": [
+                0,
+                2,
+                2,
+                "0",
+                0,
+                2,
+                2,
+                "20:54"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                5,
+                0,
+                1,
+                "20:05"
+              ]
+            },
+            {
+              "name": "Pavel Zacha",
+              "values": [
+                0,
+                0,
+                0,
+                "+2",
+                3,
+                0,
+                3,
+                "19:33"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                0,
+                1,
+                0,
+                "19:32"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                0,
+                1,
+                1,
+                "+2",
+                0,
+                2,
+                0,
+                "18:53"
+              ]
+            },
+            {
+              "name": "Connor Clifton",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                2,
+                0,
+                "18:35"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                1,
+                0,
+                "16:50"
+              ]
+            },
+            {
+              "name": "Jonathan Aspirot",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                1,
+                3,
+                "16:05"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                0,
+                "15:55"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                1,
+                0,
+                1,
+                "0",
+                5,
+                1,
+                0,
+                "15:53"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                1,
+                2,
+                0,
+                "14:14"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                2,
+                0,
+                0,
+                "14:01"
+              ]
+            },
+            {
+              "name": "Sean Kuraly",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                6,
+                0,
+                "11:02"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                5,
+                0,
+                "10:15"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                1,
+                3,
+                1,
+                "9:17"
+              ]
+            }
+          ],
+          "totals": [
+            4,
+            8,
+            12,
+            "",
+            30,
+            26,
+            13,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jeremy Swayman",
+              "values": [
+                33,
+                30,
+                ".909",
+                "62:25"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Jets",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Josh Morrissey",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                4,
+                0,
+                2,
+                "25:22"
+              ]
+            },
+            {
+              "name": "Neal Pionk",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                1,
+                1,
+                "24:37"
+              ]
+            },
+            {
+              "name": "Dylan DeMelo",
+              "values": [
+                1,
+                0,
+                1,
+                "0",
+                1,
+                0,
+                1,
+                "22:53"
+              ]
+            },
+            {
+              "name": "Dylan Samberg",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                3,
+                "22:46"
+              ]
+            },
+            {
+              "name": "Mark Scheifele",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                0,
+                0,
+                "22:29"
+              ]
+            },
+            {
+              "name": "Kyle Connor",
+              "values": [
+                1,
+                1,
+                2,
+                "0",
+                9,
+                1,
+                2,
+                "20:56"
+              ]
+            },
+            {
+              "name": "Gabriel Vilardi",
+              "values": [
+                0,
+                1,
+                1,
+                "-2",
+                1,
+                0,
+                0,
+                "19:25"
+              ]
+            },
+            {
+              "name": "Mario Ferraro",
+              "values": [
+                1,
+                0,
+                1,
+                "0",
+                3,
+                1,
+                3,
+                "17:58"
+              ]
+            },
+            {
+              "name": "Cole Perfetti",
+              "values": [
+                0,
+                1,
+                1,
+                "-1",
+                4,
+                3,
+                1,
+                "17:06"
+              ]
+            },
+            {
+              "name": "Adam Lowry",
+              "values": [
+                0,
+                2,
+                2,
+                "0",
+                2,
+                3,
+                2,
+                "16:07"
+              ]
+            },
+            {
+              "name": "Morgan Barron",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                2,
+                1,
+                2,
+                "15:53"
+              ]
+            },
+            {
+              "name": "Viggo Bjorck",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                0,
+                "15:42"
+              ]
+            },
+            {
+              "name": "Nino Niederreiter",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                2,
+                0,
+                "12:17"
+              ]
+            },
+            {
+              "name": "Alex Iafallo",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                1,
+                0,
+                "12:12"
+              ]
+            },
+            {
+              "name": "Brad Lambert",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                1,
+                0,
+                "11:47"
+              ]
+            },
+            {
+              "name": "Vladislav Namestnikov",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                1,
+                "11:45"
+              ]
+            },
+            {
+              "name": "Isak Rosen",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                2,
+                "10:50"
+              ]
+            },
+            {
+              "name": "Tyrel Bauer",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                3,
+                0,
+                "5:58"
+              ]
+            }
+          ],
+          "totals": [
+            3,
+            6,
+            9,
+            "",
+            33,
+            17,
+            20,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Stuart Skinner",
+              "values": [
+                30,
+                26,
+                ".867",
+                "63:21"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Boston is 2–0–0 after erasing a late deficit, and it plays again tonight in Minnesota on the second half of a back-to-back.",
+  "videos": [
+    {
+      "id": "tf4ih-TWJNk",
+      "title": "Bruins vs. Jets: game highlights",
+      "channel": "NHL",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-10-02-bruins-wpg",
+  "date": "2026-10-02"
+}

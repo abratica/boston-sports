@@ -1,0 +1,677 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Stutzle's three points sink Bruins at home",
+  "home": true,
+  "boston": {
+    "abbr": "BOS",
+    "score": 1
+  },
+  "opp": {
+    "abbr": "OTT",
+    "name": "Senators",
+    "score": 4
+  },
+  "result": "L",
+  "record": "2–2–0",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3"
+    ],
+    "boston": [
+      0,
+      0,
+      1
+    ],
+    "opp": [
+      2,
+      2,
+      0
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "OTT 2, BOS 0",
+        "text": "Boston's power play backfired. Michael Amadio intercepted a pass, and Tim Stutzle one-timed his feed past Jeremy Swayman short-handed at 7:39 for 1–0. At 9:22, three seconds after that power play expired, Stutzle stole another pass and scored again for 2–0."
+      },
+      {
+        "label": "2nd period",
+        "score": "OTT 4, BOS 0",
+        "text": "Stutzle forced a turnover and sent Drake Batherson in alone for a backhand goal 1:06 in, 3–0, and Amadio one-timed a no-look feed from Shane Pinto at 5:19, 4–0. Linus Ullmark stopped all 10 shots he faced through two periods but was shaken up in a crease collision with JJ Peterka."
+      },
+      {
+        "label": "3rd period",
+        "score": "Final: OTT 4, BOS 1",
+        "text": "Samuel Ersson took over in goal as a precaution, and James Hagens spoiled the shutout at 3:30 when his pass toward Matthew Poitras deflected in off Ersson, 4–1. Boston finished 0-for-4 on the power play."
+      }
+    ],
+    "sources": [
+      {
+        "name": "NHL.com",
+        "url": "https://www.nhl.com/news/ottawa-senators-boston-bruins-game-recap-october-5-2026"
+      },
+      {
+        "name": "AP (Boston 25 News)",
+        "url": "https://www.boston25news.com/news/local/stutzles-3-point-game-ullmark-ersson-power-senators-4-1-win-over-bruins/7TOJYXZG2NGI5AVZCNKSG2LIIQ/"
+      },
+      {
+        "name": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/10/05/sports/bruins-senators-game-score/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "James Hagens",
+      "line": "1 G · 2 SOG",
+      "note": "His second NHL goal, a deflection off Ersson, was Boston's only score."
+    },
+    {
+      "name": "Jeremy Swayman",
+      "line": "20 SV · 24 SA",
+      "note": "Allowed four goals, most of them off Boston turnovers."
+    },
+    {
+      "name": "David Pastrnak",
+      "line": "0 PTS · 2 SOG · -2",
+      "note": "The power play went 0-for-4 and gave up a short-handed goal."
+    }
+  ],
+  "oppLine": "Tim Stutzle had two goals and an assist to reach 151 career goals; Batherson and Amadio also scored, and Linus Ullmark (10 saves) and Samuel Ersson (8) stopped 18 of 19 shots between them.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401892446"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                0,
+                2,
+                "21:01"
+              ]
+            },
+            {
+              "name": "David Pastrnak",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                2,
+                5,
+                0,
+                "21:00"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                3,
+                1,
+                1,
+                "20:58"
+              ]
+            },
+            {
+              "name": "Pavel Zacha",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                1,
+                2,
+                "20:02"
+              ]
+            },
+            {
+              "name": "Nikita Zadorov",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                4,
+                0,
+                "19:39"
+              ]
+            },
+            {
+              "name": "Connor Clifton",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                1,
+                "19:17"
+              ]
+            },
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                2,
+                0,
+                0,
+                "18:46"
+              ]
+            },
+            {
+              "name": "Frederic Brunet",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                3,
+                "18:43"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                3,
+                0,
+                "16:25"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                1,
+                1,
+                0,
+                "16:16"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                2,
+                1,
+                0,
+                "15:32"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                0,
+                1,
+                1,
+                "15:20"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                1,
+                0,
+                1,
+                "-1",
+                2,
+                1,
+                1,
+                "13:55"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                0,
+                0,
+                "12:56"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                3,
+                0,
+                "11:32"
+              ]
+            },
+            {
+              "name": "Matthew Poitras",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                0,
+                2,
+                0,
+                "11:28"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                6,
+                0,
+                "10:47"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                4,
+                0,
+                "10:19"
+              ]
+            }
+          ],
+          "totals": [
+            1,
+            0,
+            1,
+            "",
+            19,
+            34,
+            11,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jeremy Swayman",
+              "values": [
+                24,
+                20,
+                ".833",
+                "60:00"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Senators",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jordan Spence",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                0,
+                2,
+                "24:49"
+              ]
+            },
+            {
+              "name": "Thomas Chabot",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                1,
+                1,
+                "24:13"
+              ]
+            },
+            {
+              "name": "Tyler Kleven",
+              "values": [
+                0,
+                0,
+                0,
+                "+2",
+                1,
+                0,
+                2,
+                "23:21"
+              ]
+            },
+            {
+              "name": "Nikolas Matinpalo",
+              "values": [
+                0,
+                0,
+                0,
+                "+2",
+                1,
+                0,
+                0,
+                "20:15"
+              ]
+            },
+            {
+              "name": "Tim Stutzle",
+              "values": [
+                2,
+                1,
+                3,
+                "+3",
+                3,
+                1,
+                1,
+                "18:56"
+              ]
+            },
+            {
+              "name": "Dylan Cozens",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                4,
+                5,
+                1,
+                "18:38"
+              ]
+            },
+            {
+              "name": "Shane Pinto",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                2,
+                6,
+                0,
+                "17:56"
+              ]
+            },
+            {
+              "name": "William Eklund",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                0,
+                "17:53"
+              ]
+            },
+            {
+              "name": "Fabian Zetterlund",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                4,
+                0,
+                "16:42"
+              ]
+            },
+            {
+              "name": "Michael Amadio",
+              "values": [
+                1,
+                1,
+                2,
+                "+3",
+                2,
+                0,
+                1,
+                "15:44"
+              ]
+            },
+            {
+              "name": "Drake Batherson",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                2,
+                3,
+                1,
+                "15:11"
+              ]
+            },
+            {
+              "name": "Carter Yakemchuk",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                0,
+                "14:58"
+              ]
+            },
+            {
+              "name": "Claude Giroux",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                0,
+                "14:03"
+              ]
+            },
+            {
+              "name": "Warren Foegele",
+              "values": [
+                0,
+                0,
+                0,
+                "+2",
+                0,
+                2,
+                0,
+                "12:13"
+              ]
+            },
+            {
+              "name": "Nick Cousins",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                1,
+                4,
+                0,
+                "10:58"
+              ]
+            },
+            {
+              "name": "Cameron Crotty",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                1,
+                0,
+                "10:56"
+              ]
+            },
+            {
+              "name": "Stephen Halliday",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                1,
+                1,
+                "9:39"
+              ]
+            },
+            {
+              "name": "Hayden Hodgson",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                3,
+                0,
+                "5:35"
+              ]
+            }
+          ],
+          "totals": [
+            4,
+            4,
+            8,
+            "",
+            24,
+            32,
+            10,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Linus Ullmark",
+              "values": [
+                10,
+                10,
+                "1.000",
+                "40:00"
+              ]
+            },
+            {
+              "name": "Samuel Ersson",
+              "values": [
+                9,
+                8,
+                ".889",
+                "20:00"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Two straight losses drop Boston to 2–2–0, and the power play is 0-for-10 through four games heading into Thursday's home game against Utah.",
+  "videos": [
+    {
+      "id": "pIvOxFWKpTA",
+      "title": "Senators vs. Bruins: game highlights",
+      "channel": "NHL",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-10-05-bruins-ott",
+  "date": "2026-10-05"
+}

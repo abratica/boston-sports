@@ -1,0 +1,664 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Kaprizov scores twice as Wild rally past Bruins",
+  "home": false,
+  "boston": {
+    "abbr": "BOS",
+    "score": 1
+  },
+  "opp": {
+    "abbr": "MIN",
+    "name": "Wild",
+    "score": 4
+  },
+  "result": "L",
+  "record": "2–1–0",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3"
+    ],
+    "boston": [
+      1,
+      0,
+      0
+    ],
+    "opp": [
+      0,
+      2,
+      2
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "BOS 1, MIN 0",
+        "text": "Tanner Jeannot scored from low in the left circle off a Mark Kastelic touch pass 1:53 in for a 1–0 lead. Michael DiPietro, in his first NHL start since Jan. 23, 2022, kept Minnesota off the board."
+      },
+      {
+        "label": "2nd period",
+        "score": "MIN 2, BOS 1",
+        "text": "Kirill Kaprizov tied it 1–1 on a power play at 6:11, one-timing a short feed from Maxim Shabanov. Quinn Hughes then put Minnesota ahead 2–1 at 12:28 with a shot through traffic on a 5-on-3; the Wild had 1:52 of two-man advantage in the period."
+      },
+      {
+        "label": "3rd period",
+        "score": "Final: MIN 4, BOS 1",
+        "text": "Jared Spurgeon's wrister from the top of the right circle, off Nikita Zadorov's skate, made it 3–1 at 3:24. Boston outshot Minnesota 13–9 in the period but couldn't beat Jesper Wallstedt, and Kaprizov hit the empty net with 1:01 left."
+      }
+    ],
+    "sources": [
+      {
+        "name": "NHL.com",
+        "url": "https://www.nhl.com/news/boston-bruins-minnesota-wild-game-recap-october-3-2026"
+      },
+      {
+        "name": "AP (ABC News)",
+        "url": "https://abcnews.com/Sports/wireStory/kaprizov-scores-wild-beat-bruins-4-1-136980753"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Michael DiPietro",
+      "line": "26 SV · 29 SA",
+      "note": "Kept it close in his third NHL start; two of the three goals he allowed came on Minnesota power plays."
+    },
+    {
+      "name": "Tanner Jeannot",
+      "line": "1 G · 1 SOG",
+      "note": "His early goal was Boston's only one."
+    },
+    {
+      "name": "Mark Kastelic",
+      "line": "1 A · 1 SOG",
+      "note": "Set up Jeannot's opener with a touch pass."
+    }
+  ],
+  "oppLine": "Kirill Kaprizov scored twice, once on the power play and once into an empty net; Quinn Hughes had a goal and an assist, and Jesper Wallstedt stopped 26 of 27 shots.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401891814"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                2,
+                1,
+                "21:38"
+              ]
+            },
+            {
+              "name": "David Pastrnak",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                5,
+                2,
+                1,
+                "21:02"
+              ]
+            },
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                0,
+                0,
+                "21:00"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                0,
+                "20:38"
+              ]
+            },
+            {
+              "name": "Pavel Zacha",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                0,
+                "19:27"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                3,
+                3,
+                "19:21"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                3,
+                0,
+                "18:45"
+              ]
+            },
+            {
+              "name": "Connor Clifton",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                0,
+                0,
+                1,
+                "18:06"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                1,
+                "17:18"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                0,
+                "16:56"
+              ]
+            },
+            {
+              "name": "Jonathan Aspirot",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                2,
+                "16:36"
+              ]
+            },
+            {
+              "name": "Nikita Zadorov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                3,
+                2,
+                "15:45"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                3,
+                0,
+                0,
+                "14:28"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                3,
+                1,
+                0,
+                "13:43"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                0,
+                "12:43"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                0,
+                1,
+                1,
+                "-1",
+                1,
+                0,
+                1,
+                "10:59"
+              ]
+            },
+            {
+              "name": "Sean Kuraly",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                0,
+                1,
+                "10:36"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                1,
+                0,
+                1,
+                "0",
+                1,
+                1,
+                0,
+                "8:10"
+              ]
+            }
+          ],
+          "totals": [
+            1,
+            2,
+            3,
+            "",
+            27,
+            16,
+            13,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Michael DiPietro",
+              "values": [
+                29,
+                26,
+                ".897",
+                "57:53"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Wild",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Olli Maatta",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                0,
+                "23:13"
+              ]
+            },
+            {
+              "name": "Quinn Hughes",
+              "values": [
+                1,
+                1,
+                2,
+                "+1",
+                4,
+                0,
+                1,
+                "22:23"
+              ]
+            },
+            {
+              "name": "Jonas Brodin",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                1,
+                "21:39"
+              ]
+            },
+            {
+              "name": "Jared Spurgeon",
+              "values": [
+                1,
+                0,
+                1,
+                "+2",
+                1,
+                0,
+                2,
+                "20:06"
+              ]
+            },
+            {
+              "name": "Kirill Kaprizov",
+              "values": [
+                2,
+                0,
+                2,
+                "+1",
+                3,
+                0,
+                0,
+                "18:49"
+              ]
+            },
+            {
+              "name": "Matt Boldy",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                4,
+                2,
+                1,
+                "18:05"
+              ]
+            },
+            {
+              "name": "Joel Eriksson Ek",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                2,
+                1,
+                0,
+                "17:47"
+              ]
+            },
+            {
+              "name": "Michael McCarron",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                4,
+                2,
+                0,
+                "16:58"
+              ]
+            },
+            {
+              "name": "Zach Bogosian",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                0,
+                "15:54"
+              ]
+            },
+            {
+              "name": "Yakov Trenin",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                4,
+                4,
+                0,
+                "15:03"
+              ]
+            },
+            {
+              "name": "Maxim Shabanov",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                0,
+                1,
+                1,
+                "14:55"
+              ]
+            },
+            {
+              "name": "Daemon Hunt",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                1,
+                "14:09"
+              ]
+            },
+            {
+              "name": "Nick Foligno",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                0,
+                0,
+                "13:53"
+              ]
+            },
+            {
+              "name": "Blake Coleman",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                1,
+                0,
+                "13:34"
+              ]
+            },
+            {
+              "name": "Danila Yurov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                1,
+                "12:41"
+              ]
+            },
+            {
+              "name": "Marcus Foligno",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                1,
+                0,
+                "12:04"
+              ]
+            },
+            {
+              "name": "Ryan Hartman",
+              "values": [
+                0,
+                1,
+                1,
+                "-1",
+                0,
+                0,
+                2,
+                "11:30"
+              ]
+            },
+            {
+              "name": "Bobby Brink",
+              "values": [
+                0,
+                1,
+                1,
+                "-1",
+                1,
+                1,
+                1,
+                "11:17"
+              ]
+            }
+          ],
+          "totals": [
+            4,
+            6,
+            10,
+            "",
+            30,
+            14,
+            11,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jesper Wallstedt",
+              "values": [
+                27,
+                26,
+                ".963",
+                "60:00"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "The first loss of the season drops Boston to 2–1–0, and the power play is still looking for its first goal heading into Monday's home game against Ottawa.",
+  "videos": [
+    {
+      "id": "TqYtCrwc5wY",
+      "title": "Bruins vs. Wild: game highlights",
+      "channel": "NHL",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-10-03-bruins-min",
+  "date": "2026-10-03"
+}

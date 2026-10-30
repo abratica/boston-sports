@@ -1,0 +1,672 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Three goals in 75 seconds sink Rangers in opener",
+  "home": true,
+  "boston": {
+    "abbr": "BOS",
+    "score": 3
+  },
+  "opp": {
+    "abbr": "NYR",
+    "name": "Rangers",
+    "score": 0
+  },
+  "result": "W",
+  "record": "1–0–0",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3"
+    ],
+    "boston": [
+      0,
+      0,
+      3
+    ],
+    "opp": [
+      0,
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "BOS 0, NYR 0",
+        "text": "David Pastrnak, named the team's 28th captain the week before, got a big ovation before puck drop. The opening period was scoreless: Boston killed an early Rangers power play and came up empty on one of its own."
+      },
+      {
+        "label": "2nd period",
+        "score": "BOS 0, NYR 0",
+        "text": "Still 0–0 after 40 minutes. Igor Shesterkin denied Fraser Minten on a 2-on-1, and Nikita Zadorov and Matt Rempe nearly dropped the gloves. Jeremy Swayman had 15 saves through two periods, Shesterkin 14."
+      },
+      {
+        "label": "3rd period",
+        "score": "Final: BOS 3, NYR 0",
+        "text": "The Rangers pushed early, and Swayman stopped Pavel Dorofeyev and J.T. Miller in succession at 9:05; Pavel Zacha hit the post at the other end. With 3:46 left, Minten beat Shesterkin from the slot for a 1–0 lead. Fifty-two seconds later JJ Peterka, in his Bruins debut, stickhandled between Braden Schneider's legs and scored for 2–0, and Mark Kastelic hit the empty net 23 seconds after that for 3–0."
+      }
+    ],
+    "sources": [
+      {
+        "name": "NHL.com",
+        "url": "https://www.nhl.com/news/new-york-rangers-boston-bruins-game-recap-september-29-2026"
+      },
+      {
+        "name": "AP (ESPN)",
+        "url": "https://africa.espn.com/nhl/recap/_/gameId/401891774"
+      },
+      {
+        "name": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/09/29/sports/bruins-rangers-td-garden/"
+      },
+      {
+        "name": "NBC Sports Boston",
+        "url": "https://www.nbcsportsboston.com/nhl/boston-bruins/live-updates-bruins-rangers-highlights-score-analysis/804951/?amp=1"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Jeremy Swayman",
+      "line": "24 SV · 24 SA · SO",
+      "note": "His 19th career shutout kept the game scoreless into the final four minutes."
+    },
+    {
+      "name": "Fraser Minten",
+      "line": "1 G · 1 A · 3 SOG",
+      "note": "Broke the 0–0 tie with 3:46 left and added an assist."
+    },
+    {
+      "name": "JJ Peterka",
+      "line": "1 G · 1 SOG",
+      "note": "Scored in his Bruins debut, going between Braden Schneider's legs to make it 2–0."
+    }
+  ],
+  "oppLine": "Igor Shesterkin made 20 saves, and New York outshot Boston 24–23 but was shut out in its season opener for the second straight year.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401891774"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Connor Clifton",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                3,
+                2,
+                "23:23"
+              ]
+            },
+            {
+              "name": "Nikita Zadorov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                8,
+                1,
+                "21:54"
+              ]
+            },
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                0,
+                0,
+                0,
+                "19:21"
+              ]
+            },
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                0,
+                1,
+                1,
+                "+2",
+                0,
+                0,
+                1,
+                "18:37"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                0,
+                0,
+                "+2",
+                1,
+                4,
+                1,
+                "17:43"
+              ]
+            },
+            {
+              "name": "David Pastrnak",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                4,
+                1,
+                0,
+                "17:32"
+              ]
+            },
+            {
+              "name": "Jonathan Aspirot",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                0,
+                2,
+                1,
+                "17:13"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                1,
+                0,
+                0,
+                "17:09"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                5,
+                0,
+                "16:18"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                0,
+                1,
+                1,
+                "15:59"
+              ]
+            },
+            {
+              "name": "Pavel Zacha",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                1,
+                0,
+                "15:24"
+              ]
+            },
+            {
+              "name": "Sean Kuraly",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                1,
+                2,
+                "15:01"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                1,
+                1,
+                2,
+                "+2",
+                3,
+                1,
+                0,
+                "14:48"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                1,
+                0,
+                "14:28"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                2,
+                "13:27"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                0,
+                1,
+                1,
+                "+2",
+                0,
+                1,
+                1,
+                "13:23"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                4,
+                1,
+                "13:13"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                1,
+                0,
+                1,
+                "+2",
+                1,
+                3,
+                3,
+                "13:07"
+              ]
+            }
+          ],
+          "totals": [
+            3,
+            5,
+            8,
+            "",
+            23,
+            36,
+            16,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jeremy Swayman",
+              "values": [
+                24,
+                24,
+                "1.000",
+                "60:00"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Rangers",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Sean Durzi",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                1,
+                "23:15"
+              ]
+            },
+            {
+              "name": "Marcus Pettersson",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                2,
+                "23:08"
+              ]
+            },
+            {
+              "name": "Vladislav Gavrikov",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                2,
+                "19:58"
+              ]
+            },
+            {
+              "name": "Mika Zibanejad",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                2,
+                0,
+                "18:31"
+              ]
+            },
+            {
+              "name": "Adam Fox",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                0,
+                0,
+                1,
+                "18:25"
+              ]
+            },
+            {
+              "name": "Alexis Lafreniere",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                4,
+                0,
+                "18:17"
+              ]
+            },
+            {
+              "name": "Alberts Smits",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                2,
+                1,
+                "16:54"
+              ]
+            },
+            {
+              "name": "Gabe Perreault",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                0,
+                1,
+                "16:20"
+              ]
+            },
+            {
+              "name": "Braden Schneider",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                4,
+                1,
+                "16:14"
+              ]
+            },
+            {
+              "name": "J.T. Miller",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                2,
+                0,
+                "16:12"
+              ]
+            },
+            {
+              "name": "Joe Veleno",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                3,
+                3,
+                "15:57"
+              ]
+            },
+            {
+              "name": "Pavel Dorofeyev",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                5,
+                1,
+                0,
+                "15:49"
+              ]
+            },
+            {
+              "name": "Will Cuylle",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                3,
+                2,
+                0,
+                "15:03"
+              ]
+            },
+            {
+              "name": "Oliver Bjorkstrand",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                4,
+                0,
+                0,
+                "14:33"
+              ]
+            },
+            {
+              "name": "Eeli Tolvanen",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                4,
+                0,
+                "13:56"
+              ]
+            },
+            {
+              "name": "Tye Kartye",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                3,
+                0,
+                "13:20"
+              ]
+            },
+            {
+              "name": "Noah Laba",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                0,
+                2,
+                0,
+                "12:56"
+              ]
+            },
+            {
+              "name": "Matt Rempe",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                6,
+                0,
+                "9:49"
+              ]
+            }
+          ],
+          "totals": [
+            0,
+            0,
+            0,
+            "",
+            24,
+            37,
+            12,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Igor Shesterkin",
+              "values": [
+                22,
+                20,
+                ".909",
+                "59:23"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Pastrnak's first game as captain ended in Boston's 11th straight home-opener win, and the Bruins head to Winnipeg Friday with Charlie McAvoy still serving his six-game suspension.",
+  "videos": [
+    {
+      "id": "YU_v_clPH7U",
+      "title": "Rangers vs. Bruins: game highlights",
+      "channel": "NHL",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-09-29-bruins-nyr",
+  "date": "2026-09-29"
+}
