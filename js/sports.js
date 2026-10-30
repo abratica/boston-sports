@@ -535,7 +535,7 @@
     return `${masthead(ctx.name, longDate(data.date), ctx)}
       <nav class="tabs" role="tablist">
         <button type="button" role="tab" data-tab="games" aria-selected="${tab === "games"}">Games</button>
-        <button type="button" role="tab" data-tab="teams" aria-selected="${tab === "teams"}">News</button>
+        <button type="button" role="tab" data-tab="teams" aria-selected="${tab === "teams"}">Teams</button>
       </nav>
       <main class="sports-main">
         <div class="tab-panel" data-tab="games"${tab === "games" ? "" : " hidden"}>
