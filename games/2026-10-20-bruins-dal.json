@@ -1,0 +1,672 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Rantanen's overtime hat trick ends Bruins' win streak",
+  "home": false,
+  "boston": {
+    "abbr": "BOS",
+    "score": 2
+  },
+  "opp": {
+    "abbr": "DAL",
+    "name": "Stars",
+    "score": 3
+  },
+  "result": "OTL",
+  "record": "7–2–1",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "OT"
+    ],
+    "boston": [
+      1,
+      1,
+      0,
+      0
+    ],
+    "opp": [
+      0,
+      1,
+      1,
+      1
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "BOS 1, DAL 0",
+        "text": "Matthew Poitras one-timed Frederic Brunet's cross-ice pass from the left circle at 2:09 for a 1–0 lead."
+      },
+      {
+        "label": "2nd period",
+        "score": "BOS 2, DAL 1",
+        "text": "Mikko Rantanen buried a rebound at 2:50 to tie it 1–1. James Hagens put Boston back in front at 7:30, redirecting Casey Mittelstadt's feed from behind the net over Jake Oettinger's pad for a 2–1 lead."
+      },
+      {
+        "label": "3rd period",
+        "score": "BOS 2, DAL 2",
+        "text": "Dallas managed only two shots on goal in the period, but one tied it: at 13:38, Charlie McAvoy blocked a Roope Hintz shot and the puck caromed to Rantanen in the right circle, who made it 2–2."
+      },
+      {
+        "label": "Overtime",
+        "score": "Final: DAL 3, BOS 2 (OT)",
+        "text": "Jeremy Swayman stopped two Wyatt Johnston breakaways in overtime. The winner came on a 4-on-3 after Pavel Zacha was called for slashing Thomas Harley: Rantanen stickhandled to the net and backhanded it over Swayman's glove at 3:52 to complete the hat trick."
+      }
+    ],
+    "sources": [
+      {
+        "name": "NHL.com",
+        "url": "https://nhl.com/news/boston-bruins-dallas-stars-game-recap-october-20-2026"
+      },
+      {
+        "name": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/10/21/sports/bruins-stars-observations-james-hagens/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "James Hagens",
+      "line": "1 G · 2 SOG · +1",
+      "note": "His redirect gave Boston a 2–1 lead in the second period."
+    },
+    {
+      "name": "Matthew Poitras",
+      "line": "1 G · 2 SOG · +1",
+      "note": "Opened the scoring 2:09 in, his fourth goal of the season."
+    },
+    {
+      "name": "Jeremy Swayman",
+      "line": "22 SV · 25 SA",
+      "note": "Stopped two Wyatt Johnston breakaways in overtime before Rantanen's power-play winner."
+    }
+  ],
+  "oppLine": "Mikko Rantanen scored all three Dallas goals for his 11th career hat trick, Jason Robertson had two assists, and Jake Oettinger made 18 saves.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401892545"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Charlie McAvoy",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                2,
+                4,
+                "27:04"
+              ]
+            },
+            {
+              "name": "David Pastrnak",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                1,
+                0,
+                "21:41"
+              ]
+            },
+            {
+              "name": "Pavel Zacha",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                4,
+                0,
+                0,
+                "21:22"
+              ]
+            },
+            {
+              "name": "Nikita Zadorov",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                1,
+                1,
+                2,
+                "20:48"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                0,
+                2,
+                "20:18"
+              ]
+            },
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                0,
+                2,
+                "19:28"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                2,
+                0,
+                "19:18"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                0,
+                3,
+                1,
+                "18:38"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                1,
+                0,
+                "17:11"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                2,
+                0,
+                "16:59"
+              ]
+            },
+            {
+              "name": "Frederic Brunet",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                1,
+                0,
+                2,
+                "16:37"
+              ]
+            },
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                1,
+                0,
+                "15:35"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                0,
+                1,
+                2,
+                "14:58"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                1,
+                1,
+                "14:26"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                2,
+                1,
+                2,
+                "13:20"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                2,
+                1,
+                "11:47"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                1,
+                4,
+                2,
+                "9:05"
+              ]
+            },
+            {
+              "name": "Matthew Poitras",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                2,
+                1,
+                1,
+                "9:01"
+              ]
+            }
+          ],
+          "totals": [
+            2,
+            4,
+            6,
+            "",
+            20,
+            23,
+            22,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jeremy Swayman",
+              "values": [
+                25,
+                22,
+                ".880",
+                "63:52"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Stars",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Miro Heiskanen",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                0,
+                0,
+                2,
+                "29:33"
+              ]
+            },
+            {
+              "name": "Thomas Harley",
+              "values": [
+                0,
+                1,
+                1,
+                "-1",
+                3,
+                0,
+                4,
+                "27:50"
+              ]
+            },
+            {
+              "name": "Jason Robertson",
+              "values": [
+                0,
+                2,
+                2,
+                "+1",
+                3,
+                0,
+                1,
+                "23:34"
+              ]
+            },
+            {
+              "name": "Mikko Rantanen",
+              "values": [
+                3,
+                0,
+                3,
+                "+2",
+                6,
+                2,
+                0,
+                "22:12"
+              ]
+            },
+            {
+              "name": "Wyatt Johnston",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                4,
+                0,
+                1,
+                "20:41"
+              ]
+            },
+            {
+              "name": "Roope Hintz",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                0,
+                2,
+                1,
+                "17:51"
+              ]
+            },
+            {
+              "name": "Tyler Myers",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                1,
+                2,
+                "17:47"
+              ]
+            },
+            {
+              "name": "Lian Bichsel",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                1,
+                "16:29"
+              ]
+            },
+            {
+              "name": "Arttu Hyry",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                2,
+                0,
+                "16:22"
+              ]
+            },
+            {
+              "name": "Nils Lundkvist",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                1,
+                "15:43"
+              ]
+            },
+            {
+              "name": "Sam Steel",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                0,
+                "13:57"
+              ]
+            },
+            {
+              "name": "Kyle Capobianco",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                0,
+                0,
+                0,
+                "13:32"
+              ]
+            },
+            {
+              "name": "Jamie Benn",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                0,
+                "13:23"
+              ]
+            },
+            {
+              "name": "Justin Hryckowian",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                5,
+                0,
+                "12:40"
+              ]
+            },
+            {
+              "name": "Tyler Seguin",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                1,
+                0,
+                "12:34"
+              ]
+            },
+            {
+              "name": "Radek Faksa",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                1,
+                0,
+                "10:58"
+              ]
+            },
+            {
+              "name": "Joel Kiviranta",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                1,
+                0,
+                "10:15"
+              ]
+            },
+            {
+              "name": "Colin Blackwell",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                2,
+                0,
+                "10:07"
+              ]
+            }
+          ],
+          "totals": [
+            3,
+            5,
+            8,
+            "",
+            25,
+            18,
+            13,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jake Oettinger",
+              "values": [
+                20,
+                18,
+                ".900",
+                "63:24"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "The five-game win streak is over, but the overtime point closed a 3–0–1 road trip at 7–2–1; the power play went 0-for-4 ahead of Thursday's home game against Nashville.",
+  "videos": [
+    {
+      "id": "ausc6FCt_K8",
+      "title": "Bruins vs. Stars: game highlights",
+      "channel": "NHL",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-10-20-bruins-dal",
+  "date": "2026-10-20"
+}

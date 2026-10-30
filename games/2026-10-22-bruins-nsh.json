@@ -1,0 +1,664 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "DiPietro blanks Predators as Pastrnak, McAvoy post four points",
+  "home": true,
+  "boston": {
+    "abbr": "BOS",
+    "score": 6
+  },
+  "opp": {
+    "abbr": "NSH",
+    "name": "Predators",
+    "score": 0
+  },
+  "result": "W",
+  "record": "8–2–1",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3"
+    ],
+    "boston": [
+      2,
+      2,
+      2
+    ],
+    "opp": [
+      0,
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "BOS 2, NSH 0",
+        "text": "Casey Mittelstadt scored at 3:49 off a David Pastrnak assist, and Elias Lindholm made it 2–0 on the power play at 16:38, set up by Charlie McAvoy. Predators captain Roman Josi said Boston \"had the puck the whole period.\""
+      },
+      {
+        "label": "2nd period",
+        "score": "BOS 4, NSH 0",
+        "text": "Pastrnak tipped a McAvoy shot at 9:46 for a 3–0 lead. At 17:21, JJ Peterka redirected Pastrnak's centering pass off the left post and poked in his own rebound for 4–0."
+      },
+      {
+        "label": "3rd period",
+        "score": "Final: BOS 6, NSH 0",
+        "text": "Mark Kastelic scored on a backhand at 6:50, and Pastrnak added a wrist shot from the top of the slot at 15:00. Michael DiPietro finished the shutout on Hockey Fights Cancer Night."
+      }
+    ],
+    "sources": [
+      {
+        "name": "NHL.com",
+        "url": "https://www.nhl.com/bruins/news/nashville-predators-boston-bruins-game-recap-october-22-2026-x1435"
+      },
+      {
+        "name": "AP (WJAR)",
+        "url": "https://turnto10.com/sports/boston-bruins/michael-dipietro-has-first-career-shutout-david-pastrnak-scores-2-as-bruins-beat-predators-6-0-boston-nashville-october-22-2026"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "David Pastrnak",
+      "line": "2 G · 2 A · 3 SOG · +4",
+      "note": "Became the eighth player in Bruins history with 20 career four-point games."
+    },
+    {
+      "name": "Charlie McAvoy",
+      "line": "4 A · +3",
+      "note": "A career-high four assists made him the fourth Bruins defenseman with 10 career games of three or more assists, joining Ray Bourque, Bobby Orr and Brad Park."
+    },
+    {
+      "name": "Michael DiPietro",
+      "line": "28 SV · 28 SA",
+      "note": "His first career NHL shutout came six days after his first NHL win."
+    }
+  ],
+  "oppLine": "Justus Annunen made 25 saves on 31 shots in his first game of the season; coach Andrew Brunette called it \"our worst effort of the year.\"",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401892552"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "+2",
+                1,
+                0,
+                1,
+                "20:21"
+              ]
+            },
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                1,
+                "20:14"
+              ]
+            },
+            {
+              "name": "Nikita Zadorov",
+              "values": [
+                0,
+                0,
+                0,
+                "+2",
+                1,
+                1,
+                1,
+                "19:48"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                0,
+                0,
+                "+2",
+                1,
+                0,
+                2,
+                "19:45"
+              ]
+            },
+            {
+              "name": "Charlie McAvoy",
+              "values": [
+                0,
+                4,
+                4,
+                "+3",
+                1,
+                1,
+                0,
+                "19:01"
+              ]
+            },
+            {
+              "name": "Frederic Brunet",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                0,
+                1,
+                0,
+                "18:18"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                1,
+                0,
+                1,
+                "+3",
+                3,
+                1,
+                0,
+                "17:52"
+              ]
+            },
+            {
+              "name": "David Pastrnak",
+              "values": [
+                2,
+                2,
+                4,
+                "+4",
+                3,
+                0,
+                0,
+                "16:37"
+              ]
+            },
+            {
+              "name": "Pavel Zacha",
+              "values": [
+                0,
+                2,
+                2,
+                "+4",
+                1,
+                1,
+                0,
+                "16:11"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                0,
+                "15:28"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                4,
+                0,
+                3,
+                "15:04"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                2,
+                1,
+                0,
+                "15:03"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                1,
+                "14:34"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                1,
+                1,
+                "14:22"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                4,
+                0,
+                1,
+                "14:14"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                0,
+                2,
+                1,
+                "13:51"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                1,
+                0,
+                1,
+                "0",
+                3,
+                0,
+                0,
+                "13:43"
+              ]
+            },
+            {
+              "name": "Matthew Poitras",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                2,
+                0,
+                0,
+                "13:34"
+              ]
+            }
+          ],
+          "totals": [
+            6,
+            11,
+            17,
+            "",
+            31,
+            9,
+            12,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Michael DiPietro",
+              "values": [
+                28,
+                28,
+                "1.000",
+                "60:00"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Predators",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Roman Josi",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                0,
+                1,
+                "24:29"
+              ]
+            },
+            {
+              "name": "Adam Wilsby",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                0,
+                "22:09"
+              ]
+            },
+            {
+              "name": "Nicolas Hague",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                2,
+                1,
+                0,
+                "20:13"
+              ]
+            },
+            {
+              "name": "Jayden Struble",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                1,
+                1,
+                0,
+                "18:07"
+              ]
+            },
+            {
+              "name": "Brady Skjei",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                2,
+                1,
+                2,
+                "17:46"
+              ]
+            },
+            {
+              "name": "Filip Forsberg",
+              "values": [
+                0,
+                0,
+                0,
+                "-3",
+                0,
+                3,
+                0,
+                "17:30"
+              ]
+            },
+            {
+              "name": "Jack Drury",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                2,
+                2,
+                "17:27"
+              ]
+            },
+            {
+              "name": "Alexander Kerfoot",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                2,
+                1,
+                "16:59"
+              ]
+            },
+            {
+              "name": "Adam Edstrom",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                3,
+                1,
+                "16:58"
+              ]
+            },
+            {
+              "name": "Ryan O'Reilly",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                1,
+                1,
+                0,
+                "16:35"
+              ]
+            },
+            {
+              "name": "Ilya Lyubushkin",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                0,
+                1,
+                1,
+                "16:11"
+              ]
+            },
+            {
+              "name": "Jonathan Marchessault",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                3,
+                0,
+                0,
+                "16:10"
+              ]
+            },
+            {
+              "name": "Mavrik Bourque",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                3,
+                0,
+                0,
+                "14:36"
+              ]
+            },
+            {
+              "name": "Steven Stamkos",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                2,
+                0,
+                0,
+                "14:04"
+              ]
+            },
+            {
+              "name": "Nils Hoglander",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                4,
+                0,
+                0,
+                "12:12"
+              ]
+            },
+            {
+              "name": "Reid Schaefer",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                3,
+                1,
+                "11:36"
+              ]
+            },
+            {
+              "name": "Matthew Wood",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                1,
+                1,
+                "11:24"
+              ]
+            },
+            {
+              "name": "Ross Colton",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                3,
+                0,
+                "11:19"
+              ]
+            }
+          ],
+          "totals": [
+            0,
+            0,
+            0,
+            "",
+            28,
+            22,
+            10,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Justus Annunen",
+              "values": [
+                31,
+                25,
+                ".806",
+                "60:00"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "The point streak reached seven games (6–0–1) at 8–2–1, and it was the third time this season Boston scored six; San Jose visits Saturday.",
+  "videos": [
+    {
+      "id": "tkRuHGSevoQ",
+      "title": "Predators vs. Bruins: game highlights",
+      "channel": "NHL",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-10-22-bruins-nsh",
+  "date": "2026-10-22"
+}

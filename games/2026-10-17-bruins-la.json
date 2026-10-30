@@ -1,0 +1,668 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Khusnutdinov breaks tie late as Bruins keep Kings winless",
+  "home": false,
+  "boston": {
+    "abbr": "BOS",
+    "score": 4
+  },
+  "opp": {
+    "abbr": "LA",
+    "name": "Kings",
+    "score": 1
+  },
+  "result": "W",
+  "record": "7–2–0",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3"
+    ],
+    "boston": [
+      0,
+      1,
+      3
+    ],
+    "opp": [
+      1,
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "LA 1, BOS 0",
+        "text": "Alex Laferriere, promoted to the Kings' top line, scored 31 seconds in, tapping in Adrian Kempe's feed after Jeremy Swayman stopped a Brandt Clarke point shot. With Pavel Zacha (upper body) out, Boston struggled early against Los Angeles' 1-3-1 neutral-zone trap."
+      },
+      {
+        "label": "2nd period",
+        "score": "BOS 1, LA 1",
+        "text": "David Pastrnak tied it 1–1 at 2:43, jumping on a puck Erik Gustafsson couldn't keep in the zone and firing a wrist shot from the right circle on the rush. It was his 289th even-strength goal, tying Phil Esposito for third in Bruins history."
+      },
+      {
+        "label": "3rd period",
+        "score": "Final: BOS 4, LA 1",
+        "text": "With 6:24 left, Anton Forsberg couldn't cover Morgan Geekie's shot from the left circle, Matthew Poitras knocked the loose puck to Marat Khusnutdinov, and he backhanded it into the open net for a 2–1 lead. Elias Lindholm (18:02) and JJ Peterka (19:42) added empty-net goals."
+      }
+    ],
+    "sources": [
+      {
+        "name": "NHL.com",
+        "url": "https://www.nhl.com/news/boston-bruins-los-angeles-kings-game-recap-october-17-2026-x2277"
+      },
+      {
+        "name": "AP (TSN)",
+        "url": "https://www.tsn.ca/nhl/article/bruins-beat-kings-for-5th-straight-victory/"
+      },
+      {
+        "name": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/10/18/sports/nhl-bruins-kings-game-score-marat-khusnutdinov/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Jeremy Swayman",
+      "line": "25 SV · 26 SA",
+      "note": "Allowed only the goal 31 seconds in and stopped everything after it."
+    },
+    {
+      "name": "David Pastrnak",
+      "line": "1 G · 1 A · 3 SOG",
+      "note": "His tying goal stretched his point streak to five games (four goals, six assists)."
+    },
+    {
+      "name": "Marat Khusnutdinov",
+      "line": "1 G · 1 A",
+      "note": "Scored the winner with 6:24 left, his second goal of the season."
+    }
+  ],
+  "oppLine": "Alex Laferriere scored 31 seconds in and Anton Forsberg made 24 saves as the Kings fell to 0–4–2.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401892530"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Charlie McAvoy",
+              "values": [
+                0,
+                1,
+                1,
+                "+3",
+                2,
+                0,
+                4,
+                "25:55"
+              ]
+            },
+            {
+              "name": "David Pastrnak",
+              "values": [
+                1,
+                1,
+                2,
+                "+2",
+                3,
+                1,
+                0,
+                "20:57"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                0,
+                1,
+                1,
+                "+2",
+                2,
+                2,
+                3,
+                "20:30"
+              ]
+            },
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "+3",
+                1,
+                0,
+                0,
+                "20:28"
+              ]
+            },
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                1,
+                3,
+                "18:24"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                2,
+                1,
+                1,
+                "18:01"
+              ]
+            },
+            {
+              "name": "Jonathan Aspirot",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                5,
+                3,
+                "17:58"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                0,
+                1,
+                1,
+                "+2",
+                1,
+                1,
+                0,
+                "17:47"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                5,
+                2,
+                "16:55"
+              ]
+            },
+            {
+              "name": "Frederic Brunet",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                0,
+                "16:48"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                1,
+                0,
+                1,
+                "0",
+                3,
+                0,
+                0,
+                "16:45"
+              ]
+            },
+            {
+              "name": "Sean Kuraly",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                2,
+                1,
+                "14:19"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                1,
+                0,
+                "13:53"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                0,
+                "11:22"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                1,
+                1,
+                "11:17"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                1,
+                1,
+                2,
+                "+2",
+                2,
+                0,
+                0,
+                "11:07"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                4,
+                0,
+                "11:05"
+              ]
+            },
+            {
+              "name": "Matthew Poitras",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                0,
+                0,
+                1,
+                "10:29"
+              ]
+            }
+          ],
+          "totals": [
+            4,
+            6,
+            10,
+            "",
+            28,
+            25,
+            19,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jeremy Swayman",
+              "values": [
+                26,
+                25,
+                ".962",
+                "60:00"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Kings",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Artemi Panarin",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                3,
+                0,
+                0,
+                "24:19"
+              ]
+            },
+            {
+              "name": "Quinton Byfield",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                0,
+                "21:55"
+              ]
+            },
+            {
+              "name": "Adrian Kempe",
+              "values": [
+                0,
+                1,
+                1,
+                "-2",
+                1,
+                3,
+                0,
+                "21:31"
+              ]
+            },
+            {
+              "name": "Brandt Clarke",
+              "values": [
+                0,
+                1,
+                1,
+                "-2",
+                0,
+                0,
+                3,
+                "21:25"
+              ]
+            },
+            {
+              "name": "Alex Laferriere",
+              "values": [
+                1,
+                0,
+                1,
+                "-2",
+                2,
+                0,
+                2,
+                "21:04"
+              ]
+            },
+            {
+              "name": "Drew Doughty",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                2,
+                1,
+                "19:53"
+              ]
+            },
+            {
+              "name": "Joel Edmundson",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                5,
+                1,
+                4,
+                "18:40"
+              ]
+            },
+            {
+              "name": "Erik Gustafsson",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                1,
+                "18:21"
+              ]
+            },
+            {
+              "name": "Trevor Moore",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                0,
+                1,
+                "16:49"
+              ]
+            },
+            {
+              "name": "Scott Laughton",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                4,
+                2,
+                "16:06"
+              ]
+            },
+            {
+              "name": "Erik Haula",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                1,
+                0,
+                "15:08"
+              ]
+            },
+            {
+              "name": "Joel Armia",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                1,
+                0,
+                "15:04"
+              ]
+            },
+            {
+              "name": "Brian Dumoulin",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                3,
+                3,
+                2,
+                "13:01"
+              ]
+            },
+            {
+              "name": "Andre Lee",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                5,
+                1,
+                "12:30"
+              ]
+            },
+            {
+              "name": "Cody Ceci",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                0,
+                1,
+                "11:25"
+              ]
+            },
+            {
+              "name": "Mikey Anderson",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                1,
+                0,
+                "11:16"
+              ]
+            },
+            {
+              "name": "Corey Perry",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                0,
+                0,
+                4,
+                "10:14"
+              ]
+            },
+            {
+              "name": "Samuel Helenius",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                4,
+                0,
+                "7:41"
+              ]
+            }
+          ],
+          "totals": [
+            1,
+            2,
+            3,
+            "",
+            26,
+            25,
+            22,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Anton Forsberg",
+              "values": [
+                26,
+                24,
+                ".923",
+                "57:38"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Five straight wins and a 7–2–0 start after sweeping the three California teams; the trip ends Tuesday in Dallas, with Zacha day to day.",
+  "videos": [
+    {
+      "id": "b1zU_ewe_xo",
+      "title": "Bruins vs. Kings: game highlights",
+      "channel": "NHL",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-10-17-bruins-la",
+  "date": "2026-10-17"
+}
