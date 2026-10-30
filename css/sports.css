@@ -687,5 +687,7 @@ body.view-sports .team-btns { grid-row: span 2; display: flex; flex-direction: c
 .sc-sheet .cal-detail { margin-top: 14px; }
 
 .sc-sheet .cal-grid { touch-action: pan-y; }
+.sc-sheet .cal-vp { position: relative; touch-action: pan-y; }
+.sc-sheet .cal-ghost { position: absolute; top: 0; left: 0; width: 100%; pointer-events: none; }
 .sc-sheet .st-body { overflow-x: hidden; }
 .sc-sheet .cal-grid { will-change: transform; }

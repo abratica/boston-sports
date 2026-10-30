@@ -338,12 +338,11 @@
     if (curMonth) out += "</ul>";
     return out || `<p class="tn-empty">Schedule coming soon.</p>`;
   }
-  function scCalendar(k, games, today, ym, sel) {
+  const calTitle = (ym) => { const [y, m] = ym.split("-").map(Number); return new Date(y, m - 1, 1).toLocaleDateString("en-US", { month: "long", year: "numeric" }); };
+  function calCells(games, today, ym, sel) {
     const [y, m] = ym.split("-").map(Number);
     const first = new Date(y, m - 1, 1), days = new Date(y, m, 0).getDate();
     const byDate = Object.fromEntries(games.map((g) => [g.date, g]));
-    const months = [...new Set(games.map((g) => g.date.slice(0, 7)))];
-    const i = months.indexOf(ym);
     let cells = ["S", "M", "T", "W", "T", "F", "S"].map((x) => `<div class="cal-dow">${x}</div>`).join("");
     for (let j = 0; j < first.getDay(); j++) cells += `<div class="cal-day empty"></div>`;
     for (let n = 1; n <= days; n++) {
@@ -357,11 +356,16 @@
       }
       cells += `<button type="button" class="cal-day${iso === today ? " today" : ""}${iso === sel ? " sel" : ""}"${g ? ` data-day="${iso}"` : " disabled"}><span class="n">${n}</span>${chip}</button>`;
     }
-    const title = first.toLocaleDateString("en-US", { month: "long", year: "numeric" });
-    return `<div class="cal-head"><h3>${esc(title)}</h3><div class="cal-nav">
+    return cells;
+  }
+  function scCalendar(k, games, today, ym, sel) {
+    const byDate = Object.fromEntries(games.map((g) => [g.date, g]));
+    const months = [...new Set(games.map((g) => g.date.slice(0, 7)))];
+    const i = months.indexOf(ym);
+    return `<div class="cal-head"><h3>${esc(calTitle(ym))}</h3><div class="cal-nav">
         <button type="button" data-cal="${months[i - 1] || ""}" aria-label="Previous month"${i > 0 ? "" : " disabled"}>‹</button>
         <button type="button" data-cal="${months[i + 1] || ""}" aria-label="Next month"${i >= 0 && i < months.length - 1 ? "" : " disabled"}>›</button></div></div>
-      <div class="cal-grid">${cells}</div>
+      <div class="cal-vp"><div class="cal-grid">${calCells(games, today, ym, sel)}</div></div>
       <div class="cal-key"><span><i class="k-w"></i>Win</span><span><i class="k-l"></i>Loss</span><span><i class="k-u"></i>Upcoming</span><span>@ = away</span></div>
       ${sel && byDate[sel] ? `<ul class="sc-list cal-detail">${scRow(k, byDate[sel], today)}</ul>` : ""}`;
   }
@@ -422,56 +426,80 @@
         return render();
       }
       const nav = e.target.closest("[data-cal]");
-      if (nav && nav.dataset.cal) { ym = nav.dataset.cal; sel = null; return render(); }
+      if (nav && nav.dataset.cal) return slide(nav.getAttribute("aria-label").startsWith("Next") ? -1 : 1);
       const day = e.target.closest(".cal-day[data-day]");
       if (day) { sel = day.dataset.day; const top = body.scrollTop; render(); body.scrollTop = top; }
     });
-    // Swipe the calendar to change months: the grid follows your finger, then the new month slides in.
-    // The arrows still work.
-    let sx = 0, sy = 0, st = 0, dx = 0, axis = null, grid = null;
-    const EASE = "cubic-bezier(.2,.8,.2,1)";
+    // Swipe the calendar to change months. The neighbouring month is drawn right beside the current one
+    // and both move together with your finger, like a carousel, so there's never an empty gap.
+    // The arrows run the same slide.
+    let sx = 0, sy = 0, st = 0, dx = 0, axis = null, grid = null, ghost = null, ghostDir = 0, busy = false;
+    const EASE = "cubic-bezier(.2,.8,.2,1)", GAP = 16;
     const navBtn = (dir) => body.querySelector(`.cal-nav button[aria-label="${dir < 0 ? "Next" : "Previous"} month"]`);
-    const canGo = (dir) => { const b = navBtn(dir); return !!(b && !b.disabled && b.dataset.cal); };
+    const target = (dir) => { const b = navBtn(dir); return b && !b.disabled && b.dataset.cal ? b.dataset.cal : null; };
+    const width = () => grid.getBoundingClientRect().width + GAP;
+    const placeGhost = (dir) => {   // dir -1 = next month (comes in from the right), 1 = previous
+      if (ghostDir === dir && ghost) return;
+      if (ghost) ghost.remove();
+      ghost = null; ghostDir = dir;
+      const t = target(dir);
+      if (!t) return;
+      ghost = document.createElement("div");
+      ghost.className = "cal-grid cal-ghost";
+      ghost.setAttribute("aria-hidden", "true");
+      ghost.innerHTML = calCells(games, today, t, null);
+      grid.parentNode.appendChild(ghost);
+    };
+    const pos = (x, ms) => {
+      const tr = ms ? `transform ${ms}ms ${EASE}` : "none";
+      grid.style.transition = tr; grid.style.transform = `translateX(${x}px)`;
+      if (ghost) { ghost.style.transition = tr; ghost.style.transform = `translateX(${x - ghostDir * width()}px)`; }
+    };
+    const finish = (dir, ms) => {   // complete a move to the neighbouring month
+      busy = true;
+      const t = target(dir);
+      const h = body.querySelector(".cal-head h3");
+      if (h) h.textContent = calTitle(t);
+      pos(dir * width(), ms);
+      setTimeout(() => { ym = t; sel = null; ghost = null; ghostDir = 0; render(); busy = false; }, ms + 20);
+    };
+    function slide(dir) {   // arrow buttons
+      if (busy || !target(dir)) return;
+      grid = body.querySelector(".cal-grid"); if (!grid) return;
+      placeGhost(dir); pos(0, 0);
+      requestAnimationFrame(() => requestAnimationFrame(() => finish(dir, 300)));
+    }
     body.addEventListener("touchstart", (e) => {
-      if (mode !== "cal" || !e.target.closest(".cal-grid")) { grid = null; return; }
-      grid = body.querySelector(".cal-grid");
+      if (busy || mode !== "cal" || !e.target.closest(".cal-vp")) { grid = null; return; }
+      grid = body.querySelector(".cal-grid:not(.cal-ghost)");
       sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = performance.now(); dx = 0; axis = null;
+      ghost = null; ghostDir = 0;
       grid.style.transition = "none";
     }, { passive: true });
     body.addEventListener("touchmove", (e) => {
       if (!grid) return;
       const mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
       if (!axis && Math.abs(mx) + Math.abs(my) > 8) axis = Math.abs(mx) > Math.abs(my) ? "x" : "y";
-      if (axis !== "x") return;
-      dx = canGo(mx) ? mx : mx * 0.25;   // rubber-band when there's no month that way
-      grid.style.transform = `translateX(${dx}px)`;
-      grid.style.opacity = String(1 - Math.min(Math.abs(dx) / 500, 0.4));
+      if (axis !== "x" || !mx) return;
+      const dir = mx < 0 ? -1 : 1;
+      placeGhost(dir);
+      dx = ghost ? mx : mx * 0.25;   // rubber-band when there's no month that way
+      pos(dx, 0);
     }, { passive: true });
     body.addEventListener("touchend", () => {
       if (!grid) return;
-      const g = grid; grid = null;
       const v = Math.abs(dx) / Math.max(performance.now() - st, 1);   // px per ms
-      const go = axis === "x" && canGo(dx) && (Math.abs(dx) > 60 || (v > 0.45 && Math.abs(dx) > 20));
-      if (!go) {   // snap back
-        g.style.transition = `transform 220ms ${EASE}, opacity 220ms ${EASE}`;
-        g.style.transform = ""; g.style.opacity = "";
-        return;
-      }
       const dir = dx < 0 ? -1 : 1;
-      const w = g.getBoundingClientRect().width;
-      g.style.transition = `transform 160ms ease-out, opacity 160ms ease-out`;
-      g.style.transform = `translateX(${dir * w}px)`; g.style.opacity = "0";
-      setTimeout(() => {
-        ym = navBtn(dir).dataset.cal; sel = null; render();
-        const ng = body.querySelector(".cal-grid");
-        if (!ng) return;
-        ng.style.transition = "none";
-        ng.style.transform = `translateX(${-dir * w * 0.35}px)`; ng.style.opacity = "0";
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          ng.style.transition = `transform 260ms ${EASE}, opacity 260ms ${EASE}`;
-          ng.style.transform = ""; ng.style.opacity = "";
-        }));
-      }, 150);
+      const go = axis === "x" && ghost && ghostDir === dir && (Math.abs(dx) > 60 || (v > 0.45 && Math.abs(dx) > 20));
+      if (go) {
+        const left = width() - Math.abs(dx);
+        finish(dir, Math.round(Math.min(320, Math.max(160, left / Math.max(v, 1.2)))));
+      } else {   // snap back
+        const g = ghost;
+        pos(0, 240);
+        setTimeout(() => { if (!g) return; g.remove(); if (g === ghost) { ghost = null; ghostDir = 0; } }, 260);
+      }
+      grid = null;
     }, { passive: true });
     el.querySelector(".st-close").focus();
   }
