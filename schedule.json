@@ -1,0 +1,1423 @@
+{
+ "updated": "2026-10-30",
+ "teams": {
+  "celtics": {
+   "season": "2026–27",
+   "games": [
+    {
+     "date": "2026-10-20",
+     "time": "3:00 PM",
+     "home": false,
+     "opp": "Pistons",
+     "oppAbbr": "DET",
+     "tv": "NBC"
+    },
+    {
+     "date": "2026-10-23",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Knicks",
+     "oppAbbr": "NY",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2026-10-26",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Bulls",
+     "oppAbbr": "CHI"
+    },
+    {
+     "date": "2026-10-27",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Nets",
+     "oppAbbr": "BKN"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Bulls",
+     "oppAbbr": "CHI",
+     "tv": "NBC Sports Boston · Peacock"
+    },
+    {
+     "date": "2026-11-01",
+     "time": "3:30 PM",
+     "home": false,
+     "opp": "Magic",
+     "oppAbbr": "ORL"
+    },
+    {
+     "date": "2026-11-02",
+     "time": "8:30 PM",
+     "home": false,
+     "opp": "Rockets",
+     "oppAbbr": "HOU"
+    },
+    {
+     "date": "2026-11-04",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Bucks",
+     "oppAbbr": "MIL"
+    },
+    {
+     "date": "2026-11-06",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Hornets",
+     "oppAbbr": "CHA"
+    },
+    {
+     "date": "2026-11-08",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Bucks",
+     "oppAbbr": "MIL"
+    },
+    {
+     "date": "2026-11-10",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "76ers",
+     "oppAbbr": "PHI",
+     "tv": "NBC"
+    },
+    {
+     "date": "2026-11-11",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Raptors",
+     "oppAbbr": "TOR"
+    },
+    {
+     "date": "2026-11-15",
+     "time": "6:00 PM",
+     "home": true,
+     "opp": "Mavericks",
+     "oppAbbr": "DAL"
+    },
+    {
+     "date": "2026-11-16",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Magic",
+     "oppAbbr": "ORL",
+     "tv": "NBCSN"
+    },
+    {
+     "date": "2026-11-18",
+     "time": "9:00 PM",
+     "home": false,
+     "opp": "Nuggets",
+     "oppAbbr": "DEN"
+    },
+    {
+     "date": "2026-11-21",
+     "time": "10:00 PM",
+     "home": false,
+     "opp": "Kings",
+     "oppAbbr": "SAC",
+     "tv": "NBA TV"
+    },
+    {
+     "date": "2026-11-22",
+     "time": "8:30 PM",
+     "home": false,
+     "opp": "Warriors",
+     "oppAbbr": "GS"
+    },
+    {
+     "date": "2026-11-24",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Wizards",
+     "oppAbbr": "WSH",
+     "tv": "NBC"
+    },
+    {
+     "date": "2026-11-27",
+     "time": "8:00 PM",
+     "home": true,
+     "opp": "Hawks",
+     "oppAbbr": "ATL"
+    },
+    {
+     "date": "2026-11-29",
+     "time": "4:00 PM",
+     "home": false,
+     "opp": "Spurs",
+     "oppAbbr": "SA",
+     "tv": "NBA TV"
+    },
+    {
+     "date": "2026-11-30",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Mavericks",
+     "oppAbbr": "DAL"
+    },
+    {
+     "date": "2026-12-02",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Hornets",
+     "oppAbbr": "CHA"
+    },
+    {
+     "date": "2026-12-13",
+     "time": "3:00 PM",
+     "home": false,
+     "opp": "Nets",
+     "oppAbbr": "BKN"
+    },
+    {
+     "date": "2026-12-14",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Wizards",
+     "oppAbbr": "WSH"
+    },
+    {
+     "date": "2026-12-16",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Wizards",
+     "oppAbbr": "WSH",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2026-12-18",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Jazz",
+     "oppAbbr": "UTAH"
+    },
+    {
+     "date": "2026-12-20",
+     "time": "8:00 PM",
+     "home": true,
+     "opp": "Pistons",
+     "oppAbbr": "DET"
+    },
+    {
+     "date": "2026-12-23",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Trail Blazers",
+     "oppAbbr": "POR"
+    },
+    {
+     "date": "2026-12-25",
+     "time": "2:30 PM",
+     "home": true,
+     "opp": "Heat",
+     "oppAbbr": "MIA",
+     "tv": "ABC",
+     "note": "Christmas Day"
+    },
+    {
+     "date": "2026-12-28",
+     "time": "8:00 PM",
+     "home": true,
+     "opp": "Cavaliers",
+     "oppAbbr": "CLE",
+     "tv": "NBC"
+    },
+    {
+     "date": "2026-12-30",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Bulls",
+     "oppAbbr": "CHI"
+    },
+    {
+     "date": "2027-01-01",
+     "time": "9:30 PM",
+     "home": false,
+     "opp": "Jazz",
+     "oppAbbr": "UTAH"
+    },
+    {
+     "date": "2027-01-02",
+     "time": "10:00 PM",
+     "home": false,
+     "opp": "Trail Blazers",
+     "oppAbbr": "POR",
+     "tv": "NBA TV"
+    },
+    {
+     "date": "2027-01-04",
+     "time": "9:00 PM",
+     "home": false,
+     "opp": "Suns",
+     "oppAbbr": "PHX"
+    },
+    {
+     "date": "2027-01-07",
+     "time": "10:00 PM",
+     "home": false,
+     "opp": "Lakers",
+     "oppAbbr": "LAL",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2027-01-09",
+     "time": "10:30 PM",
+     "home": false,
+     "opp": "Clippers",
+     "oppAbbr": "LAC"
+    },
+    {
+     "date": "2027-01-11",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Rockets",
+     "oppAbbr": "HOU"
+    },
+    {
+     "date": "2027-01-13",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Knicks",
+     "oppAbbr": "NY",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2027-01-16",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Nets",
+     "oppAbbr": "BKN"
+    },
+    {
+     "date": "2027-01-18",
+     "time": "3:00 PM",
+     "home": false,
+     "opp": "Wizards",
+     "oppAbbr": "WSH"
+    },
+    {
+     "date": "2027-01-20",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Pacers",
+     "oppAbbr": "IND"
+    },
+    {
+     "date": "2027-01-21",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "76ers",
+     "oppAbbr": "PHI",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2027-01-23",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Hornets",
+     "oppAbbr": "CHA"
+    },
+    {
+     "date": "2027-01-25",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Raptors",
+     "oppAbbr": "TOR",
+     "tv": "NBCSN"
+    },
+    {
+     "date": "2027-01-27",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Clippers",
+     "oppAbbr": "LAC"
+    },
+    {
+     "date": "2027-01-29",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Suns",
+     "oppAbbr": "PHX"
+    },
+    {
+     "date": "2027-01-31",
+     "time": "6:00 PM",
+     "home": false,
+     "opp": "Raptors",
+     "oppAbbr": "TOR"
+    },
+    {
+     "date": "2027-02-02",
+     "time": "8:00 PM",
+     "home": true,
+     "opp": "Lakers",
+     "oppAbbr": "LAL",
+     "tv": "NBC"
+    },
+    {
+     "date": "2027-02-04",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Hornets",
+     "oppAbbr": "CHA",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2027-02-05",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Hawks",
+     "oppAbbr": "ATL"
+    },
+    {
+     "date": "2027-02-07",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "76ers",
+     "oppAbbr": "PHI",
+     "tv": "NBC"
+    },
+    {
+     "date": "2027-02-09",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Nuggets",
+     "oppAbbr": "DEN"
+    },
+    {
+     "date": "2027-02-10",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Warriors",
+     "oppAbbr": "GS",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2027-02-12",
+     "time": "8:00 PM",
+     "home": true,
+     "opp": "Timberwolves",
+     "oppAbbr": "MIN",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2027-02-14",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Raptors",
+     "oppAbbr": "TOR"
+    },
+    {
+     "date": "2027-02-17",
+     "time": "9:30 PM",
+     "home": false,
+     "opp": "Thunder",
+     "oppAbbr": "OKC",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2027-02-18",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Grizzlies",
+     "oppAbbr": "MEM"
+    },
+    {
+     "date": "2027-02-26",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Cavaliers",
+     "oppAbbr": "CLE",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2027-02-28",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Timberwolves",
+     "oppAbbr": "MIN",
+     "tv": "NBC"
+    },
+    {
+     "date": "2027-03-02",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Pacers",
+     "oppAbbr": "IND"
+    },
+    {
+     "date": "2027-03-05",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Pistons",
+     "oppAbbr": "DET",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2027-03-07",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "76ers",
+     "oppAbbr": "PHI",
+     "tv": "ABC"
+    },
+    {
+     "date": "2027-03-09",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Bulls",
+     "oppAbbr": "CHI"
+    },
+    {
+     "date": "2027-03-11",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Grizzlies",
+     "oppAbbr": "MEM"
+    },
+    {
+     "date": "2027-03-12",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Thunder",
+     "oppAbbr": "OKC",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2027-03-14",
+     "time": "12:00 PM",
+     "home": false,
+     "opp": "Knicks",
+     "oppAbbr": "NY",
+     "tv": "ABC"
+    },
+    {
+     "date": "2027-03-16",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Kings",
+     "oppAbbr": "SAC"
+    },
+    {
+     "date": "2027-03-18",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Magic",
+     "oppAbbr": "ORL"
+    },
+    {
+     "date": "2027-03-21",
+     "time": "3:00 PM",
+     "home": true,
+     "opp": "Pelicans",
+     "oppAbbr": "NO"
+    },
+    {
+     "date": "2027-03-23",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Nets",
+     "oppAbbr": "BKN"
+    },
+    {
+     "date": "2027-03-24",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Spurs",
+     "oppAbbr": "SA",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2027-03-27",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Heat",
+     "oppAbbr": "MIA",
+     "tv": "NBA TV"
+    },
+    {
+     "date": "2027-03-28",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Pelicans",
+     "oppAbbr": "NO"
+    },
+    {
+     "date": "2027-03-30",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Pacers",
+     "oppAbbr": "IND"
+    },
+    {
+     "date": "2027-04-01",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Cavaliers",
+     "oppAbbr": "CLE",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2027-04-02",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Heat",
+     "oppAbbr": "MIA"
+    },
+    {
+     "date": "2027-04-04",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Knicks",
+     "oppAbbr": "NY",
+     "tv": "NBC"
+    },
+    {
+     "date": "2027-04-07",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Magic",
+     "oppAbbr": "ORL"
+    },
+    {
+     "date": "2027-04-09",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Hawks",
+     "oppAbbr": "ATL"
+    },
+    {
+     "date": "2027-04-11",
+     "time": "6:00 PM",
+     "home": true,
+     "opp": "Bucks",
+     "oppAbbr": "MIL"
+    }
+   ]
+  },
+  "bruins": {
+   "season": "2026–27",
+   "games": [
+    {
+     "date": "2026-09-29",
+     "time": "8:00 PM",
+     "home": true,
+     "opp": "Rangers",
+     "oppAbbr": "NYR",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2026-10-02",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Jets",
+     "oppAbbr": "WPG",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-03",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Wild",
+     "oppAbbr": "MIN",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-05",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Senators",
+     "oppAbbr": "OTT",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-08",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Mammoth",
+     "oppAbbr": "UTAH",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-10",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Flyers",
+     "oppAbbr": "PHI",
+     "tv": "NHL Network · NESN"
+    },
+    {
+     "date": "2026-10-13",
+     "time": "11:00 PM",
+     "home": false,
+     "opp": "Sharks",
+     "oppAbbr": "SJ",
+     "tv": "ESPN · NESN"
+    },
+    {
+     "date": "2026-10-16",
+     "time": "10:00 PM",
+     "home": false,
+     "opp": "Ducks",
+     "oppAbbr": "ANA",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-17",
+     "time": "9:00 PM",
+     "home": false,
+     "opp": "Kings",
+     "oppAbbr": "LA",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-20",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Stars",
+     "oppAbbr": "DAL",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2026-10-22",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Predators",
+     "oppAbbr": "NSH",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-24",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Sharks",
+     "oppAbbr": "SJ",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-27",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Hurricanes",
+     "oppAbbr": "CAR",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2026-10-29",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Blues",
+     "oppAbbr": "STL",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-10-31",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Blackhawks",
+     "oppAbbr": "CHI",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-11-02",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Golden Knights",
+     "oppAbbr": "VGK",
+     "tv": "NHL Network · NESN"
+    },
+    {
+     "date": "2026-11-05",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Penguins",
+     "oppAbbr": "PIT",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-11-08",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Panthers",
+     "oppAbbr": "FLA",
+     "tv": "NHL Network · NESN"
+    },
+    {
+     "date": "2026-11-12",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Canadiens",
+     "oppAbbr": "MTL",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-11-14",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Wild",
+     "oppAbbr": "MIN",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-11-17",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Kings",
+     "oppAbbr": "LA",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-11-18",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Red Wings",
+     "oppAbbr": "DET",
+     "tv": "TNT · truTV · HBO Max"
+    },
+    {
+     "date": "2026-11-21",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Capitals",
+     "oppAbbr": "WSH",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-11-25",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Jets",
+     "oppAbbr": "WPG",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-11-27",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Maple Leafs",
+     "oppAbbr": "TOR",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-11-29",
+     "time": "5:00 PM",
+     "home": true,
+     "opp": "Canucks",
+     "oppAbbr": "VAN",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-01",
+     "time": "8:00 PM",
+     "home": true,
+     "opp": "Avalanche",
+     "oppAbbr": "COL",
+     "tv": "TNT · truTV · HBO Max · NESN"
+    },
+    {
+     "date": "2026-12-05",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Red Wings",
+     "oppAbbr": "DET",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-08",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Panthers",
+     "oppAbbr": "FLA",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-10",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Lightning",
+     "oppAbbr": "TB",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-12",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Devils",
+     "oppAbbr": "NJ",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-13",
+     "time": "1:00 PM",
+     "home": false,
+     "opp": "Hurricanes",
+     "oppAbbr": "CAR",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-15",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Panthers",
+     "oppAbbr": "FLA",
+     "tv": "TNT · truTV · HBO Max"
+    },
+    {
+     "date": "2026-12-17",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Blues",
+     "oppAbbr": "STL",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-19",
+     "time": "12:00 PM",
+     "home": false,
+     "opp": "Devils",
+     "oppAbbr": "NJ",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-20",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Flyers",
+     "oppAbbr": "PHI",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-22",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Islanders",
+     "oppAbbr": "NYI",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-26",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Islanders",
+     "oppAbbr": "NYI",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-27",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Devils",
+     "oppAbbr": "NJ",
+     "tv": "NESN"
+    },
+    {
+     "date": "2026-12-30",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Oilers",
+     "oppAbbr": "EDM",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-01",
+     "time": "3:00 PM",
+     "home": false,
+     "opp": "Blackhawks",
+     "oppAbbr": "CHI",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-02",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Blue Jackets",
+     "oppAbbr": "CBJ",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-05",
+     "time": "7:30 PM",
+     "home": true,
+     "opp": "Sabres",
+     "oppAbbr": "BUF",
+     "tv": "TNT · truTV · HBO Max"
+    },
+    {
+     "date": "2027-01-06",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Canadiens",
+     "oppAbbr": "MTL",
+     "tv": "TNT · truTV · HBO Max"
+    },
+    {
+     "date": "2027-01-09",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Red Wings",
+     "oppAbbr": "DET",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-12",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Hurricanes",
+     "oppAbbr": "CAR",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-14",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Stars",
+     "oppAbbr": "DAL",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-16",
+     "time": "12:00 PM",
+     "home": false,
+     "opp": "Rangers",
+     "oppAbbr": "NYR",
+     "tv": "ABC"
+    },
+    {
+     "date": "2027-01-18",
+     "time": "1:30 PM",
+     "home": true,
+     "opp": "Lightning",
+     "oppAbbr": "TB",
+     "tv": "TNT · truTV · HBO Max"
+    },
+    {
+     "date": "2027-01-20",
+     "time": "9:00 PM",
+     "home": false,
+     "opp": "Avalanche",
+     "oppAbbr": "COL",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-22",
+     "time": "10:00 PM",
+     "home": false,
+     "opp": "Golden Knights",
+     "oppAbbr": "VGK",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-23",
+     "time": "9:00 PM",
+     "home": false,
+     "opp": "Mammoth",
+     "oppAbbr": "UTAH",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-26",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Blue Jackets",
+     "oppAbbr": "CBJ",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-28",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Senators",
+     "oppAbbr": "OTT",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-01-30",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Maple Leafs",
+     "oppAbbr": "TOR",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-02-10",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Maple Leafs",
+     "oppAbbr": "TOR",
+     "tv": "TNT · truTV · HBO Max"
+    },
+    {
+     "date": "2027-02-13",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Blue Jackets",
+     "oppAbbr": "CBJ",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-02-15",
+     "time": "2:00 PM",
+     "home": true,
+     "opp": "Ducks",
+     "oppAbbr": "ANA",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-02-17",
+     "time": "9:00 PM",
+     "home": false,
+     "opp": "Flames",
+     "oppAbbr": "CGY",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-02-19",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Oilers",
+     "oppAbbr": "EDM",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-02-21",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Canucks",
+     "oppAbbr": "VAN",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-02-22",
+     "time": "9:40 PM",
+     "home": false,
+     "opp": "Kraken",
+     "oppAbbr": "SEA",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-02-25",
+     "time": "8:00 PM",
+     "home": true,
+     "opp": "Capitals",
+     "oppAbbr": "WSH",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2027-02-27",
+     "time": "12:30 PM",
+     "home": true,
+     "opp": "Red Wings",
+     "oppAbbr": "DET",
+     "tv": "ABC"
+    },
+    {
+     "date": "2027-03-03",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Rangers",
+     "oppAbbr": "NYR",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-04",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Senators",
+     "oppAbbr": "OTT",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-06",
+     "time": "12:30 PM",
+     "home": true,
+     "opp": "Penguins",
+     "oppAbbr": "PIT",
+     "tv": "ABC"
+    },
+    {
+     "date": "2027-03-08",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Kraken",
+     "oppAbbr": "SEA",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-10",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Canadiens",
+     "oppAbbr": "MTL",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-11",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Penguins",
+     "oppAbbr": "PIT",
+     "tv": "TNT · truTV · HBO Max"
+    },
+    {
+     "date": "2027-03-13",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Flames",
+     "oppAbbr": "CGY",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-15",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Islanders",
+     "oppAbbr": "NYI",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2027-03-18",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Flyers",
+     "oppAbbr": "PHI",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-20",
+     "time": "5:00 PM",
+     "home": false,
+     "opp": "Predators",
+     "oppAbbr": "NSH",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-23",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Sabres",
+     "oppAbbr": "BUF",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-25",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Senators",
+     "oppAbbr": "OTT",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-26",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Capitals",
+     "oppAbbr": "WSH",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-03-30",
+     "time": "7:00 PM",
+     "home": true,
+     "opp": "Canadiens",
+     "oppAbbr": "MTL",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-04-01",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Sabres",
+     "oppAbbr": "BUF",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-04-03",
+     "time": "3:00 PM",
+     "home": true,
+     "opp": "Lightning",
+     "oppAbbr": "TB",
+     "tv": "ABC"
+    },
+    {
+     "date": "2027-04-05",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Maple Leafs",
+     "oppAbbr": "TOR",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-04-07",
+     "time": "7:30 PM",
+     "home": false,
+     "opp": "Sabres",
+     "oppAbbr": "BUF",
+     "tv": "TNT · truTV · HBO Max · NESN"
+    },
+    {
+     "date": "2027-04-09",
+     "time": "7:00 PM",
+     "home": false,
+     "opp": "Panthers",
+     "oppAbbr": "FLA",
+     "tv": "NESN"
+    },
+    {
+     "date": "2027-04-10",
+     "time": "8:00 PM",
+     "home": false,
+     "opp": "Lightning",
+     "oppAbbr": "TB",
+     "tv": "ABC"
+    }
+   ]
+  },
+  "patriots": {
+   "season": "2026",
+   "bye": "Week 11",
+   "games": [
+    {
+     "date": "2026-09-09",
+     "time": "8:20 PM",
+     "home": false,
+     "opp": "Seahawks",
+     "oppAbbr": "SEA",
+     "tv": "NBC"
+    },
+    {
+     "date": "2026-09-20",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Steelers",
+     "oppAbbr": "PIT",
+     "tv": "CBS"
+    },
+    {
+     "date": "2026-09-27",
+     "time": "1:00 PM",
+     "home": false,
+     "opp": "Jaguars",
+     "oppAbbr": "JAX",
+     "tv": "CBS"
+    },
+    {
+     "date": "2026-10-04",
+     "time": "1:00 PM",
+     "home": false,
+     "opp": "Bills",
+     "oppAbbr": "BUF",
+     "tv": "CBS"
+    },
+    {
+     "date": "2026-10-11",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Raiders",
+     "oppAbbr": "LV",
+     "tv": "CBS"
+    },
+    {
+     "date": "2026-10-18",
+     "time": "1:00 PM",
+     "home": true,
+     "opp": "Jets",
+     "oppAbbr": "NYJ",
+     "tv": "CBS"
+    },
+    {
+     "date": "2026-10-22",
+     "time": "8:15 PM",
+     "home": false,
+     "opp": "Bears",
+     "oppAbbr": "CHI",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2026-11-01",
+     "time": "4:25 PM",
+     "home": false,
+     "opp": "Dolphins",
+     "oppAbbr": "MIA",
+     "tv": "CBS"
+    },
+    {
+     "date": "2026-11-08",
+     "time": "4:25 PM",
+     "home": true,
+     "opp": "Packers",
+     "oppAbbr": "GB",
+     "tv": "FOX"
+    },
+    {
+     "date": "2026-11-15",
+     "time": "9:30 AM",
+     "home": false,
+     "opp": "Lions",
+     "oppAbbr": "DET",
+     "tv": "FOX",
+     "note": "in Munich"
+    },
+    {
+     "date": "2026-11-29",
+     "time": "8:20 PM",
+     "home": false,
+     "opp": "Chargers",
+     "oppAbbr": "LAC",
+     "tv": "NBC"
+    },
+    {
+     "date": "2026-12-06",
+     "time": "4:25 PM",
+     "home": true,
+     "opp": "Bills",
+     "oppAbbr": "BUF",
+     "tv": "CBS"
+    },
+    {
+     "date": "2026-12-10",
+     "time": "8:15 PM",
+     "home": true,
+     "opp": "Vikings",
+     "oppAbbr": "MIN",
+     "tv": "Prime Video"
+    },
+    {
+     "date": "2026-12-21",
+     "time": "8:15 PM",
+     "home": false,
+     "opp": "Chiefs",
+     "oppAbbr": "KC",
+     "tv": "ESPN"
+    },
+    {
+     "date": "2026-12-27",
+     "time": "1:00 PM",
+     "home": false,
+     "opp": "Jets",
+     "oppAbbr": "NYJ",
+     "tv": "CBS"
+    },
+    {
+     "date": "2027-01-03",
+     "time": null,
+     "home": true,
+     "opp": "Broncos",
+     "oppAbbr": "DEN",
+     "note": "Flex scheduling: Week 17 date and time TBD (tentatively Sun Jan 3)"
+    },
+    {
+     "date": "2027-01-10",
+     "time": null,
+     "home": true,
+     "opp": "Dolphins",
+     "oppAbbr": "MIA",
+     "note": "Flex scheduling: Week 18 date and time TBD (tentatively Sun Jan 10)"
+    }
+   ]
+  }
+ }
+}
