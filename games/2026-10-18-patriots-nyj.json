@@ -1,0 +1,608 @@
+{
+  "teamKey": "patriots",
+  "sport": "NFL",
+  "headline": "Patriots survive a sloppy day for a third straight win",
+  "home": true,
+  "boston": {
+    "abbr": "NE",
+    "score": 26
+  },
+  "opp": {
+    "abbr": "NYJ",
+    "name": "Jets",
+    "score": 19
+  },
+  "result": "W",
+  "record": "4–2",
+  "videos": [
+    {
+      "id": "h22pzTzTQeg",
+      "title": "Jets at Patriots: game highlights",
+      "channel": "New England Patriots",
+      "kind": "full"
+    }
+  ],
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      7,
+      10,
+      0,
+      9
+    ],
+    "opp": [
+      3,
+      0,
+      10,
+      6
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "NE 7, NYJ 3",
+        "text": "Jason Sanders' 42-yard field goal put the Jets up 3–0, and Romeo Doubs answered with a diving 42-yard touchdown catch from Drake Maye with 4:10 left. Doubs left after the score with a shoulder injury and did not return."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "NE 17, NYJ 3",
+        "text": "Andy Borregales' 32-yard field goal made it 10–3 with 1:46 left, and Maye's 9-yard touchdown pass to DeMario Douglas with 14 seconds left sent New England to halftime up 17–3."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "NE 17, NYJ 13",
+        "text": "Omar Cooper Jr. got behind safety Craig Woodson for a 48-yard touchdown from Geno Smith (17–10). David Bailey then stripped TreVeyon Henderson and the Jets took over at the New England 36, but Elijah Ponder's sack held them to Sanders' 36-yard field goal, 17–13 with 4:46 left."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: NE 26, NYJ 19",
+        "text": "Maye's 7-yard touchdown pass to Hunter Henry capped a 12-play, 68-yard drive early in the quarter, but Borregales missed the extra point (23–13). Charles Woods intercepted Smith four plays later, Smith's first interception of the season, and the teams traded field goals the rest of the way: Borregales' 27-yarder with 1:12 left made it 26–16 before Sanders' 36-yarder with 32 seconds left."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.espn.co.uk/nfl/recap/_/gameId/401873001"
+      },
+      {
+        "name": "StatSniper (scoring summary)",
+        "url": "https://statsniper.com/leagues/nfl/game/2026/week-6/nyj-vs-ne/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Drake Maye",
+      "line": "18/32 · 235 YDS · 3 TD · 0 INT",
+      "note": "His third straight game with at least three touchdown passes; \"It was sloppy. It wasn't clean,\" he said."
+    },
+    {
+      "name": "DeMario Douglas",
+      "line": "7 REC · 86 YDS · 1 TD",
+      "note": "Team-high seven catches, including the touchdown 14 seconds before halftime."
+    },
+    {
+      "name": "Charles Woods",
+      "line": "3 TCKL · 1 INT",
+      "note": "His fourth-quarter interception was Smith's first of the season, on his 166th pass."
+    }
+  ],
+  "oppLine": "Omar Cooper Jr. caught 6 passes for 103 yards and a touchdown in his return from IR; Geno Smith threw for 252 yards, Jamien Sherwood made 11 tackles, and David Bailey forced two fumbles.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nfl/boxscore/_/gameId/401873001"
+    },
+    "boston": {
+      "name": "Patriots",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Drake Maye",
+              "values": [
+                "18/32",
+                235,
+                3,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            "18/32",
+            235,
+            3,
+            0
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Corey Kiner",
+              "values": [
+                11,
+                57,
+                0,
+                12
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                14,
+                36,
+                0,
+                12
+              ]
+            },
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                7,
+                31,
+                0,
+                8
+              ]
+            },
+            {
+              "name": "Drake Maye",
+              "values": [
+                4,
+                24,
+                0,
+                21
+              ]
+            }
+          ],
+          "totals": [
+            36,
+            148,
+            0,
+            21
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "DeMario Douglas",
+              "values": [
+                7,
+                86,
+                1,
+                8
+              ]
+            },
+            {
+              "name": "Hunter Henry",
+              "values": [
+                4,
+                48,
+                1,
+                5
+              ]
+            },
+            {
+              "name": "Romeo Doubs",
+              "values": [
+                1,
+                42,
+                1,
+                1
+              ]
+            },
+            {
+              "name": "A.J. Brown",
+              "values": [
+                3,
+                27,
+                0,
+                10
+              ]
+            },
+            {
+              "name": "Kyle Williams",
+              "values": [
+                1,
+                12,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Eli Raridon",
+              "values": [
+                1,
+                11,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                1,
+                9,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Efton Chism III",
+              "values": [
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            18,
+            235,
+            3,
+            30
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Marcus Jones",
+              "values": [
+                8,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Kevin Byard",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Christian Gonzalez",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Christian Elliss",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Robert Spillane",
+              "values": [
+                5,
+                0,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Craig Woodson",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            71,
+            3,
+            5,
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Jets",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Geno Smith",
+              "values": [
+                "20/30",
+                252,
+                1,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            "20/30",
+            252,
+            1,
+            1
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Braelon Allen",
+              "values": [
+                17,
+                78,
+                0,
+                16
+              ]
+            },
+            {
+              "name": "Isaiah Davis",
+              "values": [
+                7,
+                16,
+                0,
+                9
+              ]
+            },
+            {
+              "name": "Isaiah Williams",
+              "values": [
+                1,
+                4,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "Geno Smith",
+              "values": [
+                2,
+                -1,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            27,
+            97,
+            0,
+            16
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Omar Cooper Jr.",
+              "values": [
+                6,
+                103,
+                1,
+                7
+              ]
+            },
+            {
+              "name": "Garrett Wilson",
+              "values": [
+                4,
+                44,
+                0,
+                6
+              ]
+            },
+            {
+              "name": "Mason Taylor",
+              "values": [
+                4,
+                33,
+                0,
+                6
+              ]
+            },
+            {
+              "name": "Braelon Allen",
+              "values": [
+                2,
+                26,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Tim Patrick",
+              "values": [
+                1,
+                15,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Kenyon Sadiq",
+              "values": [
+                1,
+                12,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Isaiah Davis",
+              "values": [
+                1,
+                10,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Jelani Woods",
+              "values": [
+                1,
+                9,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            20,
+            252,
+            1,
+            29
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Jamien Sherwood",
+              "values": [
+                11,
+                0,
+                1,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Dane Belton",
+              "values": [
+                9,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Demario Davis",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Jowon Briggs",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Azareye'h Thomas",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "David Bailey",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                2
+              ]
+            }
+          ],
+          "totals": [
+            73,
+            0,
+            3,
+            0,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Three straight wins have New England at 4–2 and 3–0 at home, with a short week before Thursday night at Chicago and Romeo Doubs' shoulder to watch.",
+  "id": "2026-10-18-patriots-nyj",
+  "date": "2026-10-18"
+}

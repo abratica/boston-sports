@@ -1,0 +1,644 @@
+{
+  "teamKey": "patriots",
+  "sport": "NFL",
+  "headline": "Patriots defense smothers Rodgers in 20–3 win over Steelers",
+  "home": true,
+  "boston": {
+    "abbr": "NE",
+    "score": 20
+  },
+  "opp": {
+    "abbr": "PIT",
+    "name": "Steelers",
+    "score": 3
+  },
+  "result": "W",
+  "record": "1–1",
+  "videos": [
+    {
+      "id": "Ai3-C53DkS0",
+      "title": "Steelers at Patriots: game highlights",
+      "channel": "New England Patriots",
+      "kind": "full"
+    }
+  ],
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      7,
+      3,
+      3,
+      7
+    ],
+    "opp": [
+      0,
+      3,
+      0,
+      0
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "NE 7, PIT 0",
+        "text": "New England's opening drive reached the Pittsburgh 34 before Nick Herbig stripped Rhamondre Stevenson. After a 19-yard Marcus Jones punt return, TreVeyon Henderson, in for Stevenson, found a crease for a 39-yard touchdown run with 8:22 left."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "NE 10, PIT 3",
+        "text": "Andy Borregales' 30-yard field goal made it 10–0 early in the quarter, and Chris Boswell's 56-yarder on the final play of the half got Pittsburgh its only points."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "NE 13, PIT 3",
+        "text": "Romeo Doubs' 63-yard catch set up Borregales' second field goal, a 45-yarder with 43 seconds left in the quarter, for a 13–3 lead."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: NE 20, PIT 3",
+        "text": "Christian Barmore strip-sacked Aaron Rodgers and Elijah Ponder returned the fumble 19 yards for a touchdown with 13:37 left. With Pittsburgh at the New England 17 and under five minutes to go, rookie linebacker Gabe Jacas intercepted a bobbled short pass meant for Germie Bernard."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.espn.com/nfl/recap/_/gameId/401872946"
+      },
+      {
+        "name": "StatSniper (scoring summary)",
+        "url": "https://statsniper.com/leagues/nfl/game/2026/week-2/pit-vs-ne/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "TreVeyon Henderson",
+      "line": "16 CAR · 76 YDS · 1 TD",
+      "note": "His 39-yard run was the only offensive touchdown by either team."
+    },
+    {
+      "name": "Elijah Ponder",
+      "line": "5 TCKL · 1 SACK · 3 TFL · 1 TD",
+      "note": "Scooped up Barmore's strip-sack of Rodgers and scored from 19 yards out."
+    },
+    {
+      "name": "Christian Elliss",
+      "line": "12 TCKL · 1 SACK · 1 FF",
+      "note": "Led the team in tackles as New England sacked Rodgers four times."
+    }
+  ],
+  "oppLine": "Aaron Rodgers went 23-of-39 for 187 yards with an interception and was sacked four times; Jaylen Warren ran for 43 yards, and Derrick Harmon made 8 tackles.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nfl/boxscore/_/gameId/401872946"
+    },
+    "boston": {
+      "name": "Patriots",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Drake Maye",
+              "values": [
+                "14/22",
+                208,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            "14/22",
+            208,
+            0,
+            1
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                16,
+                76,
+                1,
+                39
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                6,
+                43,
+                0,
+                24
+              ]
+            },
+            {
+              "name": "Drake Maye",
+              "values": [
+                4,
+                17,
+                0,
+                13
+              ]
+            },
+            {
+              "name": "Corey Kiner",
+              "values": [
+                2,
+                0,
+                0,
+                2
+              ]
+            }
+          ],
+          "totals": [
+            28,
+            136,
+            1,
+            39
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Romeo Doubs",
+              "values": [
+                3,
+                96,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "Hunter Henry",
+              "values": [
+                3,
+                40,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Eli Raridon",
+              "values": [
+                1,
+                30,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Mack Hollins",
+              "values": [
+                2,
+                18,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Kyle Williams",
+              "values": [
+                1,
+                10,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "DeMario Douglas",
+              "values": [
+                1,
+                9,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Reggie Gilliam",
+              "values": [
+                1,
+                4,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                1,
+                3,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Efton Chism III",
+              "values": [
+                1,
+                -2,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            14,
+            208,
+            0,
+            21
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Christian Elliss",
+              "values": [
+                12,
+                1,
+                1,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Charles Woods",
+              "values": [
+                10,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Craig Woodson",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Robert Spillane",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Elijah Ponder",
+              "values": [
+                5,
+                1,
+                3,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Christian Gonzalez",
+              "values": [
+                4,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            75,
+            4,
+            6,
+            1,
+            2
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Steelers",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Aaron Rodgers",
+              "values": [
+                "23/39",
+                187,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Mason Rudolph",
+              "values": [
+                "0/1",
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            "23/40",
+            187,
+            0,
+            1
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Jaylen Warren",
+              "values": [
+                11,
+                43,
+                0,
+                10
+              ]
+            },
+            {
+              "name": "Rico Dowdle",
+              "values": [
+                7,
+                22,
+                0,
+                6
+              ]
+            },
+            {
+              "name": "Travis Homer",
+              "values": [
+                2,
+                16,
+                0,
+                14
+              ]
+            },
+            {
+              "name": "Aaron Rodgers",
+              "values": [
+                1,
+                5,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Mason Rudolph",
+              "values": [
+                1,
+                3,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Pat Freiermuth",
+              "values": [
+                1,
+                2,
+                0,
+                2
+              ]
+            }
+          ],
+          "totals": [
+            23,
+            91,
+            0,
+            14
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Germie Bernard",
+              "values": [
+                4,
+                35,
+                0,
+                8
+              ]
+            },
+            {
+              "name": "Jaylen Warren",
+              "values": [
+                2,
+                34,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "Pat Freiermuth",
+              "values": [
+                4,
+                32,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Roman Wilson",
+              "values": [
+                5,
+                28,
+                0,
+                6
+              ]
+            },
+            {
+              "name": "DK Metcalf",
+              "values": [
+                4,
+                27,
+                0,
+                9
+              ]
+            },
+            {
+              "name": "Rico Dowdle",
+              "values": [
+                2,
+                22,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Darnell Washington",
+              "values": [
+                1,
+                7,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Ben Skowronek",
+              "values": [
+                1,
+                2,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            23,
+            187,
+            0,
+            37
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Derrick Harmon",
+              "values": [
+                8,
+                0.5,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Nick Herbig",
+              "values": [
+                7,
+                0,
+                3,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Payton Wilson",
+              "values": [
+                6,
+                0,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Jaquan Brisker",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Rayshawn Jenkins",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Asante Samuel Jr.",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            67,
+            3,
+            8,
+            1,
+            2
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Back to 1–1 behind a defense that allowed only a field goal, with a trip to Jacksonville next Sunday.",
+  "id": "2026-09-20-patriots-pit",
+  "date": "2026-09-20"
+}

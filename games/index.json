@@ -57,6 +57,34 @@
       "ot": false
     },
     {
+      "id": "2026-10-23-celtics-ny",
+      "team": "celtics",
+      "date": "2026-10-23",
+      "home": true,
+      "opp": "Knicks",
+      "oppAbbr": "NY",
+      "bos": 107,
+      "oppScore": 103,
+      "result": "W",
+      "record": "1–1",
+      "headline": "Tatum's 36 holds off the Knicks in the home opener",
+      "ot": false
+    },
+    {
+      "id": "2026-10-22-patriots-chi",
+      "team": "patriots",
+      "date": "2026-10-22",
+      "home": false,
+      "opp": "Bears",
+      "oppAbbr": "CHI",
+      "bos": 24,
+      "oppScore": 30,
+      "result": "L",
+      "record": "4–3",
+      "headline": "Bears snap Patriots' three-game win streak on Thursday night",
+      "ot": false
+    },
+    {
       "id": "2026-10-22-bruins-nsh",
       "team": "bruins",
       "date": "2026-10-22",
@@ -68,6 +96,20 @@
       "result": "W",
       "record": "8–2–1",
       "headline": "DiPietro blanks Predators as Pastrnak, McAvoy post four points",
+      "ot": false
+    },
+    {
+      "id": "2026-10-20-celtics-det",
+      "team": "celtics",
+      "date": "2026-10-20",
+      "home": false,
+      "opp": "Pistons",
+      "oppAbbr": "DET",
+      "bos": 113,
+      "oppScore": 121,
+      "result": "L",
+      "record": "0–1",
+      "headline": "Pistons erase 22-point hole, spoil George's 38-point debut",
       "ot": false
     },
     {
@@ -83,6 +125,20 @@
       "record": "7–2–1",
       "headline": "Rantanen's overtime hat trick ends Bruins' win streak",
       "ot": true
+    },
+    {
+      "id": "2026-10-18-patriots-nyj",
+      "team": "patriots",
+      "date": "2026-10-18",
+      "home": true,
+      "opp": "Jets",
+      "oppAbbr": "NYJ",
+      "bos": 26,
+      "oppScore": 19,
+      "result": "W",
+      "record": "4–2",
+      "headline": "Patriots survive a sloppy day for a third straight win",
+      "ot": false
     },
     {
       "id": "2026-10-17-bruins-la",
@@ -124,6 +180,20 @@
       "result": "W",
       "record": "5–2–0",
       "headline": "Minten scores twice as McAvoy returns in win at San Jose",
+      "ot": false
+    },
+    {
+      "id": "2026-10-11-patriots-lv",
+      "team": "patriots",
+      "date": "2026-10-11",
+      "home": true,
+      "opp": "Raiders",
+      "oppAbbr": "LV",
+      "bos": 45,
+      "oppScore": 17,
+      "result": "W",
+      "record": "3–2",
+      "headline": "Maye accounts for five touchdowns in rout of Raiders",
       "ot": false
     },
     {
@@ -169,6 +239,20 @@
       "ot": false
     },
     {
+      "id": "2026-10-04-patriots-buf",
+      "team": "patriots",
+      "date": "2026-10-04",
+      "home": false,
+      "opp": "Bills",
+      "oppAbbr": "BUF",
+      "bos": 29,
+      "oppScore": 26,
+      "result": "W",
+      "record": "2–2",
+      "headline": "Chism's late touchdown lifts Patriots past Bills in Buffalo",
+      "ot": false
+    },
+    {
       "id": "2026-10-03-bruins-min",
       "team": "bruins",
       "date": "2026-10-03",
@@ -208,6 +292,48 @@
       "result": "W",
       "record": "1–0–0",
       "headline": "Three goals in 75 seconds sink Rangers in opener",
+      "ot": false
+    },
+    {
+      "id": "2026-09-27-patriots-jax",
+      "team": "patriots",
+      "date": "2026-09-27",
+      "home": false,
+      "opp": "Jaguars",
+      "oppAbbr": "JAX",
+      "bos": 6,
+      "oppScore": 35,
+      "result": "L",
+      "record": "1–2",
+      "headline": "Maye's turnovers fuel Jaguars' 35–6 rout",
+      "ot": false
+    },
+    {
+      "id": "2026-09-20-patriots-pit",
+      "team": "patriots",
+      "date": "2026-09-20",
+      "home": true,
+      "opp": "Steelers",
+      "oppAbbr": "PIT",
+      "bos": 20,
+      "oppScore": 3,
+      "result": "W",
+      "record": "1–1",
+      "headline": "Patriots defense smothers Rodgers in 20–3 win over Steelers",
+      "ot": false
+    },
+    {
+      "id": "2026-09-09-patriots-sea",
+      "team": "patriots",
+      "date": "2026-09-09",
+      "home": false,
+      "opp": "Seahawks",
+      "oppAbbr": "SEA",
+      "bos": 10,
+      "oppScore": 13,
+      "result": "L",
+      "record": "0–1",
+      "headline": "Three fourth-quarter interceptions sink Patriots in Seattle",
       "ot": false
     }
   ]

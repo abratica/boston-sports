@@ -1,0 +1,599 @@
+{
+  "teamKey": "patriots",
+  "sport": "NFL",
+  "headline": "Three fourth-quarter interceptions sink Patriots in Seattle",
+  "home": false,
+  "boston": {
+    "abbr": "NE",
+    "score": 10
+  },
+  "opp": {
+    "abbr": "SEA",
+    "name": "Seahawks",
+    "score": 13
+  },
+  "result": "L",
+  "record": "0–1",
+  "videos": [
+    {
+      "id": "RnRG5B89ZJA",
+      "title": "Patriots at Seahawks: game highlights",
+      "channel": "New England Patriots",
+      "kind": "full"
+    }
+  ],
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      0,
+      7,
+      3,
+      0
+    ],
+    "opp": [
+      0,
+      0,
+      3,
+      10
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "NE 0, SEA 0",
+        "text": "Dre'Mont Jones sacked Sam Darnold on third down to end Seattle's opening drive, and Darnold came up limping with a hip injury and went to the locker room. Drew Lock took over, and neither team scored."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "NE 7, SEA 0",
+        "text": "A pass interference call on Josh Jobe, covering A.J. Brown on a deep flea-flicker, set up Drake Maye's 2-yard touchdown pass to rookie tight end Eli Raridon on the next play (7–0 with 9:11 left in the half). It was the only score of the first half."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "NE 10, SEA 3",
+        "text": "A roughing-the-punter penalty on Chazz Surratt set up Andy Borregales' 50-yard field goal on New England's first drive of the half for a 10–0 lead. Jason Myers answered with a 30-yarder (10–3), and Brown left with a right ankle injury and did not return."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: SEA 13, NE 10",
+        "text": "Maye threw three interceptions in the quarter. Nehemiah Pritchett's pick with 14:27 left started the comeback, and Lock hit Jaxon Smith-Njigba for a 45-yard touchdown on fourth-and-1 to tie it 10–10 with 11:28 left. Julian Love picked Maye off on the next drive and Myers' 26-yard field goal made it 13–10 with 5:50 left; Maye drove New England into range in the final minute, but Jobe made a toe-tapping interception in the end zone with 26 seconds left."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.espn.co.uk/nfl/recap/_/gameId/401872656"
+      },
+      {
+        "name": "StatSniper (scoring summary)",
+        "url": "https://statsniper.com/leagues/nfl/game/2026/week-1/ne-vs-sea/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Drake Maye",
+      "line": "23/33 · 178 YDS · 1 TD · 3 INT · 47 RUSH YDS",
+      "note": "All three interceptions came in the fourth quarter, the last in the end zone in the final minute: \"It was unacceptable,\" he said."
+    },
+    {
+      "name": "Dre'Mont Jones",
+      "line": "2 TCKL · 1 SACK · 1 TFL · 4 QB HITS",
+      "note": "His third-down sack on the opening drive knocked Sam Darnold out of the game."
+    },
+    {
+      "name": "Robert Spillane",
+      "line": "8 TCKL · 7 SOLO",
+      "note": "Led a defense that held Seattle to a field goal through three quarters."
+    }
+  ],
+  "oppLine": "Jaxon Smith-Njigba caught 8 passes for 122 yards and the tying touchdown; Drew Lock went 16-of-22 for 187 yards in relief of Sam Darnold, and Ernest Jones IV made 13 tackles.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nfl/boxscore/_/gameId/401872656"
+    },
+    "boston": {
+      "name": "Patriots",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Drake Maye",
+              "values": [
+                "23/33",
+                178,
+                1,
+                3
+              ]
+            }
+          ],
+          "totals": [
+            "23/33",
+            178,
+            1,
+            3
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                18,
+                51,
+                0,
+                12
+              ]
+            },
+            {
+              "name": "Drake Maye",
+              "values": [
+                7,
+                47,
+                0,
+                16
+              ]
+            },
+            {
+              "name": "Corey Kiner",
+              "values": [
+                6,
+                11,
+                0,
+                7
+              ]
+            }
+          ],
+          "totals": [
+            31,
+            109,
+            0,
+            16
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Mack Hollins",
+              "values": [
+                4,
+                51,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                5,
+                44,
+                0,
+                6
+              ]
+            },
+            {
+              "name": "Hunter Henry",
+              "values": [
+                3,
+                26,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "A.J. Brown",
+              "values": [
+                3,
+                26,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "DeMario Douglas",
+              "values": [
+                5,
+                20,
+                0,
+                7
+              ]
+            },
+            {
+              "name": "Lan Larison",
+              "values": [
+                2,
+                9,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Eli Raridon",
+              "values": [
+                1,
+                2,
+                1,
+                1
+              ]
+            },
+            {
+              "name": "Romeo Doubs",
+              "values": [
+                0,
+                0,
+                0,
+                3
+              ]
+            }
+          ],
+          "totals": [
+            23,
+            178,
+            1,
+            31
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Robert Spillane",
+              "values": [
+                8,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Craig Woodson",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Kevin Byard",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Marcus Jones",
+              "values": [
+                4,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Christian Elliss",
+              "values": [
+                4,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Gabe Jacas",
+              "values": [
+                3,
+                1,
+                2,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            52,
+            2,
+            3,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Seahawks",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Drew Lock",
+              "values": [
+                "16/22",
+                187,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Sam Darnold",
+              "values": [
+                "1/2",
+                13,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            "17/24",
+            200,
+            1,
+            0
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Jadarian Price",
+              "values": [
+                10,
+                52,
+                0,
+                13
+              ]
+            },
+            {
+              "name": "George Holani",
+              "values": [
+                8,
+                29,
+                0,
+                9
+              ]
+            },
+            {
+              "name": "Drew Lock",
+              "values": [
+                2,
+                13,
+                0,
+                14
+              ]
+            },
+            {
+              "name": "Emanuel Wilson",
+              "values": [
+                2,
+                3,
+                0,
+                3
+              ]
+            }
+          ],
+          "totals": [
+            22,
+            97,
+            0,
+            14
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Jaxon Smith-Njigba",
+              "values": [
+                8,
+                122,
+                1,
+                11
+              ]
+            },
+            {
+              "name": "Cooper Kupp",
+              "values": [
+                2,
+                35,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Brady Russell",
+              "values": [
+                2,
+                20,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "AJ Barner",
+              "values": [
+                2,
+                13,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Jadarian Price",
+              "values": [
+                2,
+                6,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Rashid Shaheed",
+              "values": [
+                1,
+                4,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "George Holani",
+              "values": [
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            17,
+            200,
+            1,
+            24
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Ernest Jones IV",
+              "values": [
+                13,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Drake Thomas",
+              "values": [
+                9,
+                1,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Josh Jobe",
+              "values": [
+                6,
+                0,
+                1,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Nehemiah Pritchett",
+              "values": [
+                6,
+                0,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Julian Love",
+              "values": [
+                6,
+                0,
+                2,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Uchenna Nwosu",
+              "values": [
+                5,
+                0,
+                1,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            74,
+            3,
+            9,
+            3,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "New England opens 0–1, with Maye's three late interceptions and A.J. Brown's right ankle to sort out before the Steelers visit on Sept. 20.",
+  "id": "2026-09-09-patriots-sea",
+  "date": "2026-09-09"
+}

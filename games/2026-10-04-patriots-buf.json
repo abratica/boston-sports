@@ -1,0 +1,626 @@
+{
+  "teamKey": "patriots",
+  "sport": "NFL",
+  "headline": "Chism's late touchdown lifts Patriots past Bills in Buffalo",
+  "home": false,
+  "boston": {
+    "abbr": "NE",
+    "score": 29
+  },
+  "opp": {
+    "abbr": "BUF",
+    "name": "Bills",
+    "score": 26
+  },
+  "result": "W",
+  "record": "2–2",
+  "videos": [
+    {
+      "id": "0G8aLm2bOV0",
+      "title": "Patriots at Bills: game highlights",
+      "channel": "New England Patriots",
+      "kind": "full"
+    }
+  ],
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      7,
+      7,
+      7,
+      8
+    ],
+    "opp": [
+      0,
+      17,
+      0,
+      9
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "NE 7, BUF 0",
+        "text": "Drake Maye hit Romeo Doubs for a 14-yard touchdown with 7:01 left in the quarter, and Buffalo didn't score in the first."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "BUF 17, NE 14",
+        "text": "James Cook's 8-yard run tied it early in the quarter, and Rhamondre Stevenson's 1-yard run put New England back up 14–7 with 5:38 left. A Cole Bishop touchdown for Buffalo was overturned on replay, but Josh Allen's 2-yard run with a minute left (his 88th career touchdown from scrimmage, a Bills record) tied it 14–14, and Tyler Bass' 27-yard field goal with 2 seconds left gave Buffalo a 17–14 halftime lead."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "NE 21, BUF 17",
+        "text": "Maye's 2-yard touchdown pass to Doubs, his second of the day, put New England back in front 21–17 with 8:15 left in the quarter."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: NE 29, BUF 26",
+        "text": "Bass' 38-yard field goal made it 21–20, and Allen's 34-yard touchdown pass to Keon Coleman (two-point try failed) put Buffalo up 26–21 with 4:27 left. Maye answered with an eight-play, 73-yard drive capped by Efton Chism III's one-handed 23-yard touchdown catch on third-and-5 with 1:50 left, and the two-point conversion made it 29–26. Craig Woodson intercepted Allen's underthrown deep ball for Josh Palmer on Buffalo's last drive, and Maye's 12-yard completion to Hunter Henry let New England run out the clock."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.espn.co.uk/nfl/recap/_/gameId/401872971"
+      },
+      {
+        "name": "StatSniper (scoring summary)",
+        "url": "https://statsniper.com/leagues/nfl/game/2026/week-4/ne-vs-buf/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Drake Maye",
+      "line": "22/37 · 269 YDS · 3 TD · 1 INT · 54 RUSH YDS",
+      "note": "Answered Buffalo's go-ahead touchdown with the 73-yard winning drive; \"Felt like Drake went toe to toe with him,\" Mike Vrabel said."
+    },
+    {
+      "name": "Efton Chism III",
+      "line": "2 REC · 42 YDS · 1 TD",
+      "note": "Got more snaps after Mack Hollins left with a calf injury and made the one-handed winning catch."
+    },
+    {
+      "name": "Craig Woodson",
+      "line": "3 TCKL · 1 INT",
+      "note": "His interception of Allen in the final minute sealed it."
+    }
+  ],
+  "oppLine": "Keon Coleman caught 6 passes for 116 yards and a touchdown; Josh Allen threw for 253 yards and ran for a score, and James Cook rushed for 75 yards and a touchdown.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nfl/boxscore/_/gameId/401872971"
+    },
+    "boston": {
+      "name": "Patriots",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Drake Maye",
+              "values": [
+                "22/37",
+                269,
+                3,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            "22/37",
+            269,
+            3,
+            1
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Drake Maye",
+              "values": [
+                8,
+                54,
+                0,
+                26
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                13,
+                47,
+                1,
+                10
+              ]
+            },
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                14,
+                42,
+                0,
+                11
+              ]
+            }
+          ],
+          "totals": [
+            35,
+            143,
+            1,
+            26
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Hunter Henry",
+              "values": [
+                5,
+                62,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Romeo Doubs",
+              "values": [
+                6,
+                58,
+                2,
+                9
+              ]
+            },
+            {
+              "name": "Mack Hollins",
+              "values": [
+                3,
+                53,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "Efton Chism III",
+              "values": [
+                2,
+                42,
+                1,
+                4
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                3,
+                27,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "DeMario Douglas",
+              "values": [
+                2,
+                15,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Eli Raridon",
+              "values": [
+                1,
+                12,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                0,
+                0,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Kyle Williams",
+              "values": [
+                0,
+                0,
+                0,
+                2
+              ]
+            }
+          ],
+          "totals": [
+            22,
+            269,
+            3,
+            36
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Robert Spillane",
+              "values": [
+                8,
+                0,
+                0,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Christian Elliss",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Carlton Davis III",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Marcus Jones",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Elijah Ponder",
+              "values": [
+                4,
+                1,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Darius Muasau",
+              "values": [
+                4,
+                0,
+                1,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            57,
+            1,
+            3,
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Bills",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Josh Allen",
+              "values": [
+                "23/33",
+                253,
+                1,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            "23/33",
+            253,
+            1,
+            1
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "James Cook III",
+              "values": [
+                12,
+                75,
+                1,
+                17
+              ]
+            },
+            {
+              "name": "DJ Moore",
+              "values": [
+                1,
+                6,
+                0,
+                6
+              ]
+            },
+            {
+              "name": "Josh Allen",
+              "values": [
+                5,
+                4,
+                1,
+                4
+              ]
+            },
+            {
+              "name": "Ty Johnson",
+              "values": [
+                1,
+                3,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Ray Davis",
+              "values": [
+                1,
+                3,
+                0,
+                3
+              ]
+            }
+          ],
+          "totals": [
+            20,
+            91,
+            2,
+            17
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Keon Coleman",
+              "values": [
+                6,
+                116,
+                1,
+                7
+              ]
+            },
+            {
+              "name": "Khalil Shakir",
+              "values": [
+                7,
+                82,
+                0,
+                8
+              ]
+            },
+            {
+              "name": "Dawson Knox",
+              "values": [
+                2,
+                13,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "DJ Moore",
+              "values": [
+                1,
+                11,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Ty Johnson",
+              "values": [
+                2,
+                9,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "James Cook III",
+              "values": [
+                2,
+                8,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Dalton Kincaid",
+              "values": [
+                1,
+                7,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Ray Davis",
+              "values": [
+                1,
+                4,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Joshua Palmer",
+              "values": [
+                1,
+                3,
+                0,
+                4
+              ]
+            }
+          ],
+          "totals": [
+            23,
+            253,
+            1,
+            30
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Dorian Williams",
+              "values": [
+                8,
+                0,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Terrel Bernard",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Cole Bishop",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Davison Igbinosun",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "TJ Parker",
+              "values": [
+                5,
+                0.5,
+                0,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "DeWayne Carter",
+              "values": [
+                4,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            73,
+            1,
+            3,
+            1,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "A division win in Buffalo gets the Patriots back to 2–2; Mack Hollins' calf is the injury to watch before the Raiders visit next Sunday.",
+  "id": "2026-10-04-patriots-buf",
+  "date": "2026-10-04"
+}

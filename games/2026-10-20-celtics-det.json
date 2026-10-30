@@ -1,0 +1,538 @@
+{
+  "teamKey": "celtics",
+  "sport": "NBA",
+  "headline": "Pistons erase 22-point hole, spoil George's 38-point debut",
+  "home": false,
+  "boston": {
+    "abbr": "BOS",
+    "score": 113
+  },
+  "opp": {
+    "abbr": "DET",
+    "name": "Pistons",
+    "score": 121
+  },
+  "result": "L",
+  "record": "0–1",
+  "videos": [
+    {
+      "id": "NZmml7nxVaI",
+      "title": "Celtics at Pistons: full game highlights",
+      "channel": "NBA",
+      "kind": "full"
+    }
+  ],
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      28,
+      30,
+      30,
+      25
+    ],
+    "opp": [
+      27,
+      18,
+      37,
+      39
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "BOS 28, DET 27",
+        "text": "Detroit scored the first four points, and Duncan Robinson's three gave the Pistons a 7–6 lead. Jayson Tatum's pull-up jumper at the buzzer put Boston in front 28–27."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "BOS 58, DET 45",
+        "text": "Detroit led 39–35 early in the quarter before Boston ran off 15 straight points, including a Tatum driving layup and a tip-in and a three from Sam Hauser, to go up 50–39. Paul George scored eight points in a 51-second stretch, and the Celtics took a 58–45 lead into halftime."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "BOS 88, DET 82",
+        "text": "George hit three threes in 52 seconds, the last making it 72–50 with 8:32 left: Boston's biggest lead. Jalen Duren started Detroit's answer, and former Celtic Javonte Green, who sat the entire first half, hit three threes off the bench as the Pistons cut it to 88–82 by the end of the quarter."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: DET 121, BOS 113",
+        "text": "George's layup opened the quarter for a 90–82 lead, and Boston was back up 99–89 before Detroit scored 23 straight points. Robinson had 11 straight in the run, including the three that made it 107–99, and Green's fifth three made it 112–99 with 3:33 left. George's three cut it to 114–110, but Ausar Thompson answered inside and Green's free throws with 6.7 seconds left sealed it."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.cbssports.com/nba/gametracker/recap/NBA_20261020_BOS@DET/"
+      },
+      {
+        "name": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/10/20/sports/celtics-pistons-season-opener/"
+      },
+      {
+        "name": "NBC Sports Boston",
+        "url": "https://www.nbcsportsboston.com/nba/boston-celtics/pistons-season-opener-loss-blown-lead/808638/"
+      },
+      {
+        "name": "Field Level Media",
+        "url": "https://www.gmanetwork.com/news/sports/basketball/1006627/nba-pistons-use-23-0-burst-to-rally-past-celtics-in-opener/story/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Paul George",
+      "line": "38 PTS · 12-21 FG · 7-12 3PT · 5 REB · 5 STL",
+      "note": "The most points by a Celtic in his debut, including the three threes in 52 seconds that built the 22-point lead."
+    },
+    {
+      "name": "Derrick White",
+      "line": "17 PTS · 8 AST · 7-13 FG · 3-7 3PT",
+      "note": "Efficient as Boston's second option, though he had four of the team's 14 turnovers."
+    },
+    {
+      "name": "Jayson Tatum",
+      "line": "13 PTS · 11 AST · 6-23 FG · 0-7 3PT",
+      "note": "Missed 17 of 23 shots; \"Definitely not one of my best nights,\" he said."
+    }
+  ],
+  "oppLine": "Cade Cunningham (8 assists) and Jalen Duren (9 rebounds) had 22 points each, Duncan Robinson added 21 (5-of-9 from three), and Javonte Green scored 19 off the bench.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nba/boxscore/_/gameId/401909088"
+    },
+    "boston": {
+      "name": "Celtics",
+      "groups": [
+        {
+          "label": "",
+          "columns": [
+            "MIN",
+            "PTS",
+            "REB",
+            "AST",
+            "FG",
+            "3PT",
+            "FT",
+            "STL",
+            "BLK",
+            "TO",
+            "+/-"
+          ],
+          "starters": 5,
+          "rows": [
+            {
+              "name": "Paul George",
+              "values": [
+                31,
+                38,
+                5,
+                3,
+                "12-21",
+                "7-12",
+                "7-8",
+                5,
+                0,
+                3,
+                "+9"
+              ]
+            },
+            {
+              "name": "Jayson Tatum",
+              "values": [
+                38,
+                13,
+                4,
+                11,
+                "6-23",
+                "0-7",
+                "1-1",
+                0,
+                0,
+                2,
+                "-5"
+              ]
+            },
+            {
+              "name": "Mitchell Robinson",
+              "values": [
+                18,
+                4,
+                3,
+                1,
+                "2-2",
+                "0-0",
+                "0-2",
+                1,
+                2,
+                2,
+                "-8"
+              ]
+            },
+            {
+              "name": "Derrick White",
+              "values": [
+                36,
+                17,
+                1,
+                8,
+                "7-13",
+                "3-7",
+                "0-0",
+                1,
+                0,
+                4,
+                "-4"
+              ]
+            },
+            {
+              "name": "Jordan Walsh",
+              "values": [
+                13,
+                0,
+                6,
+                1,
+                "0-2",
+                "0-1",
+                "0-0",
+                1,
+                1,
+                0,
+                "0"
+              ]
+            },
+            {
+              "name": "Payton Pritchard",
+              "values": [
+                28,
+                17,
+                4,
+                1,
+                "4-9",
+                "2-5",
+                "7-8",
+                0,
+                0,
+                0,
+                "-10"
+              ]
+            },
+            {
+              "name": "Neemias Queta",
+              "values": [
+                22,
+                3,
+                4,
+                2,
+                "1-3",
+                "0-0",
+                "1-2",
+                1,
+                2,
+                1,
+                "+7"
+              ]
+            },
+            {
+              "name": "Sam Hauser",
+              "values": [
+                18,
+                11,
+                4,
+                1,
+                "4-7",
+                "3-5",
+                "0-0",
+                0,
+                0,
+                0,
+                "+5"
+              ]
+            },
+            {
+              "name": "Baylor Scheierman",
+              "values": [
+                18,
+                8,
+                3,
+                0,
+                "3-4",
+                "2-2",
+                "0-0",
+                1,
+                0,
+                1,
+                "-10"
+              ]
+            },
+            {
+              "name": "Hugo González",
+              "values": [
+                10,
+                0,
+                3,
+                0,
+                "0-1",
+                "0-1",
+                "0-0",
+                0,
+                0,
+                0,
+                "-15"
+              ]
+            },
+            {
+              "name": "Luka Garza",
+              "values": [
+                8,
+                2,
+                2,
+                0,
+                "1-3",
+                "0-2",
+                "0-0",
+                0,
+                0,
+                1,
+                "-9"
+              ]
+            }
+          ],
+          "totals": [
+            "",
+            113,
+            39,
+            28,
+            "40-88",
+            "17-42",
+            "16-21",
+            10,
+            5,
+            14,
+            ""
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Pistons",
+      "groups": [
+        {
+          "label": "",
+          "columns": [
+            "MIN",
+            "PTS",
+            "REB",
+            "AST",
+            "FG",
+            "3PT",
+            "FT",
+            "STL",
+            "BLK",
+            "TO",
+            "+/-"
+          ],
+          "starters": 5,
+          "rows": [
+            {
+              "name": "Duncan Robinson",
+              "values": [
+                28,
+                21,
+                2,
+                2,
+                "5-10",
+                "5-9",
+                "6-8",
+                1,
+                0,
+                3,
+                "+5"
+              ]
+            },
+            {
+              "name": "John Collins",
+              "values": [
+                25,
+                6,
+                5,
+                1,
+                "3-7",
+                "0-3",
+                "0-0",
+                1,
+                1,
+                0,
+                "-13"
+              ]
+            },
+            {
+              "name": "Jalen Duren",
+              "values": [
+                28,
+                22,
+                9,
+                1,
+                "8-13",
+                "0-0",
+                "6-7",
+                1,
+                1,
+                1,
+                "-1"
+              ]
+            },
+            {
+              "name": "Cade Cunningham",
+              "values": [
+                35,
+                22,
+                4,
+                8,
+                "8-18",
+                "1-6",
+                "5-5",
+                1,
+                1,
+                5,
+                "-1"
+              ]
+            },
+            {
+              "name": "Ausar Thompson",
+              "values": [
+                33,
+                11,
+                11,
+                5,
+                "4-8",
+                "0-1",
+                "3-3",
+                1,
+                0,
+                3,
+                "+12"
+              ]
+            },
+            {
+              "name": "Isaiah Joe",
+              "values": [
+                19,
+                8,
+                2,
+                2,
+                "2-9",
+                "2-7",
+                "2-3",
+                1,
+                1,
+                1,
+                "0"
+              ]
+            },
+            {
+              "name": "Javonte Green",
+              "values": [
+                18,
+                19,
+                4,
+                0,
+                "5-10",
+                "5-8",
+                "4-4",
+                0,
+                0,
+                0,
+                "+21"
+              ]
+            },
+            {
+              "name": "Kevin Huerter",
+              "values": [
+                18,
+                3,
+                3,
+                2,
+                "1-4",
+                "1-4",
+                "0-0",
+                0,
+                0,
+                0,
+                "+5"
+              ]
+            },
+            {
+              "name": "Paul Reed",
+              "values": [
+                17,
+                6,
+                6,
+                2,
+                "2-3",
+                "0-0",
+                "2-2",
+                1,
+                0,
+                2,
+                "+12"
+              ]
+            },
+            {
+              "name": "Daniss Jenkins",
+              "values": [
+                15,
+                3,
+                2,
+                3,
+                "1-3",
+                "1-1",
+                "0-0",
+                0,
+                0,
+                1,
+                "+4"
+              ]
+            },
+            {
+              "name": "Ronald Holland II",
+              "values": [
+                3,
+                0,
+                1,
+                1,
+                "0-1",
+                "0-1",
+                "0-0",
+                0,
+                1,
+                1,
+                "-4"
+              ]
+            }
+          ],
+          "totals": [
+            "",
+            121,
+            49,
+            27,
+            "39-86",
+            "15-40",
+            "28-32",
+            7,
+            5,
+            17,
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Boston opens 0–1 after blowing a 22-point lead, with Friday's home opener against the defending champion Knicks next.",
+  "id": "2026-10-20-celtics-det",
+  "date": "2026-10-20"
+}

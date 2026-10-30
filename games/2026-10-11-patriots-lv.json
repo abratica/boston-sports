@@ -1,0 +1,662 @@
+{
+  "teamKey": "patriots",
+  "sport": "NFL",
+  "headline": "Maye accounts for five touchdowns in rout of Raiders",
+  "home": true,
+  "boston": {
+    "abbr": "NE",
+    "score": 45
+  },
+  "opp": {
+    "abbr": "LV",
+    "name": "Raiders",
+    "score": 17
+  },
+  "result": "W",
+  "record": "3–2",
+  "videos": [
+    {
+      "id": "ceXA4XhCpLc",
+      "title": "Raiders at Patriots: game highlights",
+      "channel": "New England Patriots",
+      "kind": "full"
+    }
+  ],
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      14,
+      7,
+      14,
+      10
+    ],
+    "opp": [
+      7,
+      0,
+      3,
+      7
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "NE 14, LV 7",
+        "text": "Drake Maye's 35-yard touchdown pass to DeMario Douglas capped a five-play, 79-yard drive (7–0 with 11:23 left). Kirk Cousins answered with a 13-yard touchdown pass to Brock Bowers after a pass interference penalty on Kevin Byard, and Rhamondre Stevenson's 5-yard run put New England back up 14–7 with 1:30 left."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "NE 21, LV 7",
+        "text": "Maye's 11-yard touchdown pass to Hunter Henry with 24 seconds left in the half made it 21–7 at the break."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "NE 35, LV 10",
+        "text": "Maye's 34-yard touchdown pass to Kyle Williams made it 28–7 early in the half. Matt Gay's 46-yard field goal got Las Vegas on the board again, and Maye's 3-yard touchdown run made it 35–10 with 3:10 left in the quarter."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: NE 45, LV 17",
+        "text": "Andy Borregales' 28-yard field goal and Dylan Laube's 2-yard touchdown run made it 38–17, and Maye's 8-yard touchdown pass to Douglas, his second of the day, finished the scoring with 6:06 left. Fernando Mendoza replaced Cousins late."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.espn.co.uk/nfl/recap/_/gameId/401872986"
+      },
+      {
+        "name": "StatSniper (scoring summary)",
+        "url": "https://statsniper.com/leagues/nfl/game/2026/week-5/lv-vs-ne/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Drake Maye",
+      "line": "26/34 · 374 YDS · 4 TD · 0 INT · 1 RUSH TD",
+      "note": "His first game this season without a turnover, as New England piled up a season-high 536 yards."
+    },
+    {
+      "name": "DeMario Douglas",
+      "line": "4 REC · 65 YDS · 2 TD",
+      "note": "Scored from 35 and 8 yards out."
+    },
+    {
+      "name": "Elijah Ponder",
+      "line": "6 TCKL · 2 SACK · 2 TFL · 1 FF",
+      "note": "Had two of New England's three sacks of Cousins."
+    }
+  ],
+  "oppLine": "Brock Bowers caught 8 passes for 110 yards and a touchdown; Kirk Cousins went 19-of-28 for 243 yards and was sacked three times, and Nakobe Dean made 12 tackles.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nfl/boxscore/_/gameId/401872986"
+    },
+    "boston": {
+      "name": "Patriots",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Drake Maye",
+              "values": [
+                "26/34",
+                374,
+                4,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            "26/34",
+            374,
+            4,
+            0
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                13,
+                64,
+                1,
+                20
+              ]
+            },
+            {
+              "name": "Corey Kiner",
+              "values": [
+                6,
+                52,
+                0,
+                32
+              ]
+            },
+            {
+              "name": "Drake Maye",
+              "values": [
+                7,
+                25,
+                1,
+                10
+              ]
+            },
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                4,
+                22,
+                0,
+                11
+              ]
+            },
+            {
+              "name": "Efton Chism III",
+              "values": [
+                1,
+                2,
+                0,
+                2
+              ]
+            }
+          ],
+          "totals": [
+            31,
+            165,
+            2,
+            32
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Kyle Williams",
+              "values": [
+                3,
+                91,
+                1,
+                3
+              ]
+            },
+            {
+              "name": "DeMario Douglas",
+              "values": [
+                4,
+                65,
+                2,
+                5
+              ]
+            },
+            {
+              "name": "Efton Chism III",
+              "values": [
+                5,
+                57,
+                0,
+                6
+              ]
+            },
+            {
+              "name": "Eli Raridon",
+              "values": [
+                5,
+                57,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Hunter Henry",
+              "values": [
+                3,
+                44,
+                1,
+                4
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                3,
+                21,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Romeo Doubs",
+              "values": [
+                1,
+                16,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                1,
+                16,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Corey Kiner",
+              "values": [
+                1,
+                7,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            26,
+            374,
+            4,
+            31
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Christian Elliss",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Elijah Ponder",
+              "values": [
+                6,
+                2,
+                2,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Darius Muasau",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Robert Spillane",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Kindle Vildor",
+              "values": [
+                4,
+                0,
+                0,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Marcus Jones",
+              "values": [
+                4,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            64,
+            3,
+            6,
+            0,
+            2
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Raiders",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Kirk Cousins",
+              "values": [
+                "19/28",
+                243,
+                1,
+                0
+              ]
+            },
+            {
+              "name": "Fernando Mendoza",
+              "values": [
+                "6/8",
+                48,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            "25/36",
+            291,
+            1,
+            0
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Ashton Jeanty",
+              "values": [
+                10,
+                27,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "Dylan Laube",
+              "values": [
+                4,
+                9,
+                1,
+                5
+              ]
+            },
+            {
+              "name": "Mike Washington Jr.",
+              "values": [
+                1,
+                5,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Fernando Mendoza",
+              "values": [
+                1,
+                3,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Tre Tucker",
+              "values": [
+                2,
+                -6,
+                0,
+                5
+              ]
+            }
+          ],
+          "totals": [
+            18,
+            38,
+            1,
+            5
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Brock Bowers",
+              "values": [
+                8,
+                110,
+                1,
+                10
+              ]
+            },
+            {
+              "name": "Ashton Jeanty",
+              "values": [
+                3,
+                50,
+                0,
+                6
+              ]
+            },
+            {
+              "name": "Cody White",
+              "values": [
+                2,
+                44,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "Tre Tucker",
+              "values": [
+                4,
+                41,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Dylan Laube",
+              "values": [
+                3,
+                16,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Ian Thomas",
+              "values": [
+                1,
+                9,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Deven Thompkins",
+              "values": [
+                1,
+                8,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Malik Benson",
+              "values": [
+                1,
+                6,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "Mike Washington Jr.",
+              "values": [
+                1,
+                5,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Michael Mayer",
+              "values": [
+                1,
+                2,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            25,
+            291,
+            1,
+            36
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Nakobe Dean",
+              "values": [
+                12,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Jeremy Chinn",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Darien Porter",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Taron Johnson",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Treydan Stukes",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Quay Walker",
+              "values": [
+                4,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            69,
+            1,
+            0,
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Two straight wins put New England at 3–2, but TreVeyon Henderson (ankle) and Will Campbell (right knee) left and didn't return, the injuries to watch before the Jets visit next Sunday.",
+  "id": "2026-10-11-patriots-lv",
+  "date": "2026-10-11"
+}

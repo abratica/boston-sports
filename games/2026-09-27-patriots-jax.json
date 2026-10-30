@@ -1,0 +1,653 @@
+{
+  "teamKey": "patriots",
+  "sport": "NFL",
+  "headline": "Maye's turnovers fuel Jaguars' 35–6 rout",
+  "home": false,
+  "boston": {
+    "abbr": "NE",
+    "score": 6
+  },
+  "opp": {
+    "abbr": "JAX",
+    "name": "Jaguars",
+    "score": 35
+  },
+  "result": "L",
+  "record": "1–2",
+  "videos": [
+    {
+      "id": "F8dP-JdY5VM",
+      "title": "Patriots at Jaguars: game highlights",
+      "channel": "New England Patriots",
+      "kind": "full"
+    }
+  ],
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      0,
+      3,
+      0,
+      3
+    ],
+    "opp": [
+      0,
+      14,
+      14,
+      7
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "NE 0, JAX 0",
+        "text": "Neither team scored in the first quarter."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "JAX 14, NE 3",
+        "text": "Trevor Lawrence hit Josh Cameron for a 12-yard touchdown (7–0 with 13:29 left), and Andy Borregales' 35-yard field goal made it 7–3. Lawrence's 10-yard touchdown pass to Jakobi Meyers made it 14–3 with 4:23 left. Marcus Jones intercepted a Lawrence pass that bounced off Brenton Strange's hands, but Travis Hunter picked off Drake Maye on third-and-goal in the end zone with 1:02 left, his first career interception."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "JAX 28, NE 3",
+        "text": "Lawrence's 17-yard touchdown pass to Parker Washington, a fingertip catch in the end zone, capped a 15-play, 72-yard drive for a 21–3 lead with 1:08 left. Jarrian Jones intercepted Maye on the next play, and Chris Rodriguez Jr.'s 5-yard run made it 28–3 with 50 seconds left in the quarter."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: JAX 35, NE 6",
+        "text": "Borregales' 40-yard field goal made it 28–6, and Bhayshul Tuten's 1-yard run with 8:02 left finished the scoring. Maye was pulled in the fourth quarter."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.espn.co.uk/nfl/recap/_/gameId/401872957"
+      },
+      {
+        "name": "Jaguars.com",
+        "url": "https://www.jaguars.com/news/game-report-2026-week-3-jaguars-35-patriots-6"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Mack Hollins",
+      "line": "6 REC · 87 YDS · 9 TGT",
+      "note": "New England's leading receiver, though his taunting penalty turned a fourth-and-1 into a field-goal try."
+    },
+    {
+      "name": "Drake Maye",
+      "line": "14/25 · 199 YDS · 0 TD · 2 INT",
+      "note": "Two interceptions and a lost fumble before he was pulled; he has six interceptions in three games."
+    },
+    {
+      "name": "Marcus Jones",
+      "line": "4 TCKL · 1 INT · 3 PD",
+      "note": "Made New England's only takeaway."
+    }
+  ],
+  "oppLine": "Trevor Lawrence threw three touchdown passes (19-of-29, 182 yards); Bhayshul Tuten ran for 73 yards and a score, and Jakobi Meyers caught 7 passes for 64 yards and a touchdown.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nfl/boxscore/_/gameId/401872957"
+    },
+    "boston": {
+      "name": "Patriots",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Drake Maye",
+              "values": [
+                "14/25",
+                199,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Tommy DeVito",
+              "values": [
+                "3/5",
+                30,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Efton Chism III",
+              "values": [
+                "1/1",
+                16,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            "18/31",
+            245,
+            0,
+            2
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                8,
+                23,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                7,
+                22,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Drake Maye",
+              "values": [
+                4,
+                18,
+                0,
+                9
+              ]
+            },
+            {
+              "name": "Corey Kiner",
+              "values": [
+                6,
+                18,
+                0,
+                7
+              ]
+            },
+            {
+              "name": "Tommy DeVito",
+              "values": [
+                1,
+                2,
+                0,
+                2
+              ]
+            }
+          ],
+          "totals": [
+            26,
+            83,
+            0,
+            9
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Mack Hollins",
+              "values": [
+                6,
+                87,
+                0,
+                9
+              ]
+            },
+            {
+              "name": "Romeo Doubs",
+              "values": [
+                3,
+                49,
+                0,
+                4
+              ]
+            },
+            {
+              "name": "DeMario Douglas",
+              "values": [
+                1,
+                38,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Kyle Williams",
+              "values": [
+                1,
+                34,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Rhamondre Stevenson",
+              "values": [
+                3,
+                16,
+                0,
+                3
+              ]
+            },
+            {
+              "name": "Corey Kiner",
+              "values": [
+                1,
+                9,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "TreVeyon Henderson",
+              "values": [
+                1,
+                6,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Hunter Henry",
+              "values": [
+                1,
+                5,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Efton Chism III",
+              "values": [
+                1,
+                1,
+                0,
+                2
+              ]
+            }
+          ],
+          "totals": [
+            18,
+            245,
+            0,
+            30
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Carlton Davis III",
+              "values": [
+                8,
+                0,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Robert Spillane",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Charles Woods",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Kevin Byard",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Milton Williams",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Gabe Jacas",
+              "values": [
+                5,
+                0.5,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            59,
+            1,
+            2,
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Jaguars",
+      "groups": [
+        {
+          "label": "Passing",
+          "columns": [
+            "C/ATT",
+            "YDS",
+            "TD",
+            "INT"
+          ],
+          "rows": [
+            {
+              "name": "Trevor Lawrence",
+              "values": [
+                "19/29",
+                182,
+                3,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            "19/29",
+            182,
+            3,
+            1
+          ]
+        },
+        {
+          "label": "Rushing",
+          "columns": [
+            "CAR",
+            "YDS",
+            "TD",
+            "LONG"
+          ],
+          "rows": [
+            {
+              "name": "Bhayshul Tuten",
+              "values": [
+                15,
+                73,
+                1,
+                12
+              ]
+            },
+            {
+              "name": "Chris Rodriguez Jr.",
+              "values": [
+                8,
+                37,
+                1,
+                9
+              ]
+            },
+            {
+              "name": "Trevor Lawrence",
+              "values": [
+                4,
+                25,
+                0,
+                15
+              ]
+            },
+            {
+              "name": "Ameer Abdullah",
+              "values": [
+                3,
+                2,
+                0,
+                3
+              ]
+            }
+          ],
+          "totals": [
+            30,
+            137,
+            2,
+            15
+          ]
+        },
+        {
+          "label": "Receiving",
+          "columns": [
+            "REC",
+            "YDS",
+            "TD",
+            "TGT"
+          ],
+          "rows": [
+            {
+              "name": "Jakobi Meyers",
+              "values": [
+                7,
+                64,
+                1,
+                8
+              ]
+            },
+            {
+              "name": "Parker Washington",
+              "values": [
+                3,
+                40,
+                1,
+                5
+              ]
+            },
+            {
+              "name": "Brenton Strange",
+              "values": [
+                3,
+                32,
+                0,
+                5
+              ]
+            },
+            {
+              "name": "Bhayshul Tuten",
+              "values": [
+                2,
+                17,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Josh Cameron",
+              "values": [
+                1,
+                12,
+                1,
+                2
+              ]
+            },
+            {
+              "name": "LeQuint Allen Jr.",
+              "values": [
+                2,
+                9,
+                0,
+                2
+              ]
+            },
+            {
+              "name": "Brian Thomas Jr.",
+              "values": [
+                1,
+                8,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Ameer Abdullah",
+              "values": [
+                0,
+                0,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Nate Boerkircher",
+              "values": [
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "totals": [
+            19,
+            182,
+            3,
+            27
+          ]
+        },
+        {
+          "label": "Defense",
+          "columns": [
+            "TCKL",
+            "SACK",
+            "TFL",
+            "INT",
+            "FF"
+          ],
+          "rows": [
+            {
+              "name": "Ventrell Miller",
+              "values": [
+                7,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Ruke Orhorhoro",
+              "values": [
+                6,
+                1,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Foyesade Oluokun",
+              "values": [
+                6,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "DaVon Hamilton",
+              "values": [
+                5,
+                0.5,
+                0,
+                0,
+                1
+              ]
+            },
+            {
+              "name": "Antonio Johnson",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Josh Hines-Allen",
+              "values": [
+                5,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "totals": [
+            74,
+            3,
+            0,
+            2,
+            1
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "At 1–2, Maye's turnovers (six interceptions in three games) are the problem heading into next Sunday's division game at Buffalo.",
+  "id": "2026-09-27-patriots-jax",
+  "date": "2026-09-27"
+}
