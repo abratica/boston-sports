@@ -1,7 +1,7 @@
 # Boston Sports: daily issue generator
 
 These are the instructions for the scheduled run that writes each morning's Boston Sports issue.
-All paths below are relative to the root of the `abratica/boston-sports` repo (live at https://abratica.github.io/boston-sports/). This repo is the only copy of the issues: the standalone Boston Sports app (shared with Andrew's friends) and Andrew's Newsletters app both read from here.
+All paths below are relative to the root of the `abratica/ps-sports` repo (live at https://abratica.github.io/ps-sports/). This repo is the only copy of the issues: the standalone PS Sports app (shared with Andrew's friends) and Andrew's Newsletters app both read from here.
 The app (`index.html`, `js/`, `css/`, `sw.js`) only displays what is in these JSON files. Do not change the app during a daily run.
 
 The issue has two tabs in the app:
