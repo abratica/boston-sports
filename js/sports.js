@@ -421,6 +421,23 @@
       const day = e.target.closest(".cal-day[data-day]");
       if (day) { sel = day.dataset.day; const top = body.scrollTop; render(); body.scrollTop = top; }
     });
+    // Swipe left/right on the calendar to change months (the arrows still work).
+    let sx = 0, sy = 0, swiping = false;
+    body.addEventListener("touchstart", (e) => {
+      if (mode !== "cal" || !e.target.closest(".cal-grid, .cal-head")) return;
+      swiping = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, { passive: true });
+    body.addEventListener("touchend", (e) => {
+      if (!swiping) return;
+      swiping = false;
+      const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      const btn = body.querySelector(`.cal-nav button[aria-label="${dx < 0 ? "Next" : "Previous"} month"]`);
+      if (!btn || btn.disabled || !btn.dataset.cal) return;
+      ym = btn.dataset.cal; sel = null; render();
+      const grid = body.querySelector(".cal-grid");
+      if (grid) grid.classList.add(dx < 0 ? "slide-l" : "slide-r");
+    }, { passive: true });
     el.querySelector(".st-close").focus();
   }
 
