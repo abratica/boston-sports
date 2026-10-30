@@ -1,4 +1,4 @@
-/* Boston Sports, standalone: opens straight to today's issue. Routes: #/ (latest), #/archive, #/YYYY-MM-DD. */
+/* PS Sports, standalone: opens straight to today's issue. Routes: #/ (today), #/games, #/games/<team>, #/games/<team>/<game id>. */
 (() => {
   const app = document.getElementById("app");
   const layout = window.Layouts.sports;
@@ -51,44 +51,38 @@
     return res.json();
   }
 
-  /* Which issues have been opened, kept on this phone only. */
-  const READ_KEY = "bs-read";
-  function readSet() {
-    try { return new Set(JSON.parse(localStorage.getItem(READ_KEY) || "[]")); } catch { return new Set(); }
-  }
-  function markRead(date) {
-    try { const s = readSet(); s.add(date); localStorage.setItem(READ_KEY, JSON.stringify([...s])); } catch { /* not saved */ }
-  }
-
   function show() { document.body.className = "view-sports"; window.scrollTo(0, 0); }
 
   async function route() {
     try {
-      const m = location.hash.match(/^#\/(archive|\d{4}-\d{2}-\d{2})?$/);
-      const part = m ? m[1] : undefined;
-      const issues = (await getJSON("index.json")).issues || [];
-      if (!issues.length) { show(); app.innerHTML = `<p class="status">The first issue arrives tomorrow morning.</p>`; return; }
-      const read = readSet();
-      const ctx = {
-        name: NAME, backHref: null, backLabel: "",
-        archiveHref: "#/archive",
-        issueHref: (date) => `#/${date}`,
-        isRead: (date) => read.has(date),
-      };
-      if (part === "archive") {
-        ctx.backHref = "#/"; ctx.backLabel = "Back to today's issue";
-        show(); app.innerHTML = layout.archive(issues, ctx); applyTheme();
+      const h = location.hash;
+      const ctx = { name: NAME, backHref: null, backLabel: "", archiveHref: "#/games", issueHref: () => "#/", isRead: () => true };
+      const pg = h.match(/^#\/games(?:\/([a-z]+)(?:\/([a-z0-9-]+))?)?$/);
+      if (pg) {
+        const list = (await getJSON("games/index.json")).games || [];
+        const [, team, id] = pg;
+        if (id) {
+          const g = await getJSON(`games/${id}.json`);
+          ctx.backHref = `#/games/${team}`; ctx.backLabel = "Back to the team's games";
+          show(); app.innerHTML = layout.pastGame(g, ctx);
+        } else if (team) {
+          ctx.backHref = "#/games"; ctx.backLabel = "Back to past games";
+          show(); app.innerHTML = layout.pastTeamGames(team, list, ctx);
+        } else {
+          ctx.backHref = "#/"; ctx.backLabel = "Back to today";
+          show(); app.innerHTML = layout.pastTeams(list, ctx);
+        }
+        applyTheme();
         return;
       }
-      const date = part || issues[0].date;
-      const data = await getJSON(`issues/${date}.json`);
-      if (date !== issues[0].date) { ctx.backHref = "#/archive"; ctx.backLabel = "Back to past issues"; }
-      ctx.unreadOthers = issues.filter((i) => i.date !== date && !read.has(i.date)).length;
+      if (h && h !== "#/" && h !== "#") { location.replace("#/"); return; }   // old past-issue links land on today
+      const issues = (await getJSON("index.json")).issues || [];
+      if (!issues.length) { show(); app.innerHTML = `<p class="status">The first issue arrives tomorrow morning.</p>`; return; }
+      const data = await getJSON(`issues/${issues[0].date}.json`);
       show();
       app.innerHTML = layout.issue(data, ctx);
       applyTheme();
       if (layout.mount) layout.mount(app, data, ctx);
-      markRead(date);
     } catch (err) {
       console.error(err);
       app.innerHTML = `<p class="status">Couldn't load this. Check your connection and reopen the app.</p>`;

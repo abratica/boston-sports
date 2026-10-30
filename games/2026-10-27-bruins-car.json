@@ -1,0 +1,672 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Kochetkov, Hurricanes end Bruins' point streak",
+  "home": false,
+  "boston": {
+    "abbr": "BOS",
+    "score": 1
+  },
+  "opp": {
+    "abbr": "CAR",
+    "name": "Hurricanes",
+    "score": 2
+  },
+  "result": "L",
+  "record": "9–3–1",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3"
+    ],
+    "boston": [
+      1,
+      0,
+      0
+    ],
+    "opp": [
+      1,
+      0,
+      1
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "BOS 1, CAR 1",
+        "text": "Boston struck on the power play 1:31 in: David Pastrnak fed Elias Lindholm from behind the net, and Lindholm found Pavel Zacha on the doorstep for a 1–0 lead. Tanner Jeannot fought Nicolas Deslauriers at 13:55. With 52 seconds left, Nikolaj Ehlers stripped the puck on the forecheck and Jackson Blake tied it 1–1."
+      },
+      {
+        "label": "2nd period",
+        "score": "BOS 1, CAR 1",
+        "text": "No goals, but Carolina tilted the ice. Nikita Zadorov and Hampus Lindholm took tripping minors late in the period, and Boston went 20:39 without a shot from late in the second into the third."
+      },
+      {
+        "label": "3rd period",
+        "score": "Final: CAR 2, BOS 1",
+        "text": "The Bruins killed a 5-on-3 to open the period, and Matthew Poitras rang a backhand off the iron with an open net. At 10:19, Sebastian Aho finished a rush set up by Andrei Svechnikov and William Carrier for a 2–1 lead. Carolina then killed two Boston power plays in the final five minutes."
+      }
+    ],
+    "sources": [
+      {
+        "name": "NHL.com",
+        "url": "https://www.nhl.com/bruins/news/boston-bruins-carolina-hurricanes-game-recap-october-27-2026-x5491"
+      },
+      {
+        "name": "AP (ESPN)",
+        "url": "https://www.espn.com/nhl/recap/_/gameId/401892586"
+      },
+      {
+        "name": "BostonBruins.com",
+        "url": "https://www.nhl.com/bruins/news/bruins-fall-2-1-to-hurricanes-learn-and-got-something-out-of-it-today"
+      },
+      {
+        "name": "Boston Hockey Now",
+        "url": "https://bostonhockeynow.com/2026-10-28-bruins-postgame-point-streak-over-where-things-went-wrong/"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Jeremy Swayman",
+      "line": "28 SV · 30 SA",
+      "note": "Kept Boston in it while Carolina outshot the Bruins 30–15, including six high-danger saves."
+    },
+    {
+      "name": "Pavel Zacha",
+      "line": "1 G (PP)",
+      "note": "His early power-play goal was Boston's only score."
+    },
+    {
+      "name": "Elias Lindholm",
+      "line": "1 A",
+      "note": "Set up Zacha's goal to stretch his point streak to three games."
+    }
+  ],
+  "oppLine": "Sebastian Aho scored the winner, his eighth goal; Jackson Blake had the other, and Pyotr Kochetkov stopped 14 of 15 shots to improve to 8-0-0.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401892586"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Charlie McAvoy",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                1,
+                "26:32"
+              ]
+            },
+            {
+              "name": "David Pastrnak",
+              "values": [
+                0,
+                1,
+                1,
+                "-2",
+                1,
+                0,
+                1,
+                "22:39"
+              ]
+            },
+            {
+              "name": "Pavel Zacha",
+              "values": [
+                1,
+                0,
+                1,
+                "-1",
+                2,
+                0,
+                0,
+                "20:53"
+              ]
+            },
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                0,
+                2,
+                "20:33"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                0,
+                0,
+                "19:24"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                1,
+                2,
+                0,
+                "19:17"
+              ]
+            },
+            {
+              "name": "Nikita Zadorov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                3,
+                4,
+                "18:31"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                5,
+                0,
+                "18:12"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                0,
+                "16:49"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                2,
+                "15:34"
+              ]
+            },
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                2,
+                1,
+                "15:03"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                0,
+                2,
+                "13:46"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                0,
+                "13:31"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                0,
+                "13:27"
+              ]
+            },
+            {
+              "name": "Frederic Brunet",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                0,
+                0,
+                0,
+                "12:22"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                1,
+                "10:23"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                0,
+                0,
+                "8:41"
+              ]
+            },
+            {
+              "name": "Matthew Poitras",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                0,
+                1,
+                "8:36"
+              ]
+            }
+          ],
+          "totals": [
+            1,
+            2,
+            3,
+            "",
+            15,
+            12,
+            15,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jeremy Swayman",
+              "values": [
+                30,
+                28,
+                ".933",
+                "57:47"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Hurricanes",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Jaccob Slavin",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                2,
+                "23:16"
+              ]
+            },
+            {
+              "name": "Jalen Chatfield",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                0,
+                2,
+                "22:32"
+              ]
+            },
+            {
+              "name": "Sebastian Aho",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                5,
+                1,
+                0,
+                "21:18"
+              ]
+            },
+            {
+              "name": "K'Andre Miller",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                0,
+                0,
+                2,
+                "20:24"
+              ]
+            },
+            {
+              "name": "Sean Walker",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                3,
+                3,
+                3,
+                "18:18"
+              ]
+            },
+            {
+              "name": "Mark Jankowski",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                0,
+                "17:16"
+              ]
+            },
+            {
+              "name": "Jackson Blake",
+              "values": [
+                1,
+                0,
+                1,
+                "+1",
+                4,
+                2,
+                0,
+                "16:47"
+              ]
+            },
+            {
+              "name": "Andrei Svechnikov",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                2,
+                3,
+                0,
+                "16:47"
+              ]
+            },
+            {
+              "name": "Seth Jarvis",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                0,
+                1,
+                "16:29"
+              ]
+            },
+            {
+              "name": "Nikolaj Ehlers",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                4,
+                1,
+                0,
+                "16:16"
+              ]
+            },
+            {
+              "name": "Shayne Gostisbehere",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                1,
+                1,
+                "15:24"
+              ]
+            },
+            {
+              "name": "Logan Stankoven",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                0,
+                0,
+                "15:03"
+              ]
+            },
+            {
+              "name": "William Carrier",
+              "values": [
+                0,
+                1,
+                1,
+                "+1",
+                4,
+                0,
+                1,
+                "14:00"
+              ]
+            },
+            {
+              "name": "Jordan Martinook",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                2,
+                2,
+                "13:53"
+              ]
+            },
+            {
+              "name": "Juuso Valimaki",
+              "values": [
+                0,
+                0,
+                0,
+                "+1",
+                1,
+                0,
+                1,
+                "13:43"
+              ]
+            },
+            {
+              "name": "Eric Robinson",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                3,
+                0,
+                "12:17"
+              ]
+            },
+            {
+              "name": "Jesperi Kotkaniemi",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                2,
+                1,
+                "10:18"
+              ]
+            },
+            {
+              "name": "Nicolas Deslauriers",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                4,
+                0,
+                "7:29"
+              ]
+            }
+          ],
+          "totals": [
+            2,
+            3,
+            5,
+            "",
+            30,
+            23,
+            16,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Pyotr Kochetkov",
+              "values": [
+                15,
+                14,
+                ".933",
+                "60:00"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "The eight-game point streak is over, and it was Boston's first regulation loss since Oct. 5; 15 shots won't beat the East's best.",
+  "videos": [
+    {
+      "id": "c7bY0EEhznk",
+      "title": "Bruins vs. Hurricanes: game highlights",
+      "channel": "Sportsnet",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-10-27-bruins-car",
+  "date": "2026-10-27"
+}

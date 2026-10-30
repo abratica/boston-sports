@@ -12,6 +12,7 @@ The issue has two tabs in the app:
 
 1. `issues/YYYY-MM-DD.json`: today's issue, where the date is **today in America/New_York**.
 2. Update `index.json`: put `{ "date", "headline", "ticker" }` at the **top** of `issues` (newest first), copying `headline` and `ticker` from the issue. If today's date is already there, replace that entry instead of adding a second one.
+3. Run `python3 -I tools/save_games.py`. It saves every game card from `results` as its own recap in `games/` (one file per game plus `games/index.json`), which is what the app's **Past games** pages show. Commit the `games/` changes together with the issue.
 3. Validate both files (`python3 -m json.tool <file>`), then commit `Boston Sports YYYY-MM-DD` and push to `main`.
 
 Publish an issue every day, even when no Boston team played or plays.
@@ -159,7 +160,7 @@ The script orders divisions with Boston's first, computes GB, derives NHL overti
 A second, smaller run fills in what wasn't available at 4:40 AM. It works on **today's** issue only and changes nothing else:
 1. For each game in `results` with no `videos`, or with a `kind: "standin"` video: look again using the rules above. Add a qualifying video, or replace the stand-in with a full-game package if one is now up.
 2. For each game with no `box`: try again to get the complete official box score (same rules and add-up check).
-3. If nothing changed, don't commit. Otherwise validate the JSON and commit `Boston Sports catch-up YYYY-MM-DD`. Don't touch `index.json`, the text, news, or standings.
+3. If nothing changed, don't commit. Otherwise validate the JSON, run `python3 -I tools/save_games.py` so the saved recap in `games/` gets the new video or box score too, and commit `Boston Sports catch-up YYYY-MM-DD`. Don't touch `index.json`, the text, news, or standings.
 
 ## Final message of the run
 

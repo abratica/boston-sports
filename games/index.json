@@ -1,0 +1,46 @@
+{
+  "games": [
+    {
+      "id": "2026-10-27-celtics-bkn",
+      "team": "celtics",
+      "date": "2026-10-27",
+      "home": true,
+      "opp": "Nets",
+      "oppAbbr": "BKN",
+      "bos": 125,
+      "oppScore": 124,
+      "result": "W",
+      "record": "3–1",
+      "headline": "Tatum's OT buzzer-beater sinks Brooklyn",
+      "ot": true
+    },
+    {
+      "id": "2026-10-27-bruins-car",
+      "team": "bruins",
+      "date": "2026-10-27",
+      "home": false,
+      "opp": "Hurricanes",
+      "oppAbbr": "CAR",
+      "bos": 1,
+      "oppScore": 2,
+      "result": "L",
+      "record": "9–3–1",
+      "headline": "Kochetkov, Hurricanes end Bruins' point streak",
+      "ot": false
+    },
+    {
+      "id": "2026-10-26-celtics-chi",
+      "team": "celtics",
+      "date": "2026-10-26",
+      "home": true,
+      "opp": "Bulls",
+      "oppAbbr": "CHI",
+      "bos": 134,
+      "oppScore": 99,
+      "result": "W",
+      "record": "2–1",
+      "headline": "Pritchard's seven threes bury Chicago",
+      "ot": false
+    }
+  ]
+}

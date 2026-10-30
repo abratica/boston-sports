@@ -162,14 +162,14 @@
     wrap.querySelectorAll(".bx-pane").forEach((x, i) => { x.hidden = String(i) !== t.dataset.bx; });
   });
 
-  function game(g) {
+  function game(g, open) {
     const pli = (p) => `
       <li><span class="p-name">${esc(p.name)}</span>
         <span class="p-line">${esc(p.line)}</span>
         ${p.note ? `<span class="p-note">${esc(p.note)}</span>` : ""}</li>`;
     const P = (g.performers || []).slice(0, 3);
     const sep = g.home === false ? "at" : "vs";
-    return `<details class="game" style="${teamVar(g.teamKey)}">
+    return `<details class="game" style="${teamVar(g.teamKey)}"${open ? " open" : ""}>
       <summary>
         <h3 class="headline">${esc(g.headline)}</h3>
         <div class="scoreline">
@@ -345,9 +345,8 @@
       <main class="sports-main">
         <div class="tab-panel" data-tab="games"${tab === "games" ? "" : " hidden"}>
           ${board(data.today, data.date, data.off)}
-          ${results.length ? `<h2 class="section-title">Last night</h2>${results.map(game).join("")}` : ""}
-          <a class="archive-link" href="${ctx.archiveHref}">Past issues ${ctx.unreadOthers
-            ? `<span class="badge">${ctx.unreadOthers} unread</span>` : `<span aria-hidden="true">›</span>`}</a>
+          ${results.length ? `<h2 class="section-title">Last night</h2>${results.map((g) => game(g)).join("")}` : ""}
+          <a class="archive-link" href="${ctx.archiveHref}">Past games <span aria-hidden="true">›</span></a>
         </div>
         <div class="tab-panel" data-tab="teams"${tab === "teams" ? "" : " hidden"}>
           ${teamsPanel(data)}
@@ -441,5 +440,41 @@
   window.addEventListener("hashchange", stopLive);
 
   window.Layouts = window.Layouts || {};
-  window.Layouts.sports = { issue, archive, mount, themeColor: "#141414" };
+  /* ── Past games (PS Sports) ───────────── */
+  const gameDate = (iso) => new Date(iso + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  const scoreText = (g) => `${g.result || ""} ${g.bos}–${g.oppScore}${g.ot ? " OT" : ""}`.trim();
+
+  function pastTeams(list, ctx) {
+    const rows = TEAM_ORDER.map((k) => {
+      const mine = list.filter((g) => g.team === k);
+      const rec = mine[0] && mine[0].record;
+      const inner = `<span class="pg-bar" aria-hidden="true"></span>
+        <span class="pg-main"><span class="pg-team">${esc(TEAM_NAME[k])}</span>
+          <span class="pg-sub">${mine.length ? `${mine.length} game${mine.length === 1 ? "" : "s"}${rec ? ` · ${esc(rec)}` : ""}` : "No games yet"}</span></span>
+        ${mine.length ? `<span class="pg-go" aria-hidden="true">›</span>` : ""}`;
+      return `<li style="${teamVar(k)}">${mine.length ? `<a class="pg-row" href="#/games/${k}">${inner}</a>` : `<div class="pg-row off">${inner}</div>`}</li>`;
+    }).join("");
+    return `${masthead(ctx.name, "Past games", ctx)}<main class="sports-main"><ul class="pg-list">${rows}</ul></main>`;
+  }
+
+  function pastTeamGames(team, list, ctx) {
+    const mine = list.filter((g) => g.team === team);
+    const rows = mine.map((g) => `<li style="${teamVar(team)}"><a class="pg-row" href="#/games/${team}/${esc(g.id)}">
+        <span class="pg-bar" aria-hidden="true"></span>
+        <span class="pg-main">
+          <span class="pg-date">${esc(gameDate(g.date))} · ${g.home === false ? "at" : "vs"} ${esc(g.opp)}</span>
+          <span class="pg-score"><span class="result ${esc(g.result)}">${esc(g.result || "")}</span> ${esc(`${g.bos}–${g.oppScore}${g.ot ? " OT" : ""}`)}</span>
+          ${g.headline ? `<span class="pg-sub">${esc(g.headline)}</span>` : ""}
+        </span>
+        <span class="pg-go" aria-hidden="true">›</span>
+      </a></li>`).join("");
+    return `${masthead(ctx.name, TEAM_NAME[team] || "Past games", ctx)}<main class="sports-main"><ul class="pg-list">${rows || `<li class="pg-empty">No games yet.</li>`}</ul></main>`;
+  }
+
+  function pastGame(g, ctx) {
+    return `${masthead(ctx.name, `${TEAM_NAME[g.teamKey] || ""} · ${gameDate(g.date)}`, ctx)}
+      <main class="sports-main">${game(g, true)}</main>`;
+  }
+
+  window.Layouts.sports = { issue, archive, mount, pastTeams, pastTeamGames, pastGame, scoreText, themeColor: "#141414" };
 })();

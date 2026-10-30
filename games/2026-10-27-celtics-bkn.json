@@ -1,0 +1,546 @@
+{
+  "teamKey": "celtics",
+  "sport": "NBA",
+  "headline": "Tatum's OT buzzer-beater sinks Brooklyn",
+  "home": true,
+  "boston": {
+    "abbr": "BOS",
+    "score": 125
+  },
+  "opp": {
+    "abbr": "BKN",
+    "name": "Nets",
+    "score": 124
+  },
+  "result": "W",
+  "record": "3–1",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "OT"
+    ],
+    "boston": [
+      26,
+      30,
+      30,
+      31,
+      8
+    ],
+    "opp": [
+      31,
+      30,
+      21,
+      35,
+      7
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "BKN 31, BOS 26",
+        "text": "On the second night of a back-to-back, Boston fell behind early. Brooklyn won the quarter 31–26 and led for most of the first half."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "BKN 61, BOS 56",
+        "text": "The Celtics couldn't buy a three, going 2-of-16 from deep in the first half, and the winless Nets took a 61–56 lead into the break."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "BOS 86, BKN 82",
+        "text": "Boston's shooting finally came around: the Celtics hit eight threes in the quarter, two of them from Sam Hauser. They closed it on a 16–5 run, and Jayson Tatum hit the go-ahead three to send Boston into the fourth up 86–82."
+      },
+      {
+        "label": "4th quarter",
+        "score": "BOS 117, BKN 117",
+        "text": "Paul George and Derrick White pushed the lead to 90–82 with 10:37 left, but Brooklyn got hot from deep and Julius Randle's basket made it 109–104 Nets with 2:57 to go. With the game tied, Tatum found White for an and-one dunk and a 114–111 lead with 33.7 seconds left. Boston led by four in the final seconds, but Randle made one of two free throws (117–114), Mitchell Robinson missed two at the line, and rookie Mikel Brown Jr. hit a corner three with 0.2 seconds left to tie it 117–117."
+      },
+      {
+        "label": "Overtime",
+        "score": "Final: BOS 125, BKN 124",
+        "text": "Two Randle layups put Brooklyn back in front, and a Brown three made it 124–119 with 2:00 left. Randle fouled out with 1:02 to go, and George's free throws cut it to 124–123. Brown missed a layup with 2.3 seconds left, and out of a timeout Tatum took Brown off the switch and hit a 17-foot jumper from the left elbow at the buzzer."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.boston.com/sports/boston-celtics/2026/10/27/jayson-tatum-hits-a-buzzer-beating-jumper-in-ot-to-give-the-celtics-a-125-124-win-over-the-nets/"
+      },
+      {
+        "name": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/10/27/sports/nba-celtics-nets-game-score/"
+      },
+      {
+        "name": "NBC Sports Boston",
+        "url": "https://www.nbcsportsboston.com/nba/boston-celtics/live-updates-nets-highlights-score-news/809669/"
+      },
+      {
+        "name": "WEEI",
+        "url": "https://audacy.com/weei/sports/celtics/jayson-tatum-delivers-in-the-clutch-as-celtics-escape-with-win-over-nets"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Jayson Tatum",
+      "line": "40 PTS · 10-20 FG · 18-22 FT · 8 AST · 0 TO",
+      "note": "A season high, with 14 points in the fourth quarter and overtime, and the buzzer-beater to finish it."
+    },
+    {
+      "name": "Paul George",
+      "line": "20 PTS · 7 REB · 7 AST · 8-16 FG",
+      "note": "His overtime free throws cut Brooklyn's lead to one and set up the final possession."
+    },
+    {
+      "name": "Derrick White",
+      "line": "16 PTS · 7 AST · 5 REB · 5-15 FG",
+      "note": "His and-one dunk put Boston up 114–111 late, though he went 1-of-7 from three."
+    }
+  ],
+  "oppLine": "Michael Porter Jr. had 27 points and 12 rebounds (6-of-12 from three); Julius Randle added 24 before fouling out in overtime, and Mikel Brown Jr. had 17.",
+  "box": {
+    "source": {
+      "name": "StatMuse",
+      "url": "https://www.statmuse.com/nba/game/10-27-2026-bkn-at-bos-78689"
+    },
+    "boston": {
+      "name": "Celtics",
+      "groups": [
+        {
+          "label": "",
+          "columns": [
+            "MIN",
+            "PTS",
+            "REB",
+            "AST",
+            "FG",
+            "3PT",
+            "FT",
+            "STL",
+            "BLK",
+            "TO",
+            "+/-"
+          ],
+          "starters": 5,
+          "rows": [
+            {
+              "name": "Paul George",
+              "values": [
+                36,
+                20,
+                7,
+                7,
+                "8-16",
+                "1-6",
+                "3-3",
+                2,
+                0,
+                3,
+                "-2"
+              ]
+            },
+            {
+              "name": "Jayson Tatum",
+              "values": [
+                42,
+                40,
+                5,
+                8,
+                "10-20",
+                "2-7",
+                "18-22",
+                0,
+                1,
+                0,
+                "+5"
+              ]
+            },
+            {
+              "name": "Jordan Walsh",
+              "values": [
+                24,
+                15,
+                6,
+                1,
+                "5-8",
+                "3-5",
+                "2-2",
+                1,
+                0,
+                0,
+                "-6"
+              ]
+            },
+            {
+              "name": "Mitchell Robinson",
+              "values": [
+                25,
+                7,
+                5,
+                0,
+                "3-4",
+                "0-0",
+                "1-4",
+                1,
+                0,
+                1,
+                "-17"
+              ]
+            },
+            {
+              "name": "Derrick White",
+              "values": [
+                33,
+                16,
+                5,
+                7,
+                "5-15",
+                "1-7",
+                "5-5",
+                0,
+                0,
+                3,
+                "-4"
+              ]
+            },
+            {
+              "name": "Sam Hauser",
+              "values": [
+                25,
+                11,
+                4,
+                0,
+                "4-9",
+                "3-8",
+                "0-0",
+                0,
+                0,
+                0,
+                "+9"
+              ]
+            },
+            {
+              "name": "Payton Pritchard",
+              "values": [
+                24,
+                4,
+                2,
+                6,
+                "2-7",
+                "0-3",
+                "0-0",
+                0,
+                1,
+                3,
+                "+2"
+              ]
+            },
+            {
+              "name": "Baylor Scheierman",
+              "values": [
+                21,
+                3,
+                4,
+                1,
+                "1-5",
+                "1-3",
+                "0-0",
+                1,
+                0,
+                0,
+                "+7"
+              ]
+            },
+            {
+              "name": "Neemias Queta",
+              "values": [
+                15,
+                7,
+                3,
+                2,
+                "3-3",
+                "0-0",
+                "1-2",
+                0,
+                0,
+                2,
+                "-2"
+              ]
+            },
+            {
+              "name": "Luka Garza",
+              "values": [
+                13,
+                2,
+                4,
+                0,
+                "1-4",
+                "0-1",
+                "0-0",
+                0,
+                0,
+                1,
+                "+18"
+              ]
+            },
+            {
+              "name": "Hugo González",
+              "values": [
+                6,
+                0,
+                2,
+                0,
+                "0-2",
+                "0-1",
+                "0-0",
+                0,
+                0,
+                1,
+                "-5"
+              ]
+            }
+          ],
+          "totals": [
+            "",
+            125,
+            47,
+            32,
+            "42-93",
+            "11-41",
+            "30-38",
+            5,
+            2,
+            14,
+            ""
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Nets",
+      "groups": [
+        {
+          "label": "",
+          "columns": [
+            "MIN",
+            "PTS",
+            "REB",
+            "AST",
+            "FG",
+            "3PT",
+            "FT",
+            "STL",
+            "BLK",
+            "TO",
+            "+/-"
+          ],
+          "starters": 5,
+          "rows": [
+            {
+              "name": "Michael Porter Jr.",
+              "values": [
+                40,
+                27,
+                12,
+                2,
+                "8-16",
+                "6-12",
+                "5-6",
+                0,
+                2,
+                3,
+                "+1"
+              ]
+            },
+            {
+              "name": "Julius Randle",
+              "values": [
+                44,
+                24,
+                9,
+                4,
+                "10-23",
+                "0-7",
+                "4-5",
+                2,
+                0,
+                5,
+                "+8"
+              ]
+            },
+            {
+              "name": "Day'Ron Sharpe",
+              "values": [
+                17,
+                4,
+                6,
+                0,
+                "2-4",
+                "0-1",
+                "0-0",
+                1,
+                1,
+                1,
+                "+3"
+              ]
+            },
+            {
+              "name": "Nolan Traore",
+              "values": [
+                24,
+                15,
+                1,
+                3,
+                "6-9",
+                "1-2",
+                "2-4",
+                2,
+                0,
+                2,
+                "-3"
+              ]
+            },
+            {
+              "name": "Egor Dëmin",
+              "values": [
+                10,
+                2,
+                1,
+                2,
+                "1-3",
+                "0-2",
+                "0-0",
+                1,
+                0,
+                1,
+                "+1"
+              ]
+            },
+            {
+              "name": "Chaney Johnson",
+              "values": [
+                29,
+                15,
+                3,
+                2,
+                "5-9",
+                "3-6",
+                "2-2",
+                1,
+                0,
+                1,
+                "+3"
+              ]
+            },
+            {
+              "name": "Mikel Brown Jr.",
+              "values": [
+                28,
+                17,
+                5,
+                5,
+                "5-17",
+                "4-11",
+                "3-3",
+                0,
+                0,
+                2,
+                "-1"
+              ]
+            },
+            {
+              "name": "Keon Ellis",
+              "values": [
+                25,
+                2,
+                3,
+                4,
+                "1-6",
+                "0-4",
+                "0-0",
+                0,
+                2,
+                0,
+                "+5"
+              ]
+            },
+            {
+              "name": "Noah Clowney",
+              "values": [
+                24,
+                3,
+                4,
+                1,
+                "1-1",
+                "1-1",
+                "0-0",
+                0,
+                2,
+                0,
+                "-17"
+              ]
+            },
+            {
+              "name": "Moritz Wagner",
+              "values": [
+                22,
+                15,
+                4,
+                3,
+                "6-9",
+                "2-4",
+                "1-2",
+                2,
+                0,
+                0,
+                "-4"
+              ]
+            },
+            {
+              "name": "Josh Minott",
+              "values": [
+                0,
+                0,
+                0,
+                0,
+                "0-0",
+                "0-0",
+                "0-0",
+                0,
+                0,
+                0,
+                "-1"
+              ]
+            }
+          ],
+          "totals": [
+            "",
+            124,
+            48,
+            26,
+            "45-97",
+            "17-50",
+            "17-22",
+            9,
+            7,
+            15,
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  "takeaway": "Three straight wins, but Boston shot 11-of-41 from three and Robinson went 1-of-4 at the line, nearly handing a winless team its first win.",
+  "videos": [
+    {
+      "id": "Roz4iFs4Rto",
+      "title": "Nets at Celtics: full game highlights",
+      "channel": "NBA",
+      "kind": "full"
+    }
+  ],
+  "id": "2026-10-27-celtics-bkn",
+  "date": "2026-10-27"
+}

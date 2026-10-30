@@ -604,3 +604,16 @@ body.view-sports .st-btn { font-family: var(--serif); font-weight: 800; font-siz
 .st-body .cut-note { margin: 8px 2px 0; font-size: 13px; color: var(--muted); }
 body.view-sports .bx-group { margin: 12px 0 4px; font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--muted); letter-spacing: .02em; }
 body.view-sports .bx-pane > .bx-group:first-child { margin-top: 2px; }
+
+/* Past games (PS Sports) */
+body.view-sports .pg-list { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 10px; }
+body.view-sports .pg-row { display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 14px 16px; text-decoration: none; color: inherit; }
+body.view-sports .pg-row.off { opacity: .55; }
+body.view-sports .pg-bar { flex: 0 0 6px; align-self: stretch; border-radius: 3px; background: var(--team); }
+body.view-sports .pg-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+body.view-sports .pg-team { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.1; }
+body.view-sports .pg-date { font-family: var(--display); font-weight: 600; font-size: 17px; }
+body.view-sports .pg-score { font-family: var(--display); font-weight: 700; font-size: 20px; display: flex; align-items: center; gap: 8px; }
+body.view-sports .pg-sub { color: var(--muted); font-size: 14px; line-height: 1.35; }
+body.view-sports .pg-go { color: var(--muted); font-size: 22px; }
+body.view-sports .pg-empty { color: var(--muted); }

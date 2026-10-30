@@ -1,0 +1,644 @@
+{
+  "teamKey": "celtics",
+  "sport": "NBA",
+  "headline": "Pritchard's seven threes bury Chicago",
+  "home": true,
+  "boston": {
+    "abbr": "BOS",
+    "score": 134
+  },
+  "opp": {
+    "abbr": "CHI",
+    "name": "Bulls",
+    "score": 99
+  },
+  "result": "W",
+  "record": "2–1",
+  "recap": [
+    "Boston led 33–21 after one and 66–54 at the half, then broke it open with a 39–21 third to go up 105–75. Pritchard scored 19 in that quarter alone. The defense set it up: 14 steals turned into 39 points off turnovers, and Chicago shot 12-of-44 from three. The bench poured in 79."
+  ],
+  "performers": [
+    {
+      "name": "Payton Pritchard",
+      "line": "28 PTS · 10-16 FG · 7-10 3PT · 4 AST",
+      "note": "The best player on the floor. His 19-point third quarter turned a lead into a rout, and he was +22."
+    },
+    {
+      "name": "Jayson Tatum",
+      "line": "23 PTS · 7 REB · 6 AST",
+      "note": "Only 7-of-17 shooting, but he filled the box score and was +18 in 28 minutes."
+    },
+    {
+      "name": "Hugo González",
+      "line": "13 PTS · 5 REB · 4-6 FG",
+      "note": "+34 in his minutes, second only to Sam Hauser's +36 among Boston players."
+    }
+  ],
+  "takeaway": "A statement blowout, but Boston coughed up 24 turnovers, and a better team punishes that.",
+  "videos": [
+    {
+      "id": "DTNqMLNVBC8",
+      "title": "Bulls at Celtics: full game highlights",
+      "channel": "NBA"
+    }
+  ],
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      33,
+      33,
+      39,
+      29
+    ],
+    "opp": [
+      21,
+      33,
+      21,
+      24
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "BOS 33, CHI 21",
+        "text": "Chicago hung around early, and a Buddy Hield three cut it to 19–18 with 3:33 left. Boston closed on a 14–3 burst, with Pritchard and Hugo González scoring five each, and Tatum's driving layup at the buzzer made it 33–21. The Bulls, who came in with the league's worst three-point percentage, missed 15 of their first 19 threes."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "BOS 66, CHI 54",
+        "text": "Boston pushed the lead to 16 early, but Chicago answered: Norman Powell's step-back cut it to 46–43 with 5:29 left. The Celtics closed the half on a 20–11 run, and Tatum's long three with 0.8 seconds left sent them in up 66–54. Tatum had 19 points at the break."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "BOS 105, CHI 75",
+        "text": "Tatum picked up his fourth foul with 7:15 left and Boston up 10, and that's when Pritchard took over. He scored 19 in the quarter on 5-of-5 from three. Paul George, Pritchard and Sam Hauser hit threes in a 93-second span to make it 89–70, and Pritchard's back-to-back threes made it 101–73. Boston closed the quarter on a 34–14 run and shot 8-of-13 from deep."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: BOS 134, CHI 99",
+        "text": "With the game decided, the fourth was a formality: Boston won it 29–24 to finish off a 35-point rout. Mike Conley (Celtics debut) went 2-for-2 from three in the second half, and rookie Chris Cenac Jr. added a three in his debut."
+      }
+    ],
+    "sources": [
+      {
+        "name": "AP",
+        "url": "https://www.boston.com/sports/boston-celtics/2026/10/26/pritchard-scores-28-points-and-has-red-hot-3rd-quarter-to-carry-celtics-to-134-99-rout-over-bulls/"
+      },
+      {
+        "name": "Boston Globe",
+        "url": "https://www.bostonglobe.com/2026/10/26/sports/celtics-bulls-game-score/"
+      }
+    ]
+  },
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nba/boxscore/_/gameId/401909870"
+    },
+    "boston": {
+      "name": "Celtics",
+      "groups": [
+        {
+          "label": "",
+          "columns": [
+            "MIN",
+            "PTS",
+            "REB",
+            "AST",
+            "FG",
+            "3PT",
+            "FT",
+            "STL",
+            "BLK",
+            "TO",
+            "+/-"
+          ],
+          "starters": 5,
+          "rows": [
+            {
+              "name": "Paul George",
+              "values": [
+                25,
+                16,
+                5,
+                2,
+                "5-14",
+                "3-7",
+                "3-4",
+                0,
+                0,
+                4,
+                "+15"
+              ]
+            },
+            {
+              "name": "Jayson Tatum",
+              "values": [
+                28,
+                23,
+                7,
+                6,
+                "7-17",
+                "2-5",
+                "7-8",
+                1,
+                0,
+                3,
+                "+18"
+              ]
+            },
+            {
+              "name": "Mitchell Robinson",
+              "values": [
+                16,
+                7,
+                7,
+                0,
+                "3-3",
+                "0-0",
+                "1-2",
+                0,
+                0,
+                1,
+                "+4"
+              ]
+            },
+            {
+              "name": "Derrick White",
+              "values": [
+                18,
+                5,
+                6,
+                4,
+                "2-4",
+                "1-2",
+                "0-0",
+                3,
+                1,
+                6,
+                "0"
+              ]
+            },
+            {
+              "name": "Jordan Walsh",
+              "values": [
+                18,
+                4,
+                3,
+                2,
+                "2-5",
+                "0-2",
+                "0-0",
+                3,
+                0,
+                3,
+                "+8"
+              ]
+            },
+            {
+              "name": "Payton Pritchard",
+              "values": [
+                22,
+                28,
+                1,
+                4,
+                "10-16",
+                "7-10",
+                "1-1",
+                2,
+                0,
+                1,
+                "+22"
+              ]
+            },
+            {
+              "name": "Hugo González",
+              "values": [
+                24,
+                13,
+                5,
+                2,
+                "4-6",
+                "1-3",
+                "4-6",
+                0,
+                1,
+                0,
+                "+34"
+              ]
+            },
+            {
+              "name": "Sam Hauser",
+              "values": [
+                20,
+                11,
+                4,
+                1,
+                "4-7",
+                "3-4",
+                "0-0",
+                0,
+                0,
+                0,
+                "+36"
+              ]
+            },
+            {
+              "name": "Neemias Queta",
+              "values": [
+                19,
+                7,
+                5,
+                1,
+                "3-5",
+                "0-0",
+                "1-2",
+                0,
+                2,
+                0,
+                "+32"
+              ]
+            },
+            {
+              "name": "Baylor Scheierman",
+              "values": [
+                18,
+                2,
+                6,
+                2,
+                "1-5",
+                "0-3",
+                "0-0",
+                1,
+                0,
+                3,
+                "-2"
+              ]
+            },
+            {
+              "name": "Luka Garza",
+              "values": [
+                13,
+                6,
+                3,
+                2,
+                "1-3",
+                "0-1",
+                "4-6",
+                1,
+                0,
+                2,
+                "-1"
+              ]
+            },
+            {
+              "name": "Mike Conley",
+              "values": [
+                7,
+                6,
+                0,
+                0,
+                "2-2",
+                "2-2",
+                "0-0",
+                2,
+                0,
+                1,
+                "+7"
+              ]
+            },
+            {
+              "name": "Ron Harper Jr.",
+              "values": [
+                7,
+                3,
+                1,
+                0,
+                "1-4",
+                "1-3",
+                "0-0",
+                1,
+                0,
+                0,
+                "+4"
+              ]
+            },
+            {
+              "name": "Chris Cenac Jr.",
+              "values": [
+                5,
+                3,
+                1,
+                0,
+                "1-2",
+                "1-2",
+                "0-0",
+                0,
+                0,
+                0,
+                "-2"
+              ]
+            }
+          ],
+          "totals": [
+            "",
+            134,
+            54,
+            26,
+            "46-93",
+            "21-44",
+            "21-29",
+            14,
+            4,
+            24,
+            ""
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Bulls",
+      "groups": [
+        {
+          "label": "",
+          "columns": [
+            "MIN",
+            "PTS",
+            "REB",
+            "AST",
+            "FG",
+            "3PT",
+            "FT",
+            "STL",
+            "BLK",
+            "TO",
+            "+/-"
+          ],
+          "starters": 5,
+          "rows": [
+            {
+              "name": "Jalen Smith",
+              "values": [
+                20,
+                7,
+                6,
+                1,
+                "2-8",
+                "2-5",
+                "1-1",
+                0,
+                0,
+                2,
+                "0"
+              ]
+            },
+            {
+              "name": "Matas Buzelis",
+              "values": [
+                22,
+                11,
+                1,
+                2,
+                "3-6",
+                "2-4",
+                "3-4",
+                1,
+                0,
+                2,
+                "-27"
+              ]
+            },
+            {
+              "name": "Caleb Wilson",
+              "values": [
+                32,
+                17,
+                5,
+                3,
+                "7-15",
+                "1-5",
+                "2-4",
+                1,
+                2,
+                3,
+                "-3"
+              ]
+            },
+            {
+              "name": "Norman Powell",
+              "values": [
+                24,
+                20,
+                1,
+                2,
+                "5-11",
+                "4-7",
+                "6-7",
+                4,
+                0,
+                2,
+                "-3"
+              ]
+            },
+            {
+              "name": "Josh Giddey",
+              "values": [
+                24,
+                11,
+                1,
+                4,
+                "4-7",
+                "1-4",
+                "2-2",
+                1,
+                1,
+                2,
+                "-11"
+              ]
+            },
+            {
+              "name": "Noa Essengue",
+              "values": [
+                16,
+                0,
+                4,
+                0,
+                "0-5",
+                "0-3",
+                "0-2",
+                1,
+                0,
+                1,
+                "-25"
+              ]
+            },
+            {
+              "name": "Tre Jones",
+              "values": [
+                15,
+                8,
+                1,
+                0,
+                "1-2",
+                "0-0",
+                "6-8",
+                0,
+                0,
+                2,
+                "-17"
+              ]
+            },
+            {
+              "name": "Leonard Miller",
+              "values": [
+                14,
+                9,
+                9,
+                0,
+                "4-7",
+                "1-3",
+                "0-0",
+                0,
+                0,
+                2,
+                "-26"
+              ]
+            },
+            {
+              "name": "Buddy Hield",
+              "values": [
+                13,
+                3,
+                0,
+                1,
+                "1-2",
+                "1-2",
+                "0-0",
+                1,
+                0,
+                1,
+                "-29"
+              ]
+            },
+            {
+              "name": "Tobe Awaka",
+              "values": [
+                12,
+                4,
+                6,
+                0,
+                "2-3",
+                "0-0",
+                "0-0",
+                0,
+                1,
+                0,
+                "-5"
+              ]
+            },
+            {
+              "name": "Dailyn Swain",
+              "values": [
+                12,
+                2,
+                2,
+                2,
+                "1-3",
+                "0-1",
+                "0-0",
+                2,
+                0,
+                4,
+                "-5"
+              ]
+            },
+            {
+              "name": "Jaylin Sellers",
+              "values": [
+                12,
+                0,
+                0,
+                1,
+                "0-5",
+                "0-5",
+                "0-0",
+                0,
+                0,
+                3,
+                "-5"
+              ]
+            },
+            {
+              "name": "Isaac Okoro",
+              "values": [
+                11,
+                1,
+                1,
+                4,
+                "0-2",
+                "0-2",
+                "1-2",
+                1,
+                1,
+                0,
+                "+5"
+              ]
+            },
+            {
+              "name": "Jordan Hawkins",
+              "values": [
+                7,
+                4,
+                1,
+                0,
+                "2-3",
+                "0-1",
+                "0-1",
+                0,
+                0,
+                0,
+                "-4"
+              ]
+            },
+            {
+              "name": "Zach Collins",
+              "values": [
+                6,
+                2,
+                2,
+                0,
+                "1-5",
+                "0-2",
+                "0-0",
+                0,
+                0,
+                0,
+                "-20"
+              ]
+            }
+          ],
+          "totals": [
+            "",
+            99,
+            40,
+            20,
+            "33-84",
+            "12-44",
+            "21-31",
+            12,
+            5,
+            24,
+            ""
+          ]
+        }
+      ]
+    }
+  },
+  "oppLine": "Norman Powell had 20 points (4-of-7 from three) and 4 steals; Caleb Wilson added 17.",
+  "id": "2026-10-26-celtics-chi",
+  "date": "2026-10-26"
+}
