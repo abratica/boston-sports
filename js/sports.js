@@ -242,7 +242,13 @@
     const cu = root.querySelector(".cu");
     if (cu) cu.hidden = !cu.querySelector(".cu-list li:not([hidden])");
     // As soon as a game is final, that team's next game joins Coming up.
-    slot.querySelectorAll(".board-row.sb.is-final[data-team]").forEach((r) => addNextGame(root, r.dataset.team, date));
+    slot.querySelectorAll(".board-row.sb.is-final[data-team]").forEach((r) => {
+      addNextGame(root, r.dataset.team, date);
+      if (!r.dataset.stRefreshed) {   // ESPN's standings can lag a final by a few minutes: check now, then twice more
+        r.dataset.stRefreshed = "1";
+        [0, 180000, 900000].forEach((ms) => setTimeout(() => { if (root.isConnected) refreshStandings(root, true); }, ms));
+      }
+    });
   }
   const nextPending = new Set();
   async function addNextGame(root, team, date) {
@@ -491,6 +497,124 @@
     return `${r.rec} · ${ord(i + 1)} in ${div.name} · ${tail}`;
   }
 
+  /* ── Live standings ──────────────────────
+     The morning issue carries a standings snapshot. While the app is open it also pulls live standings
+     from ESPN's public feed (the same source as live scores), sorts them itself (ESPN doesn't list teams
+     in order) and swaps them in only if they're at least as current as the snapshot. Otherwise the
+     snapshot stays. Refreshed when a sheet opens and right after a Boston game goes final. */
+  const ST_PATH = { nba: "basketball/nba", nhl: "hockey/nhl", nfl: "football/nfl", mlb: "baseball/mlb" };
+  const ST_COLS = { nba: ["W–L", "GB"], nhl: ["W–L–OT", "PTS"], nfl: ["W–L", "GB"], mlb: ["W–L", "GB"] };
+  const ST_CUTS = {
+    nba: [[6, 10], "Top 6 make the playoffs, 7–10 the play-in"],
+    nfl: [[7], "Top 7 make the playoffs (division winners seeded 1–4)"],
+    nhl: [[], "Top 3 in each division plus 2 wild cards make the playoffs"],
+    mlb: [[6], "Top 6 make the playoffs (division winners seeded 1–3)"],
+  };
+  const ST_BOSTON = { nba: "Celtics", nhl: "Bruins", nfl: "Patriots", mlb: "Red Sox" };
+  function stSeason(lg) {   // ESPN names NBA/NHL seasons by the year they end, NFL/MLB by the year they start
+    const p = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date()).split("-").map(Number);
+    const [y, m] = p;
+    if (lg === "nba" || lg === "nhl") return m >= 7 ? y + 1 : y;
+    if (lg === "nfl") return m >= 3 ? y : y - 1;
+    return y;
+  }
+  function parseStandings(lg, json) {
+    const stat = (e, n) => { const s = (e.stats || []).find((x) => x.name === n); return s && typeof s.value === "number" ? s.value : null; };
+    const confs = [];
+    for (const c of json.children || []) {
+      const isNfl = lg === "nfl";
+      const label = isNfl ? (c.abbreviation || c.name) : String(c.name || "");
+      const name = isNfl ? label : ({ Eastern: "East", Western: "West", American: "AL", National: "NL" }[label.split(" ")[0]] || label);
+      const divs = [];
+      for (const d of c.children || []) {
+        const rows = ((d.standings || {}).entries || []).map((e) => {
+          const w = stat(e, "wins") || 0, l = stat(e, "losses") || 0;
+          const r = { team: (e.team || {}).name || (e.team || {}).shortDisplayName || "", w, l,
+            pct: stat(e, "winPercent"), seed: stat(e, "playoffSeed") ?? 99, gp: stat(e, "gamesPlayed") };
+          if (lg === "nhl") {
+            const otl = stat(e, "otLosses") ?? stat(e, "overtimeLosses") ?? 0;
+            Object.assign(r, { otl, pts: stat(e, "points") ?? 2 * w + otl, rw: stat(e, "regWins") || 0, row: stat(e, "rotWins") || 0 });
+            r.gp = r.gp ?? w + l + otl;
+            r.rec = `${w}–${l}–${otl}`;
+          } else {
+            const t = lg === "nfl" ? stat(e, "ties") || 0 : 0;
+            r.t = t; r.gp = w + l + t;
+            if (r.pct == null) r.pct = r.gp ? (w + t / 2) / r.gp : 0;
+            r.rec = `${w}–${l}` + (t ? `–${t}` : "");
+          }
+          return r;
+        });
+        if (rows.length) divs.push({ name: String(d.name || "").replace(/\s+Division$/, ""), rows });
+      }
+      if (divs.length) confs.push({ name, label, divs });
+    }
+    if (!confs.length) return null;
+    const order = lg === "nhl"
+      ? (a, b) => b.pts - a.pts || a.gp - b.gp || b.rw - a.rw || b.row - a.row || a.seed - b.seed
+      : (a, b) => b.pct - a.pct || b.w - a.w || a.seed - b.seed;
+    const gb = (rows) => {
+      if (lg === "nhl" || !rows.length) return rows;
+      const L = rows[0];
+      rows.forEach((r, i) => { const v = ((L.w - r.w) + (r.l - L.l)) / 2; r.gb = i === 0 || v <= 0 ? "—" : String(+v.toFixed(1)); });
+      return rows;
+    };
+    const pub = (r, rank) => {
+      const o = { team: r.team, rec: r.rec };
+      if (lg === "nhl") o.pts = r.pts; else o.gb = r.gb;
+      if (rank != null) o.rank = rank;
+      if (r.team === ST_BOSTON[lg]) o.boston = true;
+      return o;
+    };
+    const me = confs.find((c) => c.divs.some((d) => d.rows.some((r) => r.team === ST_BOSTON[lg])));
+    if (!me) return null;
+    confs.sort((a, b) => (b === me) - (a === me));
+    const out = { league: lg, cols: ST_COLS[lg], confLabel: {}, conferences: [], live: true };
+    if (ST_CUTS[lg][0].length) out.cut = ST_CUTS[lg][0];
+    out.cutNote = ST_CUTS[lg][1];
+    for (const c of confs) {
+      out.confLabel[c.name] = c.label;
+      const divs = c === me ? [...c.divs].sort((a, b) => b.rows.some((r) => r.team === ST_BOSTON[lg]) - a.rows.some((r) => r.team === ST_BOSTON[lg])) : c.divs;
+      const all = divs.flatMap((d) => d.rows);
+      // Conference order: ESPN's playoff seed already applies the tiebreakers (NBA/NFL/MLB); NHL by points.
+      const seedsOk = lg !== "nhl" && all.every((r) => r.seed < 99) && new Set(all.map((r) => r.seed)).size === all.length;
+      const ranked = gb([...all].sort(seedsOk ? (a, b) => a.seed - b.seed : order).map((r) => ({ ...r })));
+      out.conferences.push({
+        name: c.name,
+        divisions: divs.map((d) => ({ name: d.name, rows: gb([...d.rows].sort(order).map((r) => ({ ...r }))).map((r) => pub(r)) })),
+        ranked: ranked.map((r, i) => pub(r, i + 1)),
+      });
+    }
+    return out;
+  }
+  const gpOf = (rec) => String(rec || "").split(/[–-]/).reduce((a, n) => a + (+n || 0), 0);
+  function bostonRec(S) {
+    for (const c of S.conferences) for (const d of c.divisions) { const r = d.rows.find((x) => x.boston); if (r) return r.rec; }
+    return "";
+  }
+  const liveAt = {};
+  async function fetchLive(lg) {
+    try {
+      const res = await fetch(`https://site.api.espn.com/apis/v2/sports/${ST_PATH[lg]}/standings?level=3&season=${stSeason(lg)}&seasontype=2`, { cache: "no-store" });
+      if (!res.ok) return null;
+      return parseStandings(lg, await res.json());
+    } catch { return null; }
+  }
+  // Pull live standings for every league the issue has; keep them only if they're as current as what we have.
+  async function refreshStandings(root, force) {
+    if (!ALL) return false;
+    let changed = false;
+    await Promise.all(Object.keys(ALL).filter((lg) => ST_PATH[lg]).map(async (lg) => {
+      if (!force && liveAt[lg] && Date.now() - liveAt[lg] < 60000) return;
+      const S = await fetchLive(lg);
+      if (!S || !ALL) return;
+      const have = gpOf(bostonRec(ALL[lg])), got = gpOf(bostonRec(S));
+      if (!got || got < have || got > have + 4) return;   // stale or wrong season: keep the snapshot
+      ALL[lg] = S; liveAt[lg] = Date.now(); changed = true;
+    }));
+    if (changed && root) root.querySelectorAll(".team-meta[data-team]").forEach((el) => { el.textContent = placeLine(el.dataset.team); });
+    return changed;
+  }
+
   function teamsPanel(data) {
     ALL = data.standingsAll || null;
     OLD = data.standings || [];
@@ -514,7 +638,7 @@
           <div class="team-id"><span class="chip"></span><h2>${esc(TEAM_NAME[k])}</h2></div>
           ${has ? `<div class="team-btns"><button type="button" class="st-btn" data-team="${k}">Standings</button>
             <button type="button" class="st-btn" data-team="${k}" data-sched="1">Schedule</button></div>` : ""}
-          <span class="team-meta">${esc(placeLine(k))}</span>
+          <span class="team-meta" data-team="${k}">${esc(placeLine(k))}</span>
         </header>
         ${next ? `<p class="team-next" data-team="${k}">${esc(next)}</p>` : ""}
         ${items || `<p class="tn-empty">No new team news today.</p>`}
@@ -763,7 +887,7 @@
     el.setAttribute("aria-label", `${TEAM_NAME[k]} standings`);
     el.style.cssText = teamVar(k);
     el.innerHTML = `<div class="st-panel">
-      <header class="st-head"><h2>Standings</h2><span class="st-lg">${esc(S.league.toUpperCase())}</span>
+      <header class="st-head"><h2>Standings</h2><span class="st-lg">${esc(S.league.toUpperCase())}<span class="st-live">${S.live ? " · LIVE" : ""}</span></span>
         <button type="button" class="st-close" aria-label="Close">✕</button></header>
       <div class="st-seg" role="tablist">
         <button type="button" data-mode="division" aria-selected="true">Division</button>
@@ -792,10 +916,19 @@
       const b = e.target.closest(".st-seg button");
       if (!b) return;
       el.querySelectorAll(".st-seg button").forEach((x) => x.setAttribute("aria-selected", String(x === b)));
-      el.querySelector(".st-body").innerHTML = sheetBody(S, b.dataset.mode);
+      el.querySelector(".st-body").innerHTML = sheetBody(cur(), b.dataset.mode);
       el.querySelector(".st-body").scrollTop = 0;
     });
     el.querySelector(".st-close").focus();
+    // Show the snapshot right away, then swap in live standings if they come back newer.
+    const lg = TEAM_LEAGUE[k];
+    const cur = () => (ALL && ALL[lg]) || S;
+    refreshStandings(document.getElementById("app"), false).then(() => {
+      if (closed || cur() === S) return;
+      const mode = (el.querySelector('.st-seg button[aria-selected="true"]') || {}).dataset?.mode || "division";
+      el.querySelector(".st-body").innerHTML = sheetBody(cur(), mode);
+      el.querySelector(".st-live").textContent = " · LIVE";
+    });
   }
   document.addEventListener("click", (e) => {
     const b = e.target.closest(".st-btn");
@@ -908,6 +1041,7 @@
   let listenTimer = null;
   function mount(root, data) {
     stopLive();
+    refreshStandings(root, false);
     const upd = () => updateListen(root, data.date);
     upd();
     listenTimer = setInterval(upd, 60000);
