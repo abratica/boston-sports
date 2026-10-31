@@ -132,22 +132,72 @@
     setListenUI();
   }
 
+  /* Opponents by nickname (as written in "matchup"): [abbreviation, color]. Colors are each team's
+     brightest brand color, picked so the stripe shows up on the dark scoreboard. */
+  const OPP = {
+    nba: { Hawks: ["ATL", "#E03A3E"], Nets: ["BKN", "#B5B5B5"], Celtics: ["BOS", "#007A33"], Hornets: ["CHA", "#00788C"], Bulls: ["CHI", "#CE1141"],
+      Cavaliers: ["CLE", "#860038"], Mavericks: ["DAL", "#0064B1"], Nuggets: ["DEN", "#FEC524"], Pistons: ["DET", "#C8102E"], Warriors: ["GS", "#FFC72C"],
+      Rockets: ["HOU", "#CE1141"], Pacers: ["IND", "#FDBB30"], Clippers: ["LAC", "#C8102E"], Lakers: ["LAL", "#552583"], Grizzlies: ["MEM", "#5D76A9"],
+      Heat: ["MIA", "#98002E"], Bucks: ["MIL", "#00471B"], Timberwolves: ["MIN", "#236192"], Pelicans: ["NO", "#B4975A"], Knicks: ["NY", "#F58426"],
+      Thunder: ["OKC", "#007AC1"], Magic: ["ORL", "#0077C0"], "76ers": ["PHI", "#006BB6"], Suns: ["PHX", "#E56020"], "Trail Blazers": ["POR", "#E03A3E"],
+      Blazers: ["POR", "#E03A3E"], Kings: ["SAC", "#5A2D81"], Spurs: ["SA", "#C4CED4"], Raptors: ["TOR", "#CE1141"], Jazz: ["UTAH", "#753BBD"], Wizards: ["WSH", "#E31837"] },
+    nhl: { Ducks: ["ANA", "#F47A38"], Mammoth: ["UTAH", "#69B3E7"], Bruins: ["BOS", "#FFB81C"], Sabres: ["BUF", "#FCB514"], Flames: ["CGY", "#C8102E"],
+      Hurricanes: ["CAR", "#CE1126"], Blackhawks: ["CHI", "#CF0A2C"], Avalanche: ["COL", "#236192"], "Blue Jackets": ["CBJ", "#CE1126"], Stars: ["DAL", "#00A862"],
+      "Red Wings": ["DET", "#CE1126"], Oilers: ["EDM", "#FF4C00"], Panthers: ["FLA", "#C8102E"], Kings: ["LA", "#A2AAAD"], Wild: ["MIN", "#AF1E2D"],
+      Canadiens: ["MTL", "#AF1E2D"], Predators: ["NSH", "#FFB81C"], Devils: ["NJ", "#CE1126"], Islanders: ["NYI", "#F47D30"], Rangers: ["NYR", "#0038A8"],
+      Senators: ["OTT", "#C52032"], Flyers: ["PHI", "#F74902"], Penguins: ["PIT", "#FCB514"], Sharks: ["SJ", "#00A3AD"], Kraken: ["SEA", "#99D9D9"],
+      Blues: ["STL", "#2F6BCB"], Lightning: ["TB", "#2C5BBF"], "Maple Leafs": ["TOR", "#3F74C6"], Canucks: ["VAN", "#00843D"], "Golden Knights": ["VGK", "#B4975A"],
+      Capitals: ["WSH", "#C8102E"], Jets: ["WPG", "#AC162C"] },
+    nfl: { Cardinals: ["ARI", "#97233F"], Falcons: ["ATL", "#A71930"], Ravens: ["BAL", "#6A4FC9"], Bills: ["BUF", "#C60C30"], Panthers: ["CAR", "#0085CA"],
+      Bears: ["CHI", "#C83803"], Bengals: ["CIN", "#FB4F14"], Browns: ["CLE", "#FF3C00"], Cowboys: ["DAL", "#4A78C9"], Broncos: ["DEN", "#FB4F14"],
+      Lions: ["DET", "#0076B6"], Packers: ["GB", "#FFB612"], Texans: ["HOU", "#A71930"], Colts: ["IND", "#2F63B5"], Jaguars: ["JAX", "#00828C"],
+      Chiefs: ["KC", "#E31837"], Raiders: ["LV", "#A5ACAF"], Chargers: ["LAC", "#0080C6"], Rams: ["LAR", "#FFA300"], Dolphins: ["MIA", "#008E97"],
+      Vikings: ["MIN", "#7E57C2"], Patriots: ["NE", "#1D4F8C"], Saints: ["NO", "#D3BC8D"], Giants: ["NYG", "#A71930"], Jets: ["NYJ", "#1E9A5E"],
+      Eagles: ["PHI", "#2E8B8B"], Steelers: ["PIT", "#FFB612"], "49ers": ["SF", "#AA0000"], Seahawks: ["SEA", "#69BE28"], Buccaneers: ["TB", "#D50A0A"],
+      Titans: ["TEN", "#4B92DB"], Commanders: ["WSH", "#FFB612"] },
+    mlb: { Diamondbacks: ["ARI", "#A71930"], Braves: ["ATL", "#CE1141"], Orioles: ["BAL", "#DF4601"], "Red Sox": ["BOS", "#BD3039"], Cubs: ["CHC", "#3D6DC2"],
+      "White Sox": ["CHW", "#C4CED4"], Reds: ["CIN", "#C6011F"], Guardians: ["CLE", "#E31937"], Rockies: ["COL", "#7A5BB5"], Tigers: ["DET", "#FA4616"],
+      Astros: ["HOU", "#EB6E1F"], Royals: ["KC", "#3D7CC9"], Angels: ["LAA", "#BA0021"], Dodgers: ["LAD", "#1E73BE"], Marlins: ["MIA", "#00A3E0"],
+      Brewers: ["MIL", "#FFC52F"], Twins: ["MIN", "#D31145"], Mets: ["NYM", "#FF5910"], Yankees: ["NYY", "#8C9FB8"], Athletics: ["ATH", "#EFB21E"],
+      Phillies: ["PHI", "#E81828"], Pirates: ["PIT", "#FDB827"], Padres: ["SD", "#FFC425"], Giants: ["SF", "#FD5A1E"], Mariners: ["SEA", "#00A3AD"],
+      Cardinals: ["STL", "#C41E3A"], Rays: ["TB", "#8FBCE6"], Rangers: ["TEX", "#C0111F"], "Blue Jays": ["TOR", "#1D6FD1"], Nationals: ["WSH", "#AB0003"] },
+  };
+  const TEAM_ABBR = { patriots: "NE", celtics: "BOS", bruins: "BOS", redsox: "BOS" };
+  const ordinal = (n) => ["", "1ST", "2ND", "3RD"][n] || `${n}TH`;
+
+  /* ── Today's games: an arena-style scoreboard per game. Away team on the left, home on the right,
+     the start time in the middle before the game, then live scores and the clock, then FINAL. */
+  function scoreboard(g, ymd) {
+    const league = SPORT_PATH[g.league] ? g.league : "";
+    const away = /^\s*at\b/i.test(g.matchup || "");
+    const nick = String(g.matchup || "").replace(/^\s*(vs\.?|at|@)\s*/i, "").trim();
+    const o = (OPP[league] || {})[nick] || [nick.slice(0, 3).toUpperCase(), "#8A8478"];
+    const bos = { cls: "us", ab: TEAM_ABBR[g.teamKey] || g.team.slice(0, 3).toUpperCase(), nm: g.team, rec: g.record, color: (TEAMS[g.teamKey] || {}).color };
+    const them = { cls: "them", ab: o[0], nm: nick, rec: g.oppRecord, color: o[1] };
+    const [L, R] = away ? [bos, them] : [them, bos];
+    const block = (t, side) => `<div class="sb-team sb-${t.cls}" style="--c:${t.color}">
+        <div class="sb-side">${side}</div><div class="sb-ab">${esc(t.ab)}</div><div class="sb-nm">${esc(t.nm)}</div><div class="sb-rec">${esc(t.rec || "")}</div></div>`;
+    const mins = clockMin(g.time);
+    const when = mins !== "" && mins < 17 * 60 ? "TODAY" : "TONIGHT";
+    const tm = String(g.time || "").match(/^(\d{1,2}:\d{2})\s*([AP]M)$/i);
+    const timeHtml = tm ? `${esc(tm[1])}<span class="sb-ampm">${esc(tm[2].toUpperCase())}</span>` : esc(g.time || "TBD");
+    const attrs = league ? ` href="https://www.espn.com/${league}/scoreboard/_/date/${ymd}" target="_blank" rel="noopener" data-league="${league}" data-abbr="${ESPN_ABBR[g.teamKey] || ""}"` : "";
+    const tag = league ? "a" : "div";
+    return `<${tag} class="board-row sb"${attrs} data-away="${away ? 1 : 0}">
+        <div class="sb-grid">
+          ${block(L, "AWAY")}
+          <div class="sb-mid">
+            <div class="sb-pre"><div class="sb-when">${when}</div><div class="sb-time">${timeHtml}</div>${g.venue ? `<div class="sb-venue">${esc(g.venue)}</div>` : ""}</div>
+            <div class="sb-live" hidden><div class="sb-digits"><div class="sb-dg" data-side="L"></div><div class="sb-dg" data-side="R"></div></div><div class="sb-clock"></div></div>
+          </div>
+          ${block(R, "HOME")}
+        </div>
+        ${g.tv ? `<div class="board-tv sb-tv"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${esc(g.tv)}</div>` : ""}
+      </${tag}>`;
+  }
   function board(today, date, off) {
     const ymd = String(date || "").replace(/-/g, "");
-    const rows = (today || []).map((g) => {
-      const league = SPORT_PATH[g.league] ? g.league : "";
-      const href = league ? `https://www.espn.com/${league}/scoreboard/_/date/${ymd}` : "";
-      const attrs = league ? ` href="${href}" target="_blank" rel="noopener" data-league="${league}" data-abbr="${ESPN_ABBR[g.teamKey] || ""}"` : "";
-      const tag = league ? "a" : "div";
-      return `<${tag} class="board-row"${attrs}>
-        <div class="board-team"><span class="chip" style="${teamVar(g.teamKey)}"></span>${esc(g.team)}${
-          g.record ? ` <span class="board-rec">${esc(g.record)}</span>` : ""}</div>
-        <div class="board-time">${esc(g.time)}</div>
-        <div class="board-detail">${esc(g.matchup)}${g.oppRecord ? ` (${esc(g.oppRecord)})` : ""}</div>
-        <div class="board-venue">${esc(g.venue || "")}</div>
-        ${g.tv ? `<div class="board-tv"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${esc(g.tv)}</div>` : ""}
-      </${tag}>${listenLink(g)}`;
-    }).join("");
+    const rows = (today || []).map((g) => scoreboard(g, ymd) + listenLink(g)).join("");
     const next = (off || []).map((o) => `<div class="board-next">
         <span class="chip" style="${teamVar(o.teamKey)}"></span><b>${esc(o.team)}</b>
         <span>${esc(String(o.text || "").replace(/^Next:\s*/, ""))}</span></div>`).join("");
@@ -718,28 +768,41 @@
     if (!us || !them) return;
     const link = (ev.links || []).find((l) => (l.rel || []).includes("summary")) || (ev.links || [])[0];
     if (link && link.href) row.href = link.href;
-    const state = ev.status && ev.status.type && ev.status.type.state;
-    const detail = (ev.status && ev.status.type && ev.status.type.shortDetail) || "";
-    if (state === "pre") return;
-    const timeEl = row.querySelector(".board-time");
-    const venueEl = row.querySelector(".board-venue");
-    timeEl.innerHTML = `<span class="live-score">${esc(us.score)}<span class="dash">–</span>${esc(them.score)}</span>`;
+    const st = (ev.status && ev.status.type) || {};
+    const state = st.state;
+    if (state === "pre" || !state) return;
+    const usLeft = row.dataset.away === "1";
+    const left = usLeft ? us : them, right = usLeft ? them : us;
+    const n = (c) => Number(c.score) || 0;
+    const dL = row.querySelector('.sb-dg[data-side="L"]'), dR = row.querySelector('.sb-dg[data-side="R"]');
+    dL.textContent = left.score ?? "0"; dR.textContent = right.score ?? "0";
+    dL.classList.toggle("lose", n(left) < n(right)); dR.classList.toggle("lose", n(right) < n(left));
+    row.querySelector(".sb-pre").hidden = true;
+    row.querySelector(".sb-live").hidden = false;
     row.classList.toggle("is-live", state === "in");
     row.classList.toggle("is-final", state === "post");
-    venueEl.innerHTML = state === "in"
-      ? `<span class="live-dot" aria-hidden="true"></span>${esc(detail)}`
-      : `${us.winner ? "W" : them.winner ? "L" : ""} ${esc(detail)}`.trim();
-    // Once final, show both teams' updated records from the feed.
-    if (state === "post") {
+    const clock = row.querySelector(".sb-clock");
+    const league = row.dataset.league;
+    if (state === "in") {
+      const p = (ev.status && ev.status.period) || 0, dc = (ev.status && ev.status.displayClock) || "";
+      const regs = league === "nhl" ? 3 : league === "mlb" ? 99 : 4;
+      let txt;
+      if (/HALFTIME/.test(st.name || "")) txt = "HALFTIME";
+      else if (league === "mlb" || dc === "0:00" || !dc) txt = String(st.shortDetail || st.detail || "").toUpperCase();
+      else if (p > regs) txt = `${league === "nhl" && p > 4 ? "SO" : p - regs > 1 ? `${p - regs}OT` : "OT"} · ${dc}`;
+      else txt = `${league === "nhl" ? ordinal(p) : `Q${p}`} · ${dc}`;
+      clock.innerHTML = `<span class="live-dot" aria-hidden="true"></span>${esc(txt)}`;
+    } else {
+      const res = us.winner ? "W" : them.winner ? "L" : "";
+      clock.textContent = `${String(st.shortDetail || "Final").toUpperCase()}${res ? ` · ${res}` : ""}`;
+      // Once final, show both teams' updated records from the feed.
       const rec = (c) => {
         const r = (c.records || []).find((x) => x.type === "total" || x.name === "overall") || (c.records || [])[0];
         return r && r.summary ? String(r.summary).replace(/-/g, "–") : "";
       };
-      const ours = rec(us), theirs = rec(them);
-      const recEl = row.querySelector(".board-rec");
-      if (ours && recEl) recEl.textContent = ours;
-      const det = row.querySelector(".board-detail");
-      if (theirs && det) det.textContent = det.textContent.replace(/\s*\([^)]*\)\s*$/, "") + ` (${theirs})`;
+      const ru = rec(us), rt = rec(them);
+      if (ru) row.querySelector(".sb-us .sb-rec").textContent = ru;
+      if (rt) row.querySelector(".sb-them .sb-rec").textContent = rt;
     }
   }
 
