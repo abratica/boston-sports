@@ -279,7 +279,7 @@
     if (nextPending.has(key) && root.querySelector(`.cu-list li[data-next="${team}"]`)) return;
     if (nextPending.has(key)) return;
     nextPending.add(key);
-    await loadSchedule();
+    if (!SCHED) await loadSchedule();   // usually already here from the saved copy, so no wait
     const games = ((SCHED && SCHED.teams && SCHED.teams[team]) || {}).games || [];
     const n = games.find((x) => x.date > date);
     if (!n || !root.isConnected) { nextPending.delete(key); return; }
@@ -703,7 +703,10 @@
   const monthName = (iso) => dt(iso).toLocaleDateString("en-US", { month: "long" });
   async function loadSchedule() {
     const get = async (u) => { try { const r = await fetch(u, { cache: "no-store" }); return r.ok ? r.json() : null; } catch { return null; } };
-    if (!SCHED) SCHED = await get("schedule.json");
+    if (!SCHED) {
+      SCHED = await get("schedule.json");
+      if (SCHED) try { localStorage.setItem("bs-sched", JSON.stringify(SCHED)); } catch { /* fine */ }
+    }
     if (!RESULTS) RESULTS = ((await get("games/index.json")) || {}).games || [];
   }
   function seasonGames(k) {
@@ -1543,6 +1546,12 @@
     } catch { /* storage blocked or full: fine */ }
   }
   function restoreSaved(root, data) {
+    try {   // the season schedule (for next games), then fetch a fresh copy quietly for next time
+      if (!SCHED) { const raw = localStorage.getItem("bs-sched"); if (raw) SCHED = JSON.parse(raw); }
+      fetch("schedule.json", { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => {
+        if (!j) return; SCHED = j; try { localStorage.setItem("bs-sched", JSON.stringify(j)); } catch { /* fine */ }
+      }).catch(() => {});
+    } catch { /* ignore */ }
     try {
       // Drop saved scores from earlier issues.
       Object.keys(localStorage).filter((k) => k.startsWith("bs-ev:") && !k.startsWith(`bs-ev:${data.date}:`)).forEach((k) => localStorage.removeItem(k));
