@@ -1120,17 +1120,15 @@
     const met = (RESULTS || []).filter((r) => r.team === p.k && r.opp === p.opp && r.date < p.date).sort((a, b) => a.date.localeCompare(b.date));
     const all = (((SCHED && SCHED.teams && SCHED.teams[p.k]) || {}).games || []).filter((g) => g.opp === p.opp);
     const n = all.filter((g) => g.date <= p.date).length || met.length + 1, total = Math.max(all.length, n);
-    const nth = total <= 1 ? "Only meeting this season" : `${ord(n)} of ${total} meetings`;
+    const nth = total <= 1 ? "Only meeting" : `${ord(n)} of ${total} meetings`;
     let rows = [["Record", "rec"], ["Last 10", "l10"], ["Streak", "streak"], ["Division", "place"]]
       .filter(([, f]) => sa[f] || sh[f])
       .map(([label, f]) => `<div class="rw"><span>${esc(sa[f] || "—")}</span><span>${label}</span><span>${esc(sh[f] || "—")}</span></div>`).join("");
-    // Season series: each team's wins once they've met; before that, just which meeting this is.
-    if (rows) {
-      if (met.length) {
-        const bw = met.filter((r) => r.result === "W").length, ow = met.length - bw;
-        const [aw, hw] = p.home ? [ow, bw] : [bw, ow];
-        rows += `<div class="rw"><span>${aw}</span><span class="ss">Season series<small>${esc(nth)}</small></span><span>${hw}</span></div>`;
-      } else rows += `<div class="rw one">${esc(total <= 1 ? "Only meeting this season" : `${ord(n)} of ${total} meetings this season`)}</div>`;
+    // Season series row once they've met (each team's wins); which meeting this is sits on the heading line.
+    if (rows && met.length) {
+      const bw = met.filter((r) => r.result === "W").length, ow = met.length - bw;
+      const [aw, hw] = p.home ? [ow, bw] : [bw, ow];
+      rows += `<div class="rw"><span>${aw}</span><span>Season series</span><span>${hw}</span></div>`;
     }
     const hd = (t) => `<div style="--c:${t.c}"><span class="pv-mark sm">${logo(p.lg, t.la, "pv-logo", darkTheme())}</span>${esc(t.ab)}</div>`;
     const list = met.map((r) => `<a class="pv-meet" href="#/games/${p.k}/${esc(r.id)}"><span class="pv-md">${esc(md(r.date))}</span>
@@ -1146,7 +1144,7 @@
         </div>
         ${strip ? `<div class="pv-strip">${strip}</div>` : ""}
       </div>
-      ${rows ? `<h4 class="pv-h">Team snapshot</h4><div class="pv-snap"><div class="hd">${hd(A)}<span></span>${hd(H)}</div>${rows}</div>` : ""}
+      ${rows ? `<h4 class="pv-h pv-hx"><span>Team snapshot</span><em>${esc(nth)}</em></h4><div class="pv-snap"><div class="hd">${hd(A)}<span></span>${hd(H)}</div>${rows}</div>` : ""}
       ${more}
       ${p.full ? `<div class="pvx">${pvFull(p, A, H, sa, sh, season)}</div>` : ""}`;
   }
