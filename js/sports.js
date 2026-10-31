@@ -781,6 +781,8 @@
     row.querySelector(".sb-live").hidden = false;
     row.classList.toggle("is-live", state === "in");
     row.classList.toggle("is-final", state === "post");
+    const tv = row.querySelector(".sb-tv");
+    if (tv) tv.hidden = state === "post";   // no need for the channel once it's over
     const clock = row.querySelector(".sb-clock");
     const league = row.dataset.league;
     if (state === "in") {

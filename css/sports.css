@@ -736,3 +736,4 @@ body.view-sports .sb-dg.lose { color: rgba(247, 244, 238, .42); }
 body.view-sports .sb-clock { margin-top: 7px; font: 700 15px var(--display); letter-spacing: .06em; color: #F7F4EE; text-align: center; white-space: nowrap; }
 body.view-sports .board-row.sb.is-live .sb-clock { color: #FF5A50; }
 body.view-sports .sb-tv { justify-content: center; margin-top: 10px; }
+body.view-sports .sb-tv[hidden] { display: none; }
