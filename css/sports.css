@@ -753,3 +753,8 @@ body.view-sports .cu-sub { display: block; font-size: 12px; color: var(--muted);
 body.view-sports .cu-list li.cu-today { background: var(--hl); }
 body.view-sports .cu-tag { display: inline-block; font: 800 11px var(--serif); letter-spacing: .02em; color: #fff; background: var(--accent); border-radius: 6px; padding: 2px 7px; margin-right: 4px; vertical-align: 1px; }
 body.view-sports .cu-today .cu-what { color: var(--ink); }
+
+/* Recap score line: plain numbers, no boxes */
+body.view-sports .scoreline .num, html[data-theme="dark"] body.view-sports .scoreline .num {
+  background: none; box-shadow: none; color: inherit; padding: 0; min-width: 0; margin-left: 3px; font-weight: 700;
+}
