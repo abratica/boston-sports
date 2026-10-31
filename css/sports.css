@@ -959,3 +959,7 @@ body.view-sports .gn span { min-width: 0; }
 body.view-sports .gn b { display: block; font: 700 14px/1.15 var(--serif); }
 body.view-sports .gn small { display: block; font: 500 12px/1.25 var(--serif); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 body.view-sports .gn-ghost { position: absolute; width: 100%; pointer-events: none; }
+/* Sticky Games/Teams bar: overlap its top edge by a pixel and give it its own layer, so no hairline of the
+   page shows through (or flickers) above it while scrolling. */
+body.view-sports .tabs { top: -1px; padding-top: 1px; transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+body.view-sports .tabs::before { content: ""; position: absolute; left: 0; right: 0; top: -4px; height: 5px; background: var(--monster); pointer-events: none; }
