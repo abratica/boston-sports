@@ -16,6 +16,7 @@ import re
 import subprocess
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -215,10 +216,39 @@ def channel_id(handle, fallback):
     return fallback
 
 
-def find_video(league, team_key, r, ev):
+def yt_search(query):
+    """[(videoId, title, channel)] from YouTube's search results page."""
+    html = get("https://www.youtube.com/results?search_query=" + urllib.parse.quote(query) + "&hl=en&gl=US", as_json=False)
+    m = re.search(r"var ytInitialData = (\{.*?\});</script>", html, re.S)
+    if not m:
+        return []
+    out = []
+
+    def walk(o):
+        if isinstance(o, dict):
+            vr = o.get("videoRenderer")
+            if vr and vr.get("videoId"):
+                t = "".join(x.get("text", "") for x in (vr.get("title") or {}).get("runs", []))
+                ch = "".join(x.get("text", "") for x in (vr.get("ownerText") or {}).get("runs", []))
+                out.append((vr["videoId"], t, ch))
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk(json.loads(m.group(1)))
+    return out
+
+
+def find_video(league, team_key, r, ev, notes):
     start = dt.datetime.fromisoformat(ev["date"].replace("Z", "+00:00"))
     names = [TEAM_NAME[team_key].upper(), str(r["opp"].get("name") or "").upper()]
     best = None
+    comps = ev["competitions"][0]["competitors"]
+    home_t = next(c for c in comps if c.get("homeAway") == "home")["team"]
+    away_t = next(c for c in comps if c.get("homeAway") == "away")["team"]
+    day = start.astimezone(dt.timezone(dt.timedelta(hours=-5))).date()
+    day_words = f"{day.strftime('%B')} {day.day}, {day.year}"
     for rank, (handle, fid) in enumerate(CHANNELS.get(league, [])):
         cid = channel_id(handle, fid)
         if not cid:
@@ -246,6 +276,37 @@ def find_video(league, team_key, r, ev):
                 best = (score, vid, title, full)
         if best and best[3] and best[0] == rank:
             break   # a full package from the best channel so far
+    notes.append(f"feeds: {'found ' + best[1] if best else 'nothing'}")
+    if not best or not best[3]:
+        # Channel feeds only list the latest 15 uploads (the NBA posts dozens a day), so search YouTube too.
+        A, H = away_t.get("shortDisplayName", ""), home_t.get("shortDisplayName", "")
+        queries = {"nba": [f'"{A} at {H}" full game highlights {day_words}', f"{A} {H} full game highlights"],
+                   "nhl": [f"NHL highlights {H} vs {A} {day_words}", f"{A} {H} highlights NHL"],
+                   "nfl": [f"{A} vs {H} game highlights NFL", f"{A} {H} highlights"],
+                   "mlb": [f"{A} vs {H} game highlights MLB {day_words}"]}[league]
+        for q in queries:
+            try:
+                res = yt_search(q)
+            except Exception as e:   # noqa: BLE001
+                notes.append(f"search failed: {e}")
+                continue
+            notes.append(f"search {q!r}: {len(res)} results")
+            for vid, title, ch in res:
+                T = title.upper()
+                if ch not in ALLOWED_AUTHORS or not all(n and n in T for n in names) or "HIGHLIGHT" not in T:
+                    continue
+                if any(w in T for w in ("PRESS CONFERENCE", "POSTGAME", "REACTION", "PODCAST", "INTERVIEW")):
+                    continue
+                if league == "nba" and "FULL GAME" not in T:
+                    continue
+                if day_words.upper() not in T and str(day.year) not in T and league != "nfl":
+                    notes.append(f"skipped {vid} (date not in title): {title}")
+                    continue
+                best = (0, vid, title, True)
+                notes.append(f"search hit {vid} [{ch}]: {title}")
+                break
+            if best and best[3]:
+                break
     if not best or not best[3]:
         return None
     _, vid, title, _ = best
@@ -262,9 +323,7 @@ def find_video(league, team_key, r, ev):
     if author is not None and author not in ALLOWED_AUTHORS:
         say(f"  video {vid} by {author!r} isn't an allowed channel")
         return None
-    home = ev["competitions"][0]["competitors"]
-    h = next(c for c in home if c.get("homeAway") == "home")["team"].get("shortDisplayName", "")
-    a = next(c for c in home if c.get("homeAway") == "away")["team"].get("shortDisplayName", "")
+    h, a = home_t.get("shortDisplayName", ""), away_t.get("shortDisplayName", "")
     v = {"id": vid, "title": f"{a} at {h}: {'full game' if league == 'nba' else 'game'} highlights",
          "channel": author or {"nba": "NBA", "nhl": "NHL", "nfl": "NFL", "mlb": "MLB"}[league], "kind": "full"}
     if not embed and league != "nfl":
@@ -310,11 +369,14 @@ def main():
         else:
             st["box"] = "ok"
         if need_vid:
+            notes = []
             try:
-                v = find_video(league, key, r, ev)
+                v = find_video(league, key, r, ev, notes)
             except Exception as e:   # noqa: BLE001
                 v = None
+                notes.append(f"error: {e}")
                 say(f"{key}: video search failed: {e}")
+            st["video_notes"] = notes[:12]
             if v:
                 r["videos"] = [v]
                 changed = True
