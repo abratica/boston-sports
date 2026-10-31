@@ -52,6 +52,10 @@ If there's nothing, use an empty array.
 
 The top game card's headline. On days with no results, a one-line summary of the biggest team news.
 
+## Box scores and videos are also filled automatically
+
+A GitHub job (`.github/workflows/fill-games.yml` → `tools/fill_games.py`) runs on GitHub's servers right after each issue is pushed and every 20 minutes through midday. It pulls ESPN's official game data for any result with no `box` and builds it (with the add-up checks below), and finds the official full-game highlights on YouTube for any result with no video (or only a stand-in). So if you can't reach a box score source or verify a video, **leave `box` / `videos` out and move on**; don't spend time retrying. Never hand-edit `tools/fill_status.json`; it's the job's log of what it found.
+
 ## today (Today's games)
 
 Every Boston game scheduled today (ET), sorted by start time.
