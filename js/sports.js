@@ -207,7 +207,7 @@
   // Coming up: the next game for each in-season team not playing today, below Last night.
   function comingUp(off, today) {
     const todays = (today || []).map((g) => `<li class="cu-today" style="${teamVar(g.teamKey)}"><span class="chip" aria-hidden="true"></span><b>${esc(g.team)}</b>
-        <span class="cu-what"><span class="cu-date">Today</span> · ${esc(g.matchup || "")}${g.tv ? `<span class="cu-sub">${esc(g.tv)}</span>` : ""}</span>${g.time ? `<span class="cu-time">${esc(g.time)}</span>` : ""}</li>`).join("");
+        <span class="cu-what"><span class="cu-tag">TODAY</span> ${esc(g.matchup || "")}${g.tv ? `<span class="cu-sub">${esc(g.tv)}</span>` : ""}</span>${g.time ? `<span class="cu-time">${esc(g.time)}</span>` : ""}</li>`).join("");
     if (!todays && (!off || !off.length)) return "";
     const rows = todays + (off || []).map((o) => {
       const t = String(o.text || "").replace(/^Next:\s*/i, "");
