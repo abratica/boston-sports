@@ -944,3 +944,18 @@ body.view-sports .rc-statbtn:active { background: color-mix(in srgb, var(--ink) 
 body.view-sports .rc-statbtn .ic-stat, body.view-sports .rc-statbtn .rcs-chev { color: var(--muted); flex: none; }
 body.view-sports .rc-statbtn .t { flex: 1; min-width: 0; }
 body.view-sports .rc-statbtn .s { color: var(--muted); font-weight: 500; font-size: 13.5px; margin-left: 6px; }
+/* Past game pages: Older / Newer, and swiping between games */
+body.view-sports .gn-vp { overflow-x: clip; }
+body.view-sports .gn-main { position: relative; will-change: transform; }
+body.view-sports .gn { display: flex; gap: 8px; margin: 0 0 12px; }
+body.view-sports .gn > * { flex: 1; min-width: 0; display: flex; align-items: center; gap: 6px; padding: 9px 10px; border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 6%, var(--card)); color: var(--ink); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+html[data-theme="dark"] body.view-sports .gn > * { background: #262523; }
+body.view-sports .gn > a:active { background: color-mix(in srgb, var(--ink) 11%, var(--card)); }
+body.view-sports .gn .gn-newer { justify-content: flex-end; text-align: right; }
+body.view-sports .gn .off { opacity: .45; }
+body.view-sports .gn svg { flex: none; color: var(--muted); }
+body.view-sports .gn span { min-width: 0; }
+body.view-sports .gn b { display: block; font: 700 14px/1.15 var(--serif); }
+body.view-sports .gn small { display: block; font: 500 12px/1.25 var(--serif); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.view-sports .gn-ghost { position: absolute; width: 100%; pointer-events: none; }

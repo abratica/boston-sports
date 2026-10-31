@@ -63,7 +63,8 @@
         if (id) {
           const g = await getJSON(`games/${id}.json`);
           ctx.backHref = `#/games/${team}`; ctx.backLabel = "Back to the team's games";
-          show(); app.innerHTML = layout.pastGame(g, ctx);
+          show(); app.innerHTML = layout.pastGame(g, ctx, list);
+          if (layout.mountPast) layout.mountPast(app, g, list);
         } else if (team) {
           ctx.backHref = "#/games"; ctx.backLabel = "Back to past games";
           show(); app.innerHTML = layout.pastTeamGames(team, list, ctx);

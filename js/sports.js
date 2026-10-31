@@ -1610,10 +1610,93 @@
     return `${masthead(ctx.name, TEAM_NAME[team] || "Past games", ctx)}<main class="sports-main"><ul class="pg-list">${rows || `<li class="pg-empty">No games yet.</li>`}</ul></main>`;
   }
 
-  function pastGame(g, ctx) {
+  /* Past game pages: Older / Newer buttons at the top, and swipe to move between the same team's games
+     (older to the left, newer to the right). The neighbouring recap slides in with your finger, like the
+     schedule calendar. Moving between games replaces the page in history, so Back still returns to the list. */
+  const shortGame = (g) => g ? `${md(g.date)} · ${g.home === false ? "at" : "vs"} ${g.opp}` : "";
+  function pastNeighbors(g, list) {
+    const mine = (list || []).filter((x) => x.team === g.teamKey).sort((a, b) => a.date.localeCompare(b.date));
+    const i = mine.findIndex((x) => x.id === g.id);
+    return i < 0 ? [null, null] : [mine[i - 1] || null, mine[i + 1] || null];
+  }
+  function pastNav(g, list) {
+    const [older, newer] = pastNeighbors(g, list);
+    const CHL = `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const side = (x, dir) => {
+      const inner = dir === "older" ? `${CHL}<span><b>Older</b><small>${esc(x ? shortGame(x) : "First game")}</small></span>`
+        : `<span><b>Newer</b><small>${esc(x ? shortGame(x) : "Latest game")}</small></span>${chevronRight.replace("ta-chev", "gn-chev")}`;
+      return x ? `<a class="gn-${dir}" href="#/games/${esc(g.teamKey)}/${esc(x.id)}" data-gn="${esc(x.id)}">${inner}</a>` : `<span class="gn-${dir} off" aria-disabled="true">${inner}</span>`;
+    };
+    return `<nav class="gn" aria-label="Other games">${side(older, "older")}${side(newer, "newer")}</nav>`;
+  }
+  function pastGame(g, ctx, list) {
     return `${masthead(ctx.name, `${TEAM_NAME[g.teamKey] || ""} · ${gameDate(g.date)}`, ctx)}
-      <main class="sports-main">${game(g, true)}</main>`;
+      <div class="gn-vp"><main class="sports-main gn-main">${list ? pastNav(g, list) : ""}${game(g, true)}</main></div>`;
+  }
+  function mountPast(root, g, list) {
+    const main = root.querySelector(".gn-main");
+    if (!main || !list) return;
+    const [older, newer] = pastNeighbors(g, list);
+    const go = (x) => { if (x) location.replace(`#/games/${g.teamKey}/${x.id}`); };
+    root.querySelectorAll(".gn a[data-gn]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); go(a.classList.contains("gn-older") ? older : newer); }));
+    // Load the neighbours now so they're ready to slide in.
+    const full = {};
+    [["older", older], ["newer", newer]].forEach(([dir, x]) => {
+      if (!x) return;
+      fetch(`games/${x.id}.json`, { cache: "no-store" }).then((r) => r.ok ? r.json() : null).then((j) => { if (j) full[dir] = j; }).catch(() => {});
+    });
+    const GAP = 16, EASE = "cubic-bezier(.2,.8,.2,1)";
+    let sx = 0, sy = 0, st = 0, dx = 0, axis = null, on = false, ghost = null, gdir = 0, busy = false;
+    const width = () => main.getBoundingClientRect().width + GAP;
+    const place = (dir) => {   // dir -1 = newer (comes in from the right), 1 = older (from the left)
+      if (gdir === dir && ghost) return;
+      if (ghost) ghost.remove();
+      ghost = null; gdir = dir;
+      const x = dir < 0 ? full.newer : full.older;
+      if (!x) return;
+      ghost = document.createElement("div");
+      ghost.className = "gn-ghost";
+      ghost.setAttribute("aria-hidden", "true");
+      ghost.style.top = `${Math.max(0, window.scrollY - main.offsetTop)}px`;
+      ghost.style.left = `${-dir * width()}px`;
+      const cs = getComputedStyle(main);
+      ghost.style.padding = `${cs.paddingTop} ${cs.paddingRight} 0 ${cs.paddingLeft}`;
+      ghost.innerHTML = pastNav(x, list) + game(x, true);
+      main.appendChild(ghost);
+    };
+    const pos = (x, ms) => { main.style.transition = ms ? `transform ${ms}ms ${EASE}` : "none"; main.style.transform = x ? `translateX(${x}px)` : ""; };
+    main.addEventListener("touchstart", (e) => {
+      on = false;
+      if (busy || e.touches.length > 1 || document.querySelector(".st-sheet") || e.target.closest(".bx-scroll, .line, iframe, .video")) return;
+      on = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = performance.now(); dx = 0; axis = null;
+    }, { passive: true });
+    main.addEventListener("touchmove", (e) => {
+      if (!on) return;
+      const mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
+      if (!axis && Math.abs(mx) + Math.abs(my) > 10) axis = Math.abs(mx) > Math.abs(my) * 1.2 ? "x" : "y";
+      if (axis !== "x" || !mx) return;
+      const dir = mx < 0 ? -1 : 1;
+      place(dir);
+      dx = ghost ? mx : mx * 0.25;   // rubber-band at the first/latest game
+      pos(dx, 0);
+    }, { passive: true });
+    main.addEventListener("touchend", () => {
+      if (!on) return;
+      on = false;
+      if (axis !== "x") return;
+      const v = Math.abs(dx) / Math.max(performance.now() - st, 1), dir = dx < 0 ? -1 : 1;
+      if (ghost && gdir === dir && (Math.abs(dx) > 70 || (v > 0.45 && Math.abs(dx) > 24))) {
+        busy = true;
+        const ms = Math.round(Math.min(320, Math.max(160, (width() - Math.abs(dx)) / Math.max(v, 1.2))));
+        pos(dir * width(), ms);
+        setTimeout(() => go(dir < 0 ? newer : older), ms + 10);
+      } else {
+        pos(0, 240);
+        const gh = ghost;
+        setTimeout(() => { if (gh && gh === ghost && !busy) { gh.remove(); ghost = null; gdir = 0; } }, 260);
+      }
+    }, { passive: true });
   }
 
-  window.Layouts.sports = { issue, archive, mount, pastTeams, pastTeamGames, pastGame, scoreText, themeColor: "#141414" };
+  window.Layouts.sports = { issue, archive, mount, mountPast, pastTeams, pastTeamGames, pastGame, scoreText, themeColor: "#141414" };
 })();
