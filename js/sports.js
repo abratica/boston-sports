@@ -1081,6 +1081,7 @@
       out += `<h4 class="pv-h">How they match up</h4><div class="pvx-card pvx-mu"><div class="hd"><span>${esc(A.ab)}</span><span>${esc(H.ab)}</span></div>${rows}
         ${mine && mine.edge ? `<p class="pvx-edge"><b>The edge:</b> ${esc(mine.edge)}</p>` : ""}</div>`;
     }
+    out += seasonHtml;
     const la = (x.leaders || {})[A.ab] || {}, lh = (x.leaders || {})[H.ab] || {};
     const cats = (PV_LEAD[p.lg] || []).filter((c) => la[c] || lh[c]);
     if (cats.length) {
@@ -1096,7 +1097,7 @@
           : `<div class="rw"><span class="none">None reported</span><span></span></div>`); };
       out += `<h4 class="pv-h">Injuries</h4><div class="pvx-card pvx-inj">${team(A)}${team(H)}</div>`;
     }
-    return out + seasonHtml;
+    return out;
   }
   function pvBody(p) {
     const o = (OPP[p.lg] || {})[p.opp] || [p.oppAbbr || String(p.opp).slice(0, 3).toUpperCase(), "#8A8478"];
@@ -1115,18 +1116,26 @@
     const sa = { ...pvTeam(p.lg, A.nick) }, sh = { ...pvTeam(p.lg, H.nick) };
     if (!sa.rec && A.rec) sa.rec = A.rec;
     if (!sh.rec && H.rec) sh.rec = H.rec;
-    const rows = [["Record", "rec"], ["Last 10", "l10"], ["Streak", "streak"], ["Division", "place"]]
-      .filter(([, f]) => sa[f] || sh[f])
-      .map(([label, f]) => `<div class="rw"><span>${esc(sa[f] || "—")}</span><span>${label}</span><span>${esc(sh[f] || "—")}</span></div>`).join("");
-    const hd = (t) => `<div style="--c:${t.c}"><span class="pv-mark sm">${logo(p.lg, t.la, "pv-logo", darkTheme())}</span>${esc(t.ab)}</div>`;
     // This season: earlier meetings from saved recaps, and which meeting this is.
     const met = (RESULTS || []).filter((r) => r.team === p.k && r.opp === p.opp && r.date < p.date).sort((a, b) => a.date.localeCompare(b.date));
     const all = (((SCHED && SCHED.teams && SCHED.teams[p.k]) || {}).games || []).filter((g) => g.opp === p.opp);
     const n = all.filter((g) => g.date <= p.date).length || met.length + 1, total = Math.max(all.length, n);
-    const note = total <= 1 ? "Only meeting of the season." : `${n === 1 ? "First" : ord(n)} of ${total} meetings this season.`;
+    const nth = total <= 1 ? "Only meeting this season" : `${ord(n)} of ${total} meetings`;
+    let rows = [["Record", "rec"], ["Last 10", "l10"], ["Streak", "streak"], ["Division", "place"]]
+      .filter(([, f]) => sa[f] || sh[f])
+      .map(([label, f]) => `<div class="rw"><span>${esc(sa[f] || "—")}</span><span>${label}</span><span>${esc(sh[f] || "—")}</span></div>`).join("");
+    // Season series: each team's wins once they've met; before that, just which meeting this is.
+    if (rows) {
+      if (met.length) {
+        const bw = met.filter((r) => r.result === "W").length, ow = met.length - bw;
+        const [aw, hw] = p.home ? [ow, bw] : [bw, ow];
+        rows += `<div class="rw"><span>${aw}</span><span class="ss">Season series<small>${esc(nth)}</small></span><span>${hw}</span></div>`;
+      } else rows += `<div class="rw one">${esc(total <= 1 ? "Only meeting this season" : `${ord(n)} of ${total} meetings this season`)}</div>`;
+    }
+    const hd = (t) => `<div style="--c:${t.c}"><span class="pv-mark sm">${logo(p.lg, t.la, "pv-logo", darkTheme())}</span>${esc(t.ab)}</div>`;
     const list = met.map((r) => `<a class="pv-meet" href="#/games/${p.k}/${esc(r.id)}"><span class="pv-md">${esc(md(r.date))}</span>
         <span class="pv-mo">${r.home === false ? "at" : "vs"} ${esc(r.opp)}</span><span class="pv-res"><span class="result ${esc(r.result)}">${esc(r.result)}</span> ${esc(`${r.bos}–${r.oppScore}${r.ot ? " OT" : ""}`)}</span><span class="go" aria-hidden="true">›</span></a>`).join("");
-    const season = `<h4 class="pv-h">This season</h4><div class="pv-list">${list}<div class="pv-empty">${esc(note)}</div></div>`;
+    const season = met.length ? `<h4 class="pv-h">Earlier meetings</h4><div class="pv-list">${list}</div>` : "";
     const more = `<button type="button" class="pv-more" aria-expanded="${p.full ? "true" : "false"}"><span>${p.full ? "Hide full preview" : "See full preview"}</span>${chevron(16)}</button>`;
     return `<h3 class="pv-title">${esc(TEAM_NAME[p.k])} ${p.home ? "vs" : "at"} ${esc(p.opp)}</h3>
       <div class="pv-card">

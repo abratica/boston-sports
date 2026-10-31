@@ -1014,3 +1014,6 @@ html[data-theme="dark"] .pv-more { background: #262523; }
 .pvx-inj .ig-mark { width: 24px; height: 24px; flex: none; display: inline-flex; border-radius: 50%; }
 .pvx-inj .ig-mark.nologo { background: var(--c); }
 .pvx-inj .ig-logo { width: 100%; height: 100%; object-fit: contain; }
+/* Preview snapshot: season series row, or one line before the teams have met */
+.pv-snap .rw .ss small { display: block; font: 500 11px var(--serif); color: var(--muted); margin-top: 1px; }
+.pv-snap .rw.one { display: block; text-align: center; font: 500 13px var(--serif); color: var(--muted); }
