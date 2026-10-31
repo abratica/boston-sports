@@ -193,7 +193,7 @@
     const them = { cls: "them", ab: o[0], nm: nick, rec: g.oppRecord, color: o[1], img: logo(league, o[0], "sb-logo", true) };
     const [L, R] = away ? [bos, them] : [them, bos];
     const block = (t, side) => `<div class="sb-team sb-${t.cls}" style="--c:${t.color}">
-        <div class="sb-side">${side}</div>${t.img || ""}<div class="sb-ab">${esc(t.ab)}</div><div class="sb-nm">${esc(t.nm)}</div><div class="sb-rec">${esc(t.rec || "")}</div></div>`;
+        <div class="sb-side">${side}</div>${t.img || ""}<div class="sb-ab">${esc(t.ab)}</div><div class="sb-rec">${esc(t.rec || "")}</div></div>`;
     const mins = clockMin(g.time);
     const when = mins !== "" && mins < 17 * 60 ? "TODAY" : "TONIGHT";
     const tm = String(g.time || "").match(/^(\d{1,2}:\d{2})\s*([AP]M)$/i);
@@ -206,10 +206,10 @@
           <div class="sb-mid">
             <div class="sb-pre"><div class="sb-when">${when}</div><div class="sb-time">${timeHtml}</div>${g.venue ? `<div class="sb-venue">${esc(g.venue)}</div>` : ""}</div>
             <div class="sb-live" hidden><div class="sb-digits"><div class="sb-dg" data-side="L"></div><div class="sb-dg" data-side="R"></div></div><div class="sb-clock"></div></div>
+            ${g.tv ? `<div class="board-tv sb-tv"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${esc(g.tv)}</div>` : ""}
           </div>
           ${block(R, "HOME")}
         </div>
-        ${g.tv ? `<div class="board-tv sb-tv"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${esc(g.tv)}</div>` : ""}
       </${tag}>`;
   }
   function board(today, date, off) {

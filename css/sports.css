@@ -859,3 +859,16 @@ html[data-theme="dark"] .pv-card { border: 1px solid #2C2B29; }
 .pv-espn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 13px; border-radius: 12px; background: color-mix(in srgb, var(--ink) 6%, var(--card)); font: 800 15px var(--serif); color: var(--ink); text-decoration: none; }
 html[data-theme="dark"] .pv-espn { background: #262523; }
 body.view-sports .cu-list .cu-chev { flex: none; color: var(--muted); margin-left: -4px; margin-right: -6px; }
+/* Shorter scoreboard: no nickname line, TV in the middle column, slightly smaller logos and time */
+body.view-sports .board { padding: 13px 15px 5px; }
+body.view-sports .board h2 { margin-bottom: 10px; }
+body.view-sports .board-row.sb { padding: 3px 0 11px; }
+body.view-sports .sb-team { padding: 9px 6px 9px; }
+body.view-sports .sb-logo { width: 34px; height: 34px; margin: 0 auto 3px; }
+body.view-sports .sb-side { margin-bottom: 4px; }
+body.view-sports .sb-ab { font-size: 29px; }
+body.view-sports .sb-rec { margin-top: 1px; }
+body.view-sports .sb-time { font-size: 34px; }
+body.view-sports .sb-when { margin-bottom: 3px; }
+body.view-sports .sb-venue { margin-top: 4px; }
+body.view-sports .sb-mid .sb-tv { margin-top: 6px; justify-content: center; }
