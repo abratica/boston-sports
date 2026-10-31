@@ -791,7 +791,7 @@
       else if (league === "mlb" || dc === "0:00" || !dc) txt = String(st.shortDetail || st.detail || "").toUpperCase();
       else if (p > regs) txt = `${league === "nhl" && p > 4 ? "SO" : p - regs > 1 ? `${p - regs}OT` : "OT"} · ${dc}`;
       else txt = `${league === "nhl" ? ordinal(p) : `Q${p}`} · ${dc}`;
-      clock.innerHTML = `<span class="live-dot" aria-hidden="true"></span>${esc(txt)}`;
+      clock.textContent = txt;
     } else {
       const res = us.winner ? "W" : them.winner ? "L" : "";
       clock.textContent = `${String(st.shortDetail || "Final").toUpperCase()}${res ? ` · ${res}` : ""}`;
