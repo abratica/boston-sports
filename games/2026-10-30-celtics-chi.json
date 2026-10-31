@@ -1,0 +1,95 @@
+{
+  "teamKey": "celtics",
+  "sport": "NBA",
+  "headline": "Pritchard's 30 powers Celtics past Bulls in NBA Cup opener",
+  "home": true,
+  "boston": {
+    "abbr": "BOS",
+    "score": 125
+  },
+  "opp": {
+    "abbr": "CHI",
+    "name": "Bulls",
+    "score": 111,
+    "record": "1–5"
+  },
+  "result": "W",
+  "record": "4–1",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "boston": [
+      44,
+      34,
+      21,
+      26
+    ],
+    "opp": [
+      25,
+      24,
+      25,
+      37
+    ],
+    "sections": [
+      {
+        "label": "1st quarter",
+        "score": "BOS 44, CHI 25",
+        "text": "Boston went up 22–12 on Paul George's dunk off a Josh Giddey turnover and led 33–18 with three minutes left. The 44–25 quarter was the Celtics' best opening period of the season."
+      },
+      {
+        "label": "2nd quarter",
+        "score": "BOS 78, CHI 49",
+        "text": "Payton Pritchard's 26-footer made it 63–35 with 6:41 left in the half, and Jayson Tatum's finger roll and 3-pointer pushed the lead to 76–44, its peak of 32, with under two minutes to go. Pritchard had 20 points on 7-of-10 shooting at the break."
+      },
+      {
+        "label": "3rd quarter",
+        "score": "BOS 99, CHI 74",
+        "text": "Chicago hit four 3-pointers by the middle of the quarter to trim the deficit to 86–66, and Boston managed 21 points, its lowest quarter of the night."
+      },
+      {
+        "label": "4th quarter",
+        "score": "Final: BOS 125, CHI 111",
+        "text": "Tatum's step-back made it 102–80 with 9:38 left; he later picked up his fifth foul and a technical with about five minutes to go. The Bulls won the quarter 37–26 after Boston pulled its starters."
+      }
+    ],
+    "sources": [
+      {
+        "name": "ESPN",
+        "url": "https://www.espn.com/nba/recap/_/gameId/401909278"
+      },
+      {
+        "name": "AP (WHDH)",
+        "url": "https://whdh.com/sports/pritchard-nets-30-celtics-ease-past-turnover-prone-bulls-125-111-in-nba-cup-action/"
+      },
+      {
+        "name": "Yahoo Sports",
+        "url": "https://sports.yahoo.com/articles/pritchard-celtics-cruise-125-111-021358472.html"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Payton Pritchard",
+      "line": "30 PTS · 9-17 FG · 3 REB · 3 AST · 2 STL",
+      "note": "Led all scorers off the bench, with 20 of his points in the first half as Boston built a 29-point halftime lead."
+    },
+    {
+      "name": "Jayson Tatum",
+      "line": "26 PTS · 7 REB · 7 AST · 34 MIN",
+      "note": "Scored inside and out in the 32-point second-quarter surge, though he picked up his fifth foul and a technical late."
+    },
+    {
+      "name": "Paul George",
+      "line": "18 PTS · 6 REB · 8 AST · 3 STL",
+      "note": "Led the Celtics in assists and helped turn Chicago's 16 turnovers into 21 points."
+    }
+  ],
+  "oppLine": "Caleb Wilson had 23 points with six 3-pointers, Norman Powell added 16 and Matas Buzelis 14, and Jalen Smith grabbed 12 rebounds; Chicago shot 38% (35-of-92).",
+  "takeaway": "A fourth straight win lifts Boston to 4–1 and a share of the NBA Cup Group C lead with Washington, which holds the point-differential edge (+16 to +14).",
+  "id": "2026-10-30-celtics-chi",
+  "date": "2026-10-30"
+}

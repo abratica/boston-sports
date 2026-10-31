@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30",
+ "updated": "2026-10-31",
  "teams": {
   "celtics": {
    "season": "2026–27",
@@ -47,35 +47,40 @@
      "time": "3:30 PM",
      "home": false,
      "opp": "Magic",
-     "oppAbbr": "ORL"
+     "oppAbbr": "ORL",
+     "tv": "NBC Sports Boston · Peacock"
     },
     {
      "date": "2026-11-02",
      "time": "8:30 PM",
      "home": false,
      "opp": "Rockets",
-     "oppAbbr": "HOU"
+     "oppAbbr": "HOU",
+     "tv": "NBC Sports Boston · Peacock"
     },
     {
      "date": "2026-11-04",
      "time": "7:30 PM",
      "home": true,
      "opp": "Bucks",
-     "oppAbbr": "MIL"
+     "oppAbbr": "MIL",
+     "tv": "NBC Sports Boston · Peacock"
     },
     {
      "date": "2026-11-06",
      "time": "7:00 PM",
      "home": false,
      "opp": "Hornets",
-     "oppAbbr": "CHA"
+     "oppAbbr": "CHA",
+     "tv": "NBC Sports Boston · Peacock"
     },
     {
      "date": "2026-11-08",
      "time": "8:00 PM",
      "home": false,
      "opp": "Bucks",
-     "oppAbbr": "MIL"
+     "oppAbbr": "MIL",
+     "tv": "NBC Sports Boston · Peacock"
     },
     {
      "date": "2026-11-10",
@@ -90,7 +95,8 @@
      "time": "7:00 PM",
      "home": false,
      "opp": "Raptors",
-     "oppAbbr": "TOR"
+     "oppAbbr": "TOR",
+     "tv": "NBC Sports Boston · Peacock"
     },
     {
      "date": "2026-11-15",

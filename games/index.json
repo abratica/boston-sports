@@ -1,6 +1,20 @@
 {
   "games": [
     {
+      "id": "2026-10-30-celtics-chi",
+      "team": "celtics",
+      "date": "2026-10-30",
+      "home": true,
+      "opp": "Bulls",
+      "oppAbbr": "CHI",
+      "bos": 125,
+      "oppScore": 111,
+      "result": "W",
+      "record": "4–1",
+      "headline": "Pritchard's 30 powers Celtics past Bulls in NBA Cup opener",
+      "ot": false
+    },
+    {
       "id": "2026-10-29-bruins-stl",
       "team": "bruins",
       "date": "2026-10-29",
