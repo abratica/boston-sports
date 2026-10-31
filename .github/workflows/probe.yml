@@ -1,0 +1,37 @@
+name: probe-espn
+on:
+  push:
+    branches: [probe-espn]
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: probe-espn }
+      - name: Fetch ESPN summaries
+        run: |
+          mkdir -p probe
+          python3 - <<'PY'
+          import json, urllib.request
+          def get(u):
+              with urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent':'Mozilla/5.0'}), timeout=30) as r: return json.load(r)
+          base='https://site.api.espn.com/apis/site/v2/sports/'
+          out={}
+          sb=get(base+'hockey/nhl/scoreboard?dates=20261031')
+          ev=[e for e in sb['events'] if any(c['team']['abbreviation']=='BOS' for c in e['competitions'][0]['competitors'])]
+          ids={'nhl_live': ('hockey/nhl', ev[0]['id'] if ev else None), 'nba_final': ('basketball/nba','401909278')}
+          sbn=get(base+'football/nfl/scoreboard?dates=20261025')
+          e2=[e for e in sbn['events'] if any(c['team']['abbreviation']=='NE' for c in e['competitions'][0]['competitors'])]
+          ids['nfl_final']=('football/nfl', e2[0]['id'] if e2 else None)
+          for k,(path,i) in ids.items():
+              if not i: continue
+              json.dump(get(base+path+'/summary?event='+i), open(f'probe/{k}.json','w'))
+              print(k, i)
+          PY
+          ls -la probe
+      - name: Commit
+        run: |
+          git config user.name "probe" && git config user.email "probe@users.noreply.github.com"
+          git add probe && git commit -qm "probe data" && git push -q origin HEAD:probe-espn
