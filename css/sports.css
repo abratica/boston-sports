@@ -858,3 +858,4 @@ html[data-theme="dark"] .pv-card { border: 1px solid #2C2B29; }
 .pv-empty { padding: 12px 14px; font: 500 14px var(--serif); color: var(--muted); }
 .pv-espn { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 13px; border-radius: 12px; background: color-mix(in srgb, var(--ink) 6%, var(--card)); font: 800 15px var(--serif); color: var(--ink); text-decoration: none; }
 html[data-theme="dark"] .pv-espn { background: #262523; }
+body.view-sports .cu-list .cu-chev { flex: none; color: var(--muted); margin-left: -4px; margin-right: -6px; }

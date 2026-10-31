@@ -220,10 +220,11 @@
       ${rows || `<div class="board-empty">No Boston games today.</div>`}
     </section>`;
   }
+  const cuChev = () => chevronRight.replace("ta-chev", "cu-chev");   // tap a game for its preview
   // Coming up: the next game for each in-season team not playing today, below Last night.
   function comingUp(off, today) {
     const todays = (today || []).map((g) => `<li class="cu-today" data-pv="${esc(g.teamKey)}" role="button" tabindex="0" style="${teamVar(g.teamKey)}"><span class="cu-mark">${teamLogo(g.teamKey, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(g.team)}</b>
-        <span class="cu-what"><span class="cu-tag">TODAY</span> ${esc(g.matchup || "")}</span>${g.time ? `<span class="cu-time">${esc(g.time)}</span>` : ""}</li>`).join("");
+        <span class="cu-what"><span class="cu-tag">TODAY</span> ${esc(g.matchup || "")}</span>${g.time ? `<span class="cu-time">${esc(g.time)}</span>` : ""}${cuChev()}</li>`).join("");
     if (!todays && (!off || !off.length)) return "";
     const rows = todays + (off || []).map((o) => {
       const t = String(o.text || "").replace(/^Next:\s*/i, "");
@@ -231,7 +232,7 @@
       const what = m ? m[1] : t, time = m ? m[2] : "";
       const w = what.match(/^(.*?)\s+((?:vs|at)\s.+)$/i);
       return `<li class="cu-off" data-team="${esc(o.teamKey)}" data-pv="${esc(o.teamKey)}" role="button" tabindex="0" style="${teamVar(o.teamKey)}"><span class="cu-mark">${teamLogo(o.teamKey, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(o.team)}</b>
-        <span class="cu-what">${w ? `<span class="cu-date">${esc(w[1])}</span> · ${esc(w[2])}` : esc(what)}</span>${time ? `<span class="cu-time">${esc(time)}</span>` : ""}</li>`;
+        <span class="cu-what">${w ? `<span class="cu-date">${esc(w[1])}</span> · ${esc(w[2])}` : esc(what)}</span>${time ? `<span class="cu-time">${esc(time)}</span>` : ""}${cuChev()}</li>`;
     }).join("");
     return `<section class="cu"><h2 class="section-title">Coming up</h2><ul class="cu-list">${rows}</ul></section>`;
   }
@@ -298,7 +299,7 @@
     li.dataset.pv = team; li.dataset.pvdate = n.date; li.setAttribute("role", "button"); li.tabIndex = 0;
     li.setAttribute("style", teamVar(team));
     li.innerHTML = `<span class="cu-mark">${teamLogo(team, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(TEAM_NAME[team] || team)}</b>
-      <span class="cu-what"><span class="cu-date">${esc(day)}</span> · ${esc(`${n.home === false ? "at" : "vs"} ${n.opp}`)}</span><span class="cu-time">${esc(n.time || "TBD")}</span>`;
+      <span class="cu-what"><span class="cu-date">${esc(day)}</span> · ${esc(`${n.home === false ? "at" : "vs"} ${n.opp}`)}</span><span class="cu-time">${esc(n.time || "TBD")}</span>${cuChev()}`;
     list.appendChild(li);
     // Keep the list in date order: date the other teams' rows from the schedule, then sort.
     list.querySelectorAll("li.cu-off[data-team]").forEach((o) => {
