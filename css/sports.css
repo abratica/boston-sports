@@ -424,15 +424,27 @@ body.view-sports .board-tv {
   grid-column: 1 / -1; display: flex; align-items: center; gap: 6px; margin-top: 4px;
   font-family: var(--serif); font-weight: 600; font-size: 13px; color: rgba(247, 244, 238, 0.7);
 }
-/* Listen live link under a game on the scoreboard */
-body.view-sports .board-listen { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; padding: 9px 12px; border-radius: 10px;
-  background: rgba(247, 244, 238, 0.08); color: var(--chalk, #F7F4EE); text-decoration: none; font-family: var(--serif); font-size: 13.5px; }
+/* Listen live bar under a game on the scoreboard */
+body.view-sports .board-listen { display: flex; align-items: stretch; margin: 0 0 10px; border-radius: 10px; background: rgba(247, 244, 238, 0.08); overflow: hidden; }
 body.view-sports .board-listen[hidden] { display: none; }
-body.view-sports .board-listen svg { color: #FF5A50; flex: none; }
-body.view-sports .board-listen .bl-go { font-weight: 800; }
+body.view-sports .board-listen .bl-play { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; padding: 10px 12px; border: 0; background: transparent;
+  color: var(--chalk, #F7F4EE); text-decoration: none; text-align: left; font-family: var(--serif); font-size: 13.5px; cursor: pointer; }
+body.view-sports .board-listen .bl-play:active, body.view-sports .board-listen .bl-ext:active { background: rgba(247, 244, 238, 0.10); }
+body.view-sports .board-listen .bl-ic { display: grid; place-items: center; width: 16px; height: 16px; flex: none; color: #FF5A50; }
+body.view-sports .board-listen .bl-ic svg { grid-area: 1 / 1; display: none; }
+body.view-sports .board-listen[data-state="idle"] .ic-radio, body.view-sports .board-listen:not([data-state]) .ic-radio,
+body.view-sports .board-listen[data-state="error"] .ic-radio { display: block; }
+body.view-sports .board-listen[data-state="playing"] .ic-pause { display: block; }
+body.view-sports .board-listen[data-state="loading"] .ic-spin { display: block; animation: bl-spin .8s linear infinite; }
+@keyframes bl-spin { to { transform: rotate(360deg); } }
+body.view-sports .board-listen .bl-go { font-weight: 800; white-space: nowrap; }
+body.view-sports .board-listen[data-state="playing"] .bl-go { color: #FF5A50; }
+body.view-sports .board-listen[data-state="playing"] .bl-go::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #FF5A50; margin-right: 6px; vertical-align: 1px; animation: bl-pulse 1.4s ease-in-out infinite; }
+@keyframes bl-pulse { 50% { opacity: .3; } }
 body.view-sports .board-listen .bl-st { color: rgba(247, 244, 238, 0.65); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+body.view-sports .board-listen[data-state="error"] .bl-st { display: none; }
 body.view-sports .board-listen .bl-arrow { font-size: 18px; line-height: 1; color: rgba(247, 244, 238, 0.6); }
-body.view-sports .board-listen:active { background: rgba(247, 244, 238, 0.14); }
+body.view-sports .board-listen .bl-ext { display: grid; place-items: center; width: 46px; flex: none; color: rgba(247, 244, 238, 0.7); border-left: 1px solid rgba(247, 244, 238, 0.12); }
 body.view-sports .section-title { font-size: 20px; font-weight: 700; margin: 30px 4px 10px; }
 body.view-sports .game { border: 1px solid var(--rule); border-left: 5px solid var(--team, var(--rule)); }
 body.view-sports .headline { font-family: var(--serif); font-weight: 800; font-size: 16.5px; }

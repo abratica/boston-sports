@@ -28,31 +28,95 @@
   const SPORT_PATH = { nba: "basketball/nba", nhl: "hockey/nhl", nfl: "football/nfl", mlb: "baseball/mlb" };
   const ESPN_ABBR = { patriots: "NE", celtics: "BOS", bruins: "BOS", redsox: "BOS" };
 
-  /* ── Listen live: a link under each game on the scoreboard, shown from 10 minutes before the start
-     until the game ends. It opens the station's own free player. An issue can override the station per
-     game with "radio": { "name", "url" } (e.g. when two Boston games overlap and one moves to WZLX). */
-  const SPORTS_HUB = { name: "98.5 The Sports Hub", url: "https://985thesportshub.com/listen" };
+  /* ── Listen live: shown under each game on the scoreboard from 10 minutes before the start until the
+     game ends. For 98.5 The Sports Hub it plays the station's live stream right here in the app (so you
+     can keep watching the scoreboard), with a small ↗ button to open the station's own page instead.
+     An issue can override the station per game with "radio": { "name", "url" } (e.g. when two Boston
+     games overlap and one moves to WZLX); without a stream, the bar just opens that page. */
+  const SPORTS_HUB = { name: "98.5 The Sports Hub", url: "https://985thesportshub.com/listen",
+    stream: "https://playerservices.streamtheworld.com/api/livestream-redirect/WBZFMAAC.aac" };
   const RADIO = { patriots: SPORTS_HUB, celtics: SPORTS_HUB, bruins: SPORTS_HUB };
-  const RADIO_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 8l10-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="15.5" cy="14" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6.5 12.5h4M6.5 15.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+  const RADIO_ICON = `<svg class="ic-radio" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 8l10-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="15.5" cy="14" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6.5 12.5h4M6.5 15.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+  const PAUSE_ICON = `<svg class="ic-pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></svg>`;
+  const SPIN_ICON = `<svg class="ic-spin" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="30 60" stroke-linecap="round"/></svg>`;
+  const EXT_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M19 5l-8 8M17 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   const clockMin = (t) => {   // "7:30 PM" -> minutes after midnight, or "" if it isn't a clock time
     const m = String(t || "").match(/(\d{1,2})(?::(\d{2}))?\s*([AP])M/i);
     if (!m) return "";
     return ((+m[1] % 12) + (m[3].toUpperCase() === "P" ? 12 : 0)) * 60 + (+(m[2] || 0));
   };
   const safeUrl = (u) => /^https:\/\//.test(String(u || "")) ? u : "";
+  function pageHref(url) {
+    // On Android, try the full Chrome app (its own tab) rather than the in-app browser sheet.
+    if (!/Android/i.test(navigator.userAgent)) return url;
+    const u = new URL(url);
+    return `intent://${u.host}${u.pathname}${u.search}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+  }
   function listenLink(g) {
     const r = g.radio && safeUrl(g.radio.url) ? g.radio : RADIO[g.teamKey];
     if (!r) return "";
-    // On Android, open the player in the full Chrome app (its own tab) instead of the in-app browser sheet,
-    // so the audio keeps playing while you switch back to the scoreboard.
-    let href = r.url;
-    if (/Android/i.test(navigator.userAgent)) {
-      const u = new URL(r.url);
-      href = `intent://${u.host}${u.pathname}${u.search}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(r.url)};end`;
-    }
-    return `<a class="board-listen" href="${esc(href)}" target="_blank" rel="noopener" data-start="${clockMin(g.time)}" hidden>
-        ${RADIO_ICON}<span class="bl-go">Listen live</span><span class="bl-st">${esc(r.name)}</span><span class="bl-arrow" aria-hidden="true">›</span></a>`;
+    const stream = safeUrl(r.stream);
+    const title = `${g.team} ${g.matchup || ""}`.trim();
+    const body = `<span class="bl-ic">${RADIO_ICON}${PAUSE_ICON}${SPIN_ICON}</span><span class="bl-go">Listen live</span><span class="bl-st">${esc(r.name)}</span>`;
+    return `<div class="board-listen" data-start="${clockMin(g.time)}" data-stream="${esc(stream)}" hidden>${stream
+      ? `<button type="button" class="bl-play" data-title="${esc(title)}" data-station="${esc(r.name)}" aria-pressed="false">${body}</button>
+         <a class="bl-ext" href="${esc(pageHref(r.url))}" target="_blank" rel="noopener" aria-label="Open ${esc(r.name)}'s page">${EXT_ICON}</a>`
+      : `<a class="bl-play" href="${esc(pageHref(r.url))}" target="_blank" rel="noopener">${body}<span class="bl-arrow" aria-hidden="true">›</span></a>`}</div>`;
   }
+
+  // One audio player for the whole app, so it keeps playing while you move between tabs and recaps.
+  const PLAYER = { audio: null, src: "", state: "idle" };   // state: idle | loading | playing | error
+  const LABEL = { idle: "Listen live", loading: "Connecting…", playing: "Live", error: "Couldn't connect · tap to retry" };
+  function setListenUI() {
+    document.querySelectorAll(".board-listen").forEach((el) => {
+      const mine = !!el.dataset.stream && el.dataset.stream === PLAYER.src;
+      const st = mine ? PLAYER.state : "idle";
+      el.dataset.state = st;
+      const go = el.querySelector("button.bl-play .bl-go");
+      if (go) go.textContent = LABEL[st];
+      const b = el.querySelector("button.bl-play");
+      if (b) b.setAttribute("aria-pressed", String(st === "playing"));
+    });
+  }
+  function setState(st) { PLAYER.state = st; setListenUI(); }
+  function playStream(src, title, station) {
+    if (!PLAYER.audio) {
+      const a = new Audio();
+      a.preload = "none";
+      a.addEventListener("playing", () => setState("playing"));
+      a.addEventListener("waiting", () => { if (PLAYER.state === "playing") setState("loading"); });
+      a.addEventListener("error", () => { if (PLAYER.state !== "idle") setState("error"); });
+      PLAYER.audio = a;
+    }
+    PLAYER.src = src;
+    setState("loading");
+    PLAYER.audio.src = src;
+    PLAYER.audio.play().catch(() => { if (PLAYER.state !== "idle") setState("error"); });
+    if ("mediaSession" in navigator) {
+      try {
+        navigator.mediaSession.metadata = new MediaMetadata({ title, artist: station, album: "PS Sports",
+          artwork: [{ src: "icons/icon-512.png", sizes: "512x512", type: "image/png" }] });
+        navigator.mediaSession.setActionHandler("play", () => playStream(src, title, station));
+        navigator.mediaSession.setActionHandler("pause", stopStream);
+        navigator.mediaSession.setActionHandler("stop", stopStream);
+      } catch { /* not supported */ }
+    }
+  }
+  function stopStream() {
+    if (!PLAYER.audio) return;
+    setState("idle");   // set first, so the error fired by clearing the source is ignored
+    PLAYER.audio.pause();
+    PLAYER.audio.removeAttribute("src");   // drop the buffer so pressing play again rejoins the live broadcast
+    PLAYER.audio.load();
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("button.bl-play");
+    if (!b) return;
+    const src = b.closest(".board-listen").dataset.stream;
+    if (PLAYER.src === src && (PLAYER.state === "playing" || PLAYER.state === "loading")) stopStream();
+    else playStream(src, b.dataset.title, b.dataset.station);
+  });
+
   function updateListen(root, date) {
     const parts = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
       .formatToParts(new Date()).map((x) => [x.type, x.value]));
@@ -62,8 +126,10 @@
       const live = !!(row && row.classList.contains("is-live")), final = !!(row && row.classList.contains("is-final"));
       const s = a.dataset.start === "" ? null : +a.dataset.start;
       const inWindow = date === today && s !== null && now >= s - 10 && now <= s + 240;
-      a.hidden = final || !(live || inWindow);
+      const playing = !!a.dataset.stream && a.dataset.stream === PLAYER.src && PLAYER.state !== "idle";
+      a.hidden = !playing && (final || !(live || inWindow));   // never yank the bar while it's playing
     });
+    setListenUI();
   }
 
   function board(today, date, off) {
