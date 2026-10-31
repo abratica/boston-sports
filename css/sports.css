@@ -747,3 +747,7 @@ body.view-sports .cu-list b { font: 700 17px var(--display); min-width: 64px; }
 body.view-sports .cu-what { flex: 1; min-width: 0; font: 600 13.5px var(--serif); color: var(--muted); }
 body.view-sports .cu-date { color: var(--ink); }
 body.view-sports .cu-time { font: 700 15px var(--display); white-space: nowrap; }
+
+body.view-sports .sb-slot[hidden], body.view-sports .cu[hidden], body.view-sports .cu-list li[hidden] { display: none; }
+body.view-sports .cu-sub { display: block; font-size: 12px; color: var(--muted); margin-top: 1px; font-weight: 600; }
+body.view-sports .cu-today .cu-date { color: var(--accent-text); font-weight: 800; }

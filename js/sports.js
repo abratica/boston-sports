@@ -121,6 +121,7 @@
     const parts = Object.fromEntries(new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
       .formatToParts(new Date()).map((x) => [x.type, x.value]));
     const today = `${parts.year}-${parts.month}-${parts.day}`, now = +parts.hour * 60 + +parts.minute;
+    updateLayout(root, date, today, now);
     root.querySelectorAll(".board-listen").forEach((a) => {
       const row = a.previousElementSibling;
       const live = !!(row && row.classList.contains("is-live")), final = !!(row && row.classList.contains("is-final"));
@@ -204,9 +205,11 @@
     </section>`;
   }
   // Coming up: the next game for each in-season team not playing today, below Last night.
-  function comingUp(off) {
-    if (!off || !off.length) return "";
-    const rows = off.map((o) => {
+  function comingUp(off, today) {
+    const todays = (today || []).map((g) => `<li class="cu-today" style="${teamVar(g.teamKey)}"><span class="chip" aria-hidden="true"></span><b>${esc(g.team)}</b>
+        <span class="cu-what"><span class="cu-date">Today</span> · ${esc(g.matchup || "")}${g.tv ? `<span class="cu-sub">${esc(g.tv)}</span>` : ""}</span>${g.time ? `<span class="cu-time">${esc(g.time)}</span>` : ""}</li>`).join("");
+    if (!todays && (!off || !off.length)) return "";
+    const rows = todays + (off || []).map((o) => {
       const t = String(o.text || "").replace(/^Next:\s*/i, "");
       const m = t.match(/^(.*?)(?:,\s*)(\d{1,2}:\d{2}\s*[AP]M|TBD)$/i);
       const what = m ? m[1] : t, time = m ? m[2] : "";
@@ -214,7 +217,27 @@
       return `<li style="${teamVar(o.teamKey)}"><span class="chip" aria-hidden="true"></span><b>${esc(o.team)}</b>
         <span class="cu-what">${w ? `<span class="cu-date">${esc(w[1])}</span> · ${esc(w[2])}` : esc(what)}</span>${time ? `<span class="cu-time">${esc(time)}</span>` : ""}</li>`;
     }).join("");
-    return `<h2 class="section-title">Coming up</h2><ul class="cu-list">${rows}</ul>`;
+    return `<section class="cu"><h2 class="section-title">Coming up</h2><ul class="cu-list">${rows}</ul></section>`;
+  }
+  /* Newspaper order: recaps first for most of the day. Ten minutes before the day's first game, every
+     game today switches to scoreboard mode at the top of the page (and leaves Coming up). The
+     scoreboards stay up overnight until the next morning's issue replaces this one. */
+  function gameDayCutoff(today) {
+    const mins = (today || []).map((g) => clockMin(g.time));
+    if (!mins.length) return "";
+    if (mins.some((m) => m === "")) return 0;   // a game with no set time: show the scoreboard all day
+    return Math.max(0, Math.min(...mins) - 10);
+  }
+  function updateLayout(root, date, today, now) {
+    const slot = root.querySelector(".sb-slot");
+    if (!slot) return;
+    const cut = slot.dataset.cutoff === "" ? null : +slot.dataset.cutoff;
+    const started = !!slot.querySelector(".board-row.is-live, .board-row.is-final");
+    const on = started || (cut !== null && ((date === today && now >= cut) || date < today));
+    slot.hidden = !on;
+    root.querySelectorAll(".cu-today").forEach((li) => { li.hidden = on; });
+    const cu = root.querySelector(".cu");
+    if (cu) cu.hidden = !cu.querySelector(".cu-list li:not([hidden])");
   }
 
   /* ── Highlight videos (official YouTube uploads) ──
@@ -735,9 +758,9 @@
       </nav>
       <main class="sports-main">
         <div class="tab-panel" data-tab="games"${tab === "games" ? "" : " hidden"}>
-          ${board(data.today, data.date)}
+          ${(data.today || []).length ? `<div class="sb-slot" data-cutoff="${gameDayCutoff(data.today)}" hidden>${board(data.today, data.date)}</div>` : ""}
           ${results.length ? `<h2 class="section-title">Last night</h2>${results.map((g) => game(g)).join("")}` : ""}
-          ${comingUp(data.off)}
+          ${comingUp(data.off, data.today)}
           <a class="archive-link" href="${ctx.archiveHref}">Past games <span aria-hidden="true">›</span></a>
         </div>
         <div class="tab-panel" data-tab="teams"${tab === "teams" ? "" : " hidden"}>
