@@ -811,3 +811,6 @@ body.view-sports .ta-btn:active { background: color-mix(in srgb, var(--ink) 11%,
 html[data-theme="dark"] body.view-sports .st-btn.ta-btn { background: #262523; }
 body.view-sports .team-head { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 body.view-sports .team-id { gap: 10px; }
+
+body.view-sports .cu-sub { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
+body.view-sports .cu-sub svg { flex: none; }
