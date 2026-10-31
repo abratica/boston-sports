@@ -788,3 +788,14 @@ body.view-sports .game.rc[open] .rc-sum, body.view-sports .sb-mode .game.rc .rc-
 /* Less space above "Last night" when it's the first thing on the page (newspaper mode) */
 body.view-sports .tab-panel > .section-title:first-child,
 body.view-sports .tab-panel > .sb-slot[hidden] + .section-title { margin-top: 8px; }
+
+/* Team logos (ESPN). The color dot/chip only shows if the logo can't load. */
+body.view-sports .tlogo { display: block; object-fit: contain; }
+body.view-sports .sb-logo { width: 40px; height: 40px; margin: 2px auto 4px; }
+body.view-sports .rc-mark, body.view-sports .cu-mark { display: inline-grid; place-items: center; flex: none; }
+body.view-sports .rc-mark { width: 26px; height: 26px; }
+body.view-sports .rc-logo { width: 26px; height: 26px; }
+body.view-sports .cu-mark { width: 24px; height: 24px; }
+body.view-sports .cu-logo { width: 24px; height: 24px; }
+body.view-sports .tm-mark, body.view-sports .tm-logo { width: 30px; height: 30px; }
+body.view-sports .rc-mark:has(img) .rc-dot, body.view-sports .cu-mark:has(img) .chip { display: none; }

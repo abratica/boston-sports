@@ -166,6 +166,21 @@
   const TEAM_ABBR = { patriots: "NE", celtics: "BOS", bruins: "BOS", redsox: "BOS" };
   const ordinal = (n) => ["", "1ST", "2ND", "3RD"][n] || `${n}TH`;
 
+  /* Team logos from ESPN's image server (the same images ESPN's own feeds point to). The "dark" versions
+     are made for dark backgrounds; if one is missing we fall back to the regular logo, and if that fails
+     too the image just disappears and the team's color dot shows instead. */
+  const LOGO_ABBR = { celtics: "bos", bruins: "bos", patriots: "ne", redsox: "bos" };
+  const darkTheme = () => document.documentElement.dataset.theme === "dark";
+  function logo(league, abbr, cls, dark) {
+    if (!league || !abbr) return "";
+    const a = String(abbr).toLowerCase().replace(/[^a-z]/g, "");
+    const base = `https://a.espncdn.com/i/teamlogos/${league}/500`;
+    const fb = dark ? ` data-fb="${base}/${a}.png"` : "";
+    return `<img class="tlogo ${cls}" src="${dark ? `${base}-dark/${a}.png` : `${base}/${a}.png`}"${fb} alt="" loading="lazy" decoding="async"
+      onerror="if(this.dataset.fb){this.src=this.dataset.fb;this.removeAttribute('data-fb')}else{this.parentNode.classList.add('nologo');this.remove()}">`;
+  }
+  const teamLogo = (k, cls, dark) => logo(TEAM_LEAGUE[k], LOGO_ABBR[k], cls, dark);
+
   /* ── Today's games: an arena-style scoreboard per game. Away team on the left, home on the right,
      the start time in the middle before the game, then live scores and the clock, then FINAL. */
   function scoreboard(g, ymd) {
@@ -173,11 +188,12 @@
     const away = /^\s*at\b/i.test(g.matchup || "");
     const nick = String(g.matchup || "").replace(/^\s*(vs\.?|at|@)\s*/i, "").trim();
     const o = (OPP[league] || {})[nick] || [nick.slice(0, 3).toUpperCase(), "#8A8478"];
-    const bos = { cls: "us", ab: TEAM_ABBR[g.teamKey] || g.team.slice(0, 3).toUpperCase(), nm: g.team, rec: g.record, color: (TEAMS[g.teamKey] || {}).color };
-    const them = { cls: "them", ab: o[0], nm: nick, rec: g.oppRecord, color: o[1] };
+    const bos = { cls: "us", ab: TEAM_ABBR[g.teamKey] || g.team.slice(0, 3).toUpperCase(), nm: g.team, rec: g.record, color: (TEAMS[g.teamKey] || {}).color,
+      img: logo(league, LOGO_ABBR[g.teamKey], "sb-logo", true) };
+    const them = { cls: "them", ab: o[0], nm: nick, rec: g.oppRecord, color: o[1], img: logo(league, o[0], "sb-logo", true) };
     const [L, R] = away ? [bos, them] : [them, bos];
     const block = (t, side) => `<div class="sb-team sb-${t.cls}" style="--c:${t.color}">
-        <div class="sb-side">${side}</div><div class="sb-ab">${esc(t.ab)}</div><div class="sb-nm">${esc(t.nm)}</div><div class="sb-rec">${esc(t.rec || "")}</div></div>`;
+        <div class="sb-side">${side}</div>${t.img || ""}<div class="sb-ab">${esc(t.ab)}</div><div class="sb-nm">${esc(t.nm)}</div><div class="sb-rec">${esc(t.rec || "")}</div></div>`;
     const mins = clockMin(g.time);
     const when = mins !== "" && mins < 17 * 60 ? "TODAY" : "TONIGHT";
     const tm = String(g.time || "").match(/^(\d{1,2}:\d{2})\s*([AP]M)$/i);
@@ -206,7 +222,7 @@
   }
   // Coming up: the next game for each in-season team not playing today, below Last night.
   function comingUp(off, today) {
-    const todays = (today || []).map((g) => `<li class="cu-today" style="${teamVar(g.teamKey)}"><span class="chip" aria-hidden="true"></span><b>${esc(g.team)}</b>
+    const todays = (today || []).map((g) => `<li class="cu-today" style="${teamVar(g.teamKey)}"><span class="cu-mark">${teamLogo(g.teamKey, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(g.team)}</b>
         <span class="cu-what"><span class="cu-tag">TODAY</span> ${esc(g.matchup || "")}${g.tv ? `<span class="cu-sub">${esc(g.tv)}</span>` : ""}</span>${g.time ? `<span class="cu-time">${esc(g.time)}</span>` : ""}</li>`).join("");
     if (!todays && (!off || !off.length)) return "";
     const rows = todays + (off || []).map((o) => {
@@ -214,7 +230,7 @@
       const m = t.match(/^(.*?)(?:,\s*)(\d{1,2}:\d{2}\s*[AP]M|TBD)$/i);
       const what = m ? m[1] : t, time = m ? m[2] : "";
       const w = what.match(/^(.*?)\s+((?:vs|at)\s.+)$/i);
-      return `<li class="cu-off" data-team="${esc(o.teamKey)}" style="${teamVar(o.teamKey)}"><span class="chip" aria-hidden="true"></span><b>${esc(o.team)}</b>
+      return `<li class="cu-off" data-team="${esc(o.teamKey)}" style="${teamVar(o.teamKey)}"><span class="cu-mark">${teamLogo(o.teamKey, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(o.team)}</b>
         <span class="cu-what">${w ? `<span class="cu-date">${esc(w[1])}</span> · ${esc(w[2])}` : esc(what)}</span>${time ? `<span class="cu-time">${esc(time)}</span>` : ""}</li>`;
     }).join("");
     return `<section class="cu"><h2 class="section-title">Coming up</h2><ul class="cu-list">${rows}</ul></section>`;
@@ -280,7 +296,7 @@
     const sortKey = (g) => `${g.date} ${String(clockMin(g.time) === "" ? 9999 : clockMin(g.time)).padStart(4, "0")}`;
     li.dataset.next = team; li.dataset.date = sortKey(n);
     li.setAttribute("style", teamVar(team));
-    li.innerHTML = `<span class="chip" aria-hidden="true"></span><b>${esc(TEAM_NAME[team] || team)}</b>
+    li.innerHTML = `<span class="cu-mark">${teamLogo(team, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(TEAM_NAME[team] || team)}</b>
       <span class="cu-what"><span class="cu-date">${esc(day)}</span> · ${esc(`${n.home === false ? "at" : "vs"} ${n.opp}`)}</span><span class="cu-time">${esc(n.time || "TBD")}</span>`;
     list.appendChild(li);
     // Keep the list in date order: date the other teams' rows from the schedule, then sort.
@@ -429,12 +445,13 @@
     // Closed card: date/FINAL + result, two score rows (away on top, home below), headline, "See full recap".
     const league = String(g.sport || "").toLowerCase();
     const oppInfo = (OPP[league] || {})[g.opp.name] || [g.opp.abbr, "#8A8478"];
-    const bos = { ab: g.boston.abbr, nm: TEAM_NAME[g.teamKey] || "", sc: g.boston.score, rec: g.record, c: (TEAMS[g.teamKey] || {}).color };
-    const opp = { ab: g.opp.abbr, nm: g.opp.name || "", sc: g.opp.score, rec: g.opp.record, c: oppInfo[1] };
+    const dk = darkTheme();
+    const bos = { ab: g.boston.abbr, nm: TEAM_NAME[g.teamKey] || "", sc: g.boston.score, rec: g.record, c: (TEAMS[g.teamKey] || {}).color, img: teamLogo(g.teamKey, "rc-logo", dk) };
+    const opp = { ab: g.opp.abbr, nm: g.opp.name || "", sc: g.opp.score, rec: g.opp.record, c: oppInfo[1], img: logo(league, oppInfo[0], "rc-logo", dk) };
     const rows = g.home === false ? [bos, opp] : [opp, bos];
     const hi = Math.max(+bos.sc || 0, +opp.sc || 0);
     const row = (t) => `<div class="rc-row${(+t.sc || 0) < hi ? " lose" : ""}" style="--c:${t.c}">
-          <span class="rc-dot"></span><span class="rc-ab">${esc(t.ab)}</span>
+          <span class="rc-mark">${t.img || ""}<span class="rc-dot"></span></span><span class="rc-ab">${esc(t.ab)}</span>
           <span class="rc-nm">${esc(t.nm)}${t.rec ? `<span class="rc-rec">${esc(t.rec)}</span>` : ""}</span>
           <span class="rc-sc">${esc(t.sc)}</span></div>`;
     const day = g.date ? new Date(g.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "short" }).toUpperCase() + " · " : "";
@@ -635,7 +652,7 @@
         ? `<button type="button" class="tn-more" data-more="${(news[k] || []).length - 3}">See ${(news[k] || []).length - 3} more</button>` : "");
       return `<section class="team" style="${teamVar(k)}">
         <header class="team-head">
-          <div class="team-id"><span class="chip"></span><h2>${esc(TEAM_NAME[k])}</h2></div>
+          <div class="team-id"><span class="cu-mark tm-mark">${teamLogo(k, "tm-logo", darkTheme())}<span class="chip"></span></span><h2>${esc(TEAM_NAME[k])}</h2></div>
           ${has ? `<div class="team-btns"><button type="button" class="st-btn" data-team="${k}">Standings</button>
             <button type="button" class="st-btn" data-team="${k}" data-sched="1">Schedule</button></div>` : ""}
           <span class="team-meta" data-team="${k}">${esc(placeLine(k))}</span>
