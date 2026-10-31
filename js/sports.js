@@ -254,6 +254,10 @@
     const games = ((SCHED && SCHED.teams && SCHED.teams[team]) || {}).games || [];
     const n = games.find((x) => x.date > date);
     if (!n || !root.isConnected) { nextPending.delete(key); return; }
+    // Teams tab: swap "Today · …" for the next game too.
+    const day0 = new Date(n.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+    const tn = root.querySelector(`.team-next[data-team="${team}"]`);
+    if (tn) tn.textContent = `Next · ${day0} ${n.home === false ? "at" : "vs"} ${n.opp}, ${n.time || "TBD"}`;
     let list = root.querySelector(".cu-list");
     if (!list) {   // no Coming up section yet (e.g. every in-season team played today): add one
       const sec = document.createElement("section");
@@ -512,7 +516,7 @@
             <button type="button" class="st-btn" data-team="${k}" data-sched="1">Schedule</button></div>` : ""}
           <span class="team-meta">${esc(placeLine(k))}</span>
         </header>
-        ${next ? `<p class="team-next">${esc(next)}</p>` : ""}
+        ${next ? `<p class="team-next" data-team="${k}">${esc(next)}</p>` : ""}
         ${items || `<p class="tn-empty">No new team news today.</p>`}
       </section>`;
     }).join("");
