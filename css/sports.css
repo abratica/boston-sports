@@ -784,3 +784,7 @@ body.view-sports .rc-hl .headline { flex: 1; }
 body.view-sports .game.rc .rc-chev { color: var(--muted); margin-top: 2px; flex: none; }
 body.view-sports .rc-sum { margin: 8px 0 0; font: 500 14.5px/1.45 var(--serif); color: var(--muted); }
 body.view-sports .game.rc[open] .rc-sum, body.view-sports .sb-mode .game.rc .rc-sum { display: none; }
+
+/* Less space above "Last night" when it's the first thing on the page (newspaper mode) */
+body.view-sports .tab-panel > .section-title:first-child,
+body.view-sports .tab-panel > .sb-slot[hidden] + .section-title { margin-top: 8px; }
