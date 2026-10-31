@@ -36,6 +36,7 @@
   const SPORTS_HUB = { name: "98.5 The Sports Hub", url: "https://985thesportshub.com/listen",
     stream: "https://playerservices.streamtheworld.com/api/livestream-redirect/WBZFMAAC.aac" };
   const RADIO = { patriots: SPORTS_HUB, celtics: SPORTS_HUB, bruins: SPORTS_HUB };
+  const STAT_ICON = `<svg class="ic-stat" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`;
   const RADIO_ICON = `<svg class="ic-radio" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="12" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 8l10-4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="15.5" cy="14" r="2.6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M6.5 12.5h4M6.5 15.5h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
   const PAUSE_ICON = `<svg class="ic-pause" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></svg>`;
   const SPIN_ICON = `<svg class="ic-spin" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-dasharray="30 60" stroke-linecap="round"/></svg>`;
@@ -57,7 +58,7 @@
     if (!r) return "";
     const stream = safeUrl(r.stream);
     const title = `${g.team} ${g.matchup || ""}`.trim();
-    const body = `<span class="bl-ic">${RADIO_ICON}${PAUSE_ICON}${SPIN_ICON}</span><span class="bl-go">Listen live</span><span class="bl-st">${esc(r.name)}</span>`;
+    const body = `<span class="bl-ic">${RADIO_ICON}${PAUSE_ICON}${SPIN_ICON}</span><span class="bl-go">Listen live</span><span class="bl-st"><span class="bl-full">${esc(r.name)}</span><span class="bl-short">${esc((String(r.name).match(/^\d+(\.\d+)?/) || [r.name])[0])}</span></span>`;
     return `<div class="board-listen" data-start="${clockMin(g.time)}" data-stream="${esc(stream)}" hidden>${stream
       ? `<button type="button" class="bl-play" data-title="${esc(title)}" data-station="${esc(r.name)}" aria-pressed="false">${body}</button>
          <a class="bl-ext" href="${esc(pageHref(r.url))}" target="_blank" rel="noopener" aria-label="Open ${esc(r.name)}'s page">${EXT_ICON}</a>`
@@ -123,7 +124,8 @@
     const today = `${parts.year}-${parts.month}-${parts.day}`, now = +parts.hour * 60 + +parts.minute;
     updateLayout(root, date, today, now);
     root.querySelectorAll(".board-listen").forEach((a) => {
-      const row = a.previousElementSibling;
+      const acts = a.closest(".sb-acts");
+      const row = acts ? acts.previousElementSibling : a.previousElementSibling;
       const live = !!(row && row.classList.contains("is-live")), final = !!(row && row.classList.contains("is-final"));
       const s = a.dataset.start === "" ? null : +a.dataset.start;
       const inWindow = date === today && s !== null && now >= s - 30 && now <= s + 240;
@@ -214,7 +216,7 @@
   }
   function board(today, date, off) {
     const ymd = String(date || "").replace(/-/g, "");
-    const rows = (today || []).map((g) => scoreboard(g, ymd) + listenLink(g)).join("");
+    const rows = (today || []).map((g) => scoreboard(g, ymd) + `<div class="sb-acts">${listenLink(g)}<button type="button" class="sb-stats" data-team="${esc(g.teamKey)}" hidden>${STAT_ICON}<span>Stats</span>${chevronRight.replace("ta-chev", "sb-chev")}</button></div>`).join("");
     return `<section class="board" aria-label="Today's games">
       <h2>Today's games</h2>
       ${rows || `<div class="board-empty">No Boston games today.</div>`}
@@ -1103,6 +1105,281 @@
     if (li && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openPreview(li.dataset.pv, li.dataset.pvdate || ""); }
   });
 
+  /* ── Live game sheet: tap the scoreboard or Stats during a game ─────────────
+     Box score, plays and team stats from ESPN's game feed (the same feed ESPN's own game page uses),
+     refreshed every 30 seconds while the sheet is open. Before the game, the scoreboard opens the preview. */
+  const lvNum = (v) => { const t = String(v ?? "").trim(); return /^-?\d+$/.test(t) ? +t : t; };
+  const lvPm = (v) => { const t = String(v ?? "").trim(); return !t || /^[+-]/.test(t) || t === "--" || t === "0" ? t : `+${t}`; };
+  const lvLast = (name) => { const w = String(name || "").trim().split(/\s+/); return w.length > 1 ? w.slice(1).join(" ") : w[0] || ""; };
+  function lvGroupGeneric(g) {
+    const cols = g.labels || g.names || [];
+    const rows = (g.athletes || []).filter((a) => (a.stats || []).length).map((a) => ({ name: (a.athlete || {}).displayName || "", values: a.stats.map(lvNum) }));
+    return rows.length ? [{ label: String(g.text || g.name || "").replace(/^\w/, (c) => c.toUpperCase()), columns: cols, rows }] : [];
+  }
+  function lvBoxNba(ts) {
+    const g = (ts.statistics || [])[0] || {};
+    const lab = g.labels || g.names || [], idx = Object.fromEntries(lab.map((l, i) => [l, i]));
+    const cols = ["MIN", "PTS", "REB", "AST", "FG", "3PT", "FT", "STL", "BLK", "TO", "+/-"];
+    if (!cols.every((c) => c in idx)) return lvGroupGeneric(g);
+    const starters = [], bench = [];
+    for (const a of g.athletes || []) {
+      const st = a.stats || [];
+      if (a.didNotPlay || !st.length || ["", "0", "--"].includes(String(st[idx.MIN] ?? "").trim())) continue;
+      const row = { name: (a.athlete || {}).displayName || "", values: cols.map((c) => c === "+/-" ? lvPm(st[idx[c]]) : ["FG", "3PT", "FT"].includes(c) ? st[idx[c]] : lvNum(st[idx[c]])) };
+      (a.starter ? starters : bench).push(row);
+    }
+    bench.sort((x, y) => (+y.values[0] || 0) - (+x.values[0] || 0));
+    const tot = g.totals || [];
+    const totals = tot.length ? cols.map((c) => ["MIN", "+/-"].includes(c) ? "" : ["FG", "3PT", "FT"].includes(c) ? tot[idx[c]] : lvNum(tot[idx[c]])) : null;
+    return [{ label: "", columns: cols, rows: starters.concat(bench), totals, starters: starters.length || 0 }];
+  }
+  function lvBoxNhl(ts) {
+    const sk = [], gl = [];
+    const secs = (t) => /^[\d:]+$/.test(String(t)) ? String(t).split(":").reverse().reduce((a, x, i) => a + (+x) * [1, 60, 3600][i], 0) : 0;
+    for (const g of ts.statistics || []) {
+      const lab = g.labels || g.names || [], idx = Object.fromEntries(lab.map((l, i) => [l, i]));
+      const goalies = /goal/i.test(String(g.name || g.type || "")) && "SA" in idx;
+      for (const a of g.athletes || []) {
+        const st = a.stats || [];
+        if (!st.length) continue;
+        const toi = "TOI" in idx ? st[idx.TOI] : "";
+        if (!toi || toi === "0:00" || toi === "--") continue;
+        const nm = (a.athlete || {}).displayName || "";
+        if (goalies) gl.push({ name: nm, values: [lvNum(st[idx.SA]), lvNum(st[idx.SV]), String(st[idx["SV%"]] ?? "").replace(/^0(?=\.)/, ""), toi] });
+        else if (["G", "A", "+/-", "S", "HT", "BS"].every((x) => x in idx)) {
+          const G = lvNum(st[idx.G]), A = lvNum(st[idx.A]);
+          sk.push({ name: nm, values: [G, A, (+G || 0) + (+A || 0), lvPm(st[idx["+/-"]]), lvNum(st[idx.S]), lvNum(st[idx.HT]), lvNum(st[idx.BS]), toi] });
+        }
+      }
+    }
+    if (!sk.length && !gl.length) return (ts.statistics || []).flatMap(lvGroupGeneric);
+    sk.sort((x, y) => secs(y.values[7]) - secs(x.values[7]));
+    const sum = (i) => sk.reduce((t, r) => t + (typeof r.values[i] === "number" ? r.values[i] : 0), 0);
+    return [{ label: "Skaters", columns: ["G", "A", "PTS", "+/-", "SOG", "HIT", "BLK", "TOI"], rows: sk, totals: [sum(0), sum(1), sum(2), "", sum(4), sum(5), sum(6), ""] },
+      { label: "Goalies", columns: ["SA", "SV", "SV%", "TOI"], rows: gl }];
+  }
+  function lvBoxNfl(ts) {
+    const by = Object.fromEntries((ts.statistics || []).map((g) => [String(g.name || "").toLowerCase(), g]));
+    const rowsFor = (name, want) => {
+      const g = by[name]; if (!g) return null;
+      const lab = g.labels || g.names || [], idx = Object.fromEntries(lab.map((l, i) => [l, i]));
+      return (g.athletes || []).filter((a) => (a.stats || []).length).map((a) => ({ name: (a.athlete || {}).displayName || "", values: want.map((w) => w in idx ? lvNum(a.stats[idx[w]]) : "") }));
+    };
+    const out = [];
+    [["Passing", "passing", ["C/ATT", "YDS", "TD", "INT"]], ["Rushing", "rushing", ["CAR", "YDS", "TD", "LONG"]], ["Receiving", "receiving", ["REC", "YDS", "TD", "TGTS"]]]
+      .forEach(([label, name, cols]) => { const r = rowsFor(name, cols); if (r && r.length) out.push({ label, columns: cols.map((c) => c === "TGTS" ? "TGT" : c), rows: r }); });
+    const d = rowsFor("defensive", ["TOT", "SACKS", "TFL"]);
+    if (d && d.length) out.push({ label: "Defense", columns: ["TCKL", "SACK", "TFL"], rows: d.sort((x, y) => (+y.values[0] || 0) - (+x.values[0] || 0)).slice(0, 6) });
+    return out.length ? out : (ts.statistics || []).flatMap(lvGroupGeneric);
+  }
+  const LV_BOX = { nba: lvBoxNba, nhl: lvBoxNhl, nfl: lvBoxNfl };
+  const LV_STATS = {
+    nhl: [["Shots", "shotsTotal"], ["Faceoffs", "faceoffPercent", "%"], ["Power play", "pp"], ["Hits", "hits"], ["Blocked shots", "blockedShots"],
+      ["Giveaways", "giveaways"], ["Takeaways", "takeaways"], ["Penalty minutes", "penaltyMinutes"]],
+    nba: [["Field goals", "fieldGoalPct", "%", "fieldGoalsMade-fieldGoalsAttempted"], ["3-pointers", "threePointFieldGoalPct", "%", "threePointFieldGoalsMade-threePointFieldGoalsAttempted"],
+      ["Free throws", "freeThrowPct", "%", "freeThrowsMade-freeThrowsAttempted"], ["Rebounds", "totalRebounds"], ["Assists", "assists"], ["Turnovers", "totalTurnovers"],
+      ["Points in the paint", "pointsInPaint"], ["Fast break points", "fastBreakPoints"], ["Largest lead", "largestLead"]],
+    nfl: [["Total yards", "totalYards"], ["Passing yards", "netPassingYards"], ["Rushing yards", "rushingYards"], ["First downs", "firstDowns"], ["3rd down", "thirdDownEff"],
+      ["Turnovers", "turnovers"], ["Penalties", "totalPenaltiesYards"], ["Possession", "possessionTime"]],
+  };
+  function lvParse(lg, k, j) {
+    const comp = ((j.header || {}).competitions || [])[0] || {};
+    const cs = comp.competitors || [];
+    const ab = ESPN_ABBR[k];
+    const side = (c) => {
+      const t = c.team || {}, mine = t.abbreviation === ab;
+      const o = (OPP[lg] || {})[t.name] || [];
+      return { id: String(t.id || ""), abbr: t.abbreviation || "", name: mine ? TEAM_NAME[k] : (t.name || t.abbreviation || ""), mine,
+        score: c.score ?? "0", winner: !!c.winner, color: mine ? (TEAMS[k] || {}).color : (o[1] || (t.alternateColor ? `#${t.alternateColor}` : "#8A8478")) };
+    };
+    const away = side(cs.find((c) => c.homeAway === "away") || cs[0] || {}), home = side(cs.find((c) => c.homeAway === "home") || cs[1] || {});
+    const byId = { [away.id]: away, [home.id]: home };
+    const status = comp.status || {};
+    const state = ((status.type || {}).state) || "pre";
+    // Box score: Boston first, like the recaps.
+    const players = (j.boxscore || {}).players || [];
+    const pm = players.find((p) => (p.team || {}).abbreviation === ab), po = players.find((p) => p !== pm);
+    const build = LV_BOX[lg] || ((ts) => (ts.statistics || []).flatMap(lvGroupGeneric));
+    const box = pm && po ? { boston: { name: TEAM_NAME[k], groups: build(pm) }, opp: { name: (po.team || {}).name || (po.team || {}).abbreviation || "", groups: build(po) } } : null;
+    // Team stats, away on the left.
+    const tstat = {};
+    ((j.boxscore || {}).teams || []).forEach((t) => {
+      const m = {}; (t.statistics || []).forEach((x) => { m[x.name] = x; });
+      tstat[String((t.team || {}).id || "")] = m;
+    });
+    const sa = tstat[away.id] || {}, sh = tstat[home.id] || {};
+    const val = (m, key) => {
+      if (key === "pp") return m.powerPlayGoals && m.powerPlayOpportunities ? `${m.powerPlayGoals.displayValue}/${m.powerPlayOpportunities.displayValue}` : "";
+      return m[key] ? String(m[key].displayValue ?? "") : "";
+    };
+    let stats = (LV_STATS[lg] || []).map(([label, key, unit, sub]) => {
+      const a = val(sa, key), h = val(sh, key);
+      if (a === "" && h === "") return null;
+      return { label, a: a + (unit && a !== "" ? unit : ""), h: h + (unit && h !== "" ? unit : ""), as: sub ? val(sa, sub) : "", hs: sub ? val(sh, sub) : "" };
+    }).filter(Boolean);
+    if (stats.length < 3) stats = Object.keys(sa).map((key) => ({ label: sa[key].label || key, a: val(sa, key), h: val(sh, key) })).filter((x) => x.a !== "" || x.h !== "");
+    // Plays
+    const seen = new Set();
+    const uniq = (list) => list.filter((p) => { const key = `${p.text}|${(p.period || {}).number}|${(p.clock || {}).displayValue}`; if (seen.has(key)) return false; seen.add(key); return true; });
+    let plays = [], playsNote = "";
+    const all = j.plays || [];
+    if (lg === "nhl") {
+      plays = uniq(all.filter((p) => (p.type || {}).text === "Goal" || (p.type || {}).penaltyMinutes)).map((p) => {
+        const t = p.type || {}, goal = t.text === "Goal";
+        const parts = p.participants || [];
+        let who, detail;
+        if (goal) {
+          const sc = parts.find((x) => x.type === "scorer") || parts[0];
+          who = lvLast(sc && sc.athlete ? sc.athlete.displayName : String(p.text || "").split(" Goal")[0]);
+          const ast = parts.filter((x) => x.type === "assister").map((x) => lvLast((x.athlete || {}).displayName));
+          const str = (p.strength || {}).text || "";
+          detail = [ast.length ? `from ${ast.join(", ")}` : "unassisted", /power/i.test(str) ? "power play" : /short/i.test(str) ? "shorthanded" : /empty/i.test(String(p.text)) ? "empty net" : ""].filter(Boolean).join(" · ");
+        } else {
+          const i = String(p.text || "").indexOf(` ${t.text}`);
+          who = lvLast(i > 0 ? p.text.slice(0, i) : (parts[0] && parts[0].athlete ? parts[0].athlete.displayName : p.text));
+          detail = `${t.penaltyMinutes} min · ${String(t.text || "").toLowerCase()}`;
+        }
+        return { per: (p.period || {}).number || 0, clock: (p.clock || {}).displayValue || "", team: byId[String((p.team || {}).id || "")], tag: goal ? "GOAL" : "PEN", goal, who, detail,
+          score: goal ? `${p.awayScore}–${p.homeScore}` : "" };
+      });
+    } else if (lg === "nfl" && (j.scoringPlays || []).length) {
+      plays = j.scoringPlays.map((p) => ({ per: (p.period || {}).number || 0, clock: (p.clock || {}).displayValue || "", team: byId[String((p.team || {}).id || "")],
+        tag: String((p.type || {}).abbreviation || "SCORE").toUpperCase(), goal: true, who: "", detail: p.text || "", score: `${p.awayScore}–${p.homeScore}` }));
+    } else {
+      const recent = uniq(all.filter((p) => p.text && !/^Substitution$/i.test((p.type || {}).text || "") && !/enters the game/i.test(p.text))).slice(-25);
+      plays = recent.map((p) => ({ per: (p.period || {}).number || 0, clock: (p.clock || {}).displayValue || "", team: byId[String((p.team || {}).id || "")],
+        tag: p.scoringPlay ? `+${p.scoreValue || ""}` : "", goal: !!p.scoringPlay, who: "", detail: p.text, score: p.scoringPlay ? `${p.awayScore}–${p.homeScore}` : "" }));
+      if (recent.length) playsNote = "Latest 25 plays";
+    }
+    plays.reverse();
+    return { lg, away, home, status, state, box, stats, plays, playsNote, id: ((j.header || {}).id) || "" };
+  }
+  function lvPeriod(lg, n) {
+    if (lg === "nhl") return n <= 3 ? `${ord(n)} period` : n === 4 ? "Overtime" : n === 5 ? "Shootout" : `${n - 3}OT`;
+    return n <= 4 ? `${ord(n)} quarter` : n === 5 ? "Overtime" : `${n - 4}OT`;
+  }
+  function lvBody(d, tab, bxTab) {
+    const team = (t, r) => {
+      const lose = d.state !== "pre" && (+t.score || 0) < (+(t === d.away ? d.home : d.away).score || 0);
+      const parts = [`<span class="lv-mark">${logo(d.lg, t.abbr, "lv-logo", true)}</span>`, esc(t.abbr), `<span class="n">${esc(t.score)}</span>`];
+      return `<div class="tm${r ? " r" : ""}${lose ? " lose" : ""}" style="--c:${t.color}">${(r ? parts.reverse() : parts).join("")}</div>`;
+    };
+    const clk = d.state === "post" ? String(((d.status.type || {}).shortDetail) || "Final").toUpperCase() : d.state === "pre" ? "SOON" : liveClock(d.lg, d.status);
+    const top = `<div class="lv-score">${team(d.away)}<div class="clk${d.state === "in" ? " on" : ""}">${esc(clk)}</div>${team(d.home, true)}</div>
+      <div class="lv-upd">${d.state === "in" ? "Updates every 30 seconds" : d.state === "post" ? "Final" : "Starts soon"}</div>`;
+    let body = "";
+    if (tab === "box") {
+      body = d.box ? `<div class="report-body lv-box"><div class="bx-tabs" role="tablist">
+          <button type="button" class="bx-tab${bxTab ? "" : " on"}" data-bx="0">${esc(d.box.boston.name)}</button>
+          <button type="button" class="bx-tab${bxTab ? " on" : ""}" data-bx="1">${esc(d.box.opp.name)}</button></div>
+          <div class="bx-pane"${bxTab ? " hidden" : ""}>${d.box.boston.groups.map(boxGroup).join("")}</div>
+          <div class="bx-pane"${bxTab ? "" : " hidden"}>${d.box.opp.groups.map(boxGroup).join("")}</div></div>`
+        : `<p class="lv-empty">The box score shows up once the game starts.</p>`;
+    } else if (tab === "plays") {
+      if (!d.plays.length) body = `<p class="lv-empty">${d.lg === "nhl" ? "No goals or penalties yet." : "No plays yet."}</p>`;
+      else {
+        let cur = null;
+        body = (d.playsNote ? `<p class="lv-note">${esc(d.playsNote)}</p>` : "") + d.plays.map((p) => {
+          const head = p.per !== cur ? `${cur !== null ? "</ul>" : ""}<h5 class="lp-per">${esc(lvPeriod(d.lg, p.per))}</h5><ul class="lp">` : "";
+          cur = p.per;
+          const tag = p.tag ? `<span class="lp-tag ${p.goal ? "g" : "p"}">${esc(p.tag)}</span>` : "";
+          return `${head}<li class="lp-row${p.goal ? " is-goal" : ""}" style="--c:${p.team ? p.team.color : "var(--rule)"}"><span class="lp-t">${esc(p.clock)}</span>
+            <span class="lp-team">${esc(p.team ? p.team.abbr : "")}</span><span class="lp-what">${tag}${p.who ? `<b>${esc(p.who)}</b><small>${esc(p.detail)}</small>` : `<span class="lp-txt">${esc(p.detail)}</span>`}</span>
+            ${p.score ? `<span class="lp-sc">${esc(p.score)}</span>` : "<span></span>"}</li>`;
+        }).join("") + "</ul>";
+      }
+    } else {
+      const n = (v) => { const t = String(v); if (/^\d+:\d+$/.test(t)) return t.split(":").reduce((a, x) => a * 60 + +x, 0); const m = t.match(/-?\d+(\.\d+)?/); return m ? Math.max(0, +m[0]) : 0; };
+      body = d.stats.length ? `<div class="ts-hd"><span>${esc(d.away.abbr)}</span><span>${esc(d.home.abbr)}</span></div><div class="ts">${d.stats.map((x) => {
+          const av = n(x.a), hv = n(x.h), tot = av + hv || 1;
+          return `<div class="ts-row"><div class="ts-top"><b>${esc(x.a || "–")}${x.as ? `<small>${esc(x.as)}</small>` : ""}</b><span>${esc(x.label)}</span><b>${x.hs ? `<small>${esc(x.hs)}</small>` : ""}${esc(x.h || "–")}</b></div>
+            <div class="ts-bar"><i style="--c:${d.away.color};flex:${av / tot || 0.5}"></i><i style="--c:${d.home.color};flex:${hv / tot || 0.5}"></i></div></div>`;
+        }).join("")}</div>` : `<p class="lv-empty">Team stats show up once the game starts.</p>`;
+    }
+    return top + body + `<a class="pv-espn" href="https://www.espn.com/${d.lg}/game/_/gameId/${esc(d.id)}" target="_blank" rel="noopener">More on ESPN<span aria-hidden="true">↗</span></a>`;
+  }
+  async function lvFetch(lg, id, k) {
+    try {
+      const res = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${SPORT_PATH[lg]}/summary?event=${encodeURIComponent(id)}`, { cache: "no-store" });
+      if (!res.ok) return null;
+      return lvParse(lg, k, await res.json());
+    } catch { return null; }
+  }
+  let lvBusy = false;
+  async function openLive(row) {
+    if (lvBusy || document.querySelector(".st-sheet")) return;
+    const lg = row.dataset.league, id = row.dataset.ev, k = row.dataset.team;
+    if (!id || !LV_BOX[lg]) { if (k) openPreview(k, ""); return; }
+    lvBusy = true;
+    let d = await lvFetch(lg, id, k);
+    lvBusy = false;
+    if (!d) { window.open(row.href, "_blank", "noopener"); return; }   // feed unreachable: fall back to ESPN
+    let tab = "box", bxTab = 0;
+    try { tab = sessionStorage.getItem("bs-lvtab") || "box"; } catch { /* box */ }
+    const el = document.createElement("div");
+    el.className = "st-sheet lv-sheet";
+    el.setAttribute("role", "dialog");
+    el.setAttribute("aria-label", `${TEAM_NAME[k]} game stats`);
+    el.style.cssText = teamVar(k);
+    const title = () => (d.state === "post" ? "Final" : "Live");
+    el.innerHTML = `<div class="st-panel">
+      <header class="st-head"><h2>${title()}</h2><span class="st-lg">${esc(lg.toUpperCase())}</span>
+        <button type="button" class="st-close" aria-label="Close">✕</button></header>
+      <div class="st-seg lv-seg" role="tablist">
+        <button type="button" data-lv="box" aria-selected="${tab === "box"}">Box score</button>
+        <button type="button" data-lv="plays" aria-selected="${tab === "plays"}">Plays</button>
+        <button type="button" data-lv="stats" aria-selected="${tab === "stats"}">Team stats</button>
+      </div>
+      <div class="st-body"></div>
+    </div>`;
+    const body = el.querySelector(".st-body");
+    const render = (keepScroll) => { const top = body.scrollTop; body.innerHTML = lvBody(d, tab, bxTab); body.scrollTop = keepScroll ? top : 0; el.querySelector(".st-head h2").textContent = title(); };
+    document.body.appendChild(el);
+    document.body.style.overflow = "hidden";
+    render(false);
+    history.pushState({ stSheet: true }, "");
+    let closed = false, timer = null;
+    const remove = () => {
+      if (closed) return;
+      closed = true;
+      clearInterval(timer);
+      el.remove();
+      document.body.style.overflow = "";
+      window.removeEventListener("popstate", onPop);
+    };
+    const onPop = () => remove();
+    window.addEventListener("popstate", onPop);
+    const close = () => { if (history.state && history.state.stSheet) history.back(); else remove(); };
+    el.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    el.addEventListener("click", (e) => {
+      if (e.target === el || e.target.closest(".st-close")) return close();
+      const seg = e.target.closest(".lv-seg button");
+      if (seg) {
+        tab = seg.dataset.lv;
+        try { sessionStorage.setItem("bs-lvtab", tab); } catch { /* fine */ }
+        el.querySelectorAll(".lv-seg button").forEach((x) => x.setAttribute("aria-selected", String(x === seg)));
+        return render(false);
+      }
+      const bt = e.target.closest(".lv-box .bx-tab");
+      if (bt) bxTab = +bt.dataset.bx;   // remembered across refreshes (the shared handler flips the panes)
+    });
+    el.querySelector(".st-close").focus();
+    timer = setInterval(async () => {
+      if (closed || document.hidden || d.state === "post") return;
+      const nd = await lvFetch(lg, id, k);
+      if (nd && !closed) { d = nd; render(true); }
+    }, 30000);
+  }
+  document.addEventListener("click", (e) => {
+    const sb = e.target.closest(".sb-stats");
+    const row = sb ? (sb.closest(".sb-acts") || {}).previousElementSibling : e.target.closest(".board-row.sb");
+    if (!row || !row.classList || !row.classList.contains("board-row")) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey) return;   // let modified clicks open ESPN
+    e.preventDefault();
+    if (row.dataset.ev && (row.classList.contains("is-live") || row.classList.contains("is-final"))) openLive(row);
+    else if (row.dataset.team) openPreview(row.dataset.team, "");
+  });
+
   document.addEventListener("click", (e) => {
     const b = e.target.closest(".st-btn");
     if (!b) return;
@@ -1163,6 +1440,16 @@
   let tick = null;
   function onVisible() { if (!document.hidden && tick) tick(); }
 
+  // "Q3 · 4:12", "2ND · 11:05", "OT · 2:40", "HALFTIME", "END OF 2ND"
+  function liveClock(league, status) {
+    const st = (status && status.type) || {};
+    const p = (status && status.period) || 0, dc = (status && status.displayClock) || "";
+    const regs = league === "nhl" ? 3 : league === "mlb" ? 99 : 4;
+    if (/HALFTIME/.test(st.name || "")) return "HALFTIME";
+    if (league === "mlb" || dc === "0:00" || !dc) return String(st.shortDetail || st.detail || "").toUpperCase();
+    if (p > regs) return `${league === "nhl" && p > 4 ? "SO" : p - regs > 1 ? `${p - regs}OT` : "OT"} · ${dc}`;
+    return `${league === "nhl" ? ordinal(p) : `Q${p}`} · ${dc}`;
+  }
   function showGame(row, ev) {
     const comp = ev.competitions && ev.competitions[0];
     if (!comp) return;
@@ -1173,7 +1460,11 @@
     if (link && link.href) row.href = link.href;
     const st = (ev.status && ev.status.type) || {};
     const state = st.state;
+    if (ev.id) row.dataset.ev = ev.id;
     if (state === "pre" || !state) return;
+    const acts = row.nextElementSibling;
+    const statsBtn = acts && acts.classList.contains("sb-acts") && acts.querySelector(".sb-stats");
+    if (statsBtn) statsBtn.hidden = false;
     const usLeft = row.dataset.away === "1";
     const left = usLeft ? us : them, right = usLeft ? them : us;
     const n = (c) => Number(c.score) || 0;
@@ -1189,14 +1480,7 @@
     const clock = row.querySelector(".sb-clock");
     const league = row.dataset.league;
     if (state === "in") {
-      const p = (ev.status && ev.status.period) || 0, dc = (ev.status && ev.status.displayClock) || "";
-      const regs = league === "nhl" ? 3 : league === "mlb" ? 99 : 4;
-      let txt;
-      if (/HALFTIME/.test(st.name || "")) txt = "HALFTIME";
-      else if (league === "mlb" || dc === "0:00" || !dc) txt = String(st.shortDetail || st.detail || "").toUpperCase();
-      else if (p > regs) txt = `${league === "nhl" && p > 4 ? "SO" : p - regs > 1 ? `${p - regs}OT` : "OT"} · ${dc}`;
-      else txt = `${league === "nhl" ? ordinal(p) : `Q${p}`} · ${dc}`;
-      clock.textContent = txt;
+      clock.textContent = liveClock(league, ev.status);
     } else {
       const res = us.winner ? "W" : them.winner ? "L" : "";
       clock.textContent = `${String(st.shortDetail || "Final").toUpperCase()}${res ? ` · ${res}` : ""}`;
