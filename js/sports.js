@@ -816,7 +816,11 @@
     listenTimer = setInterval(upd, 60000);
     const rows = [...root.querySelectorAll(".board-row[data-league]")];
     const todayET = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
-    if (!rows.length || data.date !== todayET) return;
+    // Keep checking scores after midnight until the next morning's issue replaces this one,
+    // so last night's games keep their final scores (and late games keep updating) overnight.
+    const yday = new Date(Date.now() - 864e5);
+    const yesterdayET = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(yday);
+    if (!rows.length || (data.date !== todayET && data.date !== yesterdayET)) return;
     const ymd = data.date.replace(/-/g, "");
     tick = async () => {
       if (document.hidden) return;
