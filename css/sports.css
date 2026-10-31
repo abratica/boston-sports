@@ -877,16 +877,18 @@ body.view-sports .sb-mid .sb-tv { margin-top: 6px; justify-content: center; }
 body.view-sports .sb-acts { display: flex; gap: 8px; margin: 0 0 10px; }
 body.view-sports .sb-acts:not(:has(> :not([hidden]))) { display: none; }
 body.view-sports .sb-acts .board-listen { flex: 1 1 auto; min-width: 0; margin: 0; }
-body.view-sports .sb-stats { flex: none; display: flex; align-items: center; gap: 8px; padding: 10px 12px; border: 0; border-radius: 10px; background: rgba(247, 244, 238, 0.08);
-  color: #F7F4EE; font: 800 15px/1.25 var(--serif); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+body.view-sports .board-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; min-height: 34px; }
+body.view-sports .board-head h2 { margin: 0; }
+body.view-sports .sb-stats { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px 6px 11px; border: 0; border-radius: 999px; background: rgba(247, 244, 238, 0.1);
+  color: #F7F4EE; font: 800 14px/1.2 var(--serif); cursor: pointer; -webkit-tap-highlight-color: transparent; }
 body.view-sports .sb-stats[hidden] { display: none; }
-body.view-sports .sb-stats:active { background: rgba(247, 244, 238, 0.14); }
+body.view-sports .sb-stats:active { background: rgba(247, 244, 238, 0.18); }
 body.view-sports .sb-stats .ic-stat { color: #FF5A50; flex: none; }
 body.view-sports .sb-stats .sb-chev { color: rgba(247, 244, 238, 0.6); margin-left: -2px; flex: none; }
-body.view-sports .sb-acts .board-listen[hidden] + .sb-stats { flex: 1; justify-content: center; }
-body.view-sports .bl-short { display: none; }
-body.view-sports .sb-acts:has(.sb-stats:not([hidden])) .bl-full { display: none; }
-body.view-sports .sb-acts:has(.sb-stats:not([hidden])) .bl-short { display: inline; }
+body.view-sports .sb-label { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 32px; margin: 0 0 8px; }
+body.view-sports .sb-label > span { font: 700 13px var(--display); letter-spacing: .12em; color: rgba(247, 244, 238, .5); text-transform: uppercase; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+body.view-sports .sb-label + .board-row.sb { border-top: 0; }
+body.view-sports .sb-acts + .sb-label { border-top: 1px solid rgba(247, 244, 238, 0.14); padding-top: 12px; margin-top: 4px; }
 body.view-sports .board-row.sb { cursor: pointer; }
 
 /* ── Live game sheet ── */

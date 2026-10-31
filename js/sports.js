@@ -58,7 +58,7 @@
     if (!r) return "";
     const stream = safeUrl(r.stream);
     const title = `${g.team} ${g.matchup || ""}`.trim();
-    const body = `<span class="bl-ic">${RADIO_ICON}${PAUSE_ICON}${SPIN_ICON}</span><span class="bl-go">Listen live</span><span class="bl-st"><span class="bl-full">${esc(r.name)}</span><span class="bl-short">${esc((String(r.name).match(/^\d+(\.\d+)?/) || [r.name])[0])}</span></span>`;
+    const body = `<span class="bl-ic">${RADIO_ICON}${PAUSE_ICON}${SPIN_ICON}</span><span class="bl-go">Listen live</span><span class="bl-st">${esc(r.name)}</span>`;
     return `<div class="board-listen" data-start="${clockMin(g.time)}" data-stream="${esc(stream)}" hidden>${stream
       ? `<button type="button" class="bl-play" data-title="${esc(title)}" data-station="${esc(r.name)}" aria-pressed="false">${body}</button>
          <a class="bl-ext" href="${esc(pageHref(r.url))}" target="_blank" rel="noopener" aria-label="Open ${esc(r.name)}'s page">${EXT_ICON}</a>`
@@ -216,9 +216,13 @@
   }
   function board(today, date, off) {
     const ymd = String(date || "").replace(/-/g, "");
-    const rows = (today || []).map((g) => scoreboard(g, ymd) + `<div class="sb-acts">${listenLink(g)}<button type="button" class="sb-stats" data-team="${esc(g.teamKey)}" hidden>${STAT_ICON}<span>Stats</span>${chevronRight.replace("ta-chev", "sb-chev")}</button></div>`).join("");
+    // Stats sits top right: beside the heading with one game, on a label line per game when two overlap.
+    const stats = (g) => `<button type="button" class="sb-stats" data-team="${esc(g.teamKey)}" hidden>${STAT_ICON}<span>Stats</span>${chevronRight.replace("ta-chev", "sb-chev")}</button>`;
+    const many = (today || []).length > 1;
+    const rows = (today || []).map((g) => (many ? `<div class="sb-label"><span>${esc(`${g.team} ${g.matchup || ""}`.trim())}</span>${stats(g)}</div>` : "")
+      + scoreboard(g, ymd) + `<div class="sb-acts">${listenLink(g)}</div>`).join("");
     return `<section class="board" aria-label="Today's games">
-      <h2>Today's games</h2>
+      <div class="board-head"><h2>Today's games</h2>${!many && (today || []).length ? stats(today[0]) : ""}</div>
       ${rows || `<div class="board-empty">No Boston games today.</div>`}
     </section>`;
   }
@@ -1372,7 +1376,7 @@
   }
   document.addEventListener("click", (e) => {
     const sb = e.target.closest(".sb-stats");
-    const row = sb ? (sb.closest(".sb-acts") || {}).previousElementSibling : e.target.closest(".board-row.sb");
+    const row = sb ? document.querySelector(`.board-row.sb[data-team="${sb.dataset.team}"]`) : e.target.closest(".board-row.sb");
     if (!row || !row.classList || !row.classList.contains("board-row")) return;
     if (e.metaKey || e.ctrlKey || e.shiftKey) return;   // let modified clicks open ESPN
     e.preventDefault();
@@ -1462,8 +1466,8 @@
     const state = st.state;
     if (ev.id) row.dataset.ev = ev.id;
     if (state === "pre" || !state) return;
-    const acts = row.nextElementSibling;
-    const statsBtn = acts && acts.classList.contains("sb-acts") && acts.querySelector(".sb-stats");
+    const board = row.closest(".board");
+    const statsBtn = board && board.querySelector(`.sb-stats[data-team="${row.dataset.team}"]`);
     if (statsBtn) statsBtn.hidden = false;
     const usLeft = row.dataset.away === "1";
     const left = usLeft ? us : them, right = usLeft ? them : us;
@@ -1493,6 +1497,15 @@
       if (ru) row.querySelector(".sb-us .sb-rec").textContent = ru;
       if (rt) row.querySelector(".sb-them .sb-rec").textContent = rt;
     }
+    boardHead(board);
+  }
+  // The heading follows the day: "Today's games" before, "Live" while any game is on, "Final" once all are over.
+  function boardHead(board) {
+    const h = board && board.querySelector(".board-head h2");
+    if (!h) return;
+    const rows = [...board.querySelectorAll(".board-row.sb")];
+    h.textContent = rows.some((r) => r.classList.contains("is-live")) ? "Live"
+      : rows.length && rows.every((r) => r.classList.contains("is-final")) ? "Final" : "Today's games";
   }
 
   let listenTimer = null;
