@@ -184,7 +184,7 @@
     const timeHtml = tm ? `${esc(tm[1])}<span class="sb-ampm">${esc(tm[2].toUpperCase())}</span>` : esc(g.time || "TBD");
     const attrs = league ? ` href="https://www.espn.com/${league}/scoreboard/_/date/${ymd}" target="_blank" rel="noopener" data-league="${league}" data-abbr="${ESPN_ABBR[g.teamKey] || ""}"` : "";
     const tag = league ? "a" : "div";
-    return `<${tag} class="board-row sb"${attrs} data-away="${away ? 1 : 0}">
+    return `<${tag} class="board-row sb"${attrs} data-away="${away ? 1 : 0}" data-team="${esc(g.teamKey)}">
         <div class="sb-grid">
           ${block(L, "AWAY")}
           <div class="sb-mid">
@@ -214,7 +214,7 @@
       const m = t.match(/^(.*?)(?:,\s*)(\d{1,2}:\d{2}\s*[AP]M|TBD)$/i);
       const what = m ? m[1] : t, time = m ? m[2] : "";
       const w = what.match(/^(.*?)\s+((?:vs|at)\s.+)$/i);
-      return `<li style="${teamVar(o.teamKey)}"><span class="chip" aria-hidden="true"></span><b>${esc(o.team)}</b>
+      return `<li class="cu-off" data-team="${esc(o.teamKey)}" style="${teamVar(o.teamKey)}"><span class="chip" aria-hidden="true"></span><b>${esc(o.team)}</b>
         <span class="cu-what">${w ? `<span class="cu-date">${esc(w[1])}</span> · ${esc(w[2])}` : esc(what)}</span>${time ? `<span class="cu-time">${esc(time)}</span>` : ""}</li>`;
     }).join("");
     return `<section class="cu"><h2 class="section-title">Coming up</h2><ul class="cu-list">${rows}</ul></section>`;
@@ -241,6 +241,48 @@
     root.querySelectorAll(".cu-today").forEach((li) => { li.hidden = on; });
     const cu = root.querySelector(".cu");
     if (cu) cu.hidden = !cu.querySelector(".cu-list li:not([hidden])");
+    // As soon as a game is final, that team's next game joins Coming up.
+    slot.querySelectorAll(".board-row.sb.is-final[data-team]").forEach((r) => addNextGame(root, r.dataset.team, date));
+  }
+  const nextPending = new Set();
+  async function addNextGame(root, team, date) {
+    const key = `${date}:${team}`;
+    if (nextPending.has(key) && root.querySelector(`.cu-list li[data-next="${team}"]`)) return;
+    if (nextPending.has(key)) return;
+    nextPending.add(key);
+    await loadSchedule();
+    const games = ((SCHED && SCHED.teams && SCHED.teams[team]) || {}).games || [];
+    const n = games.find((x) => x.date > date);
+    if (!n || !root.isConnected) { nextPending.delete(key); return; }
+    let list = root.querySelector(".cu-list");
+    if (!list) {   // no Coming up section yet (e.g. every in-season team played today): add one
+      const sec = document.createElement("section");
+      sec.className = "cu";
+      sec.innerHTML = `<h2 class="section-title">Coming up</h2><ul class="cu-list"></ul>`;
+      const past = root.querySelector('.tab-panel[data-tab="games"] .archive-link');
+      if (!past) { nextPending.delete(key); return; }
+      past.before(sec);
+      list = sec.querySelector(".cu-list");
+    }
+    if (list.querySelector(`li[data-next="${team}"]`)) return;
+    const day = new Date(n.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+    const li = document.createElement("li");
+    const sortKey = (g) => `${g.date} ${String(clockMin(g.time) === "" ? 9999 : clockMin(g.time)).padStart(4, "0")}`;
+    li.dataset.next = team; li.dataset.date = sortKey(n);
+    li.setAttribute("style", teamVar(team));
+    li.innerHTML = `<span class="chip" aria-hidden="true"></span><b>${esc(TEAM_NAME[team] || team)}</b>
+      <span class="cu-what"><span class="cu-date">${esc(day)}</span> · ${esc(`${n.home === false ? "at" : "vs"} ${n.opp}`)}</span><span class="cu-time">${esc(n.time || "TBD")}</span>`;
+    list.appendChild(li);
+    // Keep the list in date order: date the other teams' rows from the schedule, then sort.
+    list.querySelectorAll("li.cu-off[data-team]").forEach((o) => {
+      if (o.dataset.date) return;
+      const g = (((SCHED.teams || {})[o.dataset.team] || {}).games || []).find((x) => x.date >= date);
+      o.dataset.date = g ? sortKey(g) : "9999";
+    });
+    [...list.querySelectorAll("li:not(.cu-today)")].sort((a, b) => (a.dataset.date || "9999").localeCompare(b.dataset.date || "9999"))
+      .forEach((x) => list.appendChild(x));
+    const cu = list.closest(".cu");
+    if (cu) cu.hidden = !list.querySelector("li:not([hidden])");
   }
 
   /* ── Highlight videos (official YouTube uploads) ──
