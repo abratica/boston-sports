@@ -198,14 +198,23 @@
   function board(today, date, off) {
     const ymd = String(date || "").replace(/-/g, "");
     const rows = (today || []).map((g) => scoreboard(g, ymd) + listenLink(g)).join("");
-    const next = (off || []).map((o) => `<div class="board-next">
-        <span class="chip" style="${teamVar(o.teamKey)}"></span><b>${esc(o.team)}</b>
-        <span>${esc(String(o.text || "").replace(/^Next:\s*/, ""))}</span></div>`).join("");
     return `<section class="board" aria-label="Today's games">
       <h2>Today's games</h2>
       ${rows || `<div class="board-empty">No Boston games today.</div>`}
-      ${next ? `<div class="board-upnext"><h3>Upcoming games</h3>${next}</div>` : ""}
     </section>`;
+  }
+  // Coming up: the next game for each in-season team not playing today, below Last night.
+  function comingUp(off) {
+    if (!off || !off.length) return "";
+    const rows = off.map((o) => {
+      const t = String(o.text || "").replace(/^Next:\s*/i, "");
+      const m = t.match(/^(.*?)(?:,\s*)(\d{1,2}:\d{2}\s*[AP]M|TBD)$/i);
+      const what = m ? m[1] : t, time = m ? m[2] : "";
+      const w = what.match(/^(.*?)\s+((?:vs|at)\s.+)$/i);
+      return `<li style="${teamVar(o.teamKey)}"><span class="chip" aria-hidden="true"></span><b>${esc(o.team)}</b>
+        <span class="cu-what">${w ? `<span class="cu-date">${esc(w[1])}</span> · ${esc(w[2])}` : esc(what)}</span>${time ? `<span class="cu-time">${esc(time)}</span>` : ""}</li>`;
+    }).join("");
+    return `<h2 class="section-title">Coming up</h2><ul class="cu-list">${rows}</ul>`;
   }
 
   /* ── Highlight videos (official YouTube uploads) ──
@@ -726,8 +735,9 @@
       </nav>
       <main class="sports-main">
         <div class="tab-panel" data-tab="games"${tab === "games" ? "" : " hidden"}>
-          ${board(data.today, data.date, data.off)}
+          ${board(data.today, data.date)}
           ${results.length ? `<h2 class="section-title">Last night</h2>${results.map((g) => game(g)).join("")}` : ""}
+          ${comingUp(data.off)}
           <a class="archive-link" href="${ctx.archiveHref}">Past games <span aria-hidden="true">›</span></a>
         </div>
         <div class="tab-panel" data-tab="teams"${tab === "teams" ? "" : " hidden"}>

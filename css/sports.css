@@ -737,3 +737,13 @@ body.view-sports .sb-clock { margin-top: 7px; font: 700 15px var(--display); let
 body.view-sports .board-row.sb.is-live .sb-clock { color: #FF5A50; }
 body.view-sports .sb-tv { justify-content: center; margin-top: 10px; }
 body.view-sports .sb-tv[hidden] { display: none; }
+
+/* ── Coming up (below Last night) ── */
+body.view-sports .cu-list { list-style: none; margin: 0 0 18px; padding: 0; background: var(--card); border: 1px solid var(--rule); border-radius: 14px; overflow: hidden; }
+body.view-sports .cu-list li { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border-top: 1px solid var(--rule); }
+body.view-sports .cu-list li:first-child { border-top: 0; }
+body.view-sports .cu-list .chip { flex: none; }
+body.view-sports .cu-list b { font: 700 17px var(--display); min-width: 64px; }
+body.view-sports .cu-what { flex: 1; min-width: 0; font: 600 13.5px var(--serif); color: var(--muted); }
+body.view-sports .cu-date { color: var(--ink); }
+body.view-sports .cu-time { font: 700 15px var(--display); white-space: nowrap; }
