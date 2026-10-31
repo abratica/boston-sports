@@ -936,3 +936,11 @@ html[data-theme="dark"] .lv-score { border: 1px solid #2C2B29; }
 .lp-what:has(.lp-txt) { display: block; }
 .lp-what:has(.lp-txt) .lp-tag { display: inline-block; margin-right: 6px; vertical-align: 1px; }
 .lp-row.is-goal .lp-txt { font-weight: 700; }
+/* Recap: Stats button under the line score */
+body.view-sports .rc-statbtn { display: flex; align-items: center; gap: 9px; width: 100%; padding: 11px 12px; margin: 10px 0 18px; border: 0; border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 6%, var(--card)); color: var(--ink); font: 700 15px var(--serif); text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+html[data-theme="dark"] body.view-sports .rc-statbtn { background: #262523; }
+body.view-sports .rc-statbtn:active { background: color-mix(in srgb, var(--ink) 11%, var(--card)); }
+body.view-sports .rc-statbtn .ic-stat, body.view-sports .rc-statbtn .rcs-chev { color: var(--muted); flex: none; }
+body.view-sports .rc-statbtn .t { flex: 1; min-width: 0; }
+body.view-sports .rc-statbtn .s { color: var(--muted); font-weight: 500; font-size: 13.5px; margin-left: 6px; }

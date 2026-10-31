@@ -376,10 +376,10 @@
 
 
   /* ── Game story: line score + quarter by quarter (always shown) ── */
-  function story(g) {
+  function story(g, statBtn = "") {
     const r = g.report;
     if (!r || !(r.sections || []).length) {
-      return (Array.isArray(g.recap) ? g.recap : [g.recap]).filter(Boolean).map((t) => `<p>${esc(t)}</p>`).join("");
+      return (Array.isArray(g.recap) ? g.recap : [g.recap]).filter(Boolean).map((t) => `<p>${esc(t)}</p>`).join("") + statBtn;
     }
     const per = r.periods || [];
     const line = per.length ? `<table class="line">
@@ -388,7 +388,7 @@
           <tr class="bos"><td>${esc(g.boston.abbr)}</td>${(r.boston || []).map((v) => `<td>${esc(v)}</td>`).join("")}<td>${esc(g.boston.score)}</td></tr>
           <tr><td>${esc(g.opp.abbr)}</td>${(r.opp || []).map((v) => `<td>${esc(v)}</td>`).join("")}<td>${esc(g.opp.score)}</td></tr>
         </tbody></table>` : "";
-    return `<div class="story">${line}
+    return `<div class="story">${line}${statBtn}
       ${r.sections.map((x) => `<div class="rp">
         <div class="rp-head"><span class="rp-label">${esc(x.label)}</span>${x.score ? `<span class="rp-score">${esc(x.score)}</span>` : ""}</div>
         <p>${esc(x.text)}</p></div>`).join("")}
@@ -397,7 +397,7 @@
     </div>`;
   }
 
-  /* ── Full box score (collapsible, team tabs) ── */
+  /* ── Box score tables (used by the stats sheet) ── */
   function boxGroup(gr) {
     const cols = gr.columns || [];
     const n = gr.starters || 0;
@@ -410,22 +410,6 @@
     return `${gr.label ? `<h5 class="bx-group">${esc(gr.label)}</h5>` : ""}
       <div class="bx-scroll"><table class="bx"><thead><tr><th scope="col">${esc(gr.label || "Player")}</th>${cols.map((c) => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>
       <tbody>${rows}${tot}</tbody></table></div>`;
-  }
-  function box(g) {
-    const b = g.box;
-    if (!b || !b.boston || !b.opp) return "";
-    return `<details class="report boxscore">
-      <summary>Full box score ${chevron(14)}</summary>
-      <div class="report-body">
-        <div class="bx-tabs" role="tablist">
-          <button type="button" class="bx-tab on" data-bx="0">${esc(b.boston.name)}</button>
-          <button type="button" class="bx-tab" data-bx="1">${esc(b.opp.name)}</button>
-        </div>
-        <div class="bx-pane">${(b.boston.groups || []).map(boxGroup).join("")}</div>
-        <div class="bx-pane" hidden>${(b.opp.groups || []).map(boxGroup).join("")}</div>
-        ${b.source ? `<p class="rp-src">Box score: <a href="${esc(b.source.url)}" target="_blank" rel="noopener">${esc(b.source.name)}</a></p>` : ""}
-      </div>
-    </details>`;
   }
   document.addEventListener("click", (e) => {
     const t = e.target.closest(".bx-tab");
@@ -444,6 +428,18 @@
     return extra.length > 1 ? `/${extra.length}OT` : "/OT";
   };
   const prevDay = (iso) => { const d = new Date(iso + "T12:00:00"); d.setDate(d.getDate() - 1); return d.toISOString().slice(0, 10); };
+  // Recaps: a Stats button under the line score opens the same sheet as the live scoreboard.
+  const RC = {};
+  function recapStatBtn(g) {
+    const lg = String(g.sport || "").toLowerCase();
+    const m = JSON.stringify([g.box && g.box.source, g.report && g.report.sources, g.links]).match(/espn\.com\/[a-z]+\/[a-z]+\/_\/gameId\/(\d+)/);
+    const id = m ? m[1] : "";
+    if (!id && !(g.box && g.box.boston)) return "";
+    const key = `${g.teamKey}|${g.date || ""}|${g.opp.abbr}`;
+    RC[key] = g;
+    return `<button type="button" class="rc-statbtn" data-rc="${esc(key)}" data-league="${esc(lg)}" data-ev="${esc(id)}">${STAT_ICON.replace('width="16" height="16"', 'width="18" height="18"')}
+      <span class="t">Stats<span class="s">Box score · Plays · Team stats</span></span>${chevronRight.replace("ta-chev", "rcs-chev")}</button>`;
+  }
   function game(g, open) {
     const pli = (p) => `
       <li><span class="p-name">${esc(p.name)}</span>
@@ -473,10 +469,9 @@
       </summary>
       <div class="game-body">
         ${videos(g.videos, g.sport)}
-        ${story(g)}
+        ${story(g, recapStatBtn(g))}
         ${P.length ? `<h4 class="sub">Top player stats</h4><ul class="performers">${P.map(pli).join("")}</ul>` : ""}
         ${g.oppLine ? `<p class="opp-line"><b>${esc(g.opp.name || g.opp.abbr)}:</b> ${esc(g.oppLine)}</p>` : ""}
-        ${box(g)}
         ${g.takeaway ? `<p class="takeaway"><strong>What it means.</strong> ${esc(g.takeaway)}</p>` : ""}
       </div>
     </details>`;
@@ -1280,7 +1275,7 @@
           <div class="bx-pane"${bxTab ? "" : " hidden"}>${d.box.opp.groups.map(boxGroup).join("")}</div></div>`
         : `<p class="lv-empty">The box score shows up once the game starts.</p>`;
     } else if (tab === "plays") {
-      if (!d.plays.length) body = `<p class="lv-empty">${d.lg === "nhl" ? "No goals or penalties yet." : "No plays yet."}</p>`;
+      if (!d.plays.length) body = `<p class="lv-empty">${d.offline ? "Plays couldn't load from ESPN right now." : d.lg === "nhl" ? "No goals or penalties yet." : "No plays yet."}</p>`;
       else {
         let cur = null;
         body = (d.playsNote ? `<p class="lv-note">${esc(d.playsNote)}</p>` : "") + d.plays.map((p) => {
@@ -1298,9 +1293,10 @@
           const av = n(x.a), hv = n(x.h), tot = av + hv || 1;
           return `<div class="ts-row"><div class="ts-top"><b>${esc(x.a || "–")}${x.as ? `<small>${esc(x.as)}</small>` : ""}</b><span>${esc(x.label)}</span><b>${x.hs ? `<small>${esc(x.hs)}</small>` : ""}${esc(x.h || "–")}</b></div>
             <div class="ts-bar"><i style="--c:${d.away.color};flex:${av / tot || 0.5}"></i><i style="--c:${d.home.color};flex:${hv / tot || 0.5}"></i></div></div>`;
-        }).join("")}</div>` : `<p class="lv-empty">Team stats show up once the game starts.</p>`;
+        }).join("")}</div>` : `<p class="lv-empty">${d.offline ? "Team stats couldn't load from ESPN right now." : "Team stats show up once the game starts."}</p>`;
     }
-    return top + body + `<a class="pv-espn" href="https://www.espn.com/${d.lg}/game/_/gameId/${esc(d.id)}" target="_blank" rel="noopener">More on ESPN<span aria-hidden="true">↗</span></a>`;
+    const espn = d.id ? `https://www.espn.com/${d.lg}/game/_/gameId/${encodeURIComponent(d.id)}` : safeUrl(d.espnUrl);
+    return top + body + (espn ? `<a class="pv-espn" href="${esc(espn)}" target="_blank" rel="noopener">More on ESPN<span aria-hidden="true">↗</span></a>` : "");
   }
   async function lvFetch(lg, id, k) {
     try {
@@ -1310,14 +1306,29 @@
     } catch { return null; }
   }
   let lvBusy = false;
-  async function openLive(row) {
-    if (lvBusy || document.querySelector(".st-sheet")) return;
+  function openLive(row) {
     const lg = row.dataset.league, id = row.dataset.ev, k = row.dataset.team;
-    if (!id || !LV_BOX[lg]) { if (k) openPreview(k, ""); return; }
+    if (!id) { if (k) openPreview(k, ""); return; }
+    openStats({ lg, id, k, href: row.href });
+  }
+  // A recap's saved box score, for when ESPN's feed can't be reached.
+  function rcFallback(g, lg, id) {
+    const oi = (OPP[lg] || {})[g.opp.name] || [g.opp.abbr, "#8A8478"];
+    const bos = { abbr: g.boston.abbr, score: g.boston.score, color: (TEAMS[g.teamKey] || {}).color, name: TEAM_NAME[g.teamKey], mine: true };
+    const opp = { abbr: g.opp.abbr, score: g.opp.score, color: oi[1], name: g.opp.name || g.opp.abbr };
+    const [away, home] = g.home === false ? [bos, opp] : [opp, bos];
+    return { lg, away, home, status: { type: { shortDetail: "Final" } }, state: "post", box: g.box && g.box.boston && g.box.opp ? g.box : null,
+      stats: [], plays: [], playsNote: "", id, offline: true, espnUrl: (g.box && g.box.source && g.box.source.url) || "" };
+  }
+  async function openStats(o) {
+    if (lvBusy || document.querySelector(".st-sheet")) return;
+    const { lg, id, k } = o;
+    if (!SPORT_PATH[lg]) return;
     lvBusy = true;
-    let d = await lvFetch(lg, id, k);
+    let d = id ? await lvFetch(lg, id, k) : null;
     lvBusy = false;
-    if (!d) { window.open(row.href, "_blank", "noopener"); return; }   // feed unreachable: fall back to ESPN
+    if (!d && o.fallback) d = o.fallback();
+    if (!d) { if (o.href) window.open(o.href, "_blank", "noopener"); return; }   // feed unreachable: fall back to ESPN
     let tab = "box", bxTab = 0;
     try { tab = sessionStorage.getItem("bs-lvtab") || "box"; } catch { /* box */ }
     const el = document.createElement("div");
@@ -1374,6 +1385,14 @@
       if (nd && !closed) { d = nd; render(true); }
     }, 30000);
   }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest(".rc-statbtn");
+    if (!b) return;
+    const g = RC[b.dataset.rc];
+    if (!g) return;
+    const lg = b.dataset.league, id = b.dataset.ev;
+    openStats({ lg, id, k: g.teamKey, fallback: () => rcFallback(g, lg, id), href: id ? `https://www.espn.com/${lg}/game/_/gameId/${id}` : "" });
+  });
   document.addEventListener("click", (e) => {
     const sb = e.target.closest(".sb-stats");
     const row = sb ? document.querySelector(`.board-row.sb[data-team="${sb.dataset.team}"]`) : e.target.closest(".board-row.sb");

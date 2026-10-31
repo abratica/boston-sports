@@ -79,7 +79,7 @@ Shown as "Upcoming games" inside the Today's games panel. Teams playing today ar
 
 Every Boston game that **started yesterday (ET)** and is final, including late West Coast games. Order by **how newsworthy the result is**, biggest first.
 
-The closed card shows the result, both teams' scores and records (`record`, `opp.record`), the `headline` and, until 30 minutes before the day's first game, the `takeaway` as a one-line summary. Opened, it reads: highlights video → game story (line score + period by period) → top player stats → opponent line → ▸ full box score → "What it means".
+The closed card shows the result, both teams' scores and records (`record`, `opp.record`), the `headline` and, until 30 minutes before the day's first game, the `takeaway` as a one-line summary. Opened, it reads: highlights video → game story (line score, then a Stats button, then period by period) → top player stats → opponent line → "What it means". The Stats button opens a sheet with the box score, plays and team stats, pulled live from ESPN's feed for the game; the game is found from the ESPN `gameId` in `box.source.url`, so keep that URL in ESPN's `/gameId/<id>` form. The saved `box` is what the sheet shows if ESPN's feed can't be reached.
 
 Each result:
 - `teamKey`, `headline` (short, punchy, factual, e.g. "Pritchard's seven threes bury Chicago").
@@ -118,7 +118,7 @@ Each result:
   - A blowout's last period can be one short line.
 - `performers` ("Top player stats"): **3** Boston players. Each has `name`, `line` (stats joined with ` · `), and `note` (one sentence on why it mattered; can include a bad side).
 - `oppLine`: one sentence on the opponent's top performers, e.g. `"Norman Powell had 20 points (4-of-7 from three) and 4 steals; Caleb Wilson added 17."`
-- `box` (▸ Full box score, collapsed):
+- `box` (shown in the Stats sheet when ESPN's live feed can't be reached):
   ```json
   "box": {
     "source": { "name": "ESPN", "url": "https://www.espn.com/nba/boxscore/_/gameId/..." },
