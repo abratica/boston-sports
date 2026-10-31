@@ -28,7 +28,7 @@
   const SPORT_PATH = { nba: "basketball/nba", nhl: "hockey/nhl", nfl: "football/nfl", mlb: "baseball/mlb" };
   const ESPN_ABBR = { patriots: "NE", celtics: "BOS", bruins: "BOS", redsox: "BOS" };
 
-  /* ── Listen live: shown under each game on the scoreboard from 10 minutes before the start until the
+  /* ── Listen live: shown under each game on the scoreboard from 30 minutes before the start until the
      game ends. For 98.5 The Sports Hub it plays the station's live stream right here in the app (so you
      can keep watching the scoreboard), with a small ↗ button to open the station's own page instead.
      An issue can override the station per game with "radio": { "name", "url" } (e.g. when two Boston
@@ -126,7 +126,7 @@
       const row = a.previousElementSibling;
       const live = !!(row && row.classList.contains("is-live")), final = !!(row && row.classList.contains("is-final"));
       const s = a.dataset.start === "" ? null : +a.dataset.start;
-      const inWindow = date === today && s !== null && now >= s - 10 && now <= s + 240;
+      const inWindow = date === today && s !== null && now >= s - 30 && now <= s + 240;
       const playing = !!a.dataset.stream && a.dataset.stream === PLAYER.src && PLAYER.state !== "idle";
       a.hidden = !playing && (final || !(live || inWindow));   // never yank the bar while it's playing
     });
@@ -235,14 +235,14 @@
     }).join("");
     return `<section class="cu"><h2 class="section-title">Coming up</h2><ul class="cu-list">${rows}</ul></section>`;
   }
-  /* Newspaper order: recaps first for most of the day. Ten minutes before the day's first game, every
+  /* Newspaper order: recaps first for most of the day. Thirty minutes before the day's first game, every
      game today switches to scoreboard mode at the top of the page (and leaves Coming up). The
      scoreboards stay up overnight until the next morning's issue replaces this one. */
   function gameDayCutoff(today) {
     const mins = (today || []).map((g) => clockMin(g.time));
     if (!mins.length) return "";
     if (mins.some((m) => m === "")) return 0;   // a game with no set time: show the scoreboard all day
-    return Math.max(0, Math.min(...mins) - 10);
+    return Math.max(0, Math.min(...mins) - 30);
   }
   function updateLayout(root, date, today, now) {
     const slot = root.querySelector(".sb-slot");
