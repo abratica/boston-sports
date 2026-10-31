@@ -777,3 +777,10 @@ body.view-sports .game.rc[open] .rc-chev { transform: rotate(180deg); }
 body.view-sports .game.rc .rc-close { display: none; }
 body.view-sports .game.rc[open] .rc-open { display: none; }
 body.view-sports .game.rc[open] .rc-close { display: inline; }
+
+/* Recap card: chevron beside the headline; summary shows in newspaper mode only */
+body.view-sports .rc-hl { display: flex; align-items: flex-start; gap: 10px; }
+body.view-sports .rc-hl .headline { flex: 1; }
+body.view-sports .game.rc .rc-chev { color: var(--muted); margin-top: 2px; flex: none; }
+body.view-sports .rc-sum { margin: 8px 0 0; font: 500 14.5px/1.45 var(--serif); color: var(--muted); }
+body.view-sports .game.rc[open] .rc-sum, body.view-sports .sb-mode .game.rc .rc-sum { display: none; }

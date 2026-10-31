@@ -75,7 +75,7 @@ Shown as "Upcoming games" inside the Today's games panel. Teams playing today ar
 
 Every Boston game that **started yesterday (ET)** and is final, including late West Coast games. Order by **how newsworthy the result is**, biggest first.
 
-The closed card shows the result, both teams' scores and records (`record`, `opp.record`) and the `headline`; `takeaway` shows once it's opened. Opened, it reads: highlights video → game story (line score + period by period) → top player stats → opponent line → ▸ full box score → "What it means".
+The closed card shows the result, both teams' scores and records (`record`, `opp.record`), the `headline` and, until the day's first game starts, the `takeaway` as a one-line summary. Opened, it reads: highlights video → game story (line score + period by period) → top player stats → opponent line → ▸ full box score → "What it means".
 
 Each result:
 - `teamKey`, `headline` (short, punchy, factual, e.g. "Pritchard's seven threes bury Chicago").

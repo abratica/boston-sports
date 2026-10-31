@@ -235,6 +235,9 @@
     const started = !!slot.querySelector(".board-row.is-live, .board-row.is-final");
     const on = started || (cut !== null && ((date === today && now >= cut) || date < today));
     slot.hidden = !on;
+    // Scoreboard mode: last night's closed recap cards drop their summary line.
+    const panel = slot.closest(".tab-panel");
+    if (panel) panel.classList.toggle("sb-mode", on);
     root.querySelectorAll(".cu-today").forEach((li) => { li.hidden = on; });
     const cu = root.querySelector(".cu");
     if (cu) cu.hidden = !cu.querySelector(".cu-list li:not([hidden])");
@@ -388,8 +391,8 @@
       <summary>
         <div class="rc-top"><span>${day}FINAL${otTag(g)}</span><span class="result ${esc(g.result)}">${esc(g.result)}</span></div>
         <div class="rc-rows">${rows.map(row).join("")}</div>
-        <h3 class="headline">${head}</h3>
-        <span class="rc-more"><span class="rc-open">See full recap</span><span class="rc-close">Hide recap</span><span class="rc-chev" aria-hidden="true">${chevron(14)}</span></span>
+        <div class="rc-hl"><h3 class="headline">${head}</h3><span class="rc-chev" aria-hidden="true">${chevron(18)}</span></div>
+        ${g.takeaway ? `<p class="rc-sum">${esc(g.takeaway)}</p>` : ""}
       </summary>
       <div class="game-body">
         ${videos(g.videos, g.sport)}
