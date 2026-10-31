@@ -632,6 +632,7 @@
     return changed;
   }
 
+  const chevronRight = `<svg class="ta-chev" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   function teamsPanel(data) {
     ALL = data.standingsAll || null;
     OLD = data.standings || [];
@@ -653,11 +654,13 @@
       return `<section class="team" style="${teamVar(k)}">
         <header class="team-head">
           <div class="team-id"><span class="cu-mark tm-mark">${teamLogo(k, "tm-logo", darkTheme())}<span class="chip"></span></span><h2>${esc(TEAM_NAME[k])}</h2></div>
-          ${has ? `<div class="team-btns"><button type="button" class="st-btn" data-team="${k}">Standings</button>
-            <button type="button" class="st-btn" data-team="${k}" data-sched="1">Schedule</button></div>` : ""}
           <span class="team-meta" data-team="${k}">${esc(placeLine(k))}</span>
         </header>
         ${next ? `<p class="team-next" data-team="${k}">${esc(next)}</p>` : ""}
+        ${has ? `<div class="team-acts">
+          <button type="button" class="st-btn ta-btn" data-team="${k}" data-sched="1"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M3.5 9.5h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M7.5 13h2M11 13h2M14.5 13h2M7.5 16.5h2M11 16.5h2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg><span>Schedule</span>${chevronRight}</button>
+          <button type="button" class="st-btn ta-btn" data-team="${k}"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V12M10 20V5M15 20V9M20 20V14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg><span>Standings</span>${chevronRight}</button>
+        </div>` : ""}
         ${items || `<p class="tn-empty">No new team news today.</p>`}
       </section>`;
     }).join("");

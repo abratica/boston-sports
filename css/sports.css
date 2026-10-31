@@ -799,3 +799,15 @@ body.view-sports .cu-mark { width: 24px; height: 24px; }
 body.view-sports .cu-logo { width: 24px; height: 24px; }
 body.view-sports .tm-mark, body.view-sports .tm-logo { width: 30px; height: 30px; }
 body.view-sports .rc-mark:has(img) .rc-dot, body.view-sports .cu-mark:has(img) .chip { display: none; }
+
+/* Teams cards: Schedule / Standings as two tiles under the record and next game */
+body.view-sports .team-acts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 0 8px; }
+body.view-sports .st-btn.ta-btn { display: flex; align-items: center; gap: 9px; padding: 11px 12px; border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 6%, var(--card)); color: var(--ink); font: 700 15px var(--serif); text-align: left; }
+body.view-sports .ta-btn span { flex: 1; }
+body.view-sports .ta-btn svg:first-child { color: var(--muted); flex: none; }
+body.view-sports .ta-btn .ta-chev { color: var(--muted); flex: none; }
+body.view-sports .ta-btn:active { background: color-mix(in srgb, var(--ink) 11%, var(--card)); }
+html[data-theme="dark"] body.view-sports .st-btn.ta-btn { background: #262523; }
+body.view-sports .team-head { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+body.view-sports .team-id { gap: 10px; }
