@@ -10,28 +10,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: probe-espn }
-      - name: Fetch ESPN summaries
+      - name: Fetch assets
         run: |
-          mkdir -p probe
           python3 - <<'PY'
-          import json, urllib.request
-          def get(u):
-              with urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent':'Mozilla/5.0'}), timeout=30) as r: return json.load(r)
-          base='https://site.api.espn.com/apis/site/v2/sports/'
-          out={}
-          sb=get(base+'hockey/nhl/scoreboard?dates=20261031')
+          import json, urllib.request, os
+          def raw(u):
+              with urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent':'Mozilla/5.0'}), timeout=30) as r: return r.read()
+          os.makedirs('assets/logos', exist_ok=True); os.makedirs('assets/yt', exist_ok=True); os.makedirs('assets/api', exist_ok=True)
+          L=json.load(open('probe/abbrs.json'))
+          for lg, abbrs in L.items():
+              for a in abbrs:
+                  for v in ('500','500-dark'):
+                      try: open(f'assets/logos/{lg}-{v}-{a}.png','wb').write(raw(f'https://a.espncdn.com/i/teamlogos/{lg}/{v}/{a}.png'))
+                      except Exception as e: print('miss', lg, v, a, e)
+          ids="0G8aLm2bOV0 1QIQSKUOLw4 9n0WtH6pzGc Ai3-C53DkS0 DTNqMLNVBC8 F8dP-JdY5VM JjX6qNR6Z_s LmB7Ca8bQvU MY9cWucyTMo NZmml7nxVaI QM_6ANAk3Tc RKH0w4x5mjA RnRG5B89ZJA Roz4iFs4Rto TqYtCrwc5wY YU_v_clPH7U _pUNDvOhXbg ausc6FCt_K8 b1zU_ewe_xo c7bY0EEhznk ceXA4XhCpLc h22pzTzTQeg iUVDk8aLna8 pIvOxFWKpTA tf4ih-TWJNk tkRuHGSevoQ".split()
+          for i in ids:
+              for q in ('hqdefault','mqdefault'):
+                  try: open(f'assets/yt/{i}-{q}.jpg','wb').write(raw(f'https://i.ytimg.com/vi/{i}/{q}.jpg'))
+                  except Exception as e: print('miss yt', i, q, e)
+          base='https://site.api.espn.com/apis/'
+          urls={'sb_nhl_20261031':'site/v2/sports/hockey/nhl/scoreboard?dates=20261031',
+                'st_nhl':'v2/sports/hockey/nhl/standings?level=3&season=2027&seasontype=2',
+                'st_nba':'v2/sports/basketball/nba/standings?level=3&season=2027&seasontype=2',
+                'st_nfl':'v2/sports/football/nfl/standings?level=3&season=2026&seasontype=2'}
+          for k,u in urls.items():
+              open(f'assets/api/{k}.json','wb').write(raw(base+u))
+          sb=json.load(open('assets/api/sb_nhl_20261031.json'))
           ev=[e for e in sb['events'] if any(c['team']['abbreviation']=='BOS' for c in e['competitions'][0]['competitors'])]
-          ids={'nhl_live': ('hockey/nhl', ev[0]['id'] if ev else None), 'nba_final': ('basketball/nba','401909278')}
-          sbn=get(base+'football/nfl/scoreboard?dates=20261025')
-          e2=[e for e in sbn['events'] if any(c['team']['abbreviation']=='NE' for c in e['competitions'][0]['competitors'])]
-          ids['nfl_final']=('football/nfl', e2[0]['id'] if e2 else None)
-          for k,(path,i) in ids.items():
-              if not i: continue
-              json.dump(get(base+path+'/summary?event='+i), open(f'probe/{k}.json','w'))
-              print(k, i)
+          if ev: open('assets/api/sum_nhl_bos.json','wb').write(raw(base+'site/v2/sports/hockey/nhl/summary?event='+ev[0]['id']))
           PY
-          ls -la probe
+          du -sh assets; ls assets/api
       - name: Commit
         run: |
           git config user.name "probe" && git config user.email "probe@users.noreply.github.com"
-          git add probe && git commit -qm "probe data" && git push -q origin HEAD:probe-espn
+          git add assets && git commit -qm "probe assets" && git push -q origin HEAD:probe-espn
