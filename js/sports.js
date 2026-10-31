@@ -637,6 +637,7 @@
       const have = gpOf(bostonRec(ALL[lg])), got = gpOf(bostonRec(S));
       if (!got || got < have || got > have + 4) return;   // stale or wrong season: keep the snapshot
       ALL[lg] = S; liveAt[lg] = Date.now(); changed = true;
+      try { localStorage.setItem(`bs-st:${lg}`, JSON.stringify({ t: Date.now(), S })); } catch { /* fine */ }
     }));
     if (changed && root) root.querySelectorAll(".team-meta[data-team]").forEach((el) => { el.textContent = placeLine(el.dataset.team); });
     return changed;
@@ -1528,9 +1529,47 @@
   }
 
   let listenTimer = null;
+  /* Remember the last score and standings from ESPN on this phone, so reopening the app shows them right
+     away instead of flashing the morning's pre-game view while ESPN answers. Saved scores are tied to the
+     issue's date and team; ESPN's fresh answer always replaces them. If storage is blocked, nothing changes. */
+  const EV_KEY = (date, team) => `bs-ev:${date}:${team}`;
+  function saveEv(date, team, ev) {
+    try {
+      const comp = (ev.competitions || [])[0] || {};
+      const slim = { id: ev.id, status: ev.status, links: (ev.links || []).filter((l) => (l.rel || []).includes("summary")).slice(0, 1),
+        competitions: [{ competitors: (comp.competitors || []).map((c) => ({ homeAway: c.homeAway, score: c.score, winner: c.winner,
+          team: { abbreviation: (c.team || {}).abbreviation }, records: c.records })) }] };
+      localStorage.setItem(EV_KEY(date, team), JSON.stringify(slim));
+    } catch { /* storage blocked or full: fine */ }
+  }
+  function restoreSaved(root, data) {
+    try {
+      // Drop saved scores from earlier issues.
+      Object.keys(localStorage).filter((k) => k.startsWith("bs-ev:") && !k.startsWith(`bs-ev:${data.date}:`)).forEach((k) => localStorage.removeItem(k));
+      root.querySelectorAll(".board-row.sb[data-team]").forEach((r) => {
+        const raw = localStorage.getItem(EV_KEY(data.date, r.dataset.team));
+        if (raw) showGame(r, JSON.parse(raw));
+      });
+    } catch { /* ignore */ }
+    try {   // live standings, still subject to the "at least as current as the morning's" check
+      if (!ALL) return;
+      let changed = false;
+      Object.keys(ALL).forEach((lg) => {
+        const raw = localStorage.getItem(`bs-st:${lg}`);
+        if (!raw) return;
+        const { t, S } = JSON.parse(raw);
+        if (!S || Date.now() - t > 36 * 3600e3) return;
+        const have = gpOf(bostonRec(ALL[lg])), got = gpOf(bostonRec(S));
+        if (!got || got < have || got > have + 4) return;
+        ALL[lg] = S; changed = true;
+      });
+      if (changed) root.querySelectorAll(".team-meta[data-team]").forEach((el) => { el.textContent = placeLine(el.dataset.team); });
+    } catch { /* ignore */ }
+  }
   function mount(root, data) {
     stopLive();
     PV_DATA = data;
+    restoreSaved(root, data);
     refreshStandings(root, false);
     const upd = () => updateListen(root, data.date);
     upd();
@@ -1555,6 +1594,7 @@
               e.competitions[0].competitors.some((c) => c.team && c.team.abbreviation === r.dataset.abbr));
             if (!ev) { allDone = false; return; }
             showGame(r, ev);
+            saveEv(data.date, r.dataset.team, ev);
             if (!(ev.status && ev.status.type && ev.status.type.state === "post")) allDone = false;
           });
         } catch { allDone = false; }
