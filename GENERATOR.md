@@ -75,11 +75,11 @@ Shown as "Upcoming games" inside the Today's games panel. Teams playing today ar
 
 Every Boston game that **started yesterday (ET)** and is final, including late West Coast games. Order by **how newsworthy the result is**, biggest first.
 
-The closed card shows `headline`, the score, `result`, `record` and `takeaway`. Opened, it reads: highlights video → game story (line score + period by period) → top player stats → opponent line → ▸ full box score → "What it means".
+The closed card shows the result, both teams' scores and records (`record`, `opp.record`) and the `headline`; `takeaway` shows once it's opened. Opened, it reads: highlights video → game story (line score + period by period) → top player stats → opponent line → ▸ full box score → "What it means".
 
 Each result:
 - `teamKey`, `headline` (short, punchy, factual, e.g. "Pritchard's seven threes bury Chicago").
-- `home`: true/false. `boston` / `opp`: `abbr` (3 letters), `score`; `opp.name` is the opponent's nickname.
+- `home`: true/false. `boston` / `opp`: `abbr` (3 letters), `score`; `opp.name` is the opponent's nickname. `opp.record`: the opponent's record **after** the game (NHL `W–L–OT`), from ESPN's game data feed (each team's record in the header) or the official standings once they include last night's game; omit it if you can't confirm it.
 - `result`: `"W"`, `"L"`, `"OTL"` (NHL overtime/shootout loss), or `"T"`. `record`: Boston's record after the game.
 - `videos` (optional): **one** video, a game highlights package, shown first in the opened card.
   `[{ "id": "<YouTube video id>", "title": "Bulls at Celtics: full game highlights", "channel": "NBA", "kind": "full" }]`

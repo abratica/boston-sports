@@ -356,25 +356,40 @@
     wrap.querySelectorAll(".bx-pane").forEach((x, i) => { x.hidden = String(i) !== t.dataset.bx; });
   });
 
+  // "/OT", "/2OT", "/SO" when the line score has extra periods.
+  const otTag = (g) => {
+    const ps = ((g.report && g.report.periods) || []).map(String);
+    const extra = ps.filter((x) => /OT|SO/i.test(x));
+    if (!extra.length) return g.ot ? "/OT" : "";
+    if (extra.some((x) => /SO/i.test(x))) return "/SO";
+    return extra.length > 1 ? `/${extra.length}OT` : "/OT";
+  };
+  const prevDay = (iso) => { const d = new Date(iso + "T12:00:00"); d.setDate(d.getDate() - 1); return d.toISOString().slice(0, 10); };
   function game(g, open) {
     const pli = (p) => `
       <li><span class="p-name">${esc(p.name)}</span>
         <span class="p-line">${esc(p.line)}</span>
         ${p.note ? `<span class="p-note">${esc(p.note)}</span>` : ""}</li>`;
     const P = (g.performers || []).slice(0, 3);
-    const sep = g.home === false ? "at" : "vs";
-    return `<details class="game" style="${teamVar(g.teamKey)}"${open ? " open" : ""}>
+    // Closed card: date/FINAL + result, two score rows (away on top, home below), headline, "See full recap".
+    const league = String(g.sport || "").toLowerCase();
+    const oppInfo = (OPP[league] || {})[g.opp.name] || [g.opp.abbr, "#8A8478"];
+    const bos = { ab: g.boston.abbr, nm: TEAM_NAME[g.teamKey] || "", sc: g.boston.score, rec: g.record, c: (TEAMS[g.teamKey] || {}).color };
+    const opp = { ab: g.opp.abbr, nm: g.opp.name || "", sc: g.opp.score, rec: g.opp.record, c: oppInfo[1] };
+    const rows = g.home === false ? [bos, opp] : [opp, bos];
+    const hi = Math.max(+bos.sc || 0, +opp.sc || 0);
+    const row = (t) => `<div class="rc-row${(+t.sc || 0) < hi ? " lose" : ""}" style="--c:${t.c}">
+          <span class="rc-dot"></span><span class="rc-ab">${esc(t.ab)}</span>
+          <span class="rc-nm">${esc(t.nm)}${t.rec ? `<span class="rc-rec">${esc(t.rec)}</span>` : ""}</span>
+          <span class="rc-sc">${esc(t.sc)}</span></div>`;
+    const day = g.date ? new Date(g.date + "T12:00:00").toLocaleDateString("en-US", { weekday: "short" }).toUpperCase() + " · " : "";
+    const head = esc(g.headline).replace(/ (\d+[–-]\d+)$/, "&nbsp;$1");   // keep a trailing score with the word before it
+    return `<details class="game rc" style="${teamVar(g.teamKey)}"${open ? " open" : ""}>
       <summary>
-        <h3 class="headline">${esc(g.headline)}</h3>
-        <div class="scoreline">
-          <span>${esc(g.boston.abbr)} <span class="num">${esc(g.boston.score)}</span></span>
-          <span class="sep">${sep}</span>
-          <span>${esc(g.opp.abbr)} <span class="num">${esc(g.opp.score)}</span></span>
-          <span class="result ${esc(g.result)}">${esc(g.result)}</span>
-          <span class="record">${esc(g.record)}</span>
-        </div>
-        <span class="toggle">${chevron(16)}</span>
-        ${g.takeaway ? `<p class="sum-take">${esc(g.takeaway)}</p>` : ""}
+        <div class="rc-top"><span>${day}FINAL${otTag(g)}</span><span class="result ${esc(g.result)}">${esc(g.result)}</span></div>
+        <div class="rc-rows">${rows.map(row).join("")}</div>
+        <h3 class="headline">${head}</h3>
+        <span class="rc-more"><span class="rc-open">See full recap</span><span class="rc-close">Hide recap</span><span class="rc-chev" aria-hidden="true">${chevron(14)}</span></span>
       </summary>
       <div class="game-body">
         ${videos(g.videos, g.sport)}
@@ -759,7 +774,7 @@
       <main class="sports-main">
         <div class="tab-panel" data-tab="games"${tab === "games" ? "" : " hidden"}>
           ${(data.today || []).length ? `<div class="sb-slot" data-cutoff="${gameDayCutoff(data.today)}" hidden>${board(data.today, data.date)}</div>` : ""}
-          ${results.length ? `<h2 class="section-title">Last night</h2>${results.map((g) => game(g)).join("")}` : ""}
+          ${results.length ? `<h2 class="section-title">Last night</h2>${results.map((g) => game({ ...g, date: g.date || prevDay(data.date) })).join("")}` : ""}
           ${comingUp(data.off, data.today)}
           <a class="archive-link" href="${ctx.archiveHref}">Past games <span aria-hidden="true">›</span></a>
         </div>
