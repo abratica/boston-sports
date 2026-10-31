@@ -222,7 +222,7 @@
   }
   // Coming up: the next game for each in-season team not playing today, below Last night.
   function comingUp(off, today) {
-    const todays = (today || []).map((g) => `<li class="cu-today" style="${teamVar(g.teamKey)}"><span class="cu-mark">${teamLogo(g.teamKey, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(g.team)}</b>
+    const todays = (today || []).map((g) => `<li class="cu-today" data-pv="${esc(g.teamKey)}" role="button" tabindex="0" style="${teamVar(g.teamKey)}"><span class="cu-mark">${teamLogo(g.teamKey, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(g.team)}</b>
         <span class="cu-what"><span class="cu-tag">TODAY</span> ${esc(g.matchup || "")}${g.tv ? `<span class="cu-sub"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${esc(g.tv)}</span>` : ""}</span>${g.time ? `<span class="cu-time">${esc(g.time)}</span>` : ""}</li>`).join("");
     if (!todays && (!off || !off.length)) return "";
     const rows = todays + (off || []).map((o) => {
@@ -230,7 +230,7 @@
       const m = t.match(/^(.*?)(?:,\s*)(\d{1,2}:\d{2}\s*[AP]M|TBD)$/i);
       const what = m ? m[1] : t, time = m ? m[2] : "";
       const w = what.match(/^(.*?)\s+((?:vs|at)\s.+)$/i);
-      return `<li class="cu-off" data-team="${esc(o.teamKey)}" style="${teamVar(o.teamKey)}"><span class="cu-mark">${teamLogo(o.teamKey, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(o.team)}</b>
+      return `<li class="cu-off" data-team="${esc(o.teamKey)}" data-pv="${esc(o.teamKey)}" role="button" tabindex="0" style="${teamVar(o.teamKey)}"><span class="cu-mark">${teamLogo(o.teamKey, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(o.team)}</b>
         <span class="cu-what">${w ? `<span class="cu-date">${esc(w[1])}</span> · ${esc(w[2])}` : esc(what)}</span>${time ? `<span class="cu-time">${esc(time)}</span>` : ""}</li>`;
     }).join("");
     return `<section class="cu"><h2 class="section-title">Coming up</h2><ul class="cu-list">${rows}</ul></section>`;
@@ -295,6 +295,7 @@
     const li = document.createElement("li");
     const sortKey = (g) => `${g.date} ${String(clockMin(g.time) === "" ? 9999 : clockMin(g.time)).padStart(4, "0")}`;
     li.dataset.next = team; li.dataset.date = sortKey(n);
+    li.dataset.pv = team; li.dataset.pvdate = n.date; li.setAttribute("role", "button"); li.tabIndex = 0;
     li.setAttribute("style", teamVar(team));
     li.innerHTML = `<span class="cu-mark">${teamLogo(team, "cu-logo", darkTheme())}<span class="chip" aria-hidden="true"></span></span><b>${esc(TEAM_NAME[team] || team)}</b>
       <span class="cu-what"><span class="cu-date">${esc(day)}</span> · ${esc(`${n.home === false ? "at" : "vs"} ${n.opp}`)}</span><span class="cu-time">${esc(n.time || "TBD")}</span>`;
@@ -548,6 +549,11 @@
           const w = stat(e, "wins") || 0, l = stat(e, "losses") || 0;
           const r = { team: (e.team || {}).name || (e.team || {}).shortDisplayName || "", w, l,
             pct: stat(e, "winPercent"), seed: stat(e, "playoffSeed") ?? 99, gp: stat(e, "gamesPlayed") };
+          // For the game preview: last 10 games and current streak, when ESPN has them.
+          const l10 = (e.stats || []).find((x) => x.type === "lasttengames" || x.name === "Last Ten Games");
+          const stk = (e.stats || []).find((x) => x.name === "streak");
+          if (l10 && l10.summary) r.l10 = String(l10.summary).replace(/-/g, "–");
+          if (stk && stk.displayValue && /^[WLT]\d+$/.test(stk.displayValue)) r.streak = stk.displayValue;
           if (lg === "nhl") {
             const otl = stat(e, "otLosses") ?? stat(e, "overtimeLosses") ?? 0;
             Object.assign(r, { otl, pts: stat(e, "points") ?? 2 * w + otl, rw: stat(e, "regWins") || 0, row: stat(e, "rotWins") || 0 });
@@ -577,6 +583,8 @@
     };
     const pub = (r, rank) => {
       const o = { team: r.team, rec: r.rec };
+      if (r.l10) o.l10 = r.l10;
+      if (r.streak) o.streak = r.streak;
       if (lg === "nhl") o.pts = r.pts; else o.gb = r.gb;
       if (rank != null) o.rank = rank;
       if (r.team === ST_BOSTON[lg]) o.boston = true;
@@ -950,6 +958,150 @@
       el.querySelector(".st-live").textContent = " · LIVE";
     });
   }
+  /* ── Game preview: tap a game in Coming up ─────────────
+     The matchup (away left, home right, logos, day, time, arena, then TV and radio), a side-by-side team
+     snapshot from the standings (record, last 10, streak, division place), this season's meetings from
+     saved recaps, and a link to ESPN's full preview for odds, injuries and deeper stats. It's before the
+     game, so there's no Listen button. */
+  let PV_DATA = null;
+  const PV_TV = `<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+  function pvTeam(lg, nick) {   // a team's standings row plus its division place, by nickname
+    const S = ALL && ALL[lg];
+    if (!S || !nick) return {};
+    for (const c of S.conferences || []) for (const d of c.divisions || []) {
+      const i = d.rows.findIndex((r) => r.team === nick);
+      if (i >= 0) return { ...d.rows[i], place: `${ord(i + 1)} · ${d.name}` };
+    }
+    return {};
+  }
+  function pvWhen(date) {
+    const t = todayET();
+    if (date === t) return ["TODAY", true];
+    if (date === new Date(dt(t).getTime() + 864e5).toLocaleDateString("en-CA")) return ["TOMORROW", false];
+    return [`${dow(date)} · ${md(date).toUpperCase()}`, false];
+  }
+  async function pvInfo(k, pvdate) {
+    const d = PV_DATA || {};
+    const lg = TEAM_LEAGUE[k];
+    await loadSchedule();
+    const t = (d.today || []).find((g) => g.teamKey === k);
+    if (t && (!pvdate || pvdate === d.date)) {
+      return { k, lg: t.league || lg, date: d.date, time: t.time, tv: t.tv, venue: t.venue, radio: t.radio,
+        home: !/^\s*at\b/i.test(t.matchup || ""), opp: String(t.matchup || "").replace(/^\s*(vs\.?|at|@)\s*/i, "").trim(),
+        rec: t.record, oppRec: t.oppRecord };
+    }
+    const games = ((SCHED && SCHED.teams && SCHED.teams[k]) || {}).games || [];
+    const g = pvdate ? games.find((x) => x.date === pvdate) : games.find((x) => x.date >= (d.date || todayET()));
+    if (!g) return null;
+    return { k, lg, date: g.date, time: g.time, tv: g.tv, venue: g.venue || "", home: g.home !== false, opp: g.opp, oppAbbr: g.oppAbbr };
+  }
+  function pvBody(p) {
+    const o = (OPP[p.lg] || {})[p.opp] || [p.oppAbbr || String(p.opp).slice(0, 3).toUpperCase(), "#8A8478"];
+    const bos = { ab: TEAM_ABBR[p.k], nick: TEAM_NAME[p.k], c: (TEAMS[p.k] || {}).color, la: LOGO_ABBR[p.k], rec: p.rec };
+    const them = { ab: o[0], nick: p.opp, c: o[1], la: o[0], rec: p.oppRec };
+    const [A, H] = p.home ? [them, bos] : [bos, them];
+    const block = (t, side, r) => `<div class="pv-t${r ? " r" : ""}" style="--c:${t.c}"><span class="pv-mark">${logo(p.lg, t.la, "pv-logo", true)}</span>
+        <div><div class="pv-side">${side}</div><div class="pv-ab">${esc(t.ab)}</div></div></div>`;
+    const [when, isToday] = pvWhen(p.date);
+    const tm = String(p.time || "").match(/^(\d{1,2}:\d{2})\s*([AP]M)$/i);
+    const time = tm ? `${esc(tm[1])}<span>${esc(tm[2].toUpperCase())}</span>` : esc(p.time || "TBD");
+    const radio = (p.radio && p.radio.name) || (RADIO[p.k] || {}).name || "";
+    const strip = [p.tv ? `<span class="it">${PV_TV}<span>TV: <b>${esc(p.tv)}</b></span></span>` : "",
+      radio ? `<span class="it">${RADIO_ICON}<span>Radio: <b>${esc(radio)}</b></span></span>` : ""].filter(Boolean).join(`<span class="sep"></span>`);
+    // Snapshot: live standings when we have them, the morning's numbers otherwise.
+    const sa = { ...pvTeam(p.lg, A.nick) }, sh = { ...pvTeam(p.lg, H.nick) };
+    if (!sa.rec && A.rec) sa.rec = A.rec;
+    if (!sh.rec && H.rec) sh.rec = H.rec;
+    const rows = [["Record", "rec"], ["Last 10", "l10"], ["Streak", "streak"], ["Division", "place"]]
+      .filter(([, f]) => sa[f] || sh[f])
+      .map(([label, f]) => `<div class="rw"><span>${esc(sa[f] || "—")}</span><span>${label}</span><span>${esc(sh[f] || "—")}</span></div>`).join("");
+    const hd = (t) => `<div style="--c:${t.c}"><span class="pv-mark sm">${logo(p.lg, t.la, "pv-logo", darkTheme())}</span>${esc(t.ab)}</div>`;
+    // This season: earlier meetings from saved recaps, and which meeting this is.
+    const met = (RESULTS || []).filter((r) => r.team === p.k && r.opp === p.opp && r.date < p.date).sort((a, b) => a.date.localeCompare(b.date));
+    const all = (((SCHED && SCHED.teams && SCHED.teams[p.k]) || {}).games || []).filter((g) => g.opp === p.opp);
+    const n = all.filter((g) => g.date <= p.date).length || met.length + 1, total = Math.max(all.length, n);
+    const note = total <= 1 ? "Only meeting of the season." : `${n === 1 ? "First" : ord(n)} of ${total} meetings this season.`;
+    const list = met.map((r) => `<a class="pv-meet" href="#/games/${p.k}/${esc(r.id)}"><span class="pv-md">${esc(md(r.date))}</span>
+        <span class="pv-mo">${r.home === false ? "at" : "vs"} ${esc(r.opp)}</span><span class="pv-res"><span class="result ${esc(r.result)}">${esc(r.result)}</span> ${esc(`${r.bos}–${r.oppScore}${r.ot ? " OT" : ""}`)}</span><span class="go" aria-hidden="true">›</span></a>`).join("");
+    const ymd = String(p.date).replace(/-/g, "");
+    const espn = p.espn || `https://www.espn.com/${p.lg}/scoreboard/_/date/${ymd}`;
+    return `<h3 class="pv-title">${esc(TEAM_NAME[p.k])} ${p.home ? "vs" : "at"} ${esc(p.opp)}</h3>
+      <div class="pv-card">
+        <div class="pv-grid">
+          ${block(A, "AWAY")}
+          <div class="pv-mid"><span class="pv-pill${isToday ? "" : " later"}">${esc(when)}</span><div class="pv-time">${time}</div>${p.venue ? `<div class="pv-venue">${esc(p.venue)}</div>` : ""}</div>
+          ${block(H, "HOME", true)}
+        </div>
+        ${strip ? `<div class="pv-strip">${strip}</div>` : ""}
+      </div>
+      ${rows ? `<h4 class="pv-h">Team snapshot</h4><div class="pv-snap"><div class="hd">${hd(A)}<span></span>${hd(H)}</div>${rows}</div>` : ""}
+      <h4 class="pv-h">This season</h4>
+      <div class="pv-list">${list}<div class="pv-empty">${esc(note)}</div></div>
+      <a class="pv-espn" href="${espn}" target="_blank" rel="noopener">ESPN preview: odds, injuries, stats<span aria-hidden="true">↗</span></a>`;
+  }
+  async function pvEspn(p) {   // venue and the exact ESPN game page, from ESPN's scoreboard for that day
+    try {
+      const res = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${SPORT_PATH[p.lg]}/scoreboard?dates=${p.date.replace(/-/g, "")}`, { cache: "no-store" });
+      if (!res.ok) return false;
+      const json = await res.json();
+      const ev = (json.events || []).find((e) => e.competitions && e.competitions[0] &&
+        e.competitions[0].competitors.some((c) => c.team && c.team.abbreviation === ESPN_ABBR[p.k]));
+      if (!ev) return false;
+      const comp = ev.competitions[0];
+      if (!p.venue && comp.venue && comp.venue.fullName) p.venue = comp.venue.fullName;
+      if (ev.id) p.espn = `https://www.espn.com/${p.lg}/game/_/gameId/${ev.id}`;
+      return true;
+    } catch { return false; }
+  }
+  let pvBusy = false;
+  async function openPreview(k, pvdate) {
+    if (pvBusy || document.querySelector(".st-sheet")) return;
+    pvBusy = true;
+    const p = await pvInfo(k, pvdate).catch(() => null);
+    pvBusy = false;
+    if (!p) return;
+    const el = document.createElement("div");
+    el.className = "st-sheet pv-sheet";
+    el.setAttribute("role", "dialog");
+    el.setAttribute("aria-label", `${TEAM_NAME[k]} game preview`);
+    el.style.cssText = teamVar(k);
+    el.innerHTML = `<div class="st-panel">
+      <header class="st-head"><h2>Preview</h2><span class="st-lg">${esc(String(p.lg).toUpperCase())}</span>
+        <button type="button" class="st-close" aria-label="Close">✕</button></header>
+      <div class="st-body">${pvBody(p)}</div>
+    </div>`;
+    document.body.appendChild(el);
+    document.body.style.overflow = "hidden";
+    history.pushState({ stSheet: true }, "");
+    let closed = false;
+    const remove = () => {
+      if (closed) return;
+      closed = true;
+      el.remove();
+      document.body.style.overflow = "";
+      window.removeEventListener("popstate", onPop);
+      window.removeEventListener("hashchange", remove);
+    };
+    const onPop = () => remove();
+    window.addEventListener("popstate", onPop);
+    window.addEventListener("hashchange", remove);   // tapping an earlier meeting opens its recap
+    const close = () => { if (history.state && history.state.stSheet) history.back(); else remove(); };
+    el.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+    el.addEventListener("click", (e) => { if (e.target === el || e.target.closest(".st-close")) close(); });
+    el.querySelector(".st-close").focus();
+    const redraw = () => { if (closed) return; const b = el.querySelector(".st-body"), top = b.scrollTop; b.innerHTML = pvBody(p); b.scrollTop = top; };
+    pvEspn(p).then((ok) => { if (ok) redraw(); });
+    refreshStandings(document.getElementById("app"), false).then((ch) => { if (ch) redraw(); });
+  }
+  document.addEventListener("click", (e) => {
+    const li = e.target.closest(".cu-list li[data-pv]");
+    if (li) openPreview(li.dataset.pv, li.dataset.pvdate || "");
+  });
+  document.addEventListener("keydown", (e) => {
+    const li = e.target && e.target.closest && e.target.closest(".cu-list li[data-pv]");
+    if (li && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); openPreview(li.dataset.pv, li.dataset.pvdate || ""); }
+  });
+
   document.addEventListener("click", (e) => {
     const b = e.target.closest(".st-btn");
     if (!b) return;
@@ -1061,6 +1213,7 @@
   let listenTimer = null;
   function mount(root, data) {
     stopLive();
+    PV_DATA = data;
     refreshStandings(root, false);
     const upd = () => updateListen(root, data.date);
     upd();
