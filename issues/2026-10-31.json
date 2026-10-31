@@ -635,7 +635,15 @@
             }
           ]
         }
-      }
+      },
+      "videos": [
+        {
+          "id": "QM_6ANAk3Tc",
+          "title": "Bulls at Celtics: full game highlights",
+          "channel": "NBA",
+          "kind": "full"
+        }
+      ]
     }
   ],
   "teamNews": {

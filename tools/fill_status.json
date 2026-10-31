@@ -2,8 +2,13 @@
   "issue": "2026-10-31",
   "games": {
     "celtics": {
-      "box": "added",
-      "video": "not found yet"
+      "box": "ok",
+      "video_notes": [
+        "feeds: nothing",
+        "search '\"Bulls at Celtics\" full game highlights October 30, 2026': 14 results",
+        "search hit QM_6ANAk3Tc [NBA]: BULLS at CELTICS | EMIRATES NBA CUP 🏆 | FULL GAME HIGHLIGHTS | October 30, 2026"
+      ],
+      "video": "added QM_6ANAk3Tc (NBA)"
     }
   }
 }

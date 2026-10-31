@@ -602,6 +602,14 @@
       ]
     }
   },
+  "videos": [
+    {
+      "id": "QM_6ANAk3Tc",
+      "title": "Bulls at Celtics: full game highlights",
+      "channel": "NBA",
+      "kind": "full"
+    }
+  ],
   "id": "2026-10-30-celtics-chi",
   "date": "2026-10-30"
 }
