@@ -556,6 +556,9 @@
           const stk = (e.stats || []).find((x) => x.name === "streak");
           if (l10 && l10.summary) r.l10 = String(l10.summary).replace(/-/g, "–");
           if (stk && stk.displayValue && /^[WLT]\d+$/.test(stk.displayValue)) r.streak = stk.displayValue;
+          r.pf = stat(e, "pointsFor"); r.pa = stat(e, "pointsAgainst");
+          const rec = (n) => { const x = (e.stats || []).find((y) => y.name === n || y.type === n.toLowerCase()); return x && x.summary ? String(x.summary).replace(/-/g, "–") : ""; };
+          r.homeRec = rec("Home"); r.roadRec = rec("Road");
           if (lg === "nhl") {
             const otl = stat(e, "otLosses") ?? stat(e, "overtimeLosses") ?? 0;
             Object.assign(r, { otl, pts: stat(e, "points") ?? 2 * w + otl, rw: stat(e, "regWins") || 0, row: stat(e, "rotWins") || 0 });
@@ -587,6 +590,9 @@
       const o = { team: r.team, rec: r.rec };
       if (r.l10) o.l10 = r.l10;
       if (r.streak) o.streak = r.streak;
+      if (r.pf != null && r.pa != null && r.gp) { o.pf = r.pf; o.pa = r.pa; o.gp = r.gp; }
+      if (r.homeRec) o.homeRec = r.homeRec;
+      if (r.roadRec) o.roadRec = r.roadRec;
       if (lg === "nhl") o.pts = r.pts; else o.gb = r.gb;
       if (rank != null) o.rank = rank;
       if (r.team === ST_BOSTON[lg]) o.boston = true;
@@ -1001,6 +1007,95 @@
     if (!g) return null;
     return { k, lg, date: g.date, time: g.time, tv: g.tv, venue: g.venue || "", home: g.home !== false, opp: g.opp, oppAbbr: g.oppAbbr };
   }
+  /* Full preview (behind "See full preview"): ESPN's matchup predictor (basketball and football only),
+     storylines from the morning issue, how the teams match up (from live standings), season leaders and
+     injuries (from ESPN's game feed), then this season's meetings. */
+  const PV_LEAD = { nba: ["Points", "Rebounds", "Assists"], nhl: ["Goals", "Assists", "Points"], nfl: ["Passing Yards", "Rushing Yards", "Receiving Yards"] };
+  function pvSummary(p, j) {
+    const x = {};
+    const pr = j.predictor;
+    if (pr && pr.homeTeam && pr.awayTeam && pr.homeTeam.gameProjection != null && pr.awayTeam.gameProjection != null) {
+      const a = parseFloat(pr.awayTeam.gameProjection), h = parseFloat(pr.homeTeam.gameProjection);
+      if (a >= 0 && h >= 0 && a + h > 0) x.pred = { away: a, home: h };
+    }
+    x.leaders = {};
+    (j.leaders || []).forEach((t) => {
+      const ab = (t.team || {}).abbreviation; if (!ab) return;
+      x.leaders[ab] = {};
+      (t.leaders || []).forEach((c) => {
+        const l = (c.leaders || [])[0]; if (!l || !l.athlete) return;
+        const dv = String(l.displayValue || "");
+        const yds = dv.match(/([\d,]+)\s*YDS/);
+        x.leaders[ab][c.displayName || c.name] = { val: yds ? yds[1] : dv, name: l.athlete.shortName || l.athlete.displayName || "" };
+      });
+    });
+    x.injuries = {};
+    (j.injuries || []).forEach((t) => {
+      const ab = (t.team || {}).abbreviation; if (!ab) return;
+      x.injuries[ab] = (t.injuries || []).map((i) => {
+        const d = i.details || {};
+        const status = String(i.status || (i.type || {}).description || "");
+        const back = d.returnDate ? `expected back ${md(String(d.returnDate).slice(0, 10))}` : "";
+        return { name: (i.athlete || {}).displayName || "", status: /injured reserve/i.test(status) ? "IR" : status.toUpperCase(),
+          out: /^out$|reserve/i.test(status), detail: [d.type, back].filter(Boolean).join(" · ") };
+      }).filter((i) => i.name);
+    });
+    x.loaded = true;
+    return x;
+  }
+  function pvDonut(a, h, ca, ch) {
+    const r = 62, c = 2 * Math.PI * r, la = c * a / (a + h);
+    return `<svg width="150" height="150" viewBox="0 0 170 170" aria-hidden="true"><g transform="rotate(-90 85 85)">
+      <circle cx="85" cy="85" r="${r}" fill="none" stroke="${ch}" stroke-width="18"/>
+      <circle cx="85" cy="85" r="${r}" fill="none" stroke="${ca}" stroke-width="18" stroke-dasharray="${la.toFixed(1)} ${c.toFixed(1)}" transform="scale(1,-1) translate(0,-170)"/></g></svg>`;
+  }
+  function pvFull(p, A, H, sa, sh, seasonHtml) {
+    const x = p.extra || {};
+    let out = "";
+    if (x.pred) {
+      out += `<h4 class="pv-h">Matchup predictor</h4><div class="pvx-card"><div class="pvx-pred">
+        <div class="pct">${x.pred.away.toFixed(1)}%<small>${esc(A.ab)}</small></div>
+        <div class="d">${pvDonut(x.pred.away, x.pred.home, A.c, H.c)}<div class="lg">${logo(p.lg, A.la, "pvx-plogo", darkTheme())}${logo(p.lg, H.la, "pvx-plogo", darkTheme())}</div></div>
+        <div class="pct r">${x.pred.home.toFixed(1)}%<small>${esc(H.ab)}</small></div></div>
+        <p class="pvx-src">Chance to win, according to ESPN Analytics</p></div>`;
+    }
+    const pv = ((PV_DATA || {}).previews || {})[p.k];
+    const mine = pv && (!pv.date || pv.date === p.date) ? pv : null;
+    if (mine && (mine.storylines || []).length) {
+      out += `<h4 class="pv-h">Storylines</h4><div class="pvx-card"><ul class="pvx-story">${mine.storylines.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>`;
+    }
+    if (sa.pf != null && sh.pf != null) {
+      const per = (t, k) => t[k] / t.gp;
+      const dec = p.lg === "nhl" ? 2 : 1;
+      const sign = (v) => (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(p.lg === "nhl" ? 0 : 1);
+      const unit = p.lg === "nhl" ? "Goals" : "Points";
+      const dA = p.lg === "nhl" ? sa.pf - sa.pa : per(sa, "pf") - per(sa, "pa"), dH = p.lg === "nhl" ? sh.pf - sh.pa : per(sh, "pf") - per(sh, "pa");
+      const span = Math.abs(dA) + Math.abs(dH) || 1;
+      const pct = (r) => { const n = String(r || "").split("–").map(Number); const g = n.reduce((a, b) => a + (b || 0), 0); return g ? (n[0] + (n.length > 2 ? n[2] / 2 : 0)) / g : 0.5; };
+      const bar = (label, a, h, av, hv) => { const t = av + hv || 1; return `<div class="rw"><div class="top"><b>${esc(a)}</b><span>${esc(label)}</span><b>${esc(h)}</b></div>
+        <div class="bar"><i style="--c:${A.c};flex:${(av / t) || 0.5}"></i><i style="--c:${H.c};flex:${(hv / t) || 0.5}"></i></div></div>`; };
+      let rows = bar(`${unit} per game`, per(sa, "pf").toFixed(dec), per(sh, "pf").toFixed(dec), per(sa, "pf"), per(sh, "pf"))
+        + bar(`${unit} allowed per game`, per(sa, "pa").toFixed(dec), per(sh, "pa").toFixed(dec), per(sa, "pa"), per(sh, "pa"))
+        + bar(`${p.lg === "nhl" ? "Goal" : "Point"} differential${p.lg === "nhl" ? "" : " per game"}`, sign(dA), sign(dH), 1 + dA / span, 1 + dH / span);
+      if (sa.roadRec && sh.homeRec) rows += bar(`${A.ab} on the road · ${H.ab} at home`, sa.roadRec, sh.homeRec, pct(sa.roadRec) + 0.05, pct(sh.homeRec) + 0.05);
+      out += `<h4 class="pv-h">How they match up</h4><div class="pvx-card pvx-mu"><div class="hd"><span>${esc(A.ab)}</span><span>${esc(H.ab)}</span></div>${rows}
+        ${mine && mine.edge ? `<p class="pvx-edge"><b>The edge:</b> ${esc(mine.edge)}</p>` : ""}</div>`;
+    }
+    const la = (x.leaders || {})[A.ab] || {}, lh = (x.leaders || {})[H.ab] || {};
+    const cats = (PV_LEAD[p.lg] || []).filter((c) => la[c] || lh[c]);
+    if (cats.length) {
+      const cell = (v, r) => `<span class="p${r ? " r" : ""}">${v ? `<b>${esc(v.val)}</b>${esc(v.name)}` : "—"}</span>`;
+      out += `<h4 class="pv-h">Season leaders</h4><div class="pvx-card pvx-lead"><div class="hd"><span>${esc(A.ab)}</span><span>${p.lg === "nba" ? "Per game" : ""}</span><span>${esc(H.ab)}</span></div>
+        ${cats.map((c) => `<div class="rw">${cell(la[c])}<span class="lb">${esc(c.replace(/ Yards$/, " yards"))}</span>${cell(lh[c], true)}</div>`).join("")}</div>`;
+    }
+    if (x.loaded && (x.injuries[A.ab] || x.injuries[H.ab] || Object.keys(x.injuries).length)) {
+      const team = (t) => { const list = x.injuries[t.ab] || [];
+        return list.length ? list.map((i) => `<div class="rw"><span class="t">${esc(t.ab)}</span><span>${esc(i.name)}${i.detail ? `<small>${esc(i.detail)}</small>` : ""}</span>${i.status ? `<span class="st${i.out ? "" : " q"}">${esc(i.status)}</span>` : "<span></span>"}</div>`).join("")
+          : `<div class="rw"><span class="t">${esc(t.ab)}</span><span class="none">None reported</span><span></span></div>`; };
+      out += `<h4 class="pv-h">Injuries</h4><div class="pvx-card pvx-inj">${team(A)}${team(H)}</div>`;
+    }
+    return out + seasonHtml;
+  }
   function pvBody(p) {
     const o = (OPP[p.lg] || {})[p.opp] || [p.oppAbbr || String(p.opp).slice(0, 3).toUpperCase(), "#8A8478"];
     const bos = { ab: TEAM_ABBR[p.k], nick: TEAM_NAME[p.k], c: (TEAMS[p.k] || {}).color, la: LOGO_ABBR[p.k], rec: p.rec };
@@ -1029,8 +1124,8 @@
     const note = total <= 1 ? "Only meeting of the season." : `${n === 1 ? "First" : ord(n)} of ${total} meetings this season.`;
     const list = met.map((r) => `<a class="pv-meet" href="#/games/${p.k}/${esc(r.id)}"><span class="pv-md">${esc(md(r.date))}</span>
         <span class="pv-mo">${r.home === false ? "at" : "vs"} ${esc(r.opp)}</span><span class="pv-res"><span class="result ${esc(r.result)}">${esc(r.result)}</span> ${esc(`${r.bos}–${r.oppScore}${r.ot ? " OT" : ""}`)}</span><span class="go" aria-hidden="true">›</span></a>`).join("");
-    const ymd = String(p.date).replace(/-/g, "");
-    const espn = p.espn || `https://www.espn.com/${p.lg}/scoreboard/_/date/${ymd}`;
+    const season = `<h4 class="pv-h">This season</h4><div class="pv-list">${list}<div class="pv-empty">${esc(note)}</div></div>`;
+    const more = `<button type="button" class="pv-more" aria-expanded="${p.full ? "true" : "false"}"><span>${p.full ? "Hide full preview" : "See full preview"}</span>${chevron(16)}</button>`;
     return `<h3 class="pv-title">${esc(TEAM_NAME[p.k])} ${p.home ? "vs" : "at"} ${esc(p.opp)}</h3>
       <div class="pv-card">
         <div class="pv-grid">
@@ -1041,9 +1136,8 @@
         ${strip ? `<div class="pv-strip">${strip}</div>` : ""}
       </div>
       ${rows ? `<h4 class="pv-h">Team snapshot</h4><div class="pv-snap"><div class="hd">${hd(A)}<span></span>${hd(H)}</div>${rows}</div>` : ""}
-      <h4 class="pv-h">This season</h4>
-      <div class="pv-list">${list}<div class="pv-empty">${esc(note)}</div></div>
-      <a class="pv-espn" href="${espn}" target="_blank" rel="noopener">ESPN preview: odds, injuries, stats<span aria-hidden="true">↗</span></a>`;
+      ${more}
+      ${p.full ? `<div class="pvx">${pvFull(p, A, H, sa, sh, season)}</div>` : ""}`;
   }
   async function pvEspn(p) {   // venue and the exact ESPN game page, from ESPN's scoreboard for that day
     try {
@@ -1056,6 +1150,12 @@
       const comp = ev.competitions[0];
       if (!p.venue && comp.venue && comp.venue.fullName) p.venue = comp.venue.fullName;
       if (ev.id) p.espn = `https://www.espn.com/${p.lg}/game/_/gameId/${ev.id}`;
+      if (ev.id) {
+        try {
+          const r2 = await fetch(`https://site.api.espn.com/apis/site/v2/sports/${SPORT_PATH[p.lg]}/summary?event=${encodeURIComponent(ev.id)}`, { cache: "no-store" });
+          if (r2.ok) p.extra = pvSummary(p, await r2.json());
+        } catch { /* the full preview just shows what it has */ }
+      }
       return true;
     } catch { return false; }
   }
@@ -1093,9 +1193,12 @@
     window.addEventListener("hashchange", remove);   // tapping an earlier meeting opens its recap
     const close = () => { if (history.state && history.state.stSheet) history.back(); else remove(); };
     el.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
-    el.addEventListener("click", (e) => { if (e.target === el || e.target.closest(".st-close")) close(); });
-    el.querySelector(".st-close").focus();
     const redraw = () => { if (closed) return; const b = el.querySelector(".st-body"), top = b.scrollTop; b.innerHTML = pvBody(p); b.scrollTop = top; };
+    el.addEventListener("click", (e) => {
+      if (e.target === el || e.target.closest(".st-close")) return close();
+      if (e.target.closest(".pv-more")) { p.full = !p.full; redraw(); }
+    });
+    el.querySelector(".st-close").focus();
     pvEspn(p).then((ok) => { if (ok) redraw(); });
     refreshStandings(document.getElementById("app"), false).then((ch) => { if (ch) redraw(); });
   }

@@ -17,7 +17,7 @@ The issue has two tabs in the app:
 
 Publish an issue every day, even when no Boston team played or plays.
 
-`issues/2026-10-27.json` is the reference example for every field below. Top-level keys: `date`, `headline`, `ticker`, `today`, `off`, `results`, `teamNews`, `standingsAll`.
+`issues/2026-10-27.json` is the reference example for every field below. Top-level keys: `date`, `headline`, `ticker`, `today`, `off`, `previews`, `results`, `teamNews`, `standingsAll`.
 
 ## Teams
 
@@ -74,6 +74,25 @@ Every Boston game scheduled today (ET), sorted by start time.
 **Every in-season** Boston team that does **not** play today, whether or not it played last night, each with its next game, sorted by date (soonest first):
 `{ "teamKey": "bruins", "team": "Bruins", "text": "Next: Thu, Oct 29 at Blues, 8:00 PM" }` (ET; "vs" at home, "at" on the road; opponent nickname).
 Shown as "Upcoming games" inside the Today's games panel. Teams playing today are already listed above it, so leave them out. Offseason teams are left out. Take the next game from the sports data tool's `scores` (it lists upcoming games) or the team's official schedule.
+
+## previews (Full preview: storylines and the edge)
+
+Tapping a game in Coming up opens its preview; "See full preview" shows ESPN's matchup predictor, season leaders and injuries (all pulled live by the app, so don't write those) plus two things only you write:
+
+```json
+"previews": {
+  "celtics": {
+    "date": "2026-11-01",
+    "storylines": ["Boston goes for a fifth straight win, and its first on the road this season.", "…", "…"],
+    "edge": "Boston scores 11 more points a game, and Orlando is missing two starters."
+  }
+}
+```
+
+- One entry per team in `today` or `off`, keyed by team, with `date` = that game's date (YYYY-MM-DD). Skip a team if there's nothing solid to say.
+- `storylines`: 2–3 short lines on what to watch, each one sentence, from facts you've verified today (streaks, a player's hot stretch, who's out, the last meeting). No predictions, no betting lines.
+- `edge`: one sentence on which team has the advantage on paper and why, grounded in numbers (scoring, goals against, home/road record, key absences). Plain and fair; if it's even, say so.
+- Same voice as the rest of the issue: short, specific, no hype.
 
 ## results (Last night's game cards)
 

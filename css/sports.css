@@ -963,3 +963,48 @@ body.view-sports .gn-ghost { position: absolute; width: 100%; pointer-events: no
    page shows through (or flickers) above it while scrolling. */
 body.view-sports .tabs { top: -1px; padding-top: 1px; transform: translateZ(0); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
 body.view-sports .tabs::before { content: ""; position: absolute; left: 0; right: 0; top: -4px; height: 5px; background: var(--monster); pointer-events: none; }
+/* Preview: "See full preview" and the sections behind it */
+.pv-more { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; margin: 2px 0 18px; border: 0; border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 6%, var(--card)); color: var(--ink); font: 700 15px var(--serif); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+html[data-theme="dark"] .pv-more { background: #262523; }
+.pv-more:active { background: color-mix(in srgb, var(--ink) 11%, var(--card)); }
+.pv-more svg { color: var(--muted); transition: transform 160ms ease; }
+.pv-more[aria-expanded="true"] svg { transform: rotate(180deg); }
+.pvx-card { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; margin-bottom: 18px; overflow: hidden; color: var(--ink); }
+.pvx-pred { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; padding: 14px 14px 4px; }
+.pvx-pred .pct { font: 700 28px/1 var(--display); }
+.pvx-pred .pct small { display: block; font: 700 14px var(--display); color: var(--muted); margin-top: 4px; letter-spacing: .04em; }
+.pvx-pred .pct.r { text-align: right; }
+.pvx-pred .d { position: relative; width: 150px; height: 150px; }
+.pvx-pred .d .lg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.pvx-pred .pvx-plogo { width: 36px; height: 36px; object-fit: contain; }
+.pvx-src { margin: 0; padding: 2px 14px 12px; text-align: center; font: 500 12.5px var(--serif); color: var(--muted); }
+.pvx-story { list-style: none; margin: 0; padding: 4px 14px; }
+.pvx-story li { position: relative; padding: 10px 0 10px 16px; border-top: 1px solid var(--rule); font: 500 14.5px/1.4 var(--serif); }
+.pvx-story li:first-child { border-top: 0; }
+.pvx-story li::before { content: ""; position: absolute; left: 0; top: 17px; width: 6px; height: 6px; border-radius: 50%; background: #E0302A; }
+.pvx-mu .hd { display: flex; justify-content: space-between; padding: 10px 14px 2px; font: 700 15px var(--display); color: var(--muted); }
+.pvx-mu .rw { padding: 9px 14px; border-top: 1px solid var(--rule); }
+.pvx-mu .hd + .rw { border-top: 0; }
+.pvx-mu .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font: 700 17px var(--display); }
+.pvx-mu .top span { font: 600 12.5px var(--serif); color: var(--muted); text-align: center; }
+.pvx-mu .bar { display: flex; gap: 3px; margin-top: 6px; height: 5px; }
+.pvx-mu .bar i { display: block; border-radius: 3px; background: var(--c); }
+.pvx-edge { margin: 0; padding: 11px 14px; border-top: 1px solid var(--rule); font: 500 14px/1.4 var(--serif); }
+.pvx-edge b { font-weight: 800; }
+.pvx-lead .hd, .pvx-lead .rw { display: grid; grid-template-columns: 1fr 76px 1fr; align-items: center; }
+.pvx-lead .hd { padding: 10px 12px; font: 700 15px var(--display); color: var(--muted); }
+.pvx-lead .hd span:nth-child(2) { text-align: center; font: 600 12px var(--serif); }
+.pvx-lead .hd span:last-child { text-align: right; }
+.pvx-lead .rw { padding: 9px 12px; border-top: 1px solid var(--rule); }
+.pvx-lead .p { font: 600 14px/1.25 var(--serif); min-width: 0; }
+.pvx-lead .p b { display: block; font: 700 18px var(--display); }
+.pvx-lead .p.r { text-align: right; }
+.pvx-lead .lb { font: 600 12.5px var(--serif); color: var(--muted); text-align: center; }
+.pvx-inj .rw { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 10px 14px; border-top: 1px solid var(--rule); font: 600 14px var(--serif); }
+.pvx-inj .rw:first-child { border-top: 0; }
+.pvx-inj .t { font: 700 15px var(--display); }
+.pvx-inj small { display: block; font: 500 12.5px var(--serif); color: var(--muted); }
+.pvx-inj .st { font: 800 11px var(--serif); letter-spacing: .05em; padding: 2px 7px; border-radius: 5px; background: #E0302A; color: #fff; white-space: nowrap; }
+.pvx-inj .st.q { background: #E8A33A; color: #141414; }
+.pvx-inj .none { color: var(--muted); font-weight: 500; }
