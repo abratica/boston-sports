@@ -1089,9 +1089,11 @@
         ${cats.map((c) => `<div class="rw">${cell(la[c])}<span class="lb">${esc(c.replace(/ Yards$/, " yards"))}</span>${cell(lh[c], true)}</div>`).join("")}</div>`;
     }
     if (x.loaded && (x.injuries[A.ab] || x.injuries[H.ab] || Object.keys(x.injuries).length)) {
+      // Grouped under each team: a small header with the logo and name, then that team's players.
       const team = (t) => { const list = x.injuries[t.ab] || [];
-        return list.length ? list.map((i) => `<div class="rw"><span class="t">${esc(t.ab)}</span><span>${esc(i.name)}${i.detail ? `<small>${esc(i.detail)}</small>` : ""}</span>${i.status ? `<span class="st${i.out ? "" : " q"}">${esc(i.status)}</span>` : "<span></span>"}</div>`).join("")
-          : `<div class="rw"><span class="t">${esc(t.ab)}</span><span class="none">None reported</span><span></span></div>`; };
+        const head = `<div class="ig-h"><span class="ig-mark" style="--c:${t.c}">${logo(p.lg, t.la, "ig-logo", darkTheme())}</span>${esc(t.nick)}</div>`;
+        return head + (list.length ? list.map((i) => `<div class="rw"><span>${esc(i.name)}${i.detail ? `<small>${esc(i.detail)}</small>` : ""}</span>${i.status ? `<span class="st${i.out ? "" : " q"}">${esc(i.status)}</span>` : "<span></span>"}</div>`).join("")
+          : `<div class="rw"><span class="none">None reported</span><span></span></div>`); };
       out += `<h4 class="pv-h">Injuries</h4><div class="pvx-card pvx-inj">${team(A)}${team(H)}</div>`;
     }
     return out + seasonHtml;
