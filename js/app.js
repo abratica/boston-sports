@@ -130,14 +130,21 @@
     setTimeout(() => installBar("How", () => {
       const sheet = document.createElement("div");
       sheet.className = "install-sheet";
+      // iOS 26 moved Safari's Share button behind the ••• menu next to the address bar.
+      const ua = navigator.userAgent;
+      const chrome = /CriOS/.test(ua);
+      const safariVer = +((ua.match(/Version\/(\d+)/) || [])[1] || 0);
+      const MORE = `<span class="install-chip" aria-label="three dots">•••</span>`;
+      const SHARE = `<span class="install-chip"><svg width="13" height="15" viewBox="0 0 13 15" aria-hidden="true"><path d="M6.5 1v8.5M3.5 4l3-3 3 3M2.5 6.5H1.5v7.5h10V6.5h-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
+      const steps = chrome
+        ? [`Tap the <b>Share</b> button ${SHARE} in the address bar at the top`, `Tap <b>Add to Home Screen</b> (you may need to tap <b>More</b> first)`, `Tap <b>Add</b>. PS Sports shows up with your other apps`]
+        : safariVer >= 26
+        ? [`Tap the ${MORE} button next to the address bar`, `Tap <b>Share</b> ${SHARE}, then scroll down and tap <b>Add to Home Screen</b>`, `Keep <b>Open as Web App</b> switched on and tap <b>Add</b>`]
+        : [`Tap the <b>Share</b> button ${SHARE} at the bottom of Safari`, `Scroll down and tap <b>Add to Home Screen</b>`, `Tap <b>Add</b>. PS Sports shows up with your other apps`];
       sheet.innerHTML = `<div class="install-card" role="dialog" aria-label="Add PS Sports to your Home Screen">
         <h2>Add PS Sports to your Home Screen</h2>
-        <ol>
-          <li>Tap the <b>Share</b> button <span class="install-share" aria-hidden="true">⬆︎</span> at the bottom of Safari</li>
-          <li>Scroll down and tap <b>Add to Home Screen</b></li>
-          <li>Tap <b>Add</b>. PS Sports shows up with your other apps</li>
-        </ol>
-        <p class="install-note">Using Chrome on iPhone? Open this page in Safari first.</p>
+        <ol>${steps.map((x) => `<li>${x}</li>`).join("")}</ol>
+        <p class="install-note">It takes about 10 seconds, and then PS Sports opens full screen like any other app.</p>
         <button type="button" class="install-done">Got it</button>
       </div>`;
       sheet.addEventListener("click", (ev) => { if (ev.target === sheet || ev.target.closest(".install-done")) sheet.remove(); });

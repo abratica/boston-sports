@@ -1032,3 +1032,7 @@ body.view-sports .rc-next[hidden] { display: none; }
 body.view-sports .rc-next b { font: 700 12px var(--display); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; flex: none; }
 body.view-sports .rc-next span { flex: 1; min-width: 0; }
 body.view-sports .rc-next em { font: 700 15px var(--display); font-style: normal; white-space: nowrap; }
+/* iPhone install guide: inline button chips */
+.install-chip { display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 22px; padding: 0 6px; margin: 0 2px; vertical-align: -3px;
+  border-radius: 7px; background: #EDEAE3; color: #151515; font: 800 12px/1 "Manrope", sans-serif; letter-spacing: 1px; }
+html[data-theme="dark"] .install-chip { background: #2E2D2A; color: #F2EFE8; }
