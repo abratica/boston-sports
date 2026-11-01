@@ -216,13 +216,12 @@
   }
   function board(today, date, off) {
     const ymd = String(date || "").replace(/-/g, "");
-    // Stats sits top right: beside the heading with one game, on a label line per game when two overlap.
+    // Each game is its own card: a label line (matchup, with the Stats pill once it starts), the scoreboard, then Listen live.
     const stats = (g) => `<button type="button" class="sb-stats" data-team="${esc(g.teamKey)}" hidden>${STAT_ICON}<span>Stats</span>${chevronRight.replace("ta-chev", "sb-chev")}</button>`;
-    const many = (today || []).length > 1;
-    const rows = (today || []).map((g) => (many ? `<div class="sb-label"><span>${esc(`${g.team} ${g.matchup || ""}`.trim())}</span>${stats(g)}</div>` : "")
-      + scoreboard(g, ymd) + `<div class="sb-acts">${listenLink(g)}</div>`).join("");
+    const rows = (today || []).map((g) => `<div class="sb-card"><div class="sb-label"><span>${esc(`${g.team} ${g.matchup || ""}`.trim())}</span>${stats(g)}</div>`
+      + scoreboard(g, ymd) + `<div class="sb-acts">${listenLink(g)}</div></div>`).join("");
     return `<section class="board" aria-label="Today's games">
-      <div class="board-head"><h2>Today's games</h2>${!many && (today || []).length ? stats(today[0]) : ""}</div>
+      <div class="board-head"><h2>Today's games</h2></div>
       ${rows || `<div class="board-empty">No Boston games today.</div>`}
     </section>`;
   }
@@ -1639,8 +1638,9 @@
     const h = board && board.querySelector(".board-head h2");
     if (!h) return;
     const rows = [...board.querySelectorAll(".board-row.sb")];
-    h.textContent = rows.some((r) => r.classList.contains("is-live")) ? "Live"
-      : rows.length && rows.every((r) => r.classList.contains("is-final")) ? "Final" : "Today's games";
+    const live = rows.some((r) => r.classList.contains("is-live"));
+    h.textContent = live ? "Live" : rows.length && rows.every((r) => r.classList.contains("is-final")) ? "Final" : "Today's games";
+    h.classList.toggle("on", live);
   }
 
   let listenTimer = null;
