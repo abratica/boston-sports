@@ -324,6 +324,8 @@ def find_video(league, team_key, r, ev, notes):
     if author is not None and str(author).upper() not in ALLOWED_UP:
         say(f"  video {vid} by {author!r} isn't an allowed channel")
         return None
+    if author:   # show the channel's usual spelling ("Sportsnet", not "SPORTSNET")
+        author = next((x for x in ALLOWED_AUTHORS if x.upper() == str(author).upper()), author)
     h, a = home_t.get("shortDisplayName", ""), away_t.get("shortDisplayName", "")
     v = {"id": vid, "title": f"{a} at {h}: {'full game' if league == 'nba' else 'game'} highlights",
          "channel": author or {"nba": "NBA", "nhl": "NHL", "nfl": "NFL", "mlb": "MLB"}[league], "kind": "full"}
