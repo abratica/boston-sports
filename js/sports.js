@@ -468,7 +468,6 @@
         ${g.takeaway ? `<p class="rc-sum">${esc(g.takeaway)}</p>` : ""}
       </summary>
       <div class="game-body">
-        ${g.takeaway ? `<p class="rc-lede">${esc(g.takeaway)}</p>` : ""}
         ${videos(g.videos, g.sport)}
         ${story(g, recapStatBtn(g))}
         ${P.length ? `<h4 class="sub">Top player stats</h4><ul class="performers">${P.map(pli).join("")}</ul>` : ""}
