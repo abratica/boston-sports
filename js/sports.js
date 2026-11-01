@@ -468,11 +468,12 @@
         ${g.takeaway ? `<p class="rc-sum">${esc(g.takeaway)}</p>` : ""}
       </summary>
       <div class="game-body">
+        ${g.takeaway ? `<p class="rc-lede">${esc(g.takeaway)}</p>` : ""}
         ${videos(g.videos, g.sport)}
         ${story(g, recapStatBtn(g))}
         ${P.length ? `<h4 class="sub">Top player stats</h4><ul class="performers">${P.map(pli).join("")}</ul>` : ""}
         ${g.oppLine ? `<p class="opp-line"><b>${esc(g.opp.name || g.opp.abbr)}:</b> ${esc(g.oppLine)}</p>` : ""}
-        ${g.takeaway ? `<p class="takeaway"><strong>What it means.</strong> ${esc(g.takeaway)}</p>` : ""}
+        ${g.date && g.teamKey ? `<div class="rc-next" data-team="${esc(g.teamKey)}" data-after="${esc(g.date)}" hidden></div>` : ""}
       </div>
     </details>`;
   }
@@ -1687,10 +1688,27 @@
       if (changed) root.querySelectorAll(".team-meta[data-team]").forEach((el) => { el.textContent = placeLine(el.dataset.team); });
     } catch { /* ignore */ }
   }
+  // End of each recap: that team's next game, from the season schedule (only if it hasn't been played yet).
+  async function fillNext(root) {
+    const els = [...root.querySelectorAll(".rc-next[data-team]:not([data-done])")];
+    if (!els.length) return;
+    await loadSchedule();
+    const today = todayET();
+    els.forEach((el) => {
+      el.dataset.done = "1";
+      const games = ((SCHED && SCHED.teams && SCHED.teams[el.dataset.team]) || {}).games || [];
+      const n = games.find((x) => x.date > el.dataset.after);
+      if (!n || n.date < today) return;
+      const day = n.date === today ? "Today" : dt(n.date).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+      el.innerHTML = `<b>Next</b><span>${esc(day)} ${n.home === false ? "at" : "vs"} ${esc(n.opp)}</span><em>${esc(n.time || "TBD")}</em>`;
+      el.hidden = false;
+    });
+  }
   function mount(root, data) {
     stopLive();
     PV_DATA = data;
     restoreSaved(root, data);
+    fillNext(root);
     refreshStandings(root, false);
     const upd = () => updateListen(root, data.date);
     upd();
@@ -1795,6 +1813,7 @@
       <div class="gn-vp"><main class="sports-main gn-main">${list ? pastNav(g, list) : ""}${game(g, true)}</main></div>`;
   }
   function mountPast(root, g, list) {
+    fillNext(root);
     const main = root.querySelector(".gn-main");
     if (!main || !list) return;
     const [older, newer] = pastNeighbors(g, list);

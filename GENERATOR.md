@@ -98,7 +98,7 @@ Tapping a game in Coming up opens its preview; "See full preview" shows ESPN's m
 
 Every Boston game that **started yesterday (ET)** and is final, including late West Coast games. Order by **how newsworthy the result is**, biggest first.
 
-The closed card shows the result, both teams' scores and records (`record`, `opp.record`), the `headline` and, until 30 minutes before the day's first game, the `takeaway` as a one-line summary. Opened, it reads: highlights video → game story (line score, then a Stats button, then period by period) → top player stats → opponent line → "What it means". The Stats button opens a sheet with the box score, plays and team stats, pulled live from ESPN's feed for the game; the game is found from the ESPN `gameId` in `box.source.url`, so keep that URL in ESPN's `/gameId/<id>` form. The saved `box` is what the sheet shows if ESPN's feed can't be reached.
+The closed card shows the result, both teams' scores and records (`record`, `opp.record`), the `headline` and, until 30 minutes before the day's first game, the `takeaway` as a one-line summary. Opened, it reads: the `takeaway` as the opening summary → highlights video → game story (line score, then a Stats button, then period by period) → top player stats → opponent line → the team's next game (the app adds this from schedule.json). The Stats button opens a sheet with the box score, plays and team stats, pulled live from ESPN's feed for the game; the game is found from the ESPN `gameId` in `box.source.url`, so keep that URL in ESPN's `/gameId/<id>` form. The saved `box` is what the sheet shows if ESPN's feed can't be reached.
 
 Each result:
 - `teamKey`, `headline` (short, punchy, factual, e.g. "Pritchard's seven threes bury Chicago").
@@ -153,7 +153,9 @@ Each result:
   - **MLB**: groups `"Batting"` `["AB","R","H","RBI","BB","K","HR"]` (lineup order) and `"Pitching"` `["IP","H","R","ER","BB","K","PC"]`.
   - Check: each team's player points/goals/runs must add up to its final score (NHL: also each team's skater shots on goal = the other goalie's shots against). If a source fails the check, try the next source in the order above. Only if none passes, omit `box` rather than publish a partial one, and say in the final message which sources failed and why.
   - `source.url` is the ESPN box score page for the game (what a reader would open), whichever source the numbers came from.
-- `takeaway` ("What it means"): one sentence. Streak, standings move, concern, injury to watch. Also shown on the closed card.
+- `takeaway` (the summary): the lead of the recap, shown on the closed card and as the first thing in the opened card. One or two sentences, about 25–40 words. Start with what happened, in plain words and with the key moment (who decided it, how), then why it matters: a streak, a standings move, a milestone, an injury to watch. A reader who sees only this line should know how the game went and why to care.
+  - Good: "Boston erased a two-goal deficit in the final four minutes and won it in overtime on Elias Lindholm's goal, snapping a two-game skid and keeping the Bruins first in the Atlantic."
+  - Avoid: starting with the consequence before saying what happened ("The comeback snapped…"), repeating the headline word for word, or hype.
 
 ## teamNews (Teams tab)
 

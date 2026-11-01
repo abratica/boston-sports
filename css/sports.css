@@ -1021,3 +1021,12 @@ html[data-theme="dark"] .pv-more { background: #262523; }
 body.view-sports .wordmark { line-height: 0; }
 body.view-sports .wordmark .wm-logo { height: 28px; width: auto; display: block; }
 body.view-sports .masthead .dateline { margin-top: 7px; }
+/* Recap: the summary leads the opened card; the team's next game closes it */
+body.view-sports .game-body .rc-lede { margin: 2px 0 14px; font: 600 16.5px/1.45 var(--serif); color: var(--ink); }
+body.view-sports .rc-next { display: flex; align-items: center; gap: 12px; margin: 18px 0 2px; padding: 12px 14px; border-radius: 12px;
+  background: color-mix(in srgb, var(--ink) 6%, var(--card)); font: 600 14.5px/1.3 var(--serif); color: var(--ink); }
+html[data-theme="dark"] body.view-sports .rc-next { background: #262523; }
+body.view-sports .rc-next[hidden] { display: none; }
+body.view-sports .rc-next b { font: 700 12px var(--display); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; flex: none; }
+body.view-sports .rc-next span { flex: 1; min-width: 0; }
+body.view-sports .rc-next em { font: 700 15px var(--display); font-style: normal; white-space: nowrap; }
