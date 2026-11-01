@@ -17,7 +17,12 @@
       "oppRecord": "2–3",
       "time": "3:30 PM",
       "tv": "NBC Sports Boston",
-      "venue": "Kia Center"
+      "venue": "Kia Center",
+      "radio": {
+        "name": "105.7 WROR",
+        "url": "https://wror.com",
+        "stream": "https://playerservices.streamtheworld.com/api/livestream-redirect/WRORFMAACIHR.aac"
+      }
     },
     {
       "teamKey": "patriots",
