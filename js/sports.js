@@ -1688,6 +1688,16 @@
     const live = rows.some((r) => r.classList.contains("is-live"));
     h.textContent = live ? "Live" : rows.length && rows.every((r) => r.classList.contains("is-final")) ? "Final" : "Today's games";
     h.classList.toggle("on", live);
+    // A heading over each later group: "Final" above finished games, "Later today" above games still to come.
+    board.querySelectorAll(".sb-ghead").forEach((x) => x.remove());
+    const LABEL = ["Live", "Later today", "Final"];
+    sorted.forEach((c, i) => {
+      if (i === 0 || rank(c) === rank(sorted[i - 1])) return;
+      const g = document.createElement("h2");
+      g.className = "sb-ghead";
+      g.textContent = LABEL[rank(c)];
+      c.before(g);
+    });
   }
 
   let listenTimer = null;
