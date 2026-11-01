@@ -218,7 +218,7 @@
     const ymd = String(date || "").replace(/-/g, "");
     // Each game is its own card: a label line (matchup, with the Stats pill once it starts), the scoreboard, then Listen live.
     const stats = (g) => `<button type="button" class="sb-stats" data-team="${esc(g.teamKey)}" hidden>${STAT_ICON}<span>Stats</span>${chevronRight.replace("ta-chev", "sb-chev")}</button>`;
-    const rows = (today || []).map((g) => `<div class="sb-card"><div class="sb-label"><span>${esc(`${g.team} ${g.matchup || ""}`.trim())}</span>${stats(g)}</div>`
+    const rows = (today || []).map((g, i) => `<div class="sb-card" data-i="${i}"><div class="sb-label"><span>${esc(`${g.team} ${g.matchup || ""}`.trim())}</span>${stats(g)}</div>`
       + scoreboard(g, ymd) + `<div class="sb-acts">${listenLink(g)}</div></div>`).join("");
     return `<section class="board" aria-label="Today's games">
       <div class="board-head"><h2>Today's games</h2></div>
@@ -1680,6 +1680,11 @@
     const h = board && board.querySelector(".board-head h2");
     if (!h) return;
     const rows = [...board.querySelectorAll(".board-row.sb")];
+    // Games in progress move to the top, then games still to come, then finals (each group in start-time order).
+    const cards = [...board.querySelectorAll(".sb-card[data-i]")];
+    const rank = (c) => { const r = c.querySelector(".board-row.sb"); return r && r.classList.contains("is-live") ? 0 : r && r.classList.contains("is-final") ? 2 : 1; };
+    const sorted = [...cards].sort((a, b) => rank(a) - rank(b) || a.dataset.i - b.dataset.i);
+    if (sorted.some((c, i) => c !== cards[i])) sorted.forEach((c) => c.parentNode.appendChild(c));
     const live = rows.some((r) => r.classList.contains("is-live"));
     h.textContent = live ? "Live" : rows.length && rows.every((r) => r.classList.contains("is-final")) ? "Final" : "Today's games";
     h.classList.toggle("on", live);
