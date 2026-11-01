@@ -1084,4 +1084,3 @@ body.view-sports .sb-card .sb-mid .sb-tv svg { width: 12px; height: 12px; flex: 
 .dv-dd { display: flex; justify-content: space-between; gap: 8px; font: 700 12px var(--display); color: var(--muted); letter-spacing: .02em; margin-bottom: 2px; }
 .dv-dd em { font-style: normal; font-weight: 600; }
 body.view-sports .board .sb-ghead { color: var(--ink); margin: 16px 2px 8px; }
-body.view-sports .board .sb-ghead.on { color: #E0302A; }
