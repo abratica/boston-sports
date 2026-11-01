@@ -35,6 +35,7 @@ ALLOWED_AUTHORS = {"NBA", "NHL", "NFL", "MLB", "Boston Celtics", "NHL Bruins", "
                    "Red Sox", "Boston Red Sox", "NBC Sports Boston", "NESN", "Sportsnet", "ESPN", "NBA on ESPN",
                    "NBC Sports", "TNT Sports", "NHL on TNT", "CBS Sports", "FOX Sports", "NFL on FOX", "NFL on CBS",
                    "MLB on FOX", "Prime Video", "NBA on Prime"}
+ALLOWED_UP = {x.upper() for x in ALLOWED_AUTHORS}   # YouTube sometimes reports a channel name in all caps ("SPORTSNET")
 log = []
 
 
@@ -293,7 +294,7 @@ def find_video(league, team_key, r, ev, notes):
             notes.append(f"search {q!r}: {len(res)} results")
             for vid, title, ch in res:
                 T = title.upper()
-                if ch not in ALLOWED_AUTHORS or not all(n and n in T for n in names) or "HIGHLIGHT" not in T:
+                if str(ch).upper() not in ALLOWED_UP or not all(n and n in T for n in names) or "HIGHLIGHT" not in T:
                     continue
                 if any(w in T for w in ("PRESS CONFERENCE", "POSTGAME", "REACTION", "PODCAST", "INTERVIEW")):
                     continue
@@ -320,7 +321,7 @@ def find_video(league, team_key, r, ev, notes):
             embed, author = False, None
         else:
             return None
-    if author is not None and author not in ALLOWED_AUTHORS:
+    if author is not None and str(author).upper() not in ALLOWED_UP:
         say(f"  video {vid} by {author!r} isn't an allowed channel")
         return None
     h, a = home_t.get("shortDisplayName", ""), away_t.get("shortDisplayName", "")
