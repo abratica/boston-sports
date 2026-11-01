@@ -103,7 +103,7 @@
     if (standalone() || dismissedRecently() || document.querySelector(".install-bar")) return;
     const bar = document.createElement("div");
     bar.className = "install-bar";
-    bar.innerHTML = `<img src="icons/icon-192.png" alt="" width="40" height="40">
+    bar.innerHTML = `<img src="icons/ps-icon-192.png" alt="" width="40" height="40">
       <span class="install-text"><b>Get the PS Sports app</b><span>Daily Boston sports on your home screen</span></span>
       <button type="button" class="install-go">${label}</button>
       <button type="button" class="install-x" aria-label="Not now">×</button>`;

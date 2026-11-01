@@ -1,10 +1,10 @@
 // Boston Sports. Cache names start with "bs-" and only "bs-" caches are ever cleaned up,
 // so this never touches the caches of other apps on the same site.
-const SHELL = "bs-shell-v54";
+const SHELL = "bs-shell-v55";
 const DATA = "bs-data";
 const SHELL_FILES = ["./", "index.html", "manifest.webmanifest",
   "css/base.css", "css/sports.css", "js/app.js", "js/sports.js",
-  "icons/icon-192.png", "icons/icon-512.png",
+  "icons/ps-icon-192.png", "icons/ps-icon-512.png", "brand/logo-full.svg", "brand/logo-horizontal.svg",
   "fonts/manrope-latin-500-normal.woff2", "fonts/manrope-latin-600-normal.woff2",
   "fonts/manrope-latin-700-normal.woff2", "fonts/manrope-latin-800-normal.woff2",
   "fonts/barlow-condensed-latin-500-normal.woff2", "fonts/barlow-condensed-latin-600-normal.woff2",

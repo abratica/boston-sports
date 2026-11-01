@@ -96,7 +96,7 @@
     if ("mediaSession" in navigator) {
       try {
         navigator.mediaSession.metadata = new MediaMetadata({ title, artist: station, album: "PS Sports",
-          artwork: [{ src: "icons/icon-512.png", sizes: "512x512", type: "image/png" }] });
+          artwork: [{ src: "icons/ps-icon-512.png", sizes: "512x512", type: "image/png" }] });
         navigator.mediaSession.setActionHandler("play", () => playStream(src, title, station));
         navigator.mediaSession.setActionHandler("pause", stopStream);
         navigator.mediaSession.setActionHandler("stop", stopStream);
