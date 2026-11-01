@@ -1366,7 +1366,27 @@
       if (recent.length) playsNote = "Latest 25 plays";
     }
     plays.reverse();
-    return { lg, away, home, status, state, box, stats, plays, playsNote, id: ((j.header || {}).id) || "" };
+    // Football: every play, grouped by drive (newest first). The live drive comes from drives.current.
+    let drives = null;
+    const DR = j.drives || {};
+    if (lg === "nfl" && ((DR.previous || []).length || DR.current)) {
+      const list = [...(DR.previous || [])];
+      if (DR.current && DR.current.id) {
+        const i = list.findIndex((x) => x.id === DR.current.id);
+        if (i >= 0) list[i] = { ...list[i], ...DR.current }; else list.push(DR.current);
+      }
+      drives = list.map((x) => {
+        const ps = (x.plays || []).filter((p) => p.text);
+        const last = ps[ps.length - 1];
+        const res = x.displayResult || "";
+        return { id: String(x.id || ""), team: byId[String((x.team || {}).id || "")], result: res, live: !res && state === "in",
+          score: !!x.isScore, desc: x.description || "", per: ((x.start || {}).period || {}).number || ((ps[0] || {}).period || {}).number || 0,
+          after: last && last.awayScore != null ? `${last.awayScore}–${last.homeScore}` : "",
+          plays: ps.map((p) => ({ dd: ((p.start || {}).downDistanceText) || "", text: p.text, clock: (p.clock || {}).displayValue || "",
+            per: (p.period || {}).number || 0, scoring: !!p.scoringPlay, type: ((p.type || {}).text) || "" })).reverse() };
+      }).reverse();
+    }
+    return { lg, away, home, status, state, box, stats, plays, playsNote, drives, id: ((j.header || {}).id) || "" };
   }
   function lvPeriod(lg, n) {
     if (lg === "nhl") return n <= 3 ? `${ord(n)} period` : n === 4 ? "Overtime" : n === 5 ? "Shootout" : `${n - 3}OT`;
@@ -1389,6 +1409,21 @@
           <div class="bx-pane"${bxTab ? " hidden" : ""}>${d.box.boston.groups.map(boxGroup).join("")}</div>
           <div class="bx-pane"${bxTab ? "" : " hidden"}>${d.box.opp.groups.map(boxGroup).join("")}</div></div>`
         : `<p class="lv-empty">The box score shows up once the game starts.</p>`;
+    } else if (tab === "plays" && d.drives && d.drives.length) {
+      const open = (d.open || new Set());
+      let cur = null;
+      body = d.drives.map((x) => {
+        const head = x.per !== cur ? `${cur !== null ? "</div>" : ""}<h5 class="lp-per">${esc(lvPeriod(d.lg, x.per))}</h5><div class="dv-list">` : "";
+        cur = x.per;
+        const isOpen = open.has(x.id) || (x.live && !open.has("closed:" + x.id));
+        const tag = x.live ? `<span class="dv-tag live">ON THE FIELD</span>` : x.score ? `<span class="dv-tag g">${esc(/touchdown/i.test(x.result) ? "TD" : /field goal/i.test(x.result) ? "FG" : x.result.toUpperCase())}</span>`
+          : `<span class="dv-tag">${esc(x.result.toUpperCase() || "—")}</span>`;
+        return `${head}<details class="dv${x.score ? " is-score" : ""}" data-dv="${esc(x.id)}" style="--c:${x.team ? x.team.color : "var(--rule)"}"${isOpen ? " open" : ""}>
+          <summary><span class="dv-team">${esc(x.team ? x.team.abbr : "")}</span><span class="dv-main">${tag}<small>${esc(x.desc)}</small></span>
+            ${x.score && x.after ? `<span class="dv-sc">${esc(x.after)}</span>` : ""}<span class="dv-chev" aria-hidden="true">${chevron(14)}</span></summary>
+          <ol class="dv-plays">${x.plays.map((p) => `<li class="${p.scoring ? "sc" : ""}"><span class="dv-dd">${esc(p.dd || p.type)}<em>${esc(p.clock)}</em></span><span class="dv-txt">${esc(p.text)}</span></li>`).join("")}</ol>
+        </details>`;
+      }).join("") + "</div>";
     } else if (tab === "plays") {
       if (!d.plays.length) body = `<p class="lv-empty">${d.offline ? "Plays couldn't load from ESPN right now." : d.lg === "nhl" ? "No goals or penalties yet." : "No plays yet."}</p>`;
       else {
@@ -1463,7 +1498,14 @@
       <div class="st-body"></div>
     </div>`;
     const body = el.querySelector(".st-body");
-    const render = (keepScroll) => { const top = body.scrollTop; body.innerHTML = lvBody(d, tab, bxTab); body.scrollTop = keepScroll ? top : 0; el.querySelector(".st-head h2").textContent = title(); };
+    const dvOpen = new Set();
+    body.addEventListener("toggle", (e) => {
+      const x = e.target.closest && e.target.closest("details.dv");
+      if (!x) return;
+      const id = x.dataset.dv;
+      if (x.open) { dvOpen.add(id); dvOpen.delete("closed:" + id); } else { dvOpen.delete(id); dvOpen.add("closed:" + id); }
+    }, true);
+    const render = (keepScroll) => { const top = body.scrollTop; d.open = dvOpen; body.innerHTML = lvBody(d, tab, bxTab); body.scrollTop = keepScroll ? top : 0; el.querySelector(".st-head h2").textContent = title(); };
     document.body.appendChild(el);
     document.body.style.overflow = "hidden";
     render(false);
