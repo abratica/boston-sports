@@ -10,25 +10,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: { ref: probe-espn }
-      - name: Fetch predictor
+      - name: Fetch NFL game feed
         run: |
           python3 - <<'PY'
           import json, urllib.request, os
           def get(u):
               with urllib.request.urlopen(urllib.request.Request(u, headers={'User-Agent':'Mozilla/5.0'}), timeout=30) as r: return json.load(r)
           os.makedirs('assets/api', exist_ok=True)
-          base='https://site.api.espn.com/apis/site/v2/sports/'
-          for key,path,date,ab in [('nba','basketball/nba','20261101','BOS'),('nfl','football/nfl','20261101','NE'),('nhl','hockey/nhl','20261102','BOS')]:
-              sb=get(base+path+'/scoreboard?dates='+date)
-              ev=[e for e in sb['events'] if any(c['team']['abbreviation']==ab for c in e['competitions'][0]['competitors'])]
-              if not ev: print('no event', key); continue
-              s=get(base+path+'/summary?event='+ev[0]['id'])
-              keep={k:s.get(k) for k in ('predictor','winprobability','pickcenter','odds','leaders','injuries','gameInfo') if k in s}
-              keep['header_id']=s['header']['id']
-              json.dump(keep, open(f'assets/api/pre_{key}.json','w'))
-              print(key, ev[0]['id'], list(s.keys()), json.dumps(s.get('predictor'))[:300])
+          base='https://site.api.espn.com/apis/site/v2/sports/football/nfl/'
+          sb=get(base+'scoreboard?dates=20261101')
+          ev=[e for e in sb['events'] if any(c['team']['abbreviation']=='NE' for c in e['competitions'][0]['competitors'])][0]
+          json.dump(get(base+'summary?event='+ev['id']), open('assets/api/nfl_live.json','w'))
+          print('ok', ev['id'])
           PY
       - name: Commit
         run: |
           git config user.name "probe" && git config user.email "probe@users.noreply.github.com"
-          git add assets && git commit -qm "probe predictor" && git push -q origin HEAD:probe-espn
+          git add assets && git commit -qm "probe nfl" && git push -q origin HEAD:probe-espn
