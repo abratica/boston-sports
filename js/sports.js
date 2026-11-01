@@ -208,7 +208,7 @@
           <div class="sb-mid">
             <div class="sb-pre"><div class="sb-when">${when}</div><div class="sb-time">${timeHtml}</div>${g.venue ? `<div class="sb-venue">${esc(g.venue)}</div>` : ""}</div>
             <div class="sb-live" hidden><div class="sb-digits"><div class="sb-dg" data-side="L"></div><div class="sb-dg" data-side="R"></div></div><div class="sb-clock"></div></div>
-            ${g.tv ? `<div class="board-tv sb-tv"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${esc(g.tv)}</div>` : ""}
+            ${g.tv ? `<div class="board-tv sb-tv"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>${esc(String(g.tv).split(" · ")[0])}</div>` : ""}
           </div>
           ${block(R, "HOME")}
         </div>

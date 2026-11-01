@@ -40,7 +40,7 @@
      "home": true,
      "opp": "Bulls",
      "oppAbbr": "CHI",
-     "tv": "NBC Sports Boston · Peacock"
+     "tv": "NBC Sports Boston"
     },
     {
      "date": "2026-11-01",
@@ -48,7 +48,7 @@
      "home": false,
      "opp": "Magic",
      "oppAbbr": "ORL",
-     "tv": "NBC Sports Boston · Peacock"
+     "tv": "NBC Sports Boston"
     },
     {
      "date": "2026-11-02",
@@ -56,7 +56,7 @@
      "home": false,
      "opp": "Rockets",
      "oppAbbr": "HOU",
-     "tv": "NBC Sports Boston · Peacock"
+     "tv": "NBC Sports Boston"
     },
     {
      "date": "2026-11-04",
@@ -64,7 +64,7 @@
      "home": true,
      "opp": "Bucks",
      "oppAbbr": "MIL",
-     "tv": "NBC Sports Boston · Peacock"
+     "tv": "NBC Sports Boston"
     },
     {
      "date": "2026-11-06",
@@ -72,7 +72,7 @@
      "home": false,
      "opp": "Hornets",
      "oppAbbr": "CHA",
-     "tv": "NBC Sports Boston · Peacock"
+     "tv": "NBC Sports Boston"
     },
     {
      "date": "2026-11-08",
@@ -80,7 +80,7 @@
      "home": false,
      "opp": "Bucks",
      "oppAbbr": "MIL",
-     "tv": "NBC Sports Boston · Peacock"
+     "tv": "NBC Sports Boston"
     },
     {
      "date": "2026-11-10",
@@ -96,7 +96,7 @@
      "home": false,
      "opp": "Raptors",
      "oppAbbr": "TOR",
-     "tv": "NBC Sports Boston · Peacock"
+     "tv": "NBC Sports Boston"
     },
     {
      "date": "2026-11-15",
