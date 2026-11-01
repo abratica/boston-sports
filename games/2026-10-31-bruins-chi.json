@@ -676,6 +676,14 @@
       ]
     }
   },
+  "videos": [
+    {
+      "id": "RvnDiVK4nTM",
+      "title": "Blackhawks at Bruins: game highlights",
+      "channel": "SPORTSNET",
+      "kind": "full"
+    }
+  ],
   "id": "2026-10-31-bruins-chi",
   "date": "2026-10-31"
 }

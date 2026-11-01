@@ -745,7 +745,15 @@
             }
           ]
         }
-      }
+      },
+      "videos": [
+        {
+          "id": "RvnDiVK4nTM",
+          "title": "Blackhawks at Bruins: game highlights",
+          "channel": "SPORTSNET",
+          "kind": "full"
+        }
+      ]
     }
   ],
   "teamNews": {
