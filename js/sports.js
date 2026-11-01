@@ -1686,15 +1686,16 @@
     const sorted = [...cards].sort((a, b) => rank(a) - rank(b) || a.dataset.i - b.dataset.i);
     if (sorted.some((c, i) => c !== cards[i])) sorted.forEach((c) => c.parentNode.appendChild(c));
     const live = rows.some((r) => r.classList.contains("is-live"));
-    h.textContent = live ? "Live" : rows.length && rows.every((r) => r.classList.contains("is-final")) ? "Final" : "Today's games";
-    h.classList.toggle("on", live);
+    const allFinal = rows.length && rows.every((r) => r.classList.contains("is-final"));
+    h.textContent = live ? "Live" : allFinal ? "Final" : "Today's games";
+    h.classList.toggle("on", !!(live || allFinal));
     // A heading over each later group: "Final" above finished games, "Later today" above games still to come.
     board.querySelectorAll(".sb-ghead").forEach((x) => x.remove());
     const LABEL = ["Live", "Later today", "Final"];
     sorted.forEach((c, i) => {
       if (i === 0 || rank(c) === rank(sorted[i - 1])) return;
       const g = document.createElement("h2");
-      g.className = "sb-ghead";
+      g.className = rank(c) === 2 ? "sb-ghead on" : "sb-ghead";
       g.textContent = LABEL[rank(c)];
       c.before(g);
     });
