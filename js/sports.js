@@ -18,7 +18,7 @@
   function masthead(name, sub, ctx) {
     return `<header class="masthead${ctx.backHref ? "" : " no-back"}">
       ${ctx.backHref ? `<a class="back" href="${ctx.backHref}" aria-label="${esc(ctx.backLabel)}">‹</a>` : ""}
-      <h1 class="wordmark">${esc(name).replace(/ (\S+)$/, " <span>$1</span>")}</h1>
+      <h1 class="wordmark"><img class="wm-logo" src="brand/logo-horizontal.svg" alt="${esc(name)}" width="179" height="28"></h1>
       <p class="dateline">${esc(sub)}</p>
       ${window.themeButton ? window.themeButton() : ""}
     </header>`;

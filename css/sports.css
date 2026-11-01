@@ -1017,3 +1017,7 @@ html[data-theme="dark"] .pv-more { background: #262523; }
 /* Preview: "1st of 4 meetings" on the Team snapshot heading line */
 .pv-hx { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .pv-hx em { font: 500 13px var(--serif); letter-spacing: 0; text-transform: none; color: var(--muted); font-style: normal; white-space: nowrap; }
+/* Logo in the header */
+body.view-sports .wordmark { line-height: 0; }
+body.view-sports .wordmark .wm-logo { height: 28px; width: auto; display: block; }
+body.view-sports .masthead .dateline { margin-top: 7px; }

@@ -9,27 +9,24 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preload" href="brand/logo-full.svg" as="image">
+<link rel="preload" href="brand/logo-horizontal.svg" as="image">
 <link rel="preload" href="fonts/archivo-black-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/barlow-condensed-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/base.css?v=53">
-<link rel="stylesheet" href="css/sports.css?v=53">
+<link rel="stylesheet" href="css/base.css?v=54">
+<link rel="stylesheet" href="css/sports.css?v=54">
 </head>
 <body class="view-sports">
 <!-- Launch screen: shown once per app launch, fades out as soon as today's issue is on screen. -->
 <style>
   #splash { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
-    background: #141414; color: #F7F4EE; transition: opacity .3s ease, transform .3s ease; }
+    background: #0E0E0E; color: #F7F4EE; transition: opacity .3s ease, transform .3s ease; }
   #splash.out { opacity: 0; transform: scale(1.03); pointer-events: none; }
-  #splash .sp-mark { font: 400 clamp(40px, 13vw, 64px)/1 "Archivo Black", "Arial Black", sans-serif; letter-spacing: -0.01em; text-transform: uppercase; white-space: nowrap;
-    animation: sp-in .35s ease-out both; }
-  #splash .sp-mark span { color: #E0302A; }
-  #splash .sp-tag { font: 600 15px/1 "Barlow Condensed", "Arial Narrow", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: rgba(247,244,238,.7);
-    animation: sp-tag .5s ease-out .3s both; }
+  #splash .sp-logo { width: min(78vw, 380px); height: auto; animation: sp-in .4s ease-out both; }
   @keyframes sp-in { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: none; } }
-  @keyframes sp-tag { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-  @media (prefers-reduced-motion: reduce) { #splash .sp-mark, #splash .sp-tag { animation: none; } #splash { transition: opacity .2s; } #splash.out { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { #splash .sp-logo { animation: none; } #splash { transition: opacity .2s; } #splash.out { transform: none; } }
 </style>
-<div id="splash" aria-hidden="true"><div class="sp-mark">PS <span>Sports</span></div><div class="sp-tag">It's kinda in the game.</div></div>
+<div id="splash" aria-hidden="true"><img class="sp-logo" src="brand/logo-full.svg" alt=""></div>
 <script>
 (function () {
   var el = document.getElementById("splash");
@@ -50,7 +47,7 @@
 })();
 </script>
 <div id="app" aria-live="polite"></div>
-<script src="js/sports.js?v=53"></script>
-<script src="js/app.js?v=53"></script>
+<script src="js/sports.js?v=54"></script>
+<script src="js/app.js?v=54"></script>
 </body>
 </html>
