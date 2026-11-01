@@ -95,7 +95,9 @@
      iPhone/iPad: no install prompt exists, so the bar opens a short Add to Home Screen guide. */
   const DISMISS_KEY = "bs-install-dismissed";
   const standalone = () => (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
-  const dismissedRecently = () => { try { return Date.now() - Number(localStorage.getItem(DISMISS_KEY) || 0) < 7 * 864e5; } catch { return false; } };
+  // Closing the bar hides it for this visit only; it comes back next time until the app is on the home screen.
+  try { localStorage.removeItem(DISMISS_KEY); } catch { /* old 7-day dismissals no longer apply */ }
+  const dismissedRecently = () => { try { return sessionStorage.getItem(DISMISS_KEY) === "1"; } catch { return false; } };
   const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   let deferred = null;
 
@@ -109,7 +111,7 @@
       <button type="button" class="install-x" aria-label="Not now">×</button>`;
     bar.querySelector(".install-go").addEventListener("click", onGo);
     bar.querySelector(".install-x").addEventListener("click", () => {
-      try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch { /* fine */ }
+      try { sessionStorage.setItem(DISMISS_KEY, "1"); } catch { /* fine */ }
       bar.remove();
     });
     document.body.appendChild(bar);
