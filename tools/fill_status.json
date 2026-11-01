@@ -1,9 +1,12 @@
 {
-  "issue": "2026-10-31",
+  "issue": "2026-11-01",
   "games": {
-    "celtics": {
-      "box": "ok",
-      "video": "ok"
+    "bruins": {
+      "box": "added",
+      "video_notes": [
+        "feeds: found RvnDiVK4nTM"
+      ],
+      "video": "not found yet"
     }
   }
 }

@@ -102,6 +102,580 @@
   ],
   "oppLine": "Anton Frondell scored twice, Connor Bedard and Ryan Greene added goals, Patrick Kane picked up his 900th career assist, and Arvid Soderblom made 27 saves.",
   "takeaway": "The comeback snapped a two-game losing streak and kept Boston first in the Atlantic at 10–4–1, though it trailed for most of the afternoon.",
+  "box": {
+    "source": {
+      "name": "ESPN",
+      "url": "https://www.espn.com/nhl/boxscore/_/gameId/401892614"
+    },
+    "boston": {
+      "name": "Bruins",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Charlie McAvoy",
+              "values": [
+                0,
+                2,
+                2,
+                "2",
+                3,
+                0,
+                2,
+                "27:16"
+              ]
+            },
+            {
+              "name": "David Pastrnak",
+              "values": [
+                1,
+                0,
+                1,
+                "1",
+                4,
+                1,
+                1,
+                "24:48"
+              ]
+            },
+            {
+              "name": "Pavel Zacha",
+              "values": [
+                0,
+                1,
+                1,
+                "1",
+                3,
+                2,
+                0,
+                "22:12"
+              ]
+            },
+            {
+              "name": "Hampus Lindholm",
+              "values": [
+                0,
+                0,
+                0,
+                "1",
+                1,
+                0,
+                2,
+                "21:35"
+              ]
+            },
+            {
+              "name": "Will Borgen",
+              "values": [
+                0,
+                0,
+                0,
+                "1",
+                1,
+                0,
+                3,
+                "21:16"
+              ]
+            },
+            {
+              "name": "JJ Peterka",
+              "values": [
+                0,
+                2,
+                2,
+                "3",
+                4,
+                0,
+                0,
+                "21:15"
+              ]
+            },
+            {
+              "name": "Elias Lindholm",
+              "values": [
+                1,
+                0,
+                1,
+                "2",
+                2,
+                2,
+                0,
+                "19:44"
+              ]
+            },
+            {
+              "name": "Mason Lohrei",
+              "values": [
+                1,
+                0,
+                1,
+                "-1",
+                1,
+                0,
+                1,
+                "16:59"
+              ]
+            },
+            {
+              "name": "Morgan Geekie",
+              "values": [
+                1,
+                0,
+                1,
+                "1",
+                3,
+                3,
+                0,
+                "16:23"
+              ]
+            },
+            {
+              "name": "Fraser Minten",
+              "values": [
+                0,
+                0,
+                0,
+                "1",
+                0,
+                3,
+                0,
+                "16:02"
+              ]
+            },
+            {
+              "name": "Nikita Zadorov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                0,
+                2,
+                3,
+                "15:02"
+              ]
+            },
+            {
+              "name": "Casey Mittelstadt",
+              "values": [
+                1,
+                0,
+                1,
+                "0",
+                3,
+                1,
+                0,
+                "14:38"
+              ]
+            },
+            {
+              "name": "Jonathan Aspirot",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                2,
+                1,
+                "13:28"
+              ]
+            },
+            {
+              "name": "James Hagens",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                0,
+                0,
+                2,
+                "13:02"
+              ]
+            },
+            {
+              "name": "Marat Khusnutdinov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                0,
+                0,
+                "12:37"
+              ]
+            },
+            {
+              "name": "Sean Kuraly",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                2,
+                0,
+                "8:45"
+              ]
+            },
+            {
+              "name": "Mark Kastelic",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                2,
+                0,
+                "8:03"
+              ]
+            },
+            {
+              "name": "Tanner Jeannot",
+              "values": [
+                0,
+                1,
+                1,
+                "-1",
+                2,
+                2,
+                1,
+                "7:24"
+              ]
+            }
+          ],
+          "totals": [
+            5,
+            7,
+            12,
+            "",
+            32,
+            22,
+            16,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Michael DiPietro",
+              "values": [
+                41,
+                37,
+                ".902",
+                "61:28"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "opp": {
+      "name": "Blackhawks",
+      "groups": [
+        {
+          "label": "Skaters",
+          "columns": [
+            "G",
+            "A",
+            "PTS",
+            "+/-",
+            "SOG",
+            "HIT",
+            "BLK",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Ian Cole",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                3,
+                0,
+                2,
+                "24:40"
+              ]
+            },
+            {
+              "name": "Alex Vlasic",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                6,
+                0,
+                4,
+                "23:15"
+              ]
+            },
+            {
+              "name": "Wyatt Kaiser",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                1,
+                2,
+                2,
+                "22:57"
+              ]
+            },
+            {
+              "name": "Connor Bedard",
+              "values": [
+                1,
+                1,
+                2,
+                "-1",
+                6,
+                1,
+                0,
+                "22:07"
+              ]
+            },
+            {
+              "name": "Artyom Levshunov",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                1,
+                1,
+                0,
+                "20:38"
+              ]
+            },
+            {
+              "name": "Anton Frondell",
+              "values": [
+                2,
+                0,
+                2,
+                "0",
+                9,
+                1,
+                0,
+                "19:15"
+              ]
+            },
+            {
+              "name": "Roman Kantserov",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                0,
+                0,
+                0,
+                "18:51"
+              ]
+            },
+            {
+              "name": "Frank Nazar",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                0,
+                0,
+                "16:14"
+              ]
+            },
+            {
+              "name": "Patrick Kane",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                2,
+                1,
+                0,
+                "15:11"
+              ]
+            },
+            {
+              "name": "Cole Smith",
+              "values": [
+                0,
+                0,
+                0,
+                "-2",
+                1,
+                0,
+                0,
+                "15:02"
+              ]
+            },
+            {
+              "name": "Ryan Donato",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                0,
+                2,
+                0,
+                "13:55"
+              ]
+            },
+            {
+              "name": "Tyler Bertuzzi",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                1,
+                2,
+                0,
+                "13:22"
+              ]
+            },
+            {
+              "name": "Andrew Mangiapane",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                2,
+                1,
+                1,
+                "12:50"
+              ]
+            },
+            {
+              "name": "Ryan Greene",
+              "values": [
+                1,
+                0,
+                1,
+                "0",
+                2,
+                0,
+                0,
+                "12:38"
+              ]
+            },
+            {
+              "name": "Ethan Del Mastro",
+              "values": [
+                0,
+                0,
+                0,
+                "0",
+                2,
+                2,
+                1,
+                "12:29"
+              ]
+            },
+            {
+              "name": "Jordan Greenway",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                0,
+                1,
+                0,
+                "11:59"
+              ]
+            },
+            {
+              "name": "Sam Rinzel",
+              "values": [
+                0,
+                1,
+                1,
+                "0",
+                1,
+                0,
+                0,
+                "11:39"
+              ]
+            },
+            {
+              "name": "Oliver Moore",
+              "values": [
+                0,
+                0,
+                0,
+                "-1",
+                2,
+                2,
+                1,
+                "10:34"
+              ]
+            }
+          ],
+          "totals": [
+            4,
+            7,
+            11,
+            "",
+            41,
+            16,
+            11,
+            ""
+          ]
+        },
+        {
+          "label": "Goalies",
+          "columns": [
+            "SA",
+            "SV",
+            "SV%",
+            "TOI"
+          ],
+          "rows": [
+            {
+              "name": "Arvid Soderblom",
+              "values": [
+                32,
+                27,
+                ".844",
+                "62:32"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
   "id": "2026-10-31-bruins-chi",
   "date": "2026-10-31"
 }
