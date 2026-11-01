@@ -1,0 +1,107 @@
+{
+  "teamKey": "bruins",
+  "sport": "NHL",
+  "headline": "Lindholm wins it in OT after Bruins erase late two-goal deficit",
+  "home": true,
+  "boston": {
+    "abbr": "BOS",
+    "score": 5
+  },
+  "opp": {
+    "abbr": "CHI",
+    "name": "Blackhawks",
+    "score": 4,
+    "record": "4–9–1"
+  },
+  "result": "W",
+  "record": "10–4–1",
+  "report": {
+    "periods": [
+      "1",
+      "2",
+      "3",
+      "OT"
+    ],
+    "boston": [
+      1,
+      1,
+      2,
+      1
+    ],
+    "opp": [
+      1,
+      1,
+      2,
+      0
+    ],
+    "sections": [
+      {
+        "label": "1st period",
+        "score": "BOS 1, CHI 1",
+        "text": "Anton Frondell put Chicago ahead on the power play at 6:04, after Will Borgen was called for delay of game, and Patrick Kane's assist was the 900th of his career. David Pastrnak answered on a breakaway at 13:05, set up by Pavel Zacha, for his 428th career goal, passing Patrice Bergeron for third on the Bruins' all-time list."
+      },
+      {
+        "label": "2nd period",
+        "score": "BOS 2, CHI 2",
+        "text": "Frondell redirected a Tyler Bertuzzi shot early in the period for a 2–1 Chicago lead. Casey Mittelstadt finished a rush with James Hagens off a neutral-zone turnover at 12:34 to tie it 2–2, even though Boston had been outshot 26–9 to that point. Alex Vlasic then went after Mittelstadt, and Nikita Zadorov punched Vlasic while pulling him off, drawing four minutes for roughing and a 10-minute misconduct."
+      },
+      {
+        "label": "3rd period",
+        "score": "BOS 4, CHI 4",
+        "text": "Ryan Greene gave Chicago a 3–2 lead at 9:38, and Connor Bedard's breakaway goal at 12:20 made it 4–2. Mason Lohrei cut it to 4–3 46 seconds later, from JJ Peterka. With Michael DiPietro pulled for an extra attacker, Morgan Geekie tied it 4–4 off a Charlie McAvoy assist with about 10 seconds left in regulation."
+      },
+      {
+        "label": "Overtime",
+        "score": "Final: BOS 5, CHI 4 (OT)",
+        "text": "DiPietro made three saves in overtime, including one on a Frondell breakaway with a hat trick at stake. Elias Lindholm then took McAvoy's stretch pass, got past Oliver Moore and went backhand to forehand past Arvid Soderblom for the winner; it was the first time Boston led all game."
+      }
+    ],
+    "sources": [
+      {
+        "name": "Boston Hockey Now (Yahoo Sports)",
+        "url": "https://sports.yahoo.com/articles/bruins-postgame-gutsy-comeback-elias-224235533.html"
+      },
+      {
+        "name": "MassLive (Yahoo Sports)",
+        "url": "https://sports.yahoo.com/articles/david-pastrnak-hits-milestone-bruins-222843919.html"
+      },
+      {
+        "name": "The Hockey News (Yahoo Sports)",
+        "url": "https://sports.yahoo.com/articles/blackhawks-play-best-game-season-202504317.html"
+      },
+      {
+        "name": "The Hockey News (Yahoo Sports)",
+        "url": "https://sports.yahoo.com/articles/bruins-start-slow-show-incredible-203619497.html"
+      },
+      {
+        "name": "NESN",
+        "url": "https://nesn.com/boston-bruins/news/bruins-vs-blackhawks-score-updates-highlights-nhl-game/9b51805b45907a5df38c9229"
+      },
+      {
+        "name": "ESPN",
+        "url": "https://www.espn.com/nhl/game/_/gameId/401892614"
+      }
+    ]
+  },
+  "performers": [
+    {
+      "name": "Elias Lindholm",
+      "line": "1 G (OT winner)",
+      "note": "His fifth goal of the season was his first overtime winner as a Bruin."
+    },
+    {
+      "name": "Morgan Geekie",
+      "line": "1 G",
+      "note": "Tied it with about 10 seconds left and the goalie pulled; it was only his second goal of the season after leading Boston with 39 last year."
+    },
+    {
+      "name": "Michael DiPietro",
+      "line": "37 SV · 41 SA",
+      "note": "Kept Boston in it while Chicago outshot the Bruins 41–32, and earned his third NHL win."
+    }
+  ],
+  "oppLine": "Anton Frondell scored twice, Connor Bedard and Ryan Greene added goals, Patrick Kane picked up his 900th career assist, and Arvid Soderblom made 27 saves.",
+  "takeaway": "The comeback snapped a two-game losing streak and kept Boston first in the Atlantic at 10–4–1, though it trailed for most of the afternoon.",
+  "id": "2026-10-31-bruins-chi",
+  "date": "2026-10-31"
+}
