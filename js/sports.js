@@ -1659,6 +1659,19 @@
     if (tv) tv.hidden = state === "post";   // no need for the channel once it's over
     const clock = row.querySelector(".sb-clock");
     const league = row.dataset.league;
+    // Football: a ball beside the team that has it, and down & distance under the clock (red inside the 20).
+    if (league === "nfl") {
+      const sit = (state === "in" && comp.situation) || {};
+      const pos = String(sit.possession || "");
+      const id = (c) => String(((c || {}).team || {}).id || "");
+      row.querySelector(".sb-us").classList.toggle("has-ball", !!pos && pos === id(us));
+      row.querySelector(".sb-them").classList.toggle("has-ball", !!pos && pos === id(them));
+      let dd = row.querySelector(".sb-down");
+      if (!dd) { dd = document.createElement("div"); dd.className = "sb-down"; clock.after(dd); }
+      const txt = sit.shortDownDistanceText ? `${sit.shortDownDistanceText}${sit.possessionText ? ` · ${sit.possessionText}` : ""}` : "";
+      dd.textContent = txt; dd.hidden = !txt;
+      dd.classList.toggle("rz", !!sit.isRedZone);
+    }
     if (state === "in") {
       clock.textContent = liveClock(league, ev.status);
     } else {
@@ -1710,8 +1723,8 @@
     try {
       const comp = (ev.competitions || [])[0] || {};
       const slim = { id: ev.id, status: ev.status, links: (ev.links || []).filter((l) => (l.rel || []).includes("summary")).slice(0, 1),
-        competitions: [{ competitors: (comp.competitors || []).map((c) => ({ homeAway: c.homeAway, score: c.score, winner: c.winner,
-          team: { abbreviation: (c.team || {}).abbreviation }, records: c.records })) }] };
+        competitions: [{ situation: comp.situation, competitors: (comp.competitors || []).map((c) => ({ homeAway: c.homeAway, score: c.score, winner: c.winner,
+          team: { abbreviation: (c.team || {}).abbreviation, id: (c.team || {}).id }, records: c.records })) }] };
       localStorage.setItem(EV_KEY(date, team), JSON.stringify(slim));
     } catch { /* storage blocked or full: fine */ }
   }
